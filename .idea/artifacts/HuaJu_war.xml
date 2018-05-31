@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="HuaJu:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="Bayonet.war">
+      <element id="artifact" artifact-name="HuaJu:war exploded" />
+    </root>
+  </artifact>
+</component>
