@@ -17,6 +17,60 @@ public class Comment {
 
     private String comcontent;
 
+    public Comment() {
+        super();
+    }
+
+    public Comment(Date comtime, Integer buildingid, Integer id, String idtype, String comtype, String comcontent) {
+        this.comtime = comtime;
+        this.buildingid = buildingid;
+        this.id = id;
+        this.idtype = idtype;
+        this.comtype = comtype;
+        this.comcontent = comcontent;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Comment comment = (Comment) o;
+
+        if (commentid != null ? !commentid.equals(comment.commentid) : comment.commentid != null) return false;
+        if (comtime != null ? !comtime.equals(comment.comtime) : comment.comtime != null) return false;
+        if (buildingid != null ? !buildingid.equals(comment.buildingid) : comment.buildingid != null) return false;
+        if (id != null ? !id.equals(comment.id) : comment.id != null) return false;
+        if (idtype != null ? !idtype.equals(comment.idtype) : comment.idtype != null) return false;
+        if (comtype != null ? !comtype.equals(comment.comtype) : comment.comtype != null) return false;
+        return comcontent != null ? comcontent.equals(comment.comcontent) : comment.comcontent == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = commentid != null ? commentid.hashCode() : 0;
+        result = 31 * result + (comtime != null ? comtime.hashCode() : 0);
+        result = 31 * result + (buildingid != null ? buildingid.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
+        result = 31 * result + (idtype != null ? idtype.hashCode() : 0);
+        result = 31 * result + (comtype != null ? comtype.hashCode() : 0);
+        result = 31 * result + (comcontent != null ? comcontent.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentid=" + commentid +
+                ", comtime=" + comtime +
+                ", buildingid=" + buildingid +
+                ", id=" + id +
+                ", idtype='" + idtype + '\'' +
+                ", comtype='" + comtype + '\'' +
+                ", comcontent='" + comcontent + '\'' +
+                '}';
+    }
+
     public Integer getCommentid() {
         return commentid;
     }

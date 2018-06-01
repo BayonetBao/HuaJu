@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.DynamicMapper">
+    <!--public boolean insertDynamic(Dynamic dynamic);-->
+    <insert id="insertDynamic" parameterType="Dynamic">
+      insert INTO  dynamic(dcontent,dytime,buildingid,dytitle) VALUES (#{dcontent},#{dytime},#{buildingid},#{dytitle});
+    </insert>
+    <!--public boolean updateDynamic(Dynamic dynamic);-->
+    <update id="updateDynamic" parameterType="Dynamic">
+        update dynamic SET dcontent=#{dcontent},dytime=#{dytime},dytitle=#{dytitle} where  dynamicid=#{dynamicid}
+    </update>
+    <!--public boolean deleteDynamic(Integer id);-->
+    <delete id="deleteDynamic" parameterType="int">
+        delete from dynamic where dynamicid=#{_parameter}
+    </delete>
+    <!--public List<Dynamic> selectAllDynamic();-->
+   <select id="selectAllDynamic" resultType="Dynamic">
+       select * from dynamic
+   </select>
+    <!--public List<Dynamic> selectDynamicByBuild(Integer id);-->
+ <select id="selectDynamicByBuild" parameterType="int" resultType="Dynamic">
+      select * from dynamic where buildingid=#{_parameter}
+ </select>
 
 </mapper>

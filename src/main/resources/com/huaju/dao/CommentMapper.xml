@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.CommentMapper">
-
+    <!--public List<Comment> selectAllComment();-->
+    <select id="selectAllComment" resultType="Comment">
+        select * from comment
+    </select>
+    <!--public List<Comment> selectCommentByIdtype(String idtype);//评论人员的类型 用户咨询师-->
+    <select id="selectCommentByIdtype" parameterType="String" resultType="Comment">
+        select * from comment where idtype=#{_parameter}
+    </select>
+    <!--public List<Comment> selectCommentByComtype(String comtype);//评论的类型 好评差评-->
+    <select id="selectCommentByComtype" parameterType="String" resultType="Comment">
+         select * from comment where comtype=#{_parameter}
+    </select>
+    <!--public boolean insertComment(Comment comment);-->
+    <insert id="insertComment" parameterType="Comment">
+        insert into comment(comcontent,comtime,buildingid,idtype,comtype)
+         VALUES (#{comcontent},#{comtime}.#{buildingid},#{id},#{idtype},#{comtype})
+    </insert>
+    <!--public  boolean deleteComment(Integer id);-->
+    <delete id="deleteComment" parameterType="int">
+        DELETE from comment where commentid=#{_parameter}
+    </delete>
 </mapper>
