@@ -17,9 +17,17 @@
    <select id="selectAllDynamic" resultType="Dynamic">
        select * from dynamic
    </select>
-    <!--public List<Dynamic> selectDynamicByBuild(Integer id);-->
+    <!--public List<Dynamic> selectDynamicByBuild(Inteher id);-->
  <select id="selectDynamicByBuild" parameterType="int" resultType="Dynamic">
-      select * from dynamic where buildingid=#{_parameter}
+      select * from dynamic
+     <where>
+         <if test="#{_parameter} neq null">
+             and buildingid=#{_parameter}
+         </if>
+     </where>
  </select>
-
+    <!--public int selectCountDynamic();-->
+<select id="selectCountDynamic" resultType="int">
+    select count(*) from dynamic
+</select>
 </mapper>

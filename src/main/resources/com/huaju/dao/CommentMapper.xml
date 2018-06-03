@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.CommentMapper">
-    <!--public List<Comment> selectAllComment();-->
-    <select id="selectAllComment" resultType="Comment">
-        select * from comment
+    <resultMap id="CommentMap" type="Comment">
+        <id property="commentid" column="commentid"/>
+        <result property="comtime" column="comtime"/>
+        <result property="buildingid" column="buildingid"/>
+        <result property="id" column="id"/>
+        <result property="idtype" column="idtype"/>
+        <result property="comtype" column="comtype"/>
+        <result property="comcontent" column="comcontent"/>
+        <result property="uname" column="uname"/>
+        <collection property="favors" javaType="Favor">
+            <result property="userid" column="userid"/>
+        </collection>
+    </resultMap>
+    <!--public List<Comment>  selectCommentByQueryPojo(CommentQueryPojo commentQueryPojo);-->
+    <select id="selectCommentByQueryPojo" parameterType="CommentQueryPojo" resultMap="CommentMap">
+        select comment.* ,favor.userid,user.uname as uname from comment ,favor,user
+        <where>
+            comment.commentid=favor.commentid and comment.id=user.userid and idtype like "%" "用户" "%"
+            <if test="buildingid neq null">
+                and comment.buildingid=#{buildingid}
+            </if>
+            <if test="idtype neq null">
+                and comment.idtype like "%" #{idtype} "%"
+            </if>
+            <if test="comtype neq null">
+                and comment.comtype like "%" #{comtype} "%"
+            </if>
+        </where>
+        UNION
+        select comment.* ,favor.userid,cta.ctaname as uname from comment ,favor,cta
+        <where>
+            comment.commentid=favor.commentid and comment.id=user.userid and idtype like "%" "咨询" "%"
+            <if test="buildingid neq null">
+                and comment.buildingid=#{buildingid}
+            </if>
+            <if test="idtype neq null">
+                and comment.idtype like "%" #{idtype} "%"
+            </if>
+            <if test="comtype neq null">
+                and comment.comtype like "%" #{comtype} "%"
+            </if>
+        </where>
+
     </select>
-    <!--public List<Comment> selectCommentByIdtype(String idtype);//评论人员的类型 用户咨询师-->
-    <select id="selectCommentByIdtype" parameterType="String" resultType="Comment">
-        select * from comment where idtype=#{_parameter}
-    </select>
-    <!--public List<Comment> selectCommentByComtype(String comtype);//评论的类型 好评差评-->
-    <select id="selectCommentByComtype" parameterType="String" resultType="Comment">
-         select * from comment where comtype=#{_parameter}
-    </select>
+
     <!--public boolean insertComment(Comment comment);-->
     <insert id="insertComment" parameterType="Comment">
         insert into comment(comcontent,comtime,buildingid,idtype,comtype)

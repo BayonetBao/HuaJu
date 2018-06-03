@@ -61,6 +61,10 @@ public class Build {
 
     private String bsalestatus;
 
+    public Build() {
+        super();
+    }
+
     public Integer getBuildingid() {
         return buildingid;
     }
