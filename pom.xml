@@ -59,6 +59,20 @@
       <artifactId>spring-test</artifactId>
       <version>5.0.1.RELEASE</version>
     </dependency>
+    <!--sql数据分页-->
+    <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>5.0.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.github.jsqlparser/jsqlparser -->
+    <dependency>
+      <groupId>com.github.jsqlparser</groupId>
+      <artifactId>jsqlparser</artifactId>
+      <version>0.9.4</version>
+    </dependency>
     <!--Spring mvc-->
     <dependency>
       <groupId>org.springframework</groupId>

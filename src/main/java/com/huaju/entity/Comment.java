@@ -1,6 +1,7 @@
 package com.huaju.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Comment {
     private Integer commentid;
@@ -10,12 +11,27 @@ public class Comment {
     private Integer buildingid;
 
     private Integer id;
-
     private String idtype;
-
     private String comtype;
-
     private String comcontent;
+    private String uname;//用户名字
+    private List<Favor> favors;
+
+    public String getUname() {
+        return uname;
+    }
+
+    public void setUname(String uname) {
+        this.uname = uname;
+    }
+
+    public List<Favor> getFavors() {
+        return favors;
+    }
+
+    public void setFavors(List<Favor> favors) {
+        this.favors = favors;
+    }
 
     public Comment() {
         super();

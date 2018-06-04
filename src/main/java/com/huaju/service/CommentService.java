@@ -1,13 +1,15 @@
 package com.huaju.service;
 
+import com.github.pagehelper.PageInfo;
 import com.huaju.entity.Comment;
+import com.huaju.entity.CommentQueryPojo;
 
 import java.util.List;
-//乔杨珂
+import java.util.Map;
+
 public interface CommentService {
     public List<Comment> selectAllComment();
-    public List<Comment> selectCommentByIdtype(String idtype);//评论人员的类型 用户咨询师
-    public List<Comment> selectCommentByComtype(String comtype);//评论的类型 好评差评
+    public PageInfo<Comment> selectCommentByQueryPojo(Map<String,Object> map);
     public boolean insertComment(Comment comment);
     public  boolean deleteComment(Integer id);
 }

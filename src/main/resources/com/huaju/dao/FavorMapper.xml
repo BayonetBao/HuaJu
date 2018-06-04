@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.FavorMapper">
-
+    <!--public List<Favor> selectFavorByUserid(Integer id);-->
+    <select id="selectFavorByUserid" parameterType="int" resultType="Favor">
+        select * from favor where userid=#{_parameter}
+    </select>
+    <!--public List<Favor> selectFavorByCommentid(Integer id);-->
+    <select id="selectFavorByCommentid" parameterType="int" resultType="Favor">
+        select * from favor where commentid=#{_parameter}
+    </select>
+    <!--public boolean deleteFavorByFavorid(Integer id);-->
+    <delete id="deleteFavorByFavorid" parameterType="int">
+        delete from favor where favorid=#{_parameter}
+    </delete>
+    <!--public boolean deleteFavorByUseridAndCommentid(@param("uid")Integer userId,@Param("cid")Integer commentId);-->
+    <delete id="deleteFavorByUseridAndCommentid">
+      delete from favor where userid=#{param1} and commentid=#{param2}
+    </delete>
+    <!--public boolean insertFavor(Favor favor);-->
+    <insert id="insertFavor" parameterType="Favor">
+        insert into favor(commentid,userid) VALUES (#{commentid},#{userid})
+    </insert>
 </mapper>
