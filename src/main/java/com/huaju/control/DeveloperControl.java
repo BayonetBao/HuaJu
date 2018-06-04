@@ -12,6 +12,7 @@ import java.io.IOException;
 public class DeveloperControl {
     @RequestMapping(value = "/main.action")
     public void developerIndex(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/developer/index.html").forward(request,response);
+        //System.out.println("4545454545");
+        request.getRequestDispatcher("/user/bao/index.jsp").forward(request,response);
     }
 }

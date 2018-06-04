@@ -3,7 +3,7 @@ package com.huaju.service;
 import com.huaju.entity.Comment;
 
 import java.util.List;
-
+//乔杨珂
 public interface CommentService {
     public List<Comment> selectAllComment();
     public List<Comment> selectCommentByIdtype(String idtype);//评论人员的类型 用户咨询师

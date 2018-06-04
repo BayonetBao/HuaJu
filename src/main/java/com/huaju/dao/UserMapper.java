@@ -3,5 +3,8 @@ package com.huaju.dao;
 import com.huaju.entity.User;
 
 public interface UserMapper {
-    public User getUserById(int id);
+    //注册用户(张宝)
+    public void setUser( User user);
+//    按用户名查找（张宝）
+    public User selectUserByName(String name);
 }

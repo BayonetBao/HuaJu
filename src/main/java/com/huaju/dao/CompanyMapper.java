@@ -1,5 +1,8 @@
 package com.huaju.dao;
 
-public interface CompanyMapper {
+import com.huaju.entity.Company;
 
+public interface CompanyMapper {
+    //按用户名查找（张宝）
+    public Company selectCompanyByName(String comname);
 }

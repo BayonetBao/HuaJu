@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.CompanyMapper">
-
+    <!--//按用户名查找（张宝）-->
+    <!--public Company selectCompanyByName(String comname);-->
+    <select id="selectCompanyByName" parameterType="String" resultType="Company">
+        SELECT * from company where comname=#{_parameter}
+    </select>
 </mapper>
