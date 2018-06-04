@@ -64,7 +64,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">楼盘名称：</td>
                         <td align="left" valign="" class="borderright borderbottom main-for">
-                            升龙楼盘
+                            升龙
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

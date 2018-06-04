@@ -65,7 +65,7 @@
                                 <select name="buildingid" class="form-control input-sm" style="width:170px;margin-left:20px;margin-top:10px;">
                                     <option value="">请选择</option>
                                     <option value="2">升龙楼盘</option>
-                                    <option value="3">3</option>
+                                    <option value="6">6</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                 </select>
