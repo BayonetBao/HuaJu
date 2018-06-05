@@ -28,4 +28,9 @@ public class AllUserServiceImpl implements AllUserService {
     public Company selectCompanyByName(String comname){
         return companyMapper.selectCompanyByName(comname);
     }
+
+    @Override
+    public void setCompany(Company company) {
+        companyMapper.setCompany(company);
+    }
 }

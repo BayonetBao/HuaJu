@@ -31,16 +31,16 @@
             </list>
         </property>
     </bean>
-    <!--文件上传的支持-->
+    <!--&lt;!&ndash;文件上传的支持&ndash;&gt;-->
     <!--<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
-        <!--<property name="maxUploadSize"><value>1000000</value>-->
+        <!--<property name="maxUploadSize"><value>50000000</value>-->
         <!--</property>-->
     <!--</bean>-->
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 设置上传文件的最大尺寸为5MB -->
         <property name="maxUploadSize">
-            <value>10000000</value>
+            <value>50000000</value>
         </property>
     </bean>
     <!--<mvc:interceptors>-->

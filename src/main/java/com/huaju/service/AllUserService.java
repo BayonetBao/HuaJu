@@ -10,4 +10,6 @@ public interface AllUserService {
     public User selectUserByName(String name);
     //按开发商姓名查找
     public Company selectCompanyByName(String comname);
+    //开发商注册
+    public void setCompany(Company company);
 }

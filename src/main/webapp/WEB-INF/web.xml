@@ -16,7 +16,6 @@
   <!--前控制器拦截什么样的请求    静态资源，jsp资源都不会拦截  访问处理器的url拦截
      默认定义 处理器的访问url 地址  .action
      拦截以.action 结尾的请求，就是拦截处理器请求
-
   -->
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>

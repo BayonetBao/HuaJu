@@ -77,10 +77,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="email">
                 <ul>
-                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>咨询热线：400-606-2695 </li>
+                    <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>咨询热线：400-606-2695 </li>
+                    <c:if test="${not empty sessionScope.user}">
+                        <c:if test="${sessionScope.userType==1}">
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="#">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action" ><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userType==2}">
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>开发商用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="#">${user.comuname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                        </c:if>
+
+                    </c:if>
+                    <c:if test="${empty sessionScope.user}">
                     <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
                     <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">注册</a></li>
-                </ul>
+                    </c:if>
+                        </ul>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -727,7 +738,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="login">
                         <div class="login-right">
                             <form action="/register.action" method="post" onsubmit="return registersubmit('p')">
-                                <h3>Register </h3>
+                                <h3>普通用户注册 </h3>
                                 <input style="color:#000" id="runame" name="runame" type="text" placeholder="用户名" >
                                 <span></span>
                                 <input style="color:#000" id="rpass" name="rpass" type="password" placeholder="密码" >
@@ -747,14 +758,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </form>
                         </div>
                     </div>
-                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+                    <p><a href="${pageContext.request.contextPath}/user/bao/developerRegister/register.jsp">开发商注册>></a></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-                            <script>
+        <script>
                                 <!--短信验证-->
                                 var timer;
                                 var time=5;
@@ -951,24 +962,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     var flag=true;
                                     var uname=$("#uname");
                                     var password=$("#password");
-                                    if(param=='p'){
-
+                                       if(param=='p'){
                                         $.ajax({
+                                            async:false,
                                             type:"get",
                                             url:"${pageContext.request.contextPath}/checkLoginUname.action",
                                             data:"uname="+uname.val()+"&userType="+$("input[name='userType']:checked").val()+"&password="+password.val(),
                                             success:function (da){
-                                                alert(da);
+                                               // alert(da);
                                                 if(da==0){
-                                                    alert("sb0");
+
                                                     uname.next("SPAN").text("用户名不存在");
                                                     uname.next("SPAN").removeClass();
                                                     uname.next("SPAN").addClass("error");
                                                     flag=false;
-                                                    alert(flag);
-                                                    return flag;
+
                                                 }else if(da==1){
-                                                    alert("sb1");
+
                                                     password.next("SPAN").text("密码错误");
                                                     password.next("SPAN").removeClass();
                                                     password.next("SPAN").addClass("error");
@@ -976,11 +986,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 }
                                             }
                                         });
-
-                                        alert(flag+"1111");
                                     }
-
+                                    return flag;
                                 }
+                                $("#uname").focus(function () {
+                                    $("#uname").next("SPAN").text("");
+                                });
+                                $("#password").focus(function () {
+                                    $("#password").next("SPAN").text("");
+                                });
                             </script>
 </body>
 </html>

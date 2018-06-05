@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class Company {
     private Integer comid;
-
+    private String comuname;
+    private String compassword;
     private String comname;
 
     private Double cmoney;
@@ -30,6 +31,22 @@ public class Company {
     private String quality;
 
     private String instruction;
+
+    public String getComuname() {
+        return comuname;
+    }
+
+    public void setComuname(String comuname) {
+        this.comuname = comuname;
+    }
+
+    public String getCompassword() {
+        return compassword;
+    }
+
+    public void setCompassword(String compassword) {
+        this.compassword = compassword;
+    }
 
     public Integer getComid() {
         return comid;

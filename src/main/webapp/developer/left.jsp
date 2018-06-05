@@ -35,7 +35,7 @@
 <div style="float: left" id="my_menu" class="sdmenu">
     <div class="collapsed">
         <span>楼盘信息</span>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">后台首页</a>
+        <a href="${pageContext.request.contextPath}/developer/personalCenter.jsp" target="mainFrame" onFocus="this.blur()">后台首页</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">楼盘信息</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">楼盘添加</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">信息完善</a>
