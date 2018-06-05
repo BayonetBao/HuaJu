@@ -16,6 +16,8 @@ public class Build {
 
     private String barea;
 
+    private String bdetail;
+
     private String bpicture;
 
     private String tenement;
@@ -35,6 +37,8 @@ public class Build {
     private Double acreage;
 
     private String condition;
+
+    private String discounts;
 
     private Date starttime;
 
@@ -374,5 +378,21 @@ public class Build {
 
     public void setBsalestatus(String bsalestatus) {
         this.bsalestatus = bsalestatus == null ? null : bsalestatus.trim();
+    }
+
+    public String getBdetail() {
+        return bdetail;
+    }
+
+    public void setBdetail(String bdetail) {
+        this.bdetail = bdetail;
+    }
+
+    public String getDiscounts() {
+        return discounts;
+    }
+
+    public void setDiscounts(String discounts) {
+        this.discounts = discounts;
     }
 }
