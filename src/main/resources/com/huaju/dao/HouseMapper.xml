@@ -1,5 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.HouseMapper">
+    <!--显示house数据列表信息-->
+    <!--public List<House> selectHouseInfoZYJ();-->
+    <select id="selectHouseInfoZYJ" resultType="House">
+        SELECT  * FROM house
+    </select>
+
+
+    <!--&lt;!&ndash;//    添加house信息&ndash;&gt;-->
+    <!--&lt;!&ndash;  public void addHouseInfoZYJ(House house);&ndash;&gt;-->
+<!--<insert id="addHouseInfoZYJ" parameterType="House">-->
+    <!--insert into house-->
+     <!--(houseid, hname, hmoney, htypeimg, hperprice, updatename, forward, harea, htype, hsalestatus, payment, monthpay,analysis  )-->
+    <!--values-->
+    <!--( #{houseid} ,#{hname}, #{hmoney}, #{htypeimg}, #{hperprice}, #{updatename}, #{forward}, #{harea}, #{htype}, #{hsalestatus}, #{payment}, #{monthpay}, #{analysis} );-->
+<!--</insert>-->
+
+    <!--显示house和房型的信息-->
+    <resultMap id="showHouseDoorAllInfoMap" type="House">
+        <id column="houseid" property="houseid"/>
+        <result column="hname" property="hname" />
+        <result column="hmoney" property="hmoney" />
+        <result column="htypeimg" property="htypeimg" />
+        <result column="hperprice" property="hperprice" />
+        <result column="updatename" property="updatename" />
+        <result column="forward" property="forward" />
+        <result column="harea" property="harea" />
+        <result column="htype" property="htype" />
+        <result column="hsalestatus" property="hsalestatus" />
+        <result column="payment" property="payment" />
+        <result column="monthpay" property="monthpay" />
+        <result column="analysis" property="analysis" />
+        <!--房型表-->
+       <association property="door"  javaType="Door">
+           <id column="doorid" property="doorid"></id>
+           <result column="doorname" property="doorname"/>
+       </association>
+    </resultMap>
+    <!--public House showHouseDoorAllInfo(int houseid);-->
+    <select id="showHouseDoorAllInfo" resultMap="showHouseDoorAllInfoMap" parameterType="int">
+        select h.* , d.doorname from house h,door d WHERE h.doorid=d.doorid AND  h.houseid=#{_parameter}
+    </select>
+
+
+
+    <!--//    显示户型信息   house 和 Type 的关系-->
+    <resultMap id="showHouseTypeInfoMap" type="House">
+        <id column="houseid" property="houseid"/>
+        <association property="buildType" javaType="BuildType">
+            <id column="butypeid" property="butypeid"/>
+            <result column="typeid" property="typeid"/>
+            <association  property="type" javaType="Type">
+                <id column="typeid" property="typeid"/>
+                <result column="typename" property="typename"/>
+            </association>
+
+        </association>
+    </resultMap>
+    <!--public House showHouseTypeInfo(int houseid);-->
+    <select id="showHouseTypeInfo" resultMap="showHouseTypeInfoMap" parameterType="int">
+        SELECT t.typename FROM house h , buildtype b , type t WHERE h.butypeid=b.butypeid AND  b.typeid=t.typeid
+        AND  h.houseid=#{_parameter}
+    </select>
+
+
+    <!--//删除house信息-->
+    <!--public void removeHouse(int houseid);-->
+    <delete id="removeHouse" parameterType="int">
+        DELETE FROM  house WHERE houseid=#{_parameter}
+    </delete>
+
+
+
+
 
 </mapper>
