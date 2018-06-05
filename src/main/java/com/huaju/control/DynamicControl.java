@@ -27,6 +27,7 @@ import java.util.*;
 public class DynamicControl {
     @Autowired
     private DynamicService dynamicService;
+
     @RequestMapping(value = "selectAllDynamicByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllDynamicByQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DynamicQueryPojo dynamicQueryPojo=new DynamicQueryPojo();
@@ -54,6 +55,10 @@ public class DynamicControl {
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("dynamicQueryPojo",dynamicQueryPojo);
         request.getRequestDispatcher("/developer/dynamicList.jsp").forward(request, response);
+    }
+    @RequestMapping(value = "selectDynamicByBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
+    public void selectDynamicByBuild(DynamicQueryPojo dynamicQueryPojo,HttpServletRequest request,HttpServletResponse response){
+
     }
       @RequestMapping(value = "insertDynamicBefore.action",method = {RequestMethod.POST,RequestMethod.GET})
       public void insertDynamicBefore(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

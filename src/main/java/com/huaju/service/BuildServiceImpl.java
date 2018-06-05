@@ -19,8 +19,8 @@ public class BuildServiceImpl implements BuildService{
         BuildQueryPojo buildQueryPojo = (BuildQueryPojo) cmap.get("buildQueryPojo");
         int curPage=(int)cmap.get("curPage");
         int pageSize=(int) cmap.get("pageSize");
-        List<Build> builds=buildMapper.selectBuildQueryPojo(buildQueryPojo);
         PageHelper.startPage(curPage,pageSize);
+        List<Build> builds=buildMapper.selectBuildQueryPojo(buildQueryPojo);
         PageInfo<Build> pageInfo=new PageInfo<Build>(builds);
         return pageInfo;
     }
