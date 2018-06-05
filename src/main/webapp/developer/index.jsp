@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>网站后台管理系统</title>
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link href="css/css.css" type="text/css" rel="stylesheet" />

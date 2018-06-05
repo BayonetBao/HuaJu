@@ -1,6 +1,7 @@
 package com.huaju.service;
 
 import com.github.pagehelper.PageInfo;
+import com.huaju.entity.Build;
 import com.huaju.entity.Comment;
 import com.huaju.entity.CommentQueryPojo;
 
@@ -12,4 +13,5 @@ public interface CommentService {
     public PageInfo<Comment> selectCommentByQueryPojo(Map<String,Object> map);
     public boolean insertComment(Comment comment);
     public  boolean deleteComment(Integer id);
+    public List<Build> selectBuildInComment(Integer comid);
 }

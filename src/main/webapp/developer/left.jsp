@@ -11,8 +11,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>左侧导航menu</title>
-    <link href="css/css.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="js/sdmenu.js"></script>
+    <link href="${pageContext.request.contextPath}/developer/css/css.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/developer/js/sdmenu.js"></script>
     <script type="text/javascript">
         // <![CDATA[
         var myMenu;
@@ -22,12 +22,16 @@
         };
         // ]]>
     </script>
-    <style type=text/css>
+    <style type="text/css">
         html{ SCROLLBAR-FACE-COLOR: #538ec6; SCROLLBAR-HIGHLIGHT-COLOR: #dce5f0; SCROLLBAR-SHADOW-COLOR: #2c6daa; SCROLLBAR-3DLIGHT-COLOR: #dce5f0; SCROLLBAR-ARROW-COLOR: #2c6daa;  SCROLLBAR-TRACK-COLOR: #dce5f0;  SCROLLBAR-DARKSHADOW-COLOR: #dce5f0; overflow-x:hidden;}
         body{overflow-x:hidden; background:url(images/main/leftbg.jpg) left top repeat-y #f2f0f5; width:194px;}
     </style>
 </head>
 <body onselectstart="return false;" ondragstart="return false;" oncontextmenu="return false;">
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <div id="left-top">
     <div><img src="images/main/member.gif" width="44" height="44" /></div>
     <span>用户：admin<br>角色：超级管理员</span>
@@ -42,9 +46,9 @@
     </div>
     <div>
         <span>楼盘动态</span>
-        <a href="dynamicList.jsp" target="mainFrame" onFocus="this.blur()">楼盘动态</a>
-        <a href="dynamicAdd.jsp" target="mainFrame" onFocus="this.blur()">动态添加</a>
-    </div>
+        <a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByQueryPojo.action" target="mainFrame" onFocus="this.blur()">楼盘动态</a>
+        <a href="${pageContext.request.contextPath}/dynamic/insertDynamicBefore.action" target="mainFrame" onFocus="this.blur()">动态添加</a>
+   </div>
     <div>
         <span>楼盘图册</span>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">效果图</a>
@@ -52,9 +56,7 @@
     </div>
     <div>
         <span>评论信息</span>
-        <a href="commentList.jsp" target="mainFrame" onFocus="this.blur()">所有评论</a>
-        <a href="commentList.jsp" target="mainFrame" onFocus="this.blur()">咨询师评论</a>
-        <a href="commentList.jsp" target="mainFrame" onFocus="this.blur()">用户评论</a>
+        <a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojo.action" target="mainFrame" onFocus="this.blur()">所有评论</a>
     </div>
     <div>
         <span>活动信息</span>

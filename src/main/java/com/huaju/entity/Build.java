@@ -1,6 +1,7 @@
 package com.huaju.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Build {
     private Integer buildingid;
@@ -23,7 +24,7 @@ public class Build {
 
     private String bline;
 
-    private Integer comid;
+    private Integer comid;//开发商id
 
     private String character;
 
@@ -60,9 +61,87 @@ public class Build {
     private String fitment;
 
     private String bsalestatus;
+    private List<BuildType> buildType;
 
     public Build() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "Build{" +
+                "buildingid=" + buildingid +
+                ", building='" + building + '\'' +
+                ", ctaid=" + ctaid +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", barea='" + barea + '\'' +
+                ", bpicture='" + bpicture + '\'' +
+                ", tenement='" + tenement + '\'' +
+                ", btype='" + btype + '\'' +
+                ", bline='" + bline + '\'' +
+                ", comid=" + comid +
+                ", character='" + character + '\'' +
+                ", bperprice=" + bperprice +
+                ", btotalprice=" + btotalprice +
+                ", acreage=" + acreage +
+                ", condition='" + condition + '\'' +
+                ", starttime=" + starttime +
+                ", endtime=" + endtime +
+                ", genre='" + genre + '\'' +
+                ", agelimit=" + agelimit +
+                ", landtime=" + landtime +
+                ", tencompany='" + tencompany + '\'' +
+                ", tencost=" + tencost +
+                ", tentype='" + tentype + '\'' +
+                ", greenrate=" + greenrate +
+                ", carport='" + carport + '\'' +
+                ", cubage=" + cubage +
+                ", fitment='" + fitment + '\'' +
+                ", bsalestatus='" + bsalestatus + '\'' +
+                ", buildType=" + buildType +
+                '}';
+    }
+
+    public Build(Integer buildingid, String building, Integer ctaid, String province, String city, String barea, String bpicture, String tenement, String btype, String bline, Integer comid, String character, Double bperprice, Double btotalprice, Double acreage, String condition, Date starttime, Date endtime, String genre, Integer agelimit, Date landtime, String tencompany, Double tencost, String tentype, Double greenrate, String carport, Double cubage, String fitment, String bsalestatus, List<BuildType> buildType) {
+        this.buildingid = buildingid;
+        this.building = building;
+        this.ctaid = ctaid;
+        this.province = province;
+        this.city = city;
+        this.barea = barea;
+        this.bpicture = bpicture;
+        this.tenement = tenement;
+        this.btype = btype;
+        this.bline = bline;
+        this.comid = comid;
+        this.character = character;
+        this.bperprice = bperprice;
+        this.btotalprice = btotalprice;
+        this.acreage = acreage;
+        this.condition = condition;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.genre = genre;
+        this.agelimit = agelimit;
+        this.landtime = landtime;
+        this.tencompany = tencompany;
+        this.tencost = tencost;
+        this.tentype = tentype;
+        this.greenrate = greenrate;
+        this.carport = carport;
+        this.cubage = cubage;
+        this.fitment = fitment;
+        this.bsalestatus = bsalestatus;
+        this.buildType = buildType;
+    }
+
+    public List<BuildType> getBuildType() {
+        return buildType;
+    }
+
+    public void setBuildType(List<BuildType> buildType) {
+        this.buildType = buildType;
     }
 
     public Integer getBuildingid() {

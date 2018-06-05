@@ -6,17 +6,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>主要内容区main</title>
-    <link href="css/css.css" type="text/css" rel="stylesheet" />
-    <link href="css/main.css" type="text/css" rel="stylesheet" />
-    <link rel="shortcut icon" href="images/main/favicon.ico" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="bootstrap/jquery.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <link href="${pageContext.request.contextPath}/developer/css/css.css" type="text/css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/developer/css/main.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/developer/images/main/favicon.ico" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/developer/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/developer/bootstrap/jquery.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/developer/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/developer/My97DatePicker/WdatePicker.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -59,47 +61,76 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
+            <form method="post" action="#">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">楼盘名称：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <select name="level" id="level" style="width:500px">
+                            <select id="buildingid" onblur="check(this.value)" name="buildingid" class="form-control input-sm" style="width:315px;margin-left:20px;margin-top:10px;">
                                 <option value="">请选择</option>
-                                <option value="1" >&nbsp;&nbsp;升龙</option>
-                                <option value="2" >&nbsp;&nbsp;升龙</option>
-                                <option value="3" >&nbsp;&nbsp;楼盘名字</option>
+                                <c:forEach items="${blist}" var="b">
+                               <option value="${b.buildingid}">${b.building}</option>
+                               </c:forEach>
                             </select>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">动态标题：</td>
+                        <td align="right"  valign="middle" class="borderright borderbottom bggray">动态标题：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text" id="dytitle" name="dytitle" value="" onblur="check(this.value)" class="text-word"  style="width: 330px;">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">动态时间：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-
-
-                            <input id="d422" class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-{%d} 00:00:00'})"/>
+                            <input id="dytime" name="dytime" value="" onblur="check(this.value)" class="Wdate"  style="width: 330px;" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-{%d} 00:00:00'})"/>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">动态内容：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <textarea name="eduhistory" cols="58" rows="4" align="center"></textarea>
+                        <td align="left"  valign="middle" class="borderright borderbottom main-for">
+                            <textarea id="dcontent" onblur="check(this.value)" name="dcontent" cols="58" rows="4" align="center"></textarea>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input name="" type="submit" value="提交" class="text-but">
-                            <input name="" type="reset" value="重置" class="text-but"></td>
+                            <input  type="button" value="提交" onclick="addDynamic()" class="text-but">
+                            <input type="reset" value="重置" class="text-but"></td>
                     </tr>
                 </table>
             </form>
+            <script>
+                function check(zhi) {
+                    if(zhi==""){
+                        alert("不能为空奥~~");
+                    }
+                }
+                function addDynamic(){
+                    if(confirm("你确认要添加吗?")){
+                        var buildingid=$("#buildingid");
+                        var dytitle=$("#dytitle");
+                        var dytime=$("#dytime");
+                        var dcontent=$("#dcontent");
+                        $.ajax({
+                            url:"${pageContext.request.contextPath}/dynamic/insertDynamicAfter.action",
+                            type:"post",
+                            data:"buildingid="+buildingid.val()+"&dytitle="+dytitle.val()+"&dytime="+dytime.val()+"&dcontent="+dcontent.val(),
+                            success:function(data){
+                                dytitle.val("");
+                                dytime.val("");
+                                dcontent.val("");
+                                alert(data);
+                            },
+                            error:function(XMLHttpRequest, textStatus, errorThrown){
+                                alert("Error")
+                                alert(XMLHttpRequest.readyState);
+                            }
+                        });
+                    }
+
+                }
+            </script>
         </td>
     </tr>
 </table>

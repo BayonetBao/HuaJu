@@ -1,5 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.BuildMapper">
-
+    <resultMap id="BuildMap" type="Build">
+        <id property="buildingid" column="buildingid"/>
+        <result property="building" column="building"/>
+        <result property="ctaid" column="ctaid"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="barea" column="barea"/>
+        <result property="bpicture" column="bpicture"/>
+        <result property="tenement" column="tenement"/>
+        <result property="btype" column="btype"/>
+        <result property="bline" column="bline"/>
+        <result property="comid" column="comid"/>
+        <result property="character" column="character"/>
+        <result property="bperprice" column="bperprice"/>
+        <result property="btotalprice" column="btotalprice"/>
+        <result property="acreage" column="acreage"/>
+        <result property="condition" column="condition"/>
+        <result property="starttime" column="starttime"/>
+        <result property="endtime" column="endtime"/>
+        <result property="genre" column="genre"/>
+        <result property="agelimit" column="agelimit"/>
+        <result property="landtime" column="landtime"/>
+        <result property="tencompany" column="tencompany"/>
+        <result property="tencost" column="tencost"/>
+        <result property="tentype" column="tentype"/>
+        <result property="greenrate" column="greenrate"/>
+        <result property="carport" column="carport"/>
+        <result property="cubage" column="cubage"/>
+        <result property="fitment" column="fitment"/>
+        <result property="bsalestatus" column="bsalestatus"/>
+        <collection property="buildType" javaType="BuildType">
+            <id property="butypeid" column="butypeid"/>
+            <result property="count" column="count" />
+            <result property="typename" column="typename" />
+        </collection>
+    </resultMap>
+    <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);-->
+   <select id="selectBuildQueryPojo" parameterType="BuildQueryPojo" resultMap="BuildMap">
+       select build.* ,buildtype.butypeid,buildtype.count,type.typename from build,buildtype,type
+       <where>
+           build.buildingid=buildtype.buildingid and buildtype.butypeid=type.butypeid
+           <if test="province neq null">
+               and province=#{province}
+           </if>
+           <if test="city neq null">
+               and city=#{city}
+           </if>
+           <if test="district neq null">
+               and district=#{district}
+           </if>
+           <if test="character neq null">
+               and character like "%" #{character} "%"
+           </if>
+           <if test="genre neq null">
+               and genre like "%" #{genre} "%"
+           </if>
+           <if test="bTotalprice neq null">
+               and bTotalprice &gt; #{bTotalprice}
+           </if>
+           <if test="bMaxTotalprice neq null">
+               and bMaxTotalprice &lt; #{bTotalprice}
+           </if>
+           <if test="bPerprice neq null">
+               and bPerprice &gt; #{bTotalprice}
+           </if>
+           <if test="bMaxprice neq null">
+               and bMaxprice &lt; #{bMaxprice}
+           </if>
+           <if test="acreage neq null">
+               and acreage &gt; #{acreage}
+           </if>
+           <if test="maxAcreage neq null">
+               and maxAcreage &lt; #{maxAcreage}
+           </if>
+           <if test="comid neq null">
+               and comid =#{comid}
+           </if>
+       </where>
+   </select>
 </mapper>

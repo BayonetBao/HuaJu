@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%--
   Created by IntelliJ IDEA.
   User: 七年
@@ -10,9 +12,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>主要内容区main</title>
-    <link href="css/css.css" type="text/css" rel="stylesheet" />
-    <link href="css/main.css" type="text/css" rel="stylesheet" />
-    <link rel="shortcut icon" href="images/main/favicon.ico" />
+    <link href="${pageContext.request.contextPath}/developer/css/css.css" type="text/css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/developer/css/main.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/developer/images/main/favicon.ico" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/developer/bootstrap/jquery.js"></script>
+
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -36,79 +40,109 @@
         .bggray{ background:#f9f9f9}
         #addinfo{ padding:0 0 10px 0;}
     </style>
+    <script >
+        function  getPage(curPage) {
+            //将我们这个隐藏域的值变成curPage
+            $("#curPage").val(curPage);
+            //触发表单提交事件
+            $("#mainForm").submit();
+
+        }
+        function removeComment(commentid) {
+            if(confirm("你确认要删除吗?")){
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/comment/deleteCommentById.action",
+                    type:"get",
+                    data:"commentid="+commentid,
+                    success:function(data){
+                        var tr=$("#tr_"+commentid);
+                        tr.remove();
+                        alert(data);
+                    },
+                    error:function(XMLHttpRequest, textStatus, errorThrown){
+                        alert("Error");
+                    }
+                });
+            }
+
+        }
+    </script>
 </head>
 <body>
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
         <td width="99%" align="left" valign="top" id="addinfo">
-            <form method="post" action="">
+            <form id="mainForm" method="post" action="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojo.action">
+                <input type="hidden" id="curPage" name="curPage" value="1"/>
                 您的位置：留言板&nbsp;&nbsp;&nbsp;<span>楼盘：</span>
-                <input type="text" name="" value="" class="text-word">
-                <input name="" type="button" value="查询" class="text-but">
+                <select name="buildingid" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
+                    <option value="">请选择</option>
+                    <c:forEach items="${blist}" var="b">
+                        <c:choose>
+                            <c:when test="${b.buildingid == commentQueryPojo.buildingid}">
+                                <option value="${b.buildingid}" selected>${b.building}</option>
+                            </c:when>
+                            <c:otherwise>
+                                <option value="${b.buildingid}">${b.building}</option>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </select>
+                <span>$：</span>
+                    <input name="comtype" <c:if test="${commentQueryPojo.comtype eq '好评'}">checked</c:if> type="radio" value="好评">好评</input>
+                    <input name="comtype" <c:if test="${commentQueryPojo.comtype eq '中评'}">checked</c:if> type="radio" value="中评">中评</input>
+                    <input name="comtype" <c:if test="${commentQueryPojo.comtype eq '差评'}">checked</c:if> type="radio" value="差评">差评</input>
+                <span>评论人员：</span>
+                <select name="idtype" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
+                    <option value="" >请选择</option>
+                    <option value="咨询师" <c:if test="${commentQueryPojo.idtype eq '咨询师'}">selected</c:if>>咨询师</option>
+                    <option value="用户" <c:if test="${commentQueryPojo.idtype eq '用户'}">selected</c:if>>用户</option>
+                </select>
+                <input  type="submit" value="查询" class="text-but">
             </form>
         </td>
     </tr>
     <tr>
         <td align="left" valign="top">
-
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                 <tr>
-                    <th align="center" valign="middle" class="borderright">编号</th>
-                    <th align="center" valign="middle" class="borderright">评论类型</th>
-                    <th align="center" valign="middle" class="borderright">评论用户</th>
-                    <th align="center" valign="middle" class="borderright">用户名称</th>
-                    <th align="center" valign="middle" class="borderright">楼盘名称</th>
-                    <th align="center" valign="middle" class="borderright">评论内容</th>
-                    <th align="center" valign="middle" class="borderright">评论时间</th>
-                    <th align="center" valign="middle">操作</th>
+                    <th align="left"  valign="middle" class="borderright">编号</th>
+                    <th align="left"  valign="middle" class="borderright">评论类型</th>
+                    <th align="left"  valign="middle" class="borderright">评论用户</th>
+                    <th align="left"  valign="middle" class="borderright">用户名称</th>
+                    <th align="left"  valign="middle" class="borderright">楼盘名称</th>
+                    <th align="left"  valign="middle" class="borderright">评论内容</th>
+                    <th align="left"  valign="middle" class="borderright">评论时间</th>
+                    <th align="left"  valign="middle">操作</th>
                 </tr>
-                <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">1</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom"><a href="用户详情页">1</a></td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom"><a href="message_info.html" target="mainFrame" onFocus="this.blur()">留言测试留内容</a></td>
-                    <td align="center" valign="middle" class="borderright borderbottom">admin@sina.com</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2013-04-19 15:35:13</td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="message_replay.html" target="mainFrame" onFocus="this.blur()" class="add">回复</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">不允许显示</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">删除</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">查看</a></td>
+                <c:forEach items="${pageInfo.list}" var="c">
+                <tr   id="tr_${c.commentid}" onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                    <td  align="left" valign="middle" class="borderright borderbottom">${c.commentid}</td>
+                    <td align="left" valign="middle" class="borderright borderbottom">${c.comtype}</td>
+                    <td align="left" valign="middle" class="borderright borderbottom">${c.idtype}</td>
+                    <td align="left" valign="middle" class="borderright borderbottom">${c.uname}</td>
+                    <td align="left" valign="middle" class="borderright borderbottom"><a href="${c.buildingid}" target="mainFrame" onFocus="this.blur()">${c.building}</a></td>
+                    <td align="left" valign="middle" class="borderright borderbottom">${c.comcontent}</td>
+                    <td align="left" valign="middle" class="borderright borderbottom">
+                        <fmt:formatDate value="${c.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
+                    </td>
+                    <td valign="middle" class="borderbottom"><a href="#" target="mainFrame" onFocus="this.blur()" class="add">回复</a><span class="gray">&nbsp;|&nbsp;</span><span class="gray">&nbsp;|&nbsp;</span><a href="javascript:void(0)" onclick="removeComment(${c.commentid})"  onFocus="this.blur()" >删除</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">查看</a></td>
                 </tr>
-
-                <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">1</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">1</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom"><a href="message_info.html" target="mainFrame" onFocus="this.blur()">留言测试内容</a></td>
-                    <td align="center" valign="middle" class="borderright borderbottom">admin@sina.com</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2013-04-19 15:35:13</td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="message_replay.html" target="mainFrame" onFocus="this.blur()" class="add">回复</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">不允许显示</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">删除</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">查看</a></td>
-                </tr>
-                <tr class="bggray" onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">2</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">1</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom"><a href="message_info.html" target="mainFrame" onFocus="this.blur()">留言测试留内容</a></td>
-                    <td align="center" valign="middle" class="borderright borderbottom">admin@sina.com</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2013-04-19 15:35:13</td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="message_replay.html" target="mainFrame" onFocus="this.blur()" class="add">回复</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">不允许显示</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">删除</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">查看</a></td>
-                </tr>
-                <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                    <td align="center" valign="middle" class="borderright borderbottom">3</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">1</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">留言测试</td>
-                    <td align="center" valign="middle" class="borderright borderbottom"><a href="message_info.html" target="mainFrame" onFocus="this.blur()">留言测测试内容</a></td>
-                    <td align="center" valign="middle" class="borderright borderbottom">admin@sina.com</td>
-                    <td align="center" valign="middle" class="borderright borderbottom">2013-04-19 15:35:13</td>
-                    <td align="center" valign="middle" class="borderbottom"><a href="message_replay.html" target="mainFrame" onFocus="this.blur()" class="add">回复</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">不允许显示</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">删除</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">查看</a></td>
-                </tr>
+                </c:forEach>
             </table></td>
     </tr>
     <tr>
-        <td align="left" valign="top" class="fenye">11 条数据 1/1 页&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">首页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">上一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">下一页</a>&nbsp;&nbsp;<a href="#" target="mainFrame" onFocus="this.blur()">尾页</a></td>
+        <td align="left" valign="top" class="fenye">
+            共<b>${pageInfo.total}</b>条&nbsp;&nbsp;
+            <a href="javascript:getPage(${pageInfo.firstPage})"  target="mainFrame">首页</a>
+            <a href="javascript:getPage(${pageInfo.prePage})" target="mainFrame">上一页</a>
+            <span>当前第<b>${pageInfo.pageNum}</b>页</span>
+            <c:if test="${!pageInfo.isLastPage}"><a href="javascript:getPage(${pageInfo.nextPage})" target="mainFrame">下一页</a></c:if>
+            <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a>
+        </td>
     </tr>
+
 </table>
 </body>
 </html>

@@ -11,7 +11,7 @@ public class DateConveter implements Converter<String,Date>{
     @Nullable
     @Override
     public  Date convert(String s) {
-        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
        Date date=null;
         try {
             date=format.parse(s);
