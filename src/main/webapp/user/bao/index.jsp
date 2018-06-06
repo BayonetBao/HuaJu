@@ -686,7 +686,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="login">
 
                         <div class="login-right">
-                            <form  action="/login.action" method="post" onsubmit="return loginsubmint('p')">
+                            <form  action="${pageContext.request.contextPath}/login.action" method="post" onsubmit="return loginsubmint('p')">
                                 <h3>Login</h3>
                                 <div class="form-group">
                                     <label for="uname"><span style="font-size:18px">用户名:</span></label>

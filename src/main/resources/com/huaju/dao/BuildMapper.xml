@@ -18,8 +18,7 @@
         <result property="btotalprice" column="btotalprice"/>
         <result property="acreage" column="acreage"/>
         <result property="conditions" column="conditions"/>
-        <result property="starttime" column="starttime"/>
-        <result property="endtime" column="endtime"/>
+        <result property="starttime" column="starttime"/><result property="endtime" column="endtime"/>
         <result property="genre" column="genre"/>
         <result property="agelimit" column="agelimit"/>
         <result property="landtime" column="landtime"/>
