@@ -80,6 +80,14 @@
            </if>
        </where>
    </select>
+    <!--//添加楼盘
+    insert into build(building,ctaid,province,city,berea,bdetail,bpicture,tenement,btype,bline,comid,character,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,condition,discounts,starttime,endtime,genre,agelimit,landtime,tencompany,tencost,tentype,greenrate,carport,cubage,fitment,bsalestatus)
+       VALUES (#{building},#{ctaid},#{province},#{city},#{berea},#{bdetail},#{bpicture},#{tenement},#{btype},#{bline},#{comid},#{character},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{condition},#{discounts},#{starttime},#{endtime},#{genre},#{agelimit},#{landtime},#{tencompany},#{tencost},#{tentype},#{greenrate},#{carport},#{cubage},#{fitment},#{bsalestatus})
+        -->
     <!--public void setBuild(Build build);-->
+    <insert id="setBuild" parameterType="Build">
+       insert into build(building,province,city,barea,bdetail,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
+      VALUES (#{building},#{province},#{city},#{barea},#{bpicture},#{tenement},#{btype},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
+  </insert>
 
 </mapper>
