@@ -6,18 +6,16 @@ import com.huaju.entity.Comment;
 import com.huaju.entity.CommentQueryPojo;
 import com.huaju.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 @RequestMapping(value = "/comment")
 @RestController
 public class CommentControl {
@@ -106,6 +104,9 @@ public class CommentControl {
     public String insertComment(Comment comment,HttpServletRequest request,HttpServletResponse response){
         String result="";
         Date date=new Date();
+        if(comment.getComtype().equals("")||comment.getComtype()==null){
+            comment.setComtype("好评");
+        }
         comment.setComtime(date);
         if(commentService.insertComment(comment)){
             result="success";
@@ -114,4 +115,5 @@ public class CommentControl {
         }
         return result;
     }
+
 }

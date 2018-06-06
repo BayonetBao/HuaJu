@@ -31,8 +31,8 @@
 
     <title>首页</title>
     <!---css--->
-    <link href=${pageContext.request.contextPath}"/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href=${pageContext.request.contextPath}"/user/bao/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css' />
     <!---css--->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -40,8 +40,8 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!---js--->
-    <script src=${pageContext.request.contextPath}"/user/bao/js/jquery-1.11.1.min.js"></script>
-    <script src=${pageContext.request.contextPath}"/user/bao/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/user/bao/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/user/bao/js/bootstrap.js"></script>
     <!---js--->
     <!---fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -49,8 +49,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <!---fonts-->
     <!-- FlexSlider -->
-    <script src=${pageContext.request.contextPath}"/user/bao/js/jquery.flexslider.js"></script>
-    <link rel="stylesheet" href=${pageContext.request.contextPath}"/user/bao/css/flexslider.css" type="text/css" media="screen" />
+    <script src="${pageContext.request.contextPath}/user/bao/js/jquery.flexslider.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/bao/css/flexslider.css" type="text/css" media="screen" />
     <script>
         // Can also be used with $(document).ready()
         $(window).load(function() {

@@ -178,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                             <div class="grid_3 grid_5">
-                                <p style="font-size:24px;margin-bottom:5px;">所有评论<span class="badge badge-info" style="font-size:12px">${pageInfo.list.length}</span></p>
+                                <p style="font-size:24px;margin-bottom:5px;">所有评论<span class="badge badge-info" style="font-size:12px">44</span></p>
                                 <div class="btn-group"  style="width:70%;margin-bottom:5px;">
                                     <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">用户评论</button>
                                     <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">咨询师评论</button>
@@ -230,17 +230,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </nav>
                                 </div>
                                 <p style="font-size:24px">留下你的评论吧~~~</p>
-                                <form method="post" action="">
-                                    <input type="hidden" name="id" value=""/>
-                                    <input type="hidden" name="idtype" value=""/>
-                                    <input type="hidden" name="" value=""/>
-                                    <input type="radio" name="comtype" value="" class="radio-danger"><span class="badge badge-danger">好评</span></input>
-                                    <input type="radio" name="comtype" value="" class="radio-danger"><span class="badge badge-warning">中评</span></input>
-                                    <input type="radio" name="comtype" value="" class="radio-danger"><span class="badge badge-info">差评</span></input>
+                                <form method="post" action="#">
+                                    <input type="hidden" name="id" value="1"/>
+                                    <input type="hidden" name="idtype" value="用户"/>
+                                    <input type="hidden"  name="buildingid" value="1"/>
+                                    <input type="radio"  name="comtype" value="好评" class="radio-danger"><span class="badge badge-danger">好评</span></input>
+                                    <input type="radio"  name="comtype" value="中评" class="radio-danger"><span class="badge badge-warning">中评</span></input>
+                                    <input type="radio"  name="comtype" value="差评" class="radio-danger"><span class="badge badge-info">差评</span></input>
                                     <textarea type="text" name="comcontent" onfocus="this.value = '';" style="width:70%" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
-                                    <input type="submit" value="Submit Comment" >
-                                    <label><input type="checkbox" value="Sign me up for the newsletter">Sign me up for the newsletter</label>
+                                    <div class="tags" style="margin-top: 0px;"><ul><li><a href="javascript:subm()">Submit Comment</a></li></ul></div>
+                                    <label style="position: relative;left: 140px;top:-50px;"><input type="checkbox" value="Sign me up for the newsletter">Sign me up for the newsletter</label>
                                 </form>
+                                <script>
+                                    function subm() {
+                                        var id=$("input[name='id']").val();
+                                        var idtype=$("input[name='idtype']").val();
+                                        var buildingid=$("input[name='buildingid']").val();
+                                        var comtype=$("input[name='comtype']").val();
+                                        var comcontent=$("input[name='comcontent']").val();
+                                        if(confirm("要发表了奥~~")){
+                                            $.ajax({
+                                                type:"post",
+                                                url:'${pageContext.request.contextPath}/comment/insertComment.action',
+                                                data:"id="+id+"&idtype="+idtype+"&buildingid="+buildingid+"&comtype="+comtype+"&comcontent="+comcontent,
+                                                success:function (data) {
+                                                    alert(data);
+                                                }
+                                            });
+                                        }
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
