@@ -56,8 +56,8 @@
     </select>
     <!--public boolean insertComment(Comment comment);-->
     <insert id="insertComment" parameterType="Comment">
-        insert into comment(comcontent,comtime,buildingid,idtype,comtype)
-         VALUES (#{comcontent},#{comtime}.#{buildingid},#{id},#{idtype},#{comtype})
+        insert into comment(comcontent,comtime,buildingid,id,idtype,comtype)
+         VALUES (#{comcontent},#{comtime},#{buildingid},#{id},#{idtype},#{comtype})
     </insert>
     <!--public  boolean deleteComment(Integer id);-->
     <delete id="deleteComment" parameterType="int">

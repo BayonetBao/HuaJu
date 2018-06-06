@@ -13,11 +13,11 @@
         <result property="btype" column="btype"/>
         <result property="bline" column="bline"/>
         <result property="comid" column="comid"/>
-        <result property="character" column="character"/>
+        <result property="charactere" column="charactere"/>
         <result property="bperprice" column="bperprice"/>
         <result property="btotalprice" column="btotalprice"/>
         <result property="acreage" column="acreage"/>
-        <result property="condition" column="condition"/>
+        <result property="conditions" column="conditions"/>
         <result property="starttime" column="starttime"/>
         <result property="endtime" column="endtime"/>
         <result property="genre" column="genre"/>
@@ -30,6 +30,8 @@
         <result property="carport" column="carport"/>
         <result property="cubage" column="cubage"/>
         <result property="fitment" column="fitment"/>
+        <result property="bmaxtotalprice" column="bmaxtotalprice"/>
+        <result property="maxacreage" column="maxacreage"/>
         <result property="bsalestatus" column="bsalestatus"/>
         <collection property="buildType" javaType="BuildType">
             <id property="butypeid" column="butypeid"/>
@@ -64,7 +66,7 @@
                and bMaxTotalprice &lt; #{bTotalprice}
            </if>
            <if test="bPerprice neq null">
-               and bPerprice &gt; #{bTotalprice}
+               and bPerprice &gt; #{bPerprice}
            </if>
            <if test="bMaxprice neq null">
                and bMaxprice &lt; #{bMaxprice}
