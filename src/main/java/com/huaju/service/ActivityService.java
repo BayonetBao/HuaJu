@@ -1,12 +1,13 @@
-package com.huaju.dao;
+package com.huaju.service;
 
 import com.huaju.entity.Activity;
+import com.huaju.entity.Build;
+import com.huaju.entity.Cta;
 
 import java.util.Date;
 import java.util.List;
 
-public interface ActivityMapper {
-
+public interface ActivityService {
     public List<Activity> ActivityList();
 
     public void AddActivity(Activity activity);
@@ -19,6 +20,7 @@ public interface ActivityMapper {
 
     public Activity selecttotal(int id);
 
+    public List<Cta> AllCta();
 
-
+    public List<Build> selectBuilding();
 }

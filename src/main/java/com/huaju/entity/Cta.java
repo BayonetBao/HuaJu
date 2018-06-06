@@ -11,6 +11,36 @@ public class Cta {
 
     private String education;
 
+    private String ctaname;
+
+    private String intro;
+
+    private String remark;
+
+    public String getCtaname() {
+        return ctaname;
+    }
+
+    public void setCtaname(String ctaname) {
+        this.ctaname = ctaname;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public Integer getCtaid() {
         return ctaid;
     }

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.CtaMapper">
+    <!--public List<Cta> AllCta();-->
+<select id="AllCta" resultType="Cta">
+    SELECT * FROM cta
+</select>
+    <!--public Cta CtaByActivity(int ctaid);-->
 
+    <select id="CtaByActivity" resultType="Cta" parameterType="int">
+        SELECT * FROM cta WHERE ctaid=#{_parameter}
+    </select>
 </mapper>
