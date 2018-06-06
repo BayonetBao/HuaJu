@@ -29,9 +29,22 @@ public class House {
 
     private Integer doorid;
 
+
     private Integer butypeid;
 
     private String analysis;
+//一对一
+    private Door door;//房型表
+    private BuildType buildType;//楼户表
+    private  Type type;//户型表
+
+    public Door getDoor() {
+        return door;
+    }
+
+    public void setDoor(Door door) {
+        this.door = door;
+    }
 
     public Integer getHouseid() {
         return houseid;

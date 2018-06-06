@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.CompanyMapper">
-
+    <!--//开发商注册-->
+    <!--public boolean setCompany(Company company);-->
+    <insert id="setCompany" parameterType="Company">
+      INSERT into company(comuname,compassword,comname,cmoney,cphone,ctime,caddress,clicense,construction,landuse,presale,permit,Implement,Quality,Instruction)
+       values (#{comuname},#{compassword},#{comname},#{cmoney},#{cphone},#{ctime},#{caddress},#{clicense},#{construction},#{landuse},#{presale},#{permit},#{implement},#{quality},#{instruction})
+    </insert>
+    <!--//按用户名查找（张宝）-->
+    <!--public Company selectCompanyByName(String comname);-->
+    <select id="selectCompanyByName" parameterType="String" resultType="Company">
+        SELECT * from company where comuname=#{_parameter}
+    </select>
 </mapper>

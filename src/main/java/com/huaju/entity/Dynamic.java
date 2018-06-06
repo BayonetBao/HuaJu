@@ -12,16 +12,30 @@ public class Dynamic {
     private String dytitle;
 
     private String dcontent;
+    private Build build;//楼盘名称
+
+    public Build getBuild() {
+        return build;
+    }
+
+    public void setBuild(Build build) {
+        this.build = build;
+    }
 
     public Dynamic() {
         super();
     }
 
-    public Dynamic(Date dytime, Integer buildingid, String dytitle, String dcontent) {
+    public Dynamic(Integer buildingid, String dytitle, Date dytime, String dcontent) {
+        super();
+    }
+
+    public Dynamic(Date dytime, Integer buildingid, String dytitle, String dcontent, Build build) {
         this.dytime = dytime;
         this.buildingid = buildingid;
         this.dytitle = dytitle;
         this.dcontent = dcontent;
+        this.build = build;
     }
 
     @Override

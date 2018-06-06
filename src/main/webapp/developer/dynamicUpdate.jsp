@@ -6,17 +6,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>主要内容区main</title>
-    <link href="css/css.css" type="text/css" rel="stylesheet" />
-    <link href="css/main.css" type="text/css" rel="stylesheet" />
-    <link rel="shortcut icon" href="images/main/favicon.ico" />
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="bootstrap/jquery.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <link href="<%=basePath%>/developer/css/css.css" type="text/css" rel="stylesheet" />
+    <link href="<%=basePath%>/developer/css/main.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="<%=basePath%>/developer/images/main/favicon.ico" />
+    <link rel="stylesheet" href="<%=basePath%>/developer/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="<%=basePath%>/developer/bootstrap/jquery.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/developer/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/developer/My97DatePicker/WdatePicker.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -59,32 +65,32 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
+            <form method="post" action="${pageContext.request.contextPath}/dynamic/dynamicUpdateAfter.action">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">楼盘名称：</td>
                         <td align="left" valign="" class="borderright borderbottom main-for">
-                            升龙
+                            <input type="hidden" name="dynamicid" value="${dynamic.dynamicid}"/>
+                            <input type="hidden" name="buildingid" value="${dynamic.buildingid}"/>
+                            ${dynamic.build.building}
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">动态标题：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="" value="" class="text-word">
+                            <input type="text"  name="dytitle" value="${dynamic.dytitle}" class="text-word"  style="width: 330px;">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">动态时间：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-
-
-                            <input id="d422" class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss'}">
+                            <input id="d422" name="dytime" value="<fmt:formatDate value='${dynamic.dytime}' pattern='yyyy-MM-dd hh:mm:ss'/>"  style="width: 330px;" class="Wdate" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss'})">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">动态内容：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <textarea name="eduhistory"  cols="58" rows="4" align="center"></textarea>
+                            <textarea name="dcontent"  cols="58" rows="4" align="center">${dynamic.dcontent}</textarea>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">

@@ -8,14 +8,14 @@ public class BuildQueryPojo {
     private String  character;//楼盘特色
     private String genre;//楼盘类型 别墅 住宅
     private Double bTotalprice;//总价
-    private Double 	bPerprice;//单价
+    private Double bMaxTotalprice;//最高总价
+    private Double 	bPerprice;//最低单价
+    private Double bMaxprice;//最高单价
     private Double acreage;//面积
+    private Double maxAcreage;//最大面积
+    private Integer comid;//开发商id
 
-    public BuildQueryPojo() {
-        super();
-    }
-
-    public BuildQueryPojo(String province, String city, String district, Integer typeid, String character, String genre, Double bTotalprice, Double bPerprice, Double acreage) {
+    public BuildQueryPojo(String province, String city, String district, Integer typeid, String character, String genre, Double bTotalprice, Double bMaxTotalprice, Double bPerprice, Double bMaxprice, Double acreage, Double maxAcreage, Integer comid) {
         this.province = province;
         this.city = city;
         this.district = district;
@@ -23,55 +23,60 @@ public class BuildQueryPojo {
         this.character = character;
         this.genre = genre;
         this.bTotalprice = bTotalprice;
+        this.bMaxTotalprice = bMaxTotalprice;
         this.bPerprice = bPerprice;
+        this.bMaxprice = bMaxprice;
         this.acreage = acreage;
+        this.maxAcreage = maxAcreage;
+        this.comid = comid;
     }
 
-    @Override
-    public String toString() {
-        return "BuildQueryPojo{" +
-                "province='" + province + '\'' +
-                ", city='" + city + '\'' +
-                ", district='" + district + '\'' +
-                ", typeid=" + typeid +
-                ", character='" + character + '\'' +
-                ", genre='" + genre + '\'' +
-                ", bTotalprice=" + bTotalprice +
-                ", bPerprice=" + bPerprice +
-                ", acreage=" + acreage +
-                '}';
+    public Double getbTotalprice() {
+        return bTotalprice;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        BuildQueryPojo that = (BuildQueryPojo) o;
-
-        if (province != null ? !province.equals(that.province) : that.province != null) return false;
-        if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        if (district != null ? !district.equals(that.district) : that.district != null) return false;
-        if (typeid != null ? !typeid.equals(that.typeid) : that.typeid != null) return false;
-        if (character != null ? !character.equals(that.character) : that.character != null) return false;
-        if (genre != null ? !genre.equals(that.genre) : that.genre != null) return false;
-        if (bTotalprice != null ? !bTotalprice.equals(that.bTotalprice) : that.bTotalprice != null) return false;
-        if (bPerprice != null ? !bPerprice.equals(that.bPerprice) : that.bPerprice != null) return false;
-        return acreage != null ? acreage.equals(that.acreage) : that.acreage == null;
+    public Integer getComid() {
+        return comid;
     }
 
-    @Override
-    public int hashCode() {
-        int result = province != null ? province.hashCode() : 0;
-        result = 31 * result + (city != null ? city.hashCode() : 0);
-        result = 31 * result + (district != null ? district.hashCode() : 0);
-        result = 31 * result + (typeid != null ? typeid.hashCode() : 0);
-        result = 31 * result + (character != null ? character.hashCode() : 0);
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
-        result = 31 * result + (bTotalprice != null ? bTotalprice.hashCode() : 0);
-        result = 31 * result + (bPerprice != null ? bPerprice.hashCode() : 0);
-        result = 31 * result + (acreage != null ? acreage.hashCode() : 0);
-        return result;
+    public Double getMaxAcreage() {
+        return maxAcreage;
+    }
+
+    public void setMaxAcreage(Double maxAcreage) {
+        this.maxAcreage = maxAcreage;
+    }
+
+    public Double getbMaxprice() {
+        return bMaxprice;
+    }
+
+    public void setbMaxprice(Double bMaxprice) {
+        this.bMaxprice = bMaxprice;
+    }
+
+    public Double getbMaxTotalprice() {
+        return bMaxTotalprice;
+    }
+
+    public void setbMaxTotalprice(Double bMaxTotalprice) {
+        this.bMaxTotalprice = bMaxTotalprice;
+    }
+
+    public void setComid(Integer comid) {
+        this.comid = comid;
+    }
+
+    public BuildQueryPojo() {
+        super();
+    }
+
+    public Double getbMaxpricr() {
+        return bMaxprice;
+    }
+
+    public void setbMaxpricr(Double bMaxpricr) {
+        this.bMaxprice = bMaxpricr;
     }
 
     public String getProvince() {
@@ -122,7 +127,7 @@ public class BuildQueryPojo {
         this.genre = genre;
     }
 
-    public Double getbTotalprice() {
+    public Double getbTotalprice(Double aDouble) {
         return bTotalprice;
     }
 

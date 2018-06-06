@@ -10,15 +10,17 @@
         <result property="comtype" column="comtype"/>
         <result property="comcontent" column="comcontent"/>
         <result property="uname" column="uname"/>
+        <result property="building" column="building"/>
         <collection property="favors" javaType="Favor">
-            <result property="userid" column="userid"/>
+            <result property="userid" column="fuserid"/>
         </collection>
     </resultMap>
     <!--public List<Comment>  selectCommentByQueryPojo(CommentQueryPojo commentQueryPojo);-->
     <select id="selectCommentByQueryPojo" parameterType="CommentQueryPojo" resultMap="CommentMap">
-        select comment.* ,favor.userid,user.uname as uname from comment ,favor,user
+        select comment.* ,build.building ,favor.userid as fuserid,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
+        build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
-            comment.commentid=favor.commentid and comment.id=user.userid and idtype like "%" "用户" "%"
+              idtype like "%" "用户" "%"
             <if test="buildingid neq null">
                 and comment.buildingid=#{buildingid}
             </if>
@@ -30,9 +32,10 @@
             </if>
         </where>
         UNION
-        select comment.* ,favor.userid,cta.ctaname as uname from comment ,favor,cta
+        select comment.* ,build.building ,favor.userid as fuserid,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
+        build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
-            comment.commentid=favor.commentid and comment.id=user.userid and idtype like "%" "咨询" "%"
+            idtype like "%" "咨询" "%"
             <if test="buildingid neq null">
                 and comment.buildingid=#{buildingid}
             </if>
@@ -43,13 +46,18 @@
                 and comment.comtype like "%" #{comtype} "%"
             </if>
         </where>
+        ORDER BY  commentid
 
     </select>
-
+    <!--public List<Build> selectBuildInComment(Integer comid);-->
+    <select id="selectBuildInComment" parameterType="int" resultType="Build">
+    select DISTINCT build.buildingid,building from build,comment where build.buildingid=comment.buildingid
+    and comid=#{_parameter}
+    </select>
     <!--public boolean insertComment(Comment comment);-->
     <insert id="insertComment" parameterType="Comment">
-        insert into comment(comcontent,comtime,buildingid,idtype,comtype)
-         VALUES (#{comcontent},#{comtime}.#{buildingid},#{id},#{idtype},#{comtype})
+        insert into comment(comcontent,comtime,buildingid,id,idtype,comtype)
+         VALUES (#{comcontent},#{comtime},#{buildingid},#{id},#{idtype},#{comtype})
     </insert>
     <!--public  boolean deleteComment(Integer id);-->
     <delete id="deleteComment" parameterType="int">

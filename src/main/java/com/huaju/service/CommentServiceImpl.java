@@ -1,8 +1,10 @@
 package com.huaju.service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.huaju.dao.CommentMapper;
+import com.huaju.entity.Build;
 import com.huaju.entity.Comment;
 import com.huaju.entity.CommentQueryPojo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +30,12 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public PageInfo<Comment> selectCommentByQueryPojo(Map<String, Object> map) {
         CommentQueryPojo commentQueryPojo= (CommentQueryPojo) map.get("commentQueryPojo");
-        PageInfo<Comment> pageBean=new PageInfo<Comment>();
-        //页面数据填充
         int curPage=(int)map.get("curPage");
         int pageSize=(int) map.get("pageSize");
-        Integer buildid= (Integer) map.get("buildingid");
+        Page page=PageHelper.startPage(curPage,pageSize);
         List<Comment> list=commentMapper.selectCommentByQueryPojo(commentQueryPojo);
-        PageHelper.startPage(curPage,pageSize);
         PageInfo<Comment> pageInfo=new PageInfo<>(list);
-        return pageBean;
+        return pageInfo;
     }
 
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT)
@@ -48,5 +47,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public boolean deleteComment(Integer id) {
         return commentMapper.deleteComment(id);
+    }
+
+    @Override
+    public List<Build> selectBuildInComment(Integer comid) {
+        return commentMapper.selectBuildInComment(comid);
     }
 }

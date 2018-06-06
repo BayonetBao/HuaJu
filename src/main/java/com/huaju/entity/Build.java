@@ -1,6 +1,7 @@
 package com.huaju.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Build {
     private Integer buildingid;
@@ -15,6 +16,8 @@ public class Build {
 
     private String barea;
 
+    private String bdetail;
+
     private String bpicture;
 
     private String tenement;
@@ -23,17 +26,20 @@ public class Build {
 
     private String bline;
 
-    private Integer comid;
+    private Integer comid;//开发商id
 
-    private String character;
+    private String charactere;
 
     private Double bperprice;
 
     private Double btotalprice;
+    private  Double bmaxtotalprice;
 
     private Double acreage;
+    private Double maxacreage;
+    private String conditions;
 
-    private String condition;
+    private String discounts;
 
     private Date starttime;
 
@@ -60,6 +66,7 @@ public class Build {
     private String fitment;
 
     private String bsalestatus;
+    private List<BuildType> buildType;
 
     public Build() {
         super();
@@ -78,7 +85,7 @@ public class Build {
     }
 
     public void setBuilding(String building) {
-        this.building = building == null ? null : building.trim();
+        this.building = building;
     }
 
     public Integer getCtaid() {
@@ -94,7 +101,7 @@ public class Build {
     }
 
     public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
+        this.province = province;
     }
 
     public String getCity() {
@@ -102,7 +109,7 @@ public class Build {
     }
 
     public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+        this.city = city;
     }
 
     public String getBarea() {
@@ -110,7 +117,15 @@ public class Build {
     }
 
     public void setBarea(String barea) {
-        this.barea = barea == null ? null : barea.trim();
+        this.barea = barea;
+    }
+
+    public String getBdetail() {
+        return bdetail;
+    }
+
+    public void setBdetail(String bdetail) {
+        this.bdetail = bdetail;
     }
 
     public String getBpicture() {
@@ -118,7 +133,7 @@ public class Build {
     }
 
     public void setBpicture(String bpicture) {
-        this.bpicture = bpicture == null ? null : bpicture.trim();
+        this.bpicture = bpicture;
     }
 
     public String getTenement() {
@@ -126,7 +141,7 @@ public class Build {
     }
 
     public void setTenement(String tenement) {
-        this.tenement = tenement == null ? null : tenement.trim();
+        this.tenement = tenement;
     }
 
     public String getBtype() {
@@ -134,7 +149,7 @@ public class Build {
     }
 
     public void setBtype(String btype) {
-        this.btype = btype == null ? null : btype.trim();
+        this.btype = btype;
     }
 
     public String getBline() {
@@ -142,7 +157,7 @@ public class Build {
     }
 
     public void setBline(String bline) {
-        this.bline = bline == null ? null : bline.trim();
+        this.bline = bline;
     }
 
     public Integer getComid() {
@@ -153,12 +168,12 @@ public class Build {
         this.comid = comid;
     }
 
-    public String getCharacter() {
-        return character;
+    public String getCharactere() {
+        return charactere;
     }
 
-    public void setCharacter(String character) {
-        this.character = character == null ? null : character.trim();
+    public void setCharactere(String charactere) {
+        this.charactere = charactere;
     }
 
     public Double getBperprice() {
@@ -177,6 +192,14 @@ public class Build {
         this.btotalprice = btotalprice;
     }
 
+    public Double getBmaxtotalprice() {
+        return bmaxtotalprice;
+    }
+
+    public void setBmaxtotalprice(Double bmaxtotalprice) {
+        this.bmaxtotalprice = bmaxtotalprice;
+    }
+
     public Double getAcreage() {
         return acreage;
     }
@@ -185,12 +208,28 @@ public class Build {
         this.acreage = acreage;
     }
 
-    public String getCondition() {
-        return condition;
+    public Double getMaxacreage() {
+        return maxacreage;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition == null ? null : condition.trim();
+    public void setMaxacreage(Double maxacreage) {
+        this.maxacreage = maxacreage;
+    }
+
+    public String getConditions() {
+        return conditions;
+    }
+
+    public void setConditions(String conditions) {
+        this.conditions = conditions;
+    }
+
+    public String getDiscounts() {
+        return discounts;
+    }
+
+    public void setDiscounts(String discounts) {
+        this.discounts = discounts;
     }
 
     public Date getStarttime() {
@@ -214,7 +253,7 @@ public class Build {
     }
 
     public void setGenre(String genre) {
-        this.genre = genre == null ? null : genre.trim();
+        this.genre = genre;
     }
 
     public Integer getAgelimit() {
@@ -238,7 +277,7 @@ public class Build {
     }
 
     public void setTencompany(String tencompany) {
-        this.tencompany = tencompany == null ? null : tencompany.trim();
+        this.tencompany = tencompany;
     }
 
     public Double getTencost() {
@@ -254,7 +293,7 @@ public class Build {
     }
 
     public void setTentype(String tentype) {
-        this.tentype = tentype == null ? null : tentype.trim();
+        this.tentype = tentype;
     }
 
     public Double getGreenrate() {
@@ -270,7 +309,7 @@ public class Build {
     }
 
     public void setCarport(String carport) {
-        this.carport = carport == null ? null : carport.trim();
+        this.carport = carport;
     }
 
     public Double getCubage() {
@@ -286,7 +325,7 @@ public class Build {
     }
 
     public void setFitment(String fitment) {
-        this.fitment = fitment == null ? null : fitment.trim();
+        this.fitment = fitment;
     }
 
     public String getBsalestatus() {
@@ -294,6 +333,88 @@ public class Build {
     }
 
     public void setBsalestatus(String bsalestatus) {
-        this.bsalestatus = bsalestatus == null ? null : bsalestatus.trim();
+        this.bsalestatus = bsalestatus;
+    }
+
+    public List<BuildType> getBuildType() {
+        return buildType;
+    }
+
+    public void setBuildType(List<BuildType> buildType) {
+        this.buildType = buildType;
+    }
+
+    public Build(String building, Integer ctaid, String province, String city, String barea, String bdetail, String bpicture, String tenement, String btype, String bline, Integer comid, String charactere, Double bperprice, Double btotalprice, Double bmaxtotalprice, Double acreage, Double maxacreage, String conditions, String discounts, Date starttime, Date endtime, String genre, Integer agelimit, Date landtime, String tencompany, Double tencost, String tentype, Double greenrate, String carport, Double cubage, String fitment, String bsalestatus, List<BuildType> buildType) {
+
+        this.building = building;
+        this.ctaid = ctaid;
+        this.province = province;
+        this.city = city;
+        this.barea = barea;
+        this.bdetail = bdetail;
+        this.bpicture = bpicture;
+        this.tenement = tenement;
+        this.btype = btype;
+        this.bline = bline;
+        this.comid = comid;
+        this.charactere = charactere;
+        this.bperprice = bperprice;
+        this.btotalprice = btotalprice;
+        this.bmaxtotalprice = bmaxtotalprice;
+        this.acreage = acreage;
+        this.maxacreage = maxacreage;
+        this.conditions = conditions;
+        this.discounts = discounts;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.genre = genre;
+        this.agelimit = agelimit;
+        this.landtime = landtime;
+        this.tencompany = tencompany;
+        this.tencost = tencost;
+        this.tentype = tentype;
+        this.greenrate = greenrate;
+        this.carport = carport;
+        this.cubage = cubage;
+        this.fitment = fitment;
+        this.bsalestatus = bsalestatus;
+        this.buildType = buildType;
+    }
+
+    public Build(Integer buildingid, String building, Integer ctaid, String province, String city, String barea, String bdetail, String bpicture, String tenement, String btype, String bline, Integer comid, String charactere, Double bperprice, Double btotalprice, Double bmaxtotalprice, Double acreage, Double maxacreage, String conditions, String discounts, Date starttime, Date endtime, String genre, Integer agelimit, Date landtime, String tencompany, Double tencost, String tentype, Double greenrate, String carport, Double cubage, String fitment, String bsalestatus, List<BuildType> buildType) {
+        this.buildingid = buildingid;
+        this.building = building;
+        this.ctaid = ctaid;
+        this.province = province;
+        this.city = city;
+        this.barea = barea;
+        this.bdetail = bdetail;
+        this.bpicture = bpicture;
+        this.tenement = tenement;
+        this.btype = btype;
+        this.bline = bline;
+        this.comid = comid;
+        this.charactere = charactere;
+        this.bperprice = bperprice;
+        this.btotalprice = btotalprice;
+        this.bmaxtotalprice = bmaxtotalprice;
+        this.acreage = acreage;
+        this.maxacreage = maxacreage;
+        this.conditions = conditions;
+        this.discounts = discounts;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.genre = genre;
+        this.agelimit = agelimit;
+        this.landtime = landtime;
+        this.tencompany = tencompany;
+        this.tencost = tencost;
+        this.tentype = tentype;
+        this.greenrate = greenrate;
+        this.carport = carport;
+        this.cubage = cubage;
+        this.fitment = fitment;
+        this.bsalestatus = bsalestatus;
+        this.buildType = buildType;
     }
 }

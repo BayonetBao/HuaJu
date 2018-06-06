@@ -5,20 +5,26 @@ import java.util.List;
 
 public class Comment {
     private Integer commentid;
-
     private Date comtime;
-
     private Integer buildingid;
-
     private Integer id;
     private String idtype;
     private String comtype;
     private String comcontent;
     private String uname;//用户名字
+    private String building;//楼按名字
     private List<Favor> favors;
 
     public String getUname() {
         return uname;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
     }
 
     public void setUname(String uname) {

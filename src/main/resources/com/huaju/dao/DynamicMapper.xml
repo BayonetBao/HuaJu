@@ -3,8 +3,13 @@
 <mapper namespace="com.huaju.dao.DynamicMapper">
     <!--public boolean insertDynamic(Dynamic dynamic);-->
     <insert id="insertDynamic" parameterType="Dynamic">
-      insert INTO  dynamic(dcontent,dytime,buildingid,dytitle) VALUES (#{dcontent},#{dytime},#{buildingid},#{dytitle});
+      insert INTO  dynamic VALUES (null,#{dcontent},#{dytime},#{buildingid},#{dytitle});
     </insert>
+    <!--public  Dynamic selectDynamicById(Integer id);-->
+ <select id="selectDynamicById" parameterType="int" resultMap="DynamicMap">
+     select dynamic.*,build.building,build.comid from dynamic ,build
+     where dynamic.buildingid=build.buildingid and dynamicid=#{_parameter}
+ </select>
     <!--public boolean updateDynamic(Dynamic dynamic);-->
     <update id="updateDynamic" parameterType="Dynamic">
         update dynamic SET dcontent=#{dcontent},dytime=#{dytime},dytitle=#{dytitle} where  dynamicid=#{dynamicid}
@@ -13,21 +18,37 @@
     <delete id="deleteDynamic" parameterType="int">
         delete from dynamic where dynamicid=#{_parameter}
     </delete>
-    <!--public List<Dynamic> selectAllDynamic();-->
-   <select id="selectAllDynamic" resultType="Dynamic">
-       select * from dynamic
+    <!-- public List<Dynamic> selectAllDynamicByQueryPojo(DynamicQueryPojo dynamicQueryPojo);-->
+    <resultMap id="DynamicMap" type="Dynamic">
+        <id property="dynamicid" column="dynamicid"/>
+        <result property="dytime" column="dytime"/>
+        <result property="buildingid" column="buildingid"/>
+        <result property="dytitle" column="dytitle"/>
+        <result property="dcontent" column="dcontent"/>
+        <association property="build" javaType="Build">
+            <result property="building" column="building"/>
+            <result property="comid" column="comid"/>
+        </association>
+    </resultMap>
+   <select id="selectAllDynamicByQueryPojo" parameterType="DynamicQueryPojo" resultMap="DynamicMap">
+           select dynamic.*,build.building,build.comid from dynamic ,build
+       <where>  dynamic.buildingid=build.buildingid
+       <if test="buildingid neq null">
+       and dynamic.buildingid=#{buildingid}
+       </if>
+       <if test="comid neq null">
+       and comid=#{comid}
+       </if>
+       </where>
    </select>
-    <!--public List<Dynamic> selectDynamicByBuild(Inteher id);-->
- <select id="selectDynamicByBuild" parameterType="int" resultType="Dynamic">
-      select * from dynamic
-     <where>
-         <if test="#{_parameter} neq null">
-             and buildingid=#{_parameter}
-         </if>
-     </where>
- </select>
+
     <!--public int selectCountDynamic();-->
 <select id="selectCountDynamic" resultType="int">
     select count(*) from dynamic
+</select>
+    <!--public List<Build>   selectBuildingInDynamic(comid);-->
+<select id="selectBuildingInDynamic" parameterType="int" resultType="Build">
+    select DISTINCT build.buildingid,building from build,dynamic where build.buildingid=dynamic.buildingid
+    and comid=#{_parameter}
 </select>
 </mapper>
