@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BuildMapper {
     //添加楼盘(张宝)
-    public void setBuild(Build build);
+    public boolean setBuild(Build build);
     public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);
 }

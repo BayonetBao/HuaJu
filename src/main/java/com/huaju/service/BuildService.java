@@ -9,4 +9,6 @@ import java.util.Map;
 
 public interface BuildService {
     public PageInfo<Build> selectBuildQueryPojo(Map<String,Object> cmap);
+//    /添加楼盘(张宝)
+    public boolean setBuild(Build build);
 }

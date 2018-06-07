@@ -24,4 +24,8 @@ public class BuildServiceImpl implements BuildService{
         PageInfo<Build> pageInfo=new PageInfo<Build>(builds);
         return pageInfo;
     }
+//    /添加楼盘(张宝)
+    public boolean setBuild(Build build){
+        return buildMapper.setBuild(build);
+    }
 }
