@@ -21,6 +21,9 @@
     <link rel="shortcut icon" href="<%=basePath%>images/main/favicon.ico" />
     <link href="<%=basePath%>developer/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=basePath%>developer/css/bootstrap-fileinput.css" rel="stylesheet">
+
+    <script src="${pageContext.request.contextPath }/developer/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath }/developer/js/bootstrap-fileinput.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -84,12 +87,12 @@
     <tr>
         <td align="left" valign="top" id="addinfo">
             <a href="<%=basePath%>developer/楼盘信息详情页" target="mainFrame" onFocus="this.blur()" class="add">id楼盘名字&nbsp;&nbsp;</a>
-            <a href="<%=basePath%>developer/houselistzyj.jsp" target="mainFrame" onFocus="this.blur()" class="add">&nbsp;&nbsp;返回</a>
+            <a href="${pageContext.request.contextPath}/houseInfo/addHouseInfo.action" target="mainFrame" onFocus="this.blur()" class="add">&nbsp;&nbsp;返回</a>
         </td>
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
+            <form enctype='multipart/form-data'  method="post" action="${pageContext.request.contextPath}/houseInfo/imgFile.action">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
 
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -122,24 +125,24 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">户型：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <select name="level" id="level1">
-                                <option value="1" >&nbsp;&nbsp;字段</option>
-                                <option value="2" >&nbsp;&nbsp;字段</option>
-                                <option value="3" >&nbsp;&nbsp;字段</option>
+                            <select name="level1" id="level1">
+                                <c:forEach items="${buildtype}" var="btype">
+                                <option value="${buildtype.typeid}" <c:if test="${buildtype.typeid==typeid}"></c:if> >&nbsp;&nbsp;${buildtype.typeList.typename}
+                                </option>
+                                </c:forEach>
                             </select>
                         </td>
                     </tr>
 
 
-
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房型：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="radio" name="hsalestatus" value="A" checked="checked"/>A
-                            <input type="radio" name="hsalestatus" value="B" checked="checked"/>B
-                            <input type="radio" name="hsalestatus" value="C" checked="checked"/>C
-                            <input type="radio" name="hsalestatus" value="D" checked="checked"/>D
-                            <input type="radio" name="hsalestatus" value="其他" checked="checked"/>其他
+                            <select name="level2" id="level2">
+                                <c:forEach items="${door}" var="d">
+                                    <option value="${d.doorid}"<c:if test='${d.doorid==doorid}'>selected</c:if> >&nbsp;&nbsp;${d.doorname}</option>
+                                </c:forEach>
+                            </select>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -165,14 +168,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">销售状态：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <%--<select name="level" id="level">--%>
-                                <%--<option value="1" >&nbsp;&nbsp;预售</option>--%>
-                                <%--<option value="2" >&nbsp;&nbsp;在售</option>--%>
-                                <%--<option value="3" >&nbsp;&nbsp;售罄</option>--%>
-                            <%--</select>--%>
-                                <input type="radio" name="hsalestatus" value="1" checked="checked"/>在售
-                                <input type="radio" name="hsalestatus" value="1" checked="checked"/>预售
-                                <input type="radio" name="hsalestatus" value="1" checked="checked"/>售罄
+                            <input type="text" name="" value="${addhouse.hsalestatus}" class="text-word">
                         </td>
                     </tr>
 
@@ -201,40 +197,17 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房型图：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <!--<input type="" name="" value="" class="text-word">-->
-
-                            <form  enctype="multipart/form-data" action="${pageContext.request.contextPath}/houseInfo/imgFile.action"method="POST">
-                                <div class="form-group" id="uploadForm" >
-
-                                    <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
-                                        <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
-                                            <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="images/noimage.png" alt="" />
-                                        </div>
-                                        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-                                        <div>
-                        <span class="btn btn-primary btn-file">
-                            <span class="fileinput-new">选择文件</span>
-                            <span class="fileinput-exists">换一张</span>
-                            <input type="file" name="pic1" id="picID" accept="image/gif,image/jpeg,image/x-png" />
-                        </span>
-                                            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <%--<button type="submit" id="uploadSubmit" class="btn btn-info">提交</button>--%>
-                            </form>
+                            <table id="upload" enctype="multipart/form-data" >
+                                <tr>
+                                    <td><input type=file name="myfiles" mu id="doc0" onchange="showImage();"></td>
+                                    <td><img id="preview0" width=200px height=150px style="diplay:block"/> </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="submit" value="提交" /> </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
-
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">户型解析：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <!--  <input type="text" name="" value="" class="text-word">-->
-                            <textarea  class="analysis" cols="110" rows="4">${addhouse.analysis}</textarea>
-                        </td>
-
-
-
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -247,39 +220,57 @@
     </tr>
 </table>
 
-
-
-
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap-fileinput.js"></script>
 <script type="text/javascript">
-    $(function () {
-        //比较简洁，细节可自行完善
-        $('#uploadSubmit').click(function () {
-            var data = new FormData($('#uploadForm')[0]);
-            $.ajax({
-                url: '<%=basePath%>/houseInfo/imgFile.action',
-                type: 'POST',
-                data: data,
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    console.log(data);
-                    if(data.status){
-                        console.log('upload success');
-                    }else{
-                        console.log(data.message);
-                    }
-                },
-                error: function (data) {
-                    console.log(data.status);
-                }
-            });
-        });
+    var count=1;
+    function shun(e){
+        alert(e.val());
+    }
 
-    })
+    function addLow(){
+        $("#upload").append('<tr><td><input type=file name="myfiles" id="doc'+
+            count+'" onchange="showImage();"> </td><td><img id="preview'+count+'"  width=300px height=120px style="diplay:block	" /><td> <input type="button" onclick="shun()" value="顺时针旋转90" id="shun'+count+'"><input type="button" value="逆时针旋转90" onclick="ni()" id="ni'+count+'"></tr>');
+        count++;
+    }
+    function showImage() {
+        for(var i=0;i<count;i++){
+            var docObj = document.getElementById("doc"+i);
+            var imgObjPreview = document.getElementById("preview"+i);
+            if (docObj.files && docObj.files[0]) {
+//火狐下，直接设img属性
+                imgObjPreview.style.display = 'block';
+                imgObjPreview.style.width = '200px';
+                imgObjPreview.style.height = '150px';
+//imgObjPreview.src = docObj.files[0].getAsDataURL();
+//火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
+                imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
+            } else {
+//IE下，使用滤镜
+                docObj.select();
+                var imgSrc = document.selection.createRange().text;
+                var localImagId = document.getElementById("localImag");
+//必须设置初始大小
+                localImagId.style.width = "250px";
+                localImagId.style.height = "250px";
+//图片异常的捕捉，防止用户修改后缀来伪造图片
+                try {
+                    localImagId.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
+                    localImagId.filters
+                        .item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
+                } catch (e) {
+                    alert("您上传的图片格式不正确，请重新选择!");
+                    return false;
+                }
+                imgObjPreview.style.display = 'none';
+                document.selection.empty();
+            }
+        }
+        return true;
+
+    }
+
+</script>
+<script>
+
 </script>
 </body>
 </html>

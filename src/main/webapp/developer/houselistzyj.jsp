@@ -67,7 +67,7 @@
 </head>
 <body>
 <div class="image">
-    <a href="addinfo_housezyj.jsp"><img src="<%=basePath%>developer/images/main/add.svg" /></a>
+    <a href="${pageContext.request.contextPath}/houseInfo/addHouseInfo.action?id=1"><img src="<%=basePath%>developer/images/main/add.svg" /></a>
 </div>
 
 
@@ -103,7 +103,7 @@
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.harea}㎡</td>
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.hsalestatus}</td>
                         <td align="center" valign="middle" class="borderbottom">
-                            <a href="<%=basePath%>/houseInfo/detailhouse.action?id=${houselist.houseid}>" target="mainFrame" onFocus="this.blur()" class="add">详情</a>
+                            <a href="${pageContext.request.contextPath}/houseInfo/detailhouse.action?id=${houselist.houseid}" target="mainFrame" onFocus="this.blur()" class="add">详情</a>
                             |<a href="javascript:void(0)" onclick="remove('${houselist.houseid}')" target="mainFrame" onFocus="this.blur()" class="add">删除</a>
 
                         </td>
@@ -120,9 +120,8 @@
     function remove(id) {
         if (confirm("确定要删除么？")){
             var url="${pageContext.request.contextPath}/houseInfo/remove.action";
-            alert(111111);
             $.get(url,"houseid="+id,function(data){
-                alert(2222);
+
                 if(data=="1"){
 
                     var hid=id+"_house";

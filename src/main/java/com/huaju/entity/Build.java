@@ -72,79 +72,6 @@ public class Build {
         super();
     }
 
-    public Build(String building, Integer ctaid, String province, String city, String barea, String bdetail, String bpicture, String tenement, String btype, String bline, Integer comid, String charactere, Double bperprice, Double btotalprice, Double bmaxtotalprice, Double acreage, Double maxacreage, String conditions, String discounts, Date starttime, Date endtime, String genre, Integer agelimit, Date landtime, String tencompany, Double tencost, String tentype, Double greenrate, String carport, Double cubage, String fitment, String bsalestatus, List<BuildType> buildType) {
-        this.building = building;
-        this.ctaid = ctaid;
-        this.province = province;
-        this.city = city;
-        this.barea = barea;
-        this.bdetail = bdetail;
-        this.bpicture = bpicture;
-        this.tenement = tenement;
-        this.btype = btype;
-        this.bline = bline;
-        this.comid = comid;
-        this.charactere = charactere;
-        this.bperprice = bperprice;
-        this.btotalprice = btotalprice;
-        this.bmaxtotalprice = bmaxtotalprice;
-        this.acreage = acreage;
-        this.maxacreage = maxacreage;
-        this.conditions = conditions;
-        this.discounts = discounts;
-        this.starttime = starttime;
-        this.endtime = endtime;
-        this.genre = genre;
-        this.agelimit = agelimit;
-        this.landtime = landtime;
-        this.tencompany = tencompany;
-        this.tencost = tencost;
-        this.tentype = tentype;
-        this.greenrate = greenrate;
-        this.carport = carport;
-        this.cubage = cubage;
-        this.fitment = fitment;
-        this.bsalestatus = bsalestatus;
-        this.buildType = buildType;
-    }
-
-    public Build(Integer buildingid, String building, Integer ctaid, String province, String city, String barea, String bdetail, String bpicture, String tenement, String btype, String bline, Integer comid, String charactere, Double bperprice, Double btotalprice, Double bmaxtotalprice, Double acreage, Double maxacreage, String conditions, String discounts, Date starttime, Date endtime, String genre, Integer agelimit, Date landtime, String tencompany, Double tencost, String tentype, Double greenrate, String carport, Double cubage, String fitment, String bsalestatus, List<BuildType> buildType) {
-        this.buildingid = buildingid;
-        this.building = building;
-        this.ctaid = ctaid;
-        this.province = province;
-        this.city = city;
-        this.barea = barea;
-        this.bdetail = bdetail;
-        this.bpicture = bpicture;
-        this.tenement = tenement;
-        this.btype = btype;
-        this.bline = bline;
-        this.comid = comid;
-        this.charactere = charactere;
-        this.bperprice = bperprice;
-        this.btotalprice = btotalprice;
-        this.bmaxtotalprice = bmaxtotalprice;
-        this.acreage = acreage;
-        this.maxacreage = maxacreage;
-        this.conditions = conditions;
-        this.discounts = discounts;
-        this.starttime = starttime;
-        this.endtime = endtime;
-        this.genre = genre;
-        this.agelimit = agelimit;
-        this.landtime = landtime;
-        this.tencompany = tencompany;
-        this.tencost = tencost;
-        this.tentype = tentype;
-        this.greenrate = greenrate;
-        this.carport = carport;
-        this.cubage = cubage;
-        this.fitment = fitment;
-        this.bsalestatus = bsalestatus;
-        this.buildType = buildType;
-    }
-
     public Integer getBuildingid() {
         return buildingid;
     }
@@ -414,6 +341,80 @@ public class Build {
     }
 
     public void setBuildType(List<BuildType> buildType) {
+        this.buildType = buildType;
+    }
+
+    public Build(String building, Integer ctaid, String province, String city, String barea, String bdetail, String bpicture, String tenement, String btype, String bline, Integer comid, String charactere, Double bperprice, Double btotalprice, Double bmaxtotalprice, Double acreage, Double maxacreage, String conditions, String discounts, Date starttime, Date endtime, String genre, Integer agelimit, Date landtime, String tencompany, Double tencost, String tentype, Double greenrate, String carport, Double cubage, String fitment, String bsalestatus, List<BuildType> buildType) {
+
+        this.building = building;
+        this.ctaid = ctaid;
+        this.province = province;
+        this.city = city;
+        this.barea = barea;
+        this.bdetail = bdetail;
+        this.bpicture = bpicture;
+        this.tenement = tenement;
+        this.btype = btype;
+        this.bline = bline;
+        this.comid = comid;
+        this.charactere = charactere;
+        this.bperprice = bperprice;
+        this.btotalprice = btotalprice;
+        this.bmaxtotalprice = bmaxtotalprice;
+        this.acreage = acreage;
+        this.maxacreage = maxacreage;
+        this.conditions = conditions;
+        this.discounts = discounts;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.genre = genre;
+        this.agelimit = agelimit;
+        this.landtime = landtime;
+        this.tencompany = tencompany;
+        this.tencost = tencost;
+        this.tentype = tentype;
+        this.greenrate = greenrate;
+        this.carport = carport;
+        this.cubage = cubage;
+        this.fitment = fitment;
+        this.bsalestatus = bsalestatus;
+        this.buildType = buildType;
+    }
+
+    public Build(Integer buildingid, String building, Integer ctaid, String province, String city, String barea, String bdetail, String bpicture, String tenement, String btype, String bline, Integer comid, String charactere, Double bperprice, Double btotalprice, Double bmaxtotalprice, Double acreage, Double maxacreage, String conditions, String discounts, Date starttime, Date endtime, String genre, Integer agelimit, Date landtime, String tencompany, Double tencost, String tentype, Double greenrate, String carport, Double cubage, String fitment, String bsalestatus, List<BuildType> buildType) {
+        this.buildingid = buildingid;
+        this.building = building;
+        this.ctaid = ctaid;
+        this.province = province;
+        this.city = city;
+        this.barea = barea;
+        this.bdetail = bdetail;
+        this.bpicture = bpicture;
+        this.tenement = tenement;
+        this.btype = btype;
+        this.bline = bline;
+        this.comid = comid;
+        this.charactere = charactere;
+        this.bperprice = bperprice;
+        this.btotalprice = btotalprice;
+        this.bmaxtotalprice = bmaxtotalprice;
+        this.acreage = acreage;
+        this.maxacreage = maxacreage;
+        this.conditions = conditions;
+        this.discounts = discounts;
+        this.starttime = starttime;
+        this.endtime = endtime;
+        this.genre = genre;
+        this.agelimit = agelimit;
+        this.landtime = landtime;
+        this.tencompany = tencompany;
+        this.tencost = tencost;
+        this.tentype = tentype;
+        this.greenrate = greenrate;
+        this.carport = carport;
+        this.cubage = cubage;
+        this.fitment = fitment;
+        this.bsalestatus = bsalestatus;
         this.buildType = buildType;
     }
 }

@@ -5,8 +5,14 @@ import com.huaju.entity.BuildQueryPojo;
 
 import java.util.List;
 
+import com.huaju.entity.Build;
+
+import java.util.List;
+
 public interface BuildMapper {
-    //添加楼盘
+    //添加楼盘(张宝)
     public void setBuild(Build build);
     public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);
+    public List<Build> selectBuilding();
+
 }

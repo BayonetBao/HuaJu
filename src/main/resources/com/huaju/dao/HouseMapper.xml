@@ -8,6 +8,13 @@
     </select>
 
 
+
+
+
+
+
+
+
     <!--&lt;!&ndash;//    添加house信息&ndash;&gt;-->
     <!--&lt;!&ndash;  public void addHouseInfoZYJ(House house);&ndash;&gt;-->
 <!--<insert id="addHouseInfoZYJ" parameterType="House">-->
@@ -17,7 +24,7 @@
     <!--( #{houseid} ,#{hname}, #{hmoney}, #{htypeimg}, #{hperprice}, #{updatename}, #{forward}, #{harea}, #{htype}, #{hsalestatus}, #{payment}, #{monthpay}, #{analysis} );-->
 <!--</insert>-->
 
-    <!--显示house和房型的信息-->
+    <!--显示house和房型Door的信息-->
     <resultMap id="showHouseDoorAllInfoMap" type="House">
         <id column="houseid" property="houseid"/>
         <result column="hname" property="hname" />
@@ -51,6 +58,7 @@
         <association property="buildType" javaType="BuildType">
             <id column="butypeid" property="butypeid"/>
             <result column="typeid" property="typeid"/>
+
             <association  property="type" javaType="Type">
                 <id column="typeid" property="typeid"/>
                 <result column="typename" property="typename"/>

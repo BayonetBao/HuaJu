@@ -1,5 +1,7 @@
 package com.huaju.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class House {
@@ -38,12 +40,31 @@ public class House {
     private BuildType buildType;//楼户表
     private  Type type;//户型表
 
+    public House() {
+    }
+
     public Door getDoor() {
         return door;
     }
 
     public void setDoor(Door door) {
         this.door = door;
+    }
+
+    public BuildType getBuildType() {
+        return buildType;
+    }
+
+    public void setBuildType(BuildType buildType) {
+        this.buildType = buildType;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public Integer getHouseid() {
@@ -165,4 +186,5 @@ public class House {
     public void setAnalysis(String analysis) {
         this.analysis = analysis == null ? null : analysis.trim();
     }
+
 }

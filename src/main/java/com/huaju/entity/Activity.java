@@ -15,6 +15,26 @@ public class Activity {
 
     private Integer parnum;
 
+    private String actcontent;
+
+    private String actnote;
+
+    public String getActcontent() {
+        return actcontent;
+    }
+
+    public void setActcontent(String actcontent) {
+        this.actcontent = actcontent;
+    }
+
+    public String getActnote() {
+        return actnote;
+    }
+
+    public void setActnote(String actnote) {
+        this.actnote = actnote;
+    }
+
     public Integer getActid() {
         return actid;
     }

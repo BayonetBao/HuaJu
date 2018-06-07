@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.BuildMapper">
+    <!--public List<Build> selectBuilding();-->
+<select id="selectBuilding" resultType="Build">
+    SELECT * FROM build
+</select>
     <resultMap id="BuildMap" type="Build">
         <id property="buildingid" column="buildingid"/>
         <result property="building" column="building"/>
@@ -81,6 +85,14 @@
            </if>
        </where>
    </select>
+    <!--//添加楼盘
+    insert into build(building,ctaid,province,city,berea,bdetail,bpicture,tenement,btype,bline,comid,character,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,condition,discounts,starttime,endtime,genre,agelimit,landtime,tencompany,tencost,tentype,greenrate,carport,cubage,fitment,bsalestatus)
+       VALUES (#{building},#{ctaid},#{province},#{city},#{berea},#{bdetail},#{bpicture},#{tenement},#{btype},#{bline},#{comid},#{character},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{condition},#{discounts},#{starttime},#{endtime},#{genre},#{agelimit},#{landtime},#{tencompany},#{tencost},#{tentype},#{greenrate},#{carport},#{cubage},#{fitment},#{bsalestatus})
+        -->
     <!--public void setBuild(Build build);-->
+    <insert id="setBuild" parameterType="Build">
+       insert into build(building,province,city,barea,bdetail,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
+      VALUES (#{building},#{province},#{city},#{barea},#{bpicture},#{tenement},#{btype},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
+  </insert>
 
 </mapper>

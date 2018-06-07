@@ -969,14 +969,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             url:"${pageContext.request.contextPath}/checkLoginUname.action",
                                             data:"uname="+uname.val()+"&userType="+$("input[name='userType']:checked").val()+"&password="+password.val(),
                                             success:function (da){
-                                               // alert(da);
+                                               alert(da);
                                                 if(da==0){
 
                                                     uname.next("SPAN").text("用户名不存在");
                                                     uname.next("SPAN").removeClass();
                                                     uname.next("SPAN").addClass("error");
                                                     flag=false;
-
                                                 }else if(da==1){
 
                                                     password.next("SPAN").text("密码错误");
@@ -984,9 +983,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     password.next("SPAN").addClass("error");
                                                     flag=false;
                                                 }
+                                            },
+                                            error:function () {
+                                                alert("sb")
                                             }
                                         });
                                     }
+                                    alert("jishu");
                                     return flag;
                                 }
                                 $("#uname").focus(function () {
