@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.BuildimgMapper">
-
+    <!--public List<Buildimg> AllBuildimg(int id);-->
+<select id="AllBuildimg" resultType="Buildimg" parameterType="int">
+    SELECT * FROM buildimg WHERE buildingid=#{_parameter}
+</select>
+    <!--public void AddBuildimg(Buildimg buildimg);-->
+<insert id="AddBuildimg" parameterType="Buildimg">
+    INSERT INTO buildimg (buildimg,buildingid) VALUE (#{buildimg},#{buildingid})
+</insert>
+    <!--public void deleteBuildimg(int id);-->
+    <delete id="deleteBuildimg" parameterType="int">
+        DELETE FROM buildimg WHERE buimgid=#{_parameter}
+    </delete>
 </mapper>

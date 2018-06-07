@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.GraphMapper">
+    <!--public List<Graph> AllGraph(int id);-->
+<select id="AllGraph" resultType="Graph" parameterType="int">
+    SELECT * FROM graph WHERE bulidingid=#{_parameter}
+</select>
+    <!--public void AddGraph(Graph graph);-->
+<insert id="AddGraph" parameterType="Graph">
+    INSERT INTO graph (graphurl,buildingid) VALUE (#{graphurl},#{buildingid})
+</insert>
+    <!--public void delectGraph(int id);-->
+    <delete id="delectGraph" parameterType="int">
+        DELETE FROM graph WHERE graphid=#{_parameter}
+    </delete>
 
 </mapper>

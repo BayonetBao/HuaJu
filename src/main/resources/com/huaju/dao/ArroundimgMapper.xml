@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.ArroundimgMapper">
+    <!--public List<Arroundimg> AllArroundimg(int id);-->
+<select id="AllArroundimg" resultType="Arroundimg" parameterType="int">
+    SELECT * FROM arroundimg WHERE buildingid=#{_parameter}
+ </select>
+    <!--public void AddArroundimg(Arroundimg arroundimg);-->
+<insert id="AddArroundimg" parameterType="Arroundimg">
+    INSERT INTO arroundimg (arrimg,buildingid) VALUE (arrimg,buildingid)
+</insert>
+    <!--public void deleteArroundimg(int id);-->
+<delete id="deleteArroundimg" parameterType="int">
+    DELETE FROM arroundimg WHERE arrid=#{_parameter}
+</delete>
 
 </mapper>

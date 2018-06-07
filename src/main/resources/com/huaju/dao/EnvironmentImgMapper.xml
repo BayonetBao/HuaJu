@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.EnvironmentImgMapper">
-
+    <!--public List<EnvironmentImg> AllEnvironmentimg(int id);-->
+<select id="AllEnvironmentimg" resultType="EnvironmentImg" parameterType="int">
+    SELECT * FROM environmentimg WHERE buildingid=#{_parmeter}
+</select>
+    <!--public void AddEnvironmentimg(EnvironmentImg environmentImg);-->
+<insert id="AddEnvironmentimg" parameterType="EnvironmentImg">
+    INSERT INTO environmentimg (emvirimg,buildingid) VALUE (#{emvirimg},#{buildingid})
+</insert>
+    <!--public void deleteEnvironmentimg(int id);-->
+<delete id="deleteEnvironmentimg" parameterType="int">
+    DELETE FROM environmentimg WHERE envirid=#{_parameter}
+</delete>
 </mapper>

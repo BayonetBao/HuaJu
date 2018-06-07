@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.ProtoTypeImgMapper">
-
+    <!--public List<ProtoTypeImg> AllPrototypeimg(int id);-->
+<select id="AllPrototypeimg" resultType="ProtoTypeImg" parameterType="int">
+    SELECT * FROM prototypeimg WHERE buildingid=#{_parameter}
+</select>
+    <!--public void addPrototypeimg(ProtoTypeImg protoTypeImg);-->
+<insert id="addPrototypeimg" parameterType="ProtoTypeImg">
+    INSERT INTO prototypeimg (prototype,buildingid) VALUE (#{prototype},#{buildingid})
+</insert>
+    <!--public void delectPrototypeimg(int id);-->
+<delete id="delectPrototypeimg" parameterType="int">
+    DELETE FROM prototypeimg WHERE proid=#{_parameter}
+</delete>
 </mapper>
