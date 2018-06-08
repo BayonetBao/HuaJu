@@ -41,7 +41,7 @@ public class CommentControl {
         if (comtype != null && !comtype.trim().equals("")) {
             commentQueryPojo.setComtype(comtype);
         }
-        int pageSize = 2;
+        int pageSize = 5;
         //当前的页面默认是首页
         int curPage = 1;
         if (scurPage != null && !scurPage.trim().equals("")) {
@@ -75,7 +75,7 @@ public class CommentControl {
         if (comtype != null && !comtype.trim().equals("")) {
             commentQueryPojo.setComtype(comtype);
         }
-        int pageSize = 2;
+        int pageSize = 5;
         //当前的页面默认是首页
         int curPage = 1;
         if (scurPage != null && !scurPage.trim().equals("")) {

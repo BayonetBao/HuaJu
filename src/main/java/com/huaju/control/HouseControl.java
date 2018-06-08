@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.List;
 
-import static org.apache.tools.ant.types.resources.MultiRootFileSet.SetType.file;
 
 @RequestMapping("/houseInfo")
 @Controller

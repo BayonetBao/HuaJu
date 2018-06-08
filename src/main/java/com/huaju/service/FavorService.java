@@ -5,9 +5,9 @@ import com.huaju.entity.Favor;
 import java.util.List;
 
 public interface FavorService {
-    public List<Favor> selectFavorByUserid(Integer id);
-    public List<Favor> selectFavorByCommentid(Integer id);
+    public List<Favor> selectFavor(Favor favor);
     public boolean deleteFavorByFavorid(Integer id);
-    public boolean deleteFavorByUseridAndCommentid(Integer userId,Integer commentId);
+    public boolean deleteFavorByUseridAndCommentid(Favor favor);
     public boolean insertFavor(Favor favor);
+    public boolean clickFavor(Favor favor);
 }
