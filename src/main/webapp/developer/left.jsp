@@ -41,7 +41,7 @@
         <span>楼盘信息</span>
         <%--developer/personalCenter.jsp--%>
         <a href="${pageContext.request.contextPath}/developer/main.jsp" target="mainFrame" onFocus="this.blur()">后台首页</a>
-        <a href="${pageContext.request.contextPath}/developer/lpInfo.jsp" target="mainFrame" onFocus="this.blur()">楼盘信息</a>
+        <a href="${pageContext.request.contextPath}/build/showBuildInfo.action" target="mainFrame" onFocus="this.blur()">楼盘信息</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">楼盘添加</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">信息完善</a>
     </div>

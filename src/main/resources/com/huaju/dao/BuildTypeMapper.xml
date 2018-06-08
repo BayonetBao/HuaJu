@@ -18,8 +18,10 @@
         SELECT t.typename  FROM type t , buildtype b WHERE
           t.typeid=b.typeid AND b.buildingid=#{_parameter}
     </select>
-
-
-
+    <!--//根据楼盘id查询各个户型的数量(张宝)-->
+    <!--public List<BuildType> selectTypeCount(int buildIngid);-->
+    <select id="selectTypeCount" parameterType="int" resultType="BuildType">
+        SELECT * from buildtype where buildingid=#{_parameter}
+    </select>
 
 </mapper>

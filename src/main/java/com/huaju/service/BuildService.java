@@ -11,4 +11,8 @@ public interface BuildService {
     public PageInfo<Build> selectBuildQueryPojo(Map<String,Object> cmap);
 //    /添加楼盘(张宝)
     public boolean setBuild(Build build);
+
+    //按开发商id查询楼盘(张宝),使用第三方插件分页
+
+   public PageInfo<Build> selectBuildListByCompanyId(Map<String,Object> buildMap);
 }
