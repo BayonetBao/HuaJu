@@ -1,5 +1,6 @@
 package com.huaju.service;
 
+import com.huaju.entity.Door;
 import com.huaju.entity.House;
 
 import java.util.List;
@@ -7,6 +8,9 @@ import java.util.List;
 public interface HouseService {
     // 显示house数据列表信息
     public List<House> selectHouseInfoZYJ();
+
+
+
 
 //    添加house信息
     public void addHouseInfoZYJ(House house);

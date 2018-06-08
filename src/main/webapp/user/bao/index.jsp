@@ -686,7 +686,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="login">
 
                         <div class="login-right">
-                            <form  action="/login.action" method="post" onsubmit="return loginsubmint('p')">
+                            <form  action="${pageContext.request.contextPath}/login.action" method="post" onsubmit="return loginsubmint('p')">
                                 <h3>Login</h3>
                                 <div class="form-group">
                                     <label for="uname"><span style="font-size:18px">用户名:</span></label>
@@ -737,7 +737,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="login-grids">
                     <div class="login">
                         <div class="login-right">
-                            <form action="/register.action" method="post" onsubmit="return registersubmit('p')">
+                            <form action="${pageContext.request.contextPath}/register.action" method="post" onsubmit="return registersubmit('p')">
                                 <h3>普通用户注册 </h3>
                                 <input style="color:#000" id="runame" name="runame" type="text" placeholder="用户名" >
                                 <span></span>
@@ -969,7 +969,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             url:"${pageContext.request.contextPath}/checkLoginUname.action",
                                             data:"uname="+uname.val()+"&userType="+$("input[name='userType']:checked").val()+"&password="+password.val(),
                                             success:function (da){
-                                               alert(da);
+
                                                 if(da==0){
 
                                                     uname.next("SPAN").text("用户名不存在");
@@ -989,7 +989,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             }
                                         });
                                     }
-                                    alert("jishu");
+
                                     return flag;
                                 }
                                 $("#uname").focus(function () {

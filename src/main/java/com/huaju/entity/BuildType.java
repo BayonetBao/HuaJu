@@ -1,5 +1,7 @@
 package com.huaju.entity;
 
+import java.util.List;
+
 public class BuildType {
     private Integer butypeid;
 
@@ -9,6 +11,30 @@ public class BuildType {
 
     private Integer count;
     private String typename;
+
+    private Type type;
+
+    private List<Type> typeList;
+
+    public List<Type> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(List<Type> typeList) {
+        this.typeList = typeList;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public BuildType() {
+
+    }
 
     public BuildType(Integer butypeid, Integer typeid, Integer buildingid, Integer count, String typename) {
         this.butypeid = butypeid;

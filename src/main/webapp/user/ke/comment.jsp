@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -52,6 +54,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $(".swipebox").swipebox();
         });
     </script>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
 
     <!-- pop-up -->
 
@@ -178,47 +185,78 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                             <div class="grid_3 grid_5">
-                                <p style="font-size:24px;margin-bottom:5px;">所有评论<span class="badge badge-info" style="font-size:12px">44</span></p>
-                                <div class="btn-group"  style="width:70%;margin-bottom:5px;">
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">用户评论</button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">咨询师评论</button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">好评</button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">中评</button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">差评</button>
+                                <p style="font-size:24px;margin-bottom:5px;">所有评论<span class="badge badge-info" style="font-size:12px">${fn:length(pageInfo.list)}</span></p>
+                                <div class="btn-group"  style="width:70%;margin-bottom:0px;">
+                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">
+                                       所有评论
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">用户评论</button>
+                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">咨询师评论</button>
                                 </div>
-                                <div class="alert alert-success" style="font-size:14px;width:70%;height:150px;">
-                                    <img src="images/a2.jpg" alt="头像" class="img-circle" width="100px" height="100px"/>
-                                    <p style="margin-top:3px;margin-left:20px;"><span class="glyphicon glyphicon-user">张翠山</span><p>
-                                    <p class="" style="font-size:16px;padding-left:120px;margin-top:-125px;">这个楼不错，就是我买不起啦~~~~~就是我买不起啦~~~~~就是我买不起啦~~~~~</p>
-                                    <p class="glyphicon glyphicon-thumbs-up" style="margin-top:30px;margin-left:130px;">2018-05-31 12:22:22</p><span class="glyphicon glyphicon-thumbs-up" style="margin-left:53%;">点赞</span>
+                                <div class="btn-group"  style="width:70%;margin-bottom:10px;">
+                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">
+                                        好评
+                                    </button>
+                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">中评</button>
+                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">差评</button>
                                 </div>
+                                <c:forEach items="${pageInfo.list}" var="comment">
+                                    <div id="${comment.commentid}"
+                                            <c:choose>
+                                            <c:when test="${fn:contains(comment.comtype,'好评')}"> class="alert alert-success" </c:when>
+                                            <c:when test="${fn:contains(comment.comtype,'中评')}">class="alert alert-info"</c:when>
+                                            <c:otherwise>class="alert alert-warning"</c:otherwise>
+                                    </c:choose>
+                                            style="font-size:14px;width:70%;height:190px;">
+                                        <img src="${pageContext.request.contextPath}/user/ke/images/a2.jpg" alt="头像" class="img-circle" width="100px" height="100px"/>
+                                        <p style="margin-top:10px;margin-left:20px;margin-bottom: 60px;"><span class="glyphicon glyphicon-user">${comment.uname}
+                                            <c:if test="${fn:contains(comment.idtype,'咨询')}">
+                                                <a href=""><img src="" alt="咨询师" title="向他咨询"></a>
+                                            </c:if>
+                                        </span><p>
 
-                                <div class="alert alert-info" style="font-size:14px;width:70%;height:150px;">
-                                    <img src="images/a2.jpg" alt="头像" class="img-circle" width="100px" height="100px"/>
-                                    <p style="margin-top:3px;margin-left:20px;"><span class="glyphicon glyphicon-user">张翠山</span><p>
-                                    <p class="" style="font-size:16px;padding-left:120px;margin-top:-125px;">这个楼不错，就是我买不起啦~~~~~就是我买不起啦~~~~~就是我买不起啦~~~~~</p>
-                                    <p class="glyphicon glyphicon-hand-right" style="margin-top:30px;margin-left:130px;">2018-05-31 12:22:22</p><span class="glyphicon glyphicon-thumbs-up" style="margin-left:53%;">点赞</span>
+                                        <p class="" style="font-size:16px;padding-left:15%;margin-top:-180px;">${comment.comcontent}</p>
+                                        <p
+                                                <c:choose>
+                                                    <c:when test="${fn:contains(comment.comtype,'好评')}"> class="glyphicon glyphicon-thumbs-up"  </c:when>
+                                                    <c:when test="${fn:contains(comment.comtype,'中评')}"> class="glyphicon glyphicon-hand-right"</c:when>
+                                                    <c:otherwise>class="glyphicon glyphicon-thumbs-down"</c:otherwise>
+                                                </c:choose>
 
-                                </div>
-                                <div class="alert alert-warning"style="font-size:14px;width:70%;height:150px;">
-                                    <img src="images/a2.jpg" alt="头像" class="img-circle" width="100px" height="100px"/>
-                                    <p style="margin-top:3px;margin-left:20px;"><span class="glyphicon glyphicon-user">张翠山</span><p>
-                                    <p class="" style="font-size:16px;padding-left:120px;margin-top:-125px;">这个楼不错，就是我买不起啦~~~~~就是我买不起啦~~~~~就是我买不起啦~~~~~</p>
-                                    <p class="glyphicon glyphicon-thumbs-down" style="margin-top:30px;margin-left:130px;">2018-05-31 12:22:22</p><span class="glyphicon glyphicon-thumbs-up" style="margin-left:53%;">点赞</span>
+                                                style="position: relative;top:25%;left: 17%;">
+                                                <fmt:formatDate value="${comment.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
+                                        <p
+                                            <c:choose>
+                                                <c:when test="${fn:contains(comment.comtype,'好评')}"> class="glyphicon glyphicon-thumbs-up"  </c:when>
+                                                <c:when test="${fn:contains(comment.comtype,'中评')}"> class="glyphicon glyphicon-hand-right"</c:when>
+                                                <c:otherwise>class="glyphicon glyphicon-thumbs-down"</c:otherwise>
+                                            </c:choose>
+                                    style="position: relative;left: 60%;top:25%;">
+                                        <a href="javascript:void(0)"  onclick="favor(${comment.commentid})">
+                                          <c:set var="flag" value="false"/>
+                                            <c:forEach items="${comment.favors}" var="fa">
+                                                    <c:if test="${fa.userid eq '1'}">
+                                                        <c:set var="flag" value="true"/>
+                                                    </c:if>
+                                            </c:forEach>
+                                            <c:if test="${flag}"> <span class="red" id="click_favor_${comment.commentid}">取消点赞</span></c:if>
+                                            <c:if test="${!flag}"><span  id="click_favor_${comment.commentid}">点赞</span></c:if>
+                                            (<span id="count_${comment.commentid}">${fn:length(comment.favors)}</span>)
+                                        </a></p>
+                                    </div>
+                                </c:forEach>
 
-                                </div>
-                                <div class="alert alert-warning"style="font-size:14px;width:70%;height:200px;">
-                                    <img src="images/a2.jpg" alt="头像" class="img-circle" width="100px" height="100px"/>
-                                    <p style="margin-top:3px;margin-left:20px;"><span class="glyphicon glyphicon-user">张翠山</span><p >已有<span style="color:red">234</span>人向他咨询<span class="glyphicon glyphicon-thumbs-up" style="margin-left:70%;">向TA咨询</span></p><p>
-                                    <p class="" style="font-size:16px;margin-left:120px;margin-top:-170px;">这个楼不错，就是我买不起啦~~~~~就是我买不起啦~~~~~就是我买不起啦~~~~~</p>
-                                    <p class="glyphicon glyphicon-thumbs-down" style="margin-top:40px;margin-left:130px;">2018-05-31 12:22:22</p><span class="glyphicon glyphicon-thumbs-up" style="margin-left:53%;">点赞</span>
-
-                                </div>
 
                                 <div class="col-md-offset-3">
                                     <nav>
                                         <ul class="pagination pagination-sm">
                                             <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                            <a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a>
+                                            <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
+                                            <span>当前第<b>${pageInfo.pageNum}</b>页</span>
+                                            <c:if test="${!pageInfo.isLastPage}"><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></c:if>
+                                            <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a>
+
                                             <li><a href="#">1</a></li>
                                             <li><a href="#">2</a></li>
                                             <li><a href="#">3</a></li>
@@ -242,6 +280,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <label style="position: relative;left: 140px;top:-50px;"><input type="checkbox" value="Sign me up for the newsletter">Sign me up for the newsletter</label>
                                 </form>
                                 <script>
+                                    function  getPage(curPage) {
+                                        //将我们这个隐藏域的值变成curPage
+                                        $("#curPage").val(curPage);
+                                        //触发表单提交事件
+                                        $("#mainForm").submit();
+
+                                    }
+                                    function favor(commentid) {
+                                        var userid=1;
+                                        var usertype="用户";
+                                        $.ajax({
+                                            type:"post",
+                                            url:"${pageContext.request.contextPath}/favor/clickFavor.action",
+                                            data:"commentid="+commentid+"&userid="+userid+"&favortype="+usertype,
+                                            success:function(data){
+                                                var d=document.getElementById("count_"+commentid);
+                                                var span2=$("#click_favor_"+commentid);
+                                                if('点赞'== span2.html()){
+                                                    span2.html("取消点赞");
+                                                    span2.addClass("red");
+                                                    d.innerText=Number(d.innerText)+1;
+                                                }else{
+                                                    span2.html("点赞");
+                                                    span2.removeClass("red");
+                                                    d.innerText=Number(d.innerText)-1;
+                                                    }
+                                            }
+
+                                        });
+                                    }
                                     function subm() {
                                         var id=$("input[name='id']").val();
                                         var idtype=$("input[name='idtype']").val();
@@ -254,7 +322,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 url:'${pageContext.request.contextPath}/comment/insertComment.action',
                                                 data:"id="+id+"&idtype="+idtype+"&buildingid="+buildingid+"&comtype="+comtype+"&comcontent="+comcontent,
                                                 success:function (data) {
-                                                    alert(data);
+                                                    comcontent.val("");
+                                                    alert(data+"刷新查看呦~");
                                                 }
                                             });
                                         }

@@ -5,6 +5,9 @@ public class Door {
 
     private String doorname;
 
+    public Door() {
+    }
+
     public Integer getDoorid() {
         return doorid;
     }

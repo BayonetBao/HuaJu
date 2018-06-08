@@ -1,6 +1,7 @@
 package com.huaju.service;
 
 import com.huaju.dao.HouseMapper;
+import com.huaju.entity.Door;
 import com.huaju.entity.House;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class HouseServiceImpl implements HouseService{
     public List<House> selectHouseInfoZYJ() {
         return houseMapper.selectHouseInfoZYJ();
     }
+
 
     @Override
     public void addHouseInfoZYJ(House house) {

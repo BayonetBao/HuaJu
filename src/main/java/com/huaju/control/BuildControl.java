@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +22,7 @@ import java.util.Map;
 @RestController
 public class BuildControl {
     @Autowired
-    BuildService buildService;
+    private BuildService buildService;
     @RequestMapping(value = "/selectBuildQueryPojo.action",method = RequestMethod.POST)
     public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
@@ -75,5 +77,28 @@ public class BuildControl {
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("buildQueryPojo",buildQueryPojo);
         request.getRequestDispatcher(request.getContextPath()+"/").forward(request,response);
+    }
+
+    @RequestMapping(value = "/addBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
+    public void addBuild(Build build, MultipartFile bpicture1, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        System.out.println("Sb");
+        String imagesTotalPath="developer/images/addbuildinfo";
+        String imageFile=request.getServletContext().getRealPath(imagesTotalPath);
+        String filename=bpicture1.getOriginalFilename()+System.currentTimeMillis();
+        String image=imageFile+"/"+filename;
+        File file=new File(image);
+        if(!file.exists()){
+            file.mkdirs();
+        }else {
+            file.delete();
+            file.mkdirs();
+        }
+        bpicture1.transferTo(file );
+        build.setBpicture(imagesTotalPath+"/"+image);
+        System.out.println(build.getEndtime());
+        if(buildService.setBuild(build))
+        System.out.println("12111");
+        request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request,response);
+
     }
 }

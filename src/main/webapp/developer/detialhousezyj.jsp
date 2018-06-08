@@ -48,6 +48,7 @@
         #addinfo a{ font-size:14px; font-weight:bold; background:url(<%=basePath%>developer/images/main/replayblack.jpg) no-repeat 0 0px; padding:0px 0 0px 20px; line-height:45px;}
         #addinfo a:hover{ background:url(<%=basePath%>developer/images/main/replayblue.jpg) no-repeat 0 0px;}
     </style>
+
 </head>
 <body>
 <!--main_top-->
@@ -62,67 +63,95 @@
     </tr>
     <tr>
         <td align="left" valign="top">
-            <form method="post" action="">
+            <%--<form method="post" action="">--%>
+
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">编号</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.houseid}</td>
                     </tr>
+
+
+
+
+
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.hname}</td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">参考总价</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.hmoney}万元左右</td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">参考单价</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.hperprice}元左右</td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">更新时间:</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">${house.updatename}</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">
+                          <fmt:formatDate value="${house.updatename}" pattern="yyyy-MM-dd" />
+                        </td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">朝向</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.forward}</td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">建面：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.harea}㎡</td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">类型</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.htype}</td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">销售状态</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.hsalestatus}</td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">参考首付</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">${house.payment}万元左右</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">房型</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${house.door.doorname}</td>
                     </tr>
+
+                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">居室</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${htype.buildType.type.typename}</td>
+                    </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">参考月供</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.monthpay}元左右</td>
                     </tr>
+
+
+
+
+
+
+                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">参考首付</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">${house.payment}万元左右</td>
+                    </tr>
+
+
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">户型图</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <img src="<%=application.getContextPath()%>/${house.htypeimg}" width="30px" height="40px" ></td>
 
                     </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">房型</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">${house.doorname}</td>
-                    </tr>
 
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">居室</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">${htype.typename}</td>
-                    </tr>
+
 
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">户型解析</td>
@@ -132,9 +161,8 @@
 
 
 
-
                 </table>
-            </form>
+            <%--</form>  --%>
         </td>
     </tr>
 </table>
