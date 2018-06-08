@@ -2,17 +2,9 @@ package com.huaju.entity;
 
 public class Cta {
     private Integer ctaid;
-    private String ctaname;
     private String ctarelname;
     private String ctapassword;
 
-    public String getCtaname() {
-        return ctaname;
-    }
-
-    public void setCtaname(String ctaname) {
-        this.ctaname = ctaname;
-    }
 
     public String getCtarelname() {
         return ctarelname;

@@ -9,4 +9,5 @@ import java.util.Map;
 
 public interface BuildService {
     public PageInfo<Build> selectBuildQueryPojo(Map<String,Object> cmap);
+    public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);
 }

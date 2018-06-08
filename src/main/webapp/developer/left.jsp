@@ -51,8 +51,12 @@
    </div>
     <div>
         <span>楼盘图册</span>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">效果图</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">周围建设</a>
+        <a href="main.html" target="mainFrame" onFocus="this.blur()">楼盘图册</a>
+        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加样板间</a>
+        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加环境规划图</a>
+        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加配套实景图</a>
+        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加楼盘实景图</a>
+        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加效果</a>
     </div>
     <div>
         <span>评论信息</span>
@@ -60,8 +64,8 @@
     </div>
     <div>
         <span>活动信息</span>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">活动信息</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">活动添加</a>
+        <a href="${pageContext.request.contextPath}/Activity/activityList.action" target="mainFrame" onFocus="this.blur()">活动信息</a>
+        <a href="${pageContext.request.contextPath}/Activity/selectctaandbuild.action" target="mainFrame" onFocus="this.blur()">活动添加</a>
     </div>
 
     <div>

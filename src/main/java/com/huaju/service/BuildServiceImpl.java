@@ -24,4 +24,9 @@ public class BuildServiceImpl implements BuildService{
         PageInfo<Build> pageInfo=new PageInfo<Build>(builds);
         return pageInfo;
     }
+
+    @Override
+    public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo) {
+        return buildMapper.selectBuildQueryPojo(buildQueryPojo);
+    }
 }

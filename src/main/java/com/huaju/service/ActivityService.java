@@ -2,6 +2,7 @@ package com.huaju.service;
 
 import com.huaju.entity.Activity;
 import com.huaju.entity.Build;
+import com.huaju.entity.BuildQueryPojo;
 import com.huaju.entity.Cta;
 
 import java.util.Date;
@@ -23,4 +24,6 @@ public interface ActivityService {
     public List<Cta> AllCta();
 
     public List<Build> selectBuilding();
+
+    public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);
 }
