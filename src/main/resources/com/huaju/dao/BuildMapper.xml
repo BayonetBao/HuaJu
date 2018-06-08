@@ -36,7 +36,7 @@
         <result property="bmaxtotalprice" column="bmaxtotalprice"/>
         <result property="maxacreage" column="maxacreage"/>
         <result property="bsalestatus" column="bsalestatus"/>
-        <collection property="buildType" javaType="BuildType">
+        <collection property="buildType" ofType="BuildType">
             <id property="butypeid" column="butypeid"/>
             <result property="count" column="count" />
             <result property="typename" column="typename" />

@@ -82,4 +82,34 @@ public class Activity {
     public void setParnum(Integer parnum) {
         this.parnum = parnum;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Activity activity = (Activity) o;
+
+        if (actid != null ? !actid.equals(activity.actid) : activity.actid != null) return false;
+        if (actime != null ? !actime.equals(activity.actime) : activity.actime != null) return false;
+        if (ctaid != null ? !ctaid.equals(activity.ctaid) : activity.ctaid != null) return false;
+        if (buildingid != null ? !buildingid.equals(activity.buildingid) : activity.buildingid != null) return false;
+        if (totalnum != null ? !totalnum.equals(activity.totalnum) : activity.totalnum != null) return false;
+        if (parnum != null ? !parnum.equals(activity.parnum) : activity.parnum != null) return false;
+        if (actcontent != null ? !actcontent.equals(activity.actcontent) : activity.actcontent != null) return false;
+        return actnote != null ? actnote.equals(activity.actnote) : activity.actnote == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = actid != null ? actid.hashCode() : 0;
+        result = 31 * result + (actime != null ? actime.hashCode() : 0);
+        result = 31 * result + (ctaid != null ? ctaid.hashCode() : 0);
+        result = 31 * result + (buildingid != null ? buildingid.hashCode() : 0);
+        result = 31 * result + (totalnum != null ? totalnum.hashCode() : 0);
+        result = 31 * result + (parnum != null ? parnum.hashCode() : 0);
+        result = 31 * result + (actcontent != null ? actcontent.hashCode() : 0);
+        result = 31 * result + (actnote != null ? actnote.hashCode() : 0);
+        return result;
+    }
 }

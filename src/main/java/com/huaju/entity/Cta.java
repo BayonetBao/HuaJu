@@ -2,32 +2,15 @@ package com.huaju.entity;
 
 public class Cta {
     private Integer ctaid;
-
     private String ctarelname;
     private String ctapassword;
-
     private String ctaimg;
-
     private String ctaphone;
-
     private Integer ctatime;
-
     private String education;
-
     private String ctaname;
-
     private String intro;
-
     private String remark;
-
-
-    public String getCtaname() {
-        return ctaname;
-    }
-
-    public void setCtaname(String ctaname) {
-        this.ctaname = ctaname;
-    }
 
     public String getCtarelname() {
         return ctarelname;
@@ -44,6 +27,14 @@ public class Cta {
     public void setCtapassword(String ctapassword) {
         this.ctapassword = ctapassword;
     }
+    public String getCtaname() {
+        return ctaname;
+    }
+
+    public void setCtaname(String ctaname) {
+        this.ctaname = ctaname;
+    }
+
     public String getIntro() {
         return intro;
     }
