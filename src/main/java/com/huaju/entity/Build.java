@@ -64,12 +64,20 @@ public class Build {
     private Double cubage;
 
     private String fitment;
-
+    private Cta cta;
     private String bsalestatus;
     private List<BuildType> buildType;
 
     public Build() {
         super();
+    }
+
+    public Cta getCta() {
+        return cta;
+    }
+
+    public void setCta(Cta cta) {
+        this.cta = cta;
     }
 
     public Integer getBuildingid() {

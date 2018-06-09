@@ -159,6 +159,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="blog-section">
 
         <div class="grid_3 grid_5 container">
+
             <div class="btn-group"  style="width:100%;margin-bottom:5px;">
                 <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">楼盘详情</button>
                 <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">咨询师评论</button>
@@ -185,21 +186,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                             <div class="grid_3 grid_5">
-                                <p style="font-size:24px;margin-bottom:5px;">所有评论<span class="badge badge-info" style="font-size:12px">${fn:length(pageInfo.list)}</span></p>
-                                <div class="btn-group"  style="width:70%;margin-bottom:0px;">
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">
+                                <p style="font-size:24px;margin-bottom:5px;"><c:choose>
+                                    <c:when test="${commentQueryPojo.idtype!=null && commentQueryPojo.idtype != '' }">
+                                        ${commentQueryPojo.idtype}
+                                    </c:when>
+                                    <c:otherwise>
+                                        所有
+                                    </c:otherwise>
+                                </c:choose>评论<span class="badge badge-info" style="font-size:12px">${fn:length(comments)}
+                                <c:choose>
+                                    <c:when test="${commentQueryPojo.comtype!=null && commentQueryPojo.idtype != '' }">
+                                        (${commentQueryPojo.comtype})
+                                    </c:when>
+                                    <c:otherwise>
+
+                                    </c:otherwise></c:choose>
+
+                                </span>
+                                </p>
+                                <div class="btn-group"  style="width:71%;margin-bottom:0px;">
+                                    <button value="" onclick="hiddenIdtype(this.value)" type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">
                                        所有评论
                                     </button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">用户评论</button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">咨询师评论</button>
+                                    <button value="用户" onclick="hiddenIdtype(this.value)" type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">用户评论</button>
+                                    <button value="咨询" onclick="hiddenIdtype(this.value)" type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">咨询师评论</button>
                                 </div>
-                                <div class="btn-group"  style="width:70%;margin-bottom:10px;">
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">
+                                <div class="btn-group"  style="width:71%;margin-bottom:10px;">
+                                    <button value="好评" type="button" onclick="hiddenComtype(this.value)" class="btn btn-default btn-lg btn-warning" style="width:33%">
                                         好评
                                     </button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">中评</button>
-                                    <button type="button" class="btn btn-default btn-lg btn-warning" style="width:33%">差评</button>
+                                    <button value="中评" type="button" onclick="hiddenComtype(this.value)" class="btn btn-default btn-lg btn-warning" style="width:33%">中评</button>
+                                    <button value="差评" type="button" onclick="hiddenComtype(this.value)" class="btn btn-default btn-lg btn-warning" style="width:33%">差评</button>
                                 </div>
+                                <%--查找评论的隐藏表单 通过按钮触发script 更改hidden的input的value submit--%>
+                                <form id="hiddenForm" action="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action" method="post">
+                                    <input type="hidden" id="curPage" name="curPage" value="1"/>
+                                    <input type="hidden" id="comtype" name="comtype" value="${commentQueryPojo.comtype}"/>
+                                    <input type="hidden" id="idtype" name="idtype" value="${commentQueryPojo.idtype}"/>
+                                </form>
                                 <c:forEach items="${pageInfo.list}" var="comment">
                                     <div id="${comment.commentid}"
                                             <c:choose>
@@ -269,22 +293,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <p style="font-size:24px">留下你的评论吧~~~</p>
                                 <form method="post" action="#">
-                                    <input type="hidden" name="id" value="1"/>
-                                    <input type="hidden" name="idtype" value="用户"/>
-                                    <input type="hidden"  name="buildingid" value="1"/>
-                                    <input type="radio"  name="comtype" value="好评" class="radio-danger"><span class="badge badge-danger">好评</span></input>
-                                    <input type="radio"  name="comtype" value="中评" class="radio-danger"><span class="badge badge-warning">中评</span></input>
-                                    <input type="radio"  name="comtype" value="差评" class="radio-danger"><span class="badge badge-info">差评</span></input>
-                                    <textarea type="text" name="comcontent" onfocus="this.value = '';" style="width:70%" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
+                                    <input type="hidden" name="id1" value="1"/>
+                                    <input type="hidden" name="idtype1" value="用户"/>
+                                    <input type="hidden"  name="buildingid1" value="1"/>
+                                    <input type="radio"  name="comtype1" value="好评" class="radio-danger"><span class="badge badge-danger">好评</span></input>
+                                    <input type="radio"  name="comtype1" value="中评" class="radio-danger"><span class="badge badge-warning">中评</span></input>
+                                    <input type="radio"  name="comtype1" value="差评" class="radio-danger"><span class="badge badge-info">差评</span></input>
+                                    <textarea type="text" name="comcontent1" onfocus="this.value = '';" style="width:70%" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
                                     <div class="tags" style="margin-top: 0px;"><ul><li><a href="javascript:subm()">Submit Comment</a></li></ul></div>
                                     <label style="position: relative;left: 140px;top:-50px;"><input type="checkbox" value="Sign me up for the newsletter">Sign me up for the newsletter</label>
                                 </form>
                                 <script>
+                                    function hiddenIdtype(idtype) {
+                                       var hiddenForm=$("#hiddenForm");
+                                        var obj1=$("#comtype");
+                                       var obj=$("#idtype");
+                                       if(idtype==""){
+                                           obj.val("");
+                                           obj1.val("");
+                                       }else{
+                                           obj.val(idtype);
+                                       }
+                                       hiddenForm.submit();
+                                   }
+                                   function hiddenComtype(comtype) {
+                                       var hiddenForm=$("#hiddenForm");
+                                       var obj=$("#comtype");
+                                       obj.val(comtype);
+                                       hiddenForm.submit();
+                                   }
                                     function  getPage(curPage) {
                                         //将我们这个隐藏域的值变成curPage
                                         $("#curPage").val(curPage);
                                         //触发表单提交事件
-                                        $("#mainForm").submit();
+                                        $("#hiddenForm").submit();
 
                                     }
                                     function favor(commentid) {
@@ -311,18 +353,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         });
                                     }
                                     function subm() {
-                                        var id=$("input[name='id']").val();
-                                        var idtype=$("input[name='idtype']").val();
-                                        var buildingid=$("input[name='buildingid']").val();
-                                        var comtype=$("input[name='comtype']").val();
-                                        var comcontent=$("input[name='comcontent']").val();
+                                        var id=$("input[name='id1']").val();
+                                        var idtype=$("input[name='idtype1']").val();
+                                        var buildingid=$("input[name='buildingid1']").val();
+                                        var comtype=$("input[name='comtype1']").val();
+                                        var comcontent=$("input[name='comcontent1']").val();
                                         if(confirm("要发表了奥~~")){
                                             $.ajax({
                                                 type:"post",
                                                 url:'${pageContext.request.contextPath}/comment/insertComment.action',
                                                 data:"id="+id+"&idtype="+idtype+"&buildingid="+buildingid+"&comtype="+comtype+"&comcontent="+comcontent,
                                                 success:function (data) {
-                                                    comcontent.val("");
+                                                    $("input[name='comcontent1']").val("");
                                                     alert(data+"刷新查看呦~");
                                                 }
                                             });

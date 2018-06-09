@@ -12,6 +12,10 @@ public class Cta {
     private String intro;
     private String remark;
 
+    public Cta() {
+        super();
+    }
+
     public String getCtarelname() {
         return ctarelname;
     }

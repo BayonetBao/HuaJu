@@ -28,7 +28,7 @@ public class BuildControl {
     private BuildService buildService;
     @Autowired
     private BuildTypeService buildTypeService;
-    @RequestMapping(value = "/selectBuildQueryPojo.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/selectBuildQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
          Map<String,Object> cmap=new HashMap<>();
@@ -81,7 +81,7 @@ public class BuildControl {
         PageInfo<Build> pageInfo = buildService.selectBuildQueryPojo(cmap);
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("buildQueryPojo",buildQueryPojo);
-        request.getRequestDispatcher(request.getContextPath()+"/").forward(request,response);
+        request.getRequestDispatcher("/user/ke/queryBuild.jsp").forward(request,response);
     }
 
     @RequestMapping(value = "/addBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
