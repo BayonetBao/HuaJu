@@ -102,6 +102,17 @@
             <if test="building neq null">
                 and building like "%" #{building} "%"
             </if>
+            ORDER by buildingid DESC
         </where>
+    </select>
+    <!--//按楼盘id删除楼盘（张宝）-->
+    <!--public boolean deleteBuildById(int buildId);-->
+    <delete id="deleteBuildById" parameterType="int">
+        DELETE FROM build WHERE buildingid=#{_parameter}
+    </delete>
+    <!--//按楼盘id查询楼盘（张宝）-->
+    <!--public Build selectBuildById(int buildingid);-->
+    <select id="selectBuildById" parameterType="int" resultType="Build">
+        SELECT * from build WHERE buildingid=#{_parameter}
     </select>
 </mapper>

@@ -43,5 +43,16 @@ public class BuildServiceImpl implements BuildService{
         PageInfo<Build> pageInfo=new PageInfo<Build>(buildList);
         return pageInfo;
     }
+    //按楼盘id删除楼盘（张宝）
+    @Override
+    public boolean deleteBuildById(int buildId) {
+        return buildMapper.deleteBuildById(buildId);
+    }
+    //按楼盘id查询楼盘（张宝）
+    @Override
+    public Build selectBuildById(int buildingid) {
+        return buildMapper.selectBuildById(buildingid);
+    }
+
 
 }

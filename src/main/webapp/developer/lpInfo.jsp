@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -65,10 +66,10 @@
                         <form id="mainForm" method="get" action="${pageContext.request.contextPath}/build/showBuildInfo.action">
                             <span>楼盘查询：</span>
                             <%--隐藏域 保存我们当前的页面数--%>
+                            <input type="hidden" name="scurPage" id="scurPage"/>
                             <%--<input style="float: left;" type="hidden" name="scurPage" id="scurPage"/>--%>
-                            <input type="hidden" name="comid" id="comid" value="${user.comid}"/>
-                            <input type="text" name="building" class="text-word">
-                            <input name="" type="button" value="查询" class="text-but">
+                            <input type="text" name="building" class="form-control" value="${building}" style="height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;">
+                            <input type="submit" value="查询" class="text-but">
                         </form>
                     </td>
                     <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="${pageContext.request.contextPath}/developer/addBuild.jsp" target="mainFrame" onFocus="this.blur()" class="add">新增楼盘</a></td>
@@ -79,22 +80,22 @@
     <c:if test="${empty pageInfo.list}">
         <tr>
             <td>
-                <p>暂无数据${user.comid}</p>
+                <p>暂无数据</p>
             </td>
         </tr>
     </c:if>
     <c:if test="${not empty pageInfo.list}">
         <c:forEach items="${pageInfo.list}" var="build">
-            <tr>
+            <tr id="${build.buildingid}">
                 <td colspan="2">
-                    <div style="width:1000px; height:205px;margin:10px auto; background-color:#FFF; overflow:auto;">
+                    <div style="width:1400px;margin:10px auto; background-color:#FFF; overflow:auto;">
                         <!--楼盘图片-->
                         <div style="float:left; margin:10px 10px;"><img width="260px" height="180" src="${pageContext.request.contextPath}/${build.bpicture}">
 
                         </div>
                         <!--楼盘名称-->
                         <div style="overflow:auto;">
-                            <div style=" float:left;margin:10px 10px;"><a href="楼盘详情.html" style="font-size:22px;"><b>${build.building}</b></a>&nbsp;&nbsp;&nbsp;&nbsp;<span style=" color:#0cf;border:solid #0CF 1px; border-radius:15px;padding:0px 8px; font-size:9px;">在售</span>
+                            <div style=" float:left;margin:10px 10px;"><a href="${pageContext.request.contextPath}/build/selectBuildById.action?buildingid=${build.buildingid}" style="font-size:22px;"><b>${build.building}</b></a>&nbsp;&nbsp;&nbsp;&nbsp;<span style=" color:#0cf;border:solid #0CF 1px; border-radius:15px;padding:0px 8px; font-size:9px;">${build.conditions}</span>
                             </div>
                             <!--添加房型-->
                             <div style="float:right;margin:10px 10px;"><a href="#"style=" color:#09F;">添加房型信息</a>
@@ -126,7 +127,7 @@
                                 </tr>
                                 <tr>
                                     <td>最早开盘:</td>
-                                    <td>${build.starttime}</td>
+                                    <td><fmt:formatDate value="${build.starttime}" pattern="yyyy-MM-dd"></fmt:formatDate> </td>
                                 </tr>
                             </table>
                         </div>
@@ -136,44 +137,38 @@
                                 <tr>
                                     <td>户型:</td>
                                     <td>
-
                                                 <c:forEach items="${typeCountsMap}" var="typeCounts">
-                                                    ${typeCounts.key}
-                                                    ${typeCounts.value}
-                                                <%--<c:if test="${typeCounts[''].build.buildingid=build.buildingid}">--%>
-                                                    <%--<c:forEach items="${typeCounts.value}" var="typeCount" >--%>
-                                                        <%--<c:if test="${typeCount.count=0}">--%>
+                                                <c:if test="${typeCounts.key eq build.buildingid }">
+                                                    <c:set var="flag" value="true"></c:set>
+                                                    <c:forEach items="${typeCounts.value}" var="typeCount" >
 
-                                                        <%--</c:if>--%>
-                                                        <%--<c:if test="${typeCount.count!=0}">--%>
-                                                            <%--<c:if test="${typeCount.typeid=1}">--%>
-                                                                <%--一居（${typeCount.count}）--%>
-                                                            <%--</c:if>--%>
+                                                        <c:if test="${typeCount.count==0}">
 
-                                                            <%--<c:if test="${typeCount.typeid=2}">--%>
-                                                                <%--二居（${typeCount.count}）--%>
-                                                            <%--</c:if>--%>
+                                                        </c:if>
+                                                        <c:if test="${typeCount.count!=0 }">
+                                                            <c:set var="flag" value="false"></c:set>
+                                                            <c:if test="${typeCount.typeid==1}">
+                                                                一居（${typeCount.count}）
+                                                            </c:if>
 
-                                                            <%--<c:if test="${typeCount.typeid=3}">--%>
-                                                                <%--三居（${typeCount.count}）--%>
-                                                            <%--</c:if>--%>
+                                                            <c:if test="${typeCount.typeid==2}">
+                                                                二居（${typeCount.count}）
+                                                            </c:if>
 
-                                                            <%--<c:if test="${typeCount.typeid=4}">--%>
-                                                                <%--四居（${typeCount.count}）--%>
-                                                            <%--</c:if>--%>
-
-                                                        <%--</c:if>--%>
-                                                    <%--</c:forEach>--%>
-                                                <%--</c:if>--%>
-                                                    <c:if test="${typeCounts.key!=build.buildingid}">
-                                                    暂无数据
+                                                            <c:if test="${typeCount.typeid==3}">
+                                                                三居（${typeCount.count}）
+                                                            </c:if>
+                                                            <c:if test="${typeCount.typeid==4}">
+                                                                四居（${typeCount.count}）
+                                                            </c:if>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                    <c:if test="${flag}">
+                                                        暂无数据
                                                     </c:if>
+                                                </c:if>
                                                 </c:forEach>
-
-
-
                                     </td>
-
                                 </tr>
                                 <tr>
                                     <td>特点:</td>
@@ -193,13 +188,13 @@
                                 </tr>
                                 <tr>
                                     <td>最早交房:</td>
-                                    <td>${build.endtime}</td>
+                                    <td><fmt:formatDate value="${build.endtime}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 
                                 </tr>
                             </table>
                         </div>
                         <!-- 删除楼盘-->
-                        <div style="float:right; margin-right:10px; margin-top:115px;"><a style="color:#06F" href="#">删除楼盘</a></div>
+                        <div style="float:right; margin-right:10px; margin-top:115px;"><a style="color:#06F" href="javascript:delet(${build.buildingid})">删除楼盘</a></div>
                     </div>
                 </td>
             </tr>
@@ -211,7 +206,7 @@
             <c:if test="${!pageInfo.isFirstPage}">
             <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
         </c:if>&nbsp;&nbsp;
-            当前第<span>${pageInfo.pageNum}</span>页
+            当前第<span>${pageInfo.pageNum}/${pageInfo.pages}</span>页
             <c:if test="${!pageInfo.isLastPage}">
                 <a href="javascript:getPage(${pageInfo.nextPage})" >下一页</a>
             </c:if>&nbsp;&nbsp;
@@ -221,4 +216,23 @@
     </tr>
 </table>
 </body>
+<script>
+    function delet(id) {
+        if(confirm("确定要删除吗")){
+            var obj=$("#"+id);
+            $.ajax({
+                    type:"get",
+                    url:"${pageContext.request.contextPath}/build/deletBuild.action",
+                    data:"buildingid="+id,
+                    success:function (da) {
+                        if(da==1){
+                            obj.remove();
+                            alert("删除成功！");
+                        }
+                    }
+            });
+
+        }
+    }
+</script>
 </html>

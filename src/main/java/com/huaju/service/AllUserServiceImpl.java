@@ -34,4 +34,9 @@ public class AllUserServiceImpl implements AllUserService {
 
         return companyMapper.setCompany(company);
     }
+    //按id查找（张宝）
+    @Override
+    public Company selectCompanyById(int comid) {
+        return companyMapper.selectCompanyById(comid);
+    }
 }

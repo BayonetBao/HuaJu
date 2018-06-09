@@ -111,14 +111,9 @@ public class BuildControl {
     public void lpList(String scurPage, HttpSession session, String building, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Company company= (Company) session.getAttribute("user");
         Integer comid=company.getComid();
-        System.out.println(comid);
-        System.out.println(building);
         ComidAndBuildName condition=new ComidAndBuildName();
         condition.setComid(comid);
         condition.setBuilding(building);
-        int i=condition.getComid();
-        System.out.println(i);
-        String s=condition.getBuilding();
         //         将查询的条件和分页的内容封装成map
         Map<String ,Object> buildmap=new HashMap<>();
         buildmap.put("condition",condition);
@@ -150,6 +145,25 @@ public class BuildControl {
         }
         request.setAttribute("typeCountsMap",typeCountsMap);
         request.setAttribute("pageInfo",pageInfo);
+        request.setAttribute("building",building);
         request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request,response);
+    }
+    @RequestMapping(value = "/deletBuild.action")
+    public String deletBuild(String buildingid){
+        if(buildService.deleteBuildById(Integer.parseInt(buildingid))){
+            return "1";
+
+        }
+        return "0";
+    }
+    @RequestMapping(value = "/selectBuildById.action")
+    public void selectBuildById(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
+        if(build!=null){
+            List<BuildType> buildTypes=buildTypeService.selectTypeCount(Integer.parseInt(buildingid));
+            request.setAttribute("buildTypes",buildTypes);
+            request.setAttribute("build",build);
+            request.getRequestDispatcher("/developer/buildDetailInfo.jsp").forward(request,response);
+        }
     }
 }

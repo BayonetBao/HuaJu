@@ -12,6 +12,10 @@ public interface BuildMapper {
     public boolean setBuild(Build build);
     //按开发商id和名字查询楼盘(张宝)
     public List<Build> selectBuildByCondition(ComidAndBuildName companyIdAndBuildName);
+    //按楼盘id删除楼盘（张宝）
+    public boolean deleteBuildById(int buildingid);
+    //按楼盘id查询楼盘（张宝）
+    public Build selectBuildById(int buildingid);
     public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);
     public List<Build> selectBuilding();
 
