@@ -1,9 +1,9 @@
 package com.huaju.control;
 
 import com.github.pagehelper.PageInfo;
-import com.huaju.entity.*;
+import com.huaju.entity.Build;
+import com.huaju.entity.BuildQueryPojo;
 import com.huaju.service.BuildService;
-import com.huaju.service.BuildTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,12 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RequestMapping(value = "/build")
@@ -26,9 +23,7 @@ import java.util.Map;
 public class BuildControl {
     @Autowired
     private BuildService buildService;
-    @Autowired
-    private BuildTypeService buildTypeService;
-    @RequestMapping(value = "/selectBuildQueryPojo.action",method = RequestMethod.POST)
+    @RequestMapping(value = "/selectBuildQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
          Map<String,Object> cmap=new HashMap<>();
@@ -81,17 +76,17 @@ public class BuildControl {
         PageInfo<Build> pageInfo = buildService.selectBuildQueryPojo(cmap);
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("buildQueryPojo",buildQueryPojo);
-        request.getRequestDispatcher(request.getContextPath()+"/").forward(request,response);
+        request.getRequestDispatcher("/user/ke/queryBuild.jsp").forward(request,response);
     }
 
     @RequestMapping(value = "/addBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void addBuild(Build build, MultipartFile bpicture1, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        System.out.println("Sb");
         String imagesTotalPath="developer/images/addbuildinfo";
         String imageFile=request.getServletContext().getRealPath(imagesTotalPath);
-        String imageName=System.currentTimeMillis()+bpicture1.getOriginalFilename();
-        String filename=imageFile+"/"+imageName;
-       String image=imagesTotalPath+"/"+imageName;
-        File file=new File(filename);
+        String filename=bpicture1.getOriginalFilename()+System.currentTimeMillis();
+        String image=imageFile+"/"+filename;
+        File file=new File(image);
         if(!file.exists()){
             file.mkdirs();
         }else {
@@ -99,57 +94,11 @@ public class BuildControl {
             file.mkdirs();
         }
         bpicture1.transferTo(file );
-        build.setBpicture(image);
-
-        if(buildService.setBuild(build)) {
-            request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request, response);
-        }
-
-
-    }
-    @RequestMapping(value = "/showBuildInfo.action",method = RequestMethod.GET)
-    public void lpList(String scurPage, HttpSession session, String building, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Company company= (Company) session.getAttribute("user");
-        Integer comid=company.getComid();
-        System.out.println(comid);
-        System.out.println(building);
-        ComidAndBuildName condition=new ComidAndBuildName();
-        condition.setComid(comid);
-        condition.setBuilding(building);
-        int i=condition.getComid();
-        System.out.println(i);
-        String s=condition.getBuilding();
-        //         将查询的条件和分页的内容封装成map
-        Map<String ,Object> buildmap=new HashMap<>();
-        buildmap.put("condition",condition);
-        //每页显示的条数
-        int pageSize=5;
-        //当前的页面默认是首页
-        int curPage=1;
-        if (scurPage!=null&&!scurPage.trim().equals("")){
-            curPage=Integer.parseInt(scurPage);
-        }
-        buildmap.put("curPage",curPage);
-//           每页显示的条数
-        buildmap.put("pageSize",pageSize);
-        PageInfo<Build> pageInfo=buildService.selectBuildListByCompanyId(buildmap);
-        //根据开发商获取其下所有楼盘
-        List<Build> buildList=pageInfo.getList();
-        //建立楼盘户型的集合
-        Map<Integer,List<BuildType>> typeCountsMap=new HashMap<>();
-
-       // List<List<BuildType>> typeCountsList=new ArrayList<>();
-
-        for(Build build:buildList){
-            //获得单个楼盘下的户型集合
-            List<BuildType> buildTypes=new ArrayList<>();
-            buildTypes=buildTypeService.selectTypeCount(build.getBuildingid());
-            //获取楼盘集合下的所有户型
-            typeCountsMap.put(build.getBuildingid(),buildTypes);
-            //typeCountsList.add(buildTypes);
-        }
-        request.setAttribute("typeCountsMap",typeCountsMap);
-        request.setAttribute("pageInfo",pageInfo);
+        build.setBpicture(imagesTotalPath+"/"+image);
+        System.out.println(build.getEndtime());
+        if(buildService.setBuild(build))
+        System.out.println("12111");
         request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request,response);
+
     }
 }

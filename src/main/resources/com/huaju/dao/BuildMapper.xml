@@ -32,10 +32,15 @@
         <result property="greenrate" column="greenrate"/>
         <result property="carport" column="carport"/>
         <result property="cubage" column="cubage"/>
+        <result property="bdetail" column="bdetail"/>
         <result property="fitment" column="fitment"/>
         <result property="bmaxtotalprice" column="bmaxtotalprice"/>
         <result property="maxacreage" column="maxacreage"/>
         <result property="bsalestatus" column="bsalestatus"/>
+        <association property="cta" javaType="Cta">
+            <result property="ctaname" column="ctaname"/>
+            <result property="ctaimg" column="ctaimg"/>
+        </association>
         <collection property="buildType" ofType="BuildType">
             <id property="butypeid" column="butypeid"/>
             <result property="count" column="count" />
@@ -44,9 +49,10 @@
     </resultMap>
     <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);-->
    <select id="selectBuildQueryPojo" parameterType="BuildQueryPojo" resultMap="BuildMap">
-       select build.* ,buildtype.butypeid,buildtype.count,type.typename from build,buildtype,type
+       select build.* ,cta.ctaname,cta.ctaimg,buildtype.butypeid,buildtype.count,type.typename from
+       build left join buildtype on(build.buildingid=buildtype.buildingid) left join type on(buildtype.typeid=type.typeid)
+       left join cta on (build.ctaid=cta.ctaid)
        <where>
-           build.buildingid=buildtype.buildingid and buildtype.butypeid=type.butypeid
            <if test="province neq null">
                and province=#{province}
            </if>

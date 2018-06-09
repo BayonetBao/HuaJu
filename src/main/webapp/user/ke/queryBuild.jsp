@@ -158,263 +158,53 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-                                    <div class="forsale-grids">
 
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
+                                    <c:forEach items="${pageInfo.list}" var="b">
+                                        <div class="forsale-grids">
+                                            <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >${b.building}</a></h4>
+                                            <div class="forsale1">
+                                                <div class="forsale-left">
+                                                    <a href="#"><img src="${pageContext.request.contextPath}/user/ke/images/${b.bpicture}" class="img-responsive" alt="楼盘"></a>
+                                                </div>
+                                                <div class="forsale-right">
+                                                    <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
+                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
+                                                        参考总价${b.btotalprice}-${b.bmaxtotalprice}万元
+                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
+                                                        <button style="border:none; background-color: #F60;">${b.conditions}</button>
+                                                    </h5>
+                                                    <p>${b.bdetail}<br/>
+                                                        <a href="地图链接"> 查看地图</a><br/> 2018.05.24
+                                                        <a href="楼盘详情页面">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
+                                                    </p>
+                                                    <a href="楼盘详情页面" class="button4">更多详情</a>
+                                                </div>
+                                                <div class="zixunshi">
+                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
 
-                                        <div class="forsale1">
+                                                    <p style="margin-top:-175px;font-size:13px;margin-left:15px">
+                                                        <a>${b.cta.ctaname}|咨询</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <ul>
 
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
+                                                    <li>
+                                                        <a href="楼盘详情页面">紧凑实用</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="楼盘详情页面">幼儿园</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="楼盘详情页面">公园地产</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="楼盘详情页面">向他咨询</a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
                                         </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="forsale-grids">
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-                                        <div class="forsale1">
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p3.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
+                                    </c:forEach>
                                     <div class="col-md-offset-4">
                                         <nav>
                                             <ul class="pagination pagination-lg">
@@ -461,138 +251,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </p>
                                             <h6>￥13222/㎡ </h6>
                                         </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s5.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
+
                                     </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s4.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5 style="font-family: 'Open Sans', sans-serif">114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s2.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s3.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s4.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s3.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s5.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -600,10 +261,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-3 properties-right">
                     <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif">找房</h4>
-
-                        <form action="">
-                            <input type="hidden" value="" name="curPage" />
+                        <h4 style="font-family: 'Open Sans', sans-serif" onclick="subFind()">找房</h4>
+                        <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                            <input type="hidden" value="1" name="curPage" />
                             <div data-toggle="distpicker">
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
@@ -678,20 +338,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <h5>单价</h5>
                                     <select class="sel3" name="bPerprice">
                                         <option value="">单价</option>
-                                        <option value="">
+                                        <option value="0-20000">
                                             <2万</option>
-                                        <option value="">2-3万</option>
-                                        <option value="">3-4万</option>
-                                        <option value="">4-5万</option>
-                                        <option value="">5-6万</option>
-                                        <option value="">6-7万</option>
-                                        <option value="">7-8万</option>
-                                        <option value="">8万及以上</option>
+                                        <option value="20000-30000">2-3万</option>
+                                        <option value="30000-40000">3-4万</option>
+                                        <option value="40000-50000">4-5万</option>
+                                        <option value="50000">5万及以上</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 yourplace-grid">
                                     <h5>面积</h5>
                                     <select class="sel3" name="acreage">
+                                        <option value="">请选择</option>
                                         <option value="30-50">30-50</option>
                                         <option value="50-100">50-100</option>
                                         <option value="100-150">100-150</option>
@@ -700,12 +358,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="search1">
-                                <input type="submit" value="查找">
-                            </div>
                         </form>
                     </div>
+<script>
+    function  getPage(curPage) {
+        //将我们这个隐藏域的值变成curPage
+        $("#curPage").val(curPage);
+        //触发表单提交事件
+        $("#mainForm").submit();
 
+    }
+    function mainForm() {
+        $("#mainForm").submit();
+    }
+</script>
                     <div class="feature">
                         <h4>优惠楼盘</h4>
                         <div class="feature-top">
@@ -715,13 +381,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <a href="#">Know More</a>
                             </p>
                         </div>
-                        <div class="feature-top top2">
-                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                            <h5>114㎡, 升龙楼盘</h5>
-                            <p>朝向南, 在地铁附近,…
-                                <a href="#">Know More</a>
-                            </p>
-                        </div>
+
                     </div>
                 </div>
                 <div class="clearfix"></div>

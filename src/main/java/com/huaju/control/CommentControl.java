@@ -21,6 +21,7 @@ import java.util.*;
 public class CommentControl {
     @Autowired
     private CommentService commentService;
+//    后台查询
     @RequestMapping(value = "selectAllCommentByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllCommentByQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Build> blist=commentService.selectBuildInComment(1);
@@ -56,6 +57,7 @@ public class CommentControl {
         request.setAttribute("blist",blist);
         request.getRequestDispatcher("/developer/commentList.jsp").forward(request, response);
     }
+//    前台查询
     @RequestMapping(value = "selectAllCommentByQueryPojoFront.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllCommentByQueryPojoFront(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, Object> cmap=new HashMap<>();
@@ -84,11 +86,14 @@ public class CommentControl {
         cmap.put("pageSize", pageSize);
         cmap.put("curPage",curPage);
         cmap.put("commentQueryPojo",commentQueryPojo);
+        List<Comment> comments=commentService.selectCommentByQueryPojo(commentQueryPojo);
         PageInfo<Comment> pageInfo = commentService.selectCommentByQueryPojo(cmap);
+        request.setAttribute("comments",comments);
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("commentQueryPojo", commentQueryPojo);
         request.getRequestDispatcher("/user/ke/comment.jsp").forward(request, response);
     }
+//    通过id删除评论
     @RequestMapping(value = "deleteCommentById.action",method = {RequestMethod.GET,RequestMethod.POST})
     public String deleteCommentById(HttpServletRequest request,HttpServletResponse response){
         Integer id=Integer.parseInt(request.getParameter("commentid"));
@@ -100,6 +105,7 @@ public class CommentControl {
         }
         return result;
     }
+//    前台添加评论
     @RequestMapping(value = "insertComment.action",method = {RequestMethod.POST,RequestMethod.GET})
     public String insertComment(Comment comment,HttpServletRequest request,HttpServletResponse response){
         String result="";

@@ -38,6 +38,11 @@ public class CommentServiceImpl implements CommentService {
         return pageInfo;
     }
 
+    @Override
+    public List<Comment> selectCommentByQueryPojo(CommentQueryPojo commentQueryPojo) {
+        return commentMapper.selectCommentByQueryPojo(commentQueryPojo);
+    }
+
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT)
     @Override
     public boolean insertComment(Comment comment) {
