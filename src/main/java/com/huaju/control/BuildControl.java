@@ -3,6 +3,7 @@ package com.huaju.control;
 import com.github.pagehelper.PageInfo;
 import com.huaju.entity.Build;
 import com.huaju.entity.BuildQueryPojo;
+import com.huaju.entity.Company;
 import com.huaju.service.BuildService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequestMapping(value = "/build")
@@ -23,10 +25,12 @@ import java.util.Map;
 public class BuildControl {
     @Autowired
     private BuildService buildService;
+//    分页按条件查询楼盘 并查询开发商list对象返回前端jsp 等等 珂
     @RequestMapping(value = "/selectBuildQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
          Map<String,Object> cmap=new HashMap<>();
+         List<Company> companies=buildService.selectCompanyInBuild();
          String province=request.getParameter("province");
          String city=request.getParameter("city");
          String district=request.getParameter("district");
@@ -39,6 +43,12 @@ public class BuildControl {
          String acreage=request.getParameter("acreage");
         if (province != null && !province.trim().equals("")) {
             buildQueryPojo.setProvince(province);
+        }
+        if (character != null && !character.trim().equals("")) {
+            buildQueryPojo.setCharacter(character);
+        }
+        if (genre != null && !genre.trim().equals("")) {
+            buildQueryPojo.setGenre(genre);
         }
         if (city != null && !province.trim().equals("")) {
             buildQueryPojo.setCity(city);
@@ -75,13 +85,13 @@ public class BuildControl {
         cmap.put("curPage",curPage);
         PageInfo<Build> pageInfo = buildService.selectBuildQueryPojo(cmap);
         request.setAttribute("pageInfo", pageInfo);
+        request.setAttribute("companies",companies);
         request.setAttribute("buildQueryPojo",buildQueryPojo);
         request.getRequestDispatcher("/user/ke/queryBuild.jsp").forward(request,response);
     }
 
     @RequestMapping(value = "/addBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void addBuild(Build build, MultipartFile bpicture1, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        System.out.println("Sb");
         String imagesTotalPath="developer/images/addbuildinfo";
         String imageFile=request.getServletContext().getRealPath(imagesTotalPath);
         String filename=bpicture1.getOriginalFilename()+System.currentTimeMillis();
@@ -97,7 +107,6 @@ public class BuildControl {
         build.setBpicture(imagesTotalPath+"/"+image);
         System.out.println(build.getEndtime());
         if(buildService.setBuild(build))
-        System.out.println("12111");
         request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request,response);
 
     }
