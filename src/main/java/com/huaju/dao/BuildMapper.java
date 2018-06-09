@@ -13,6 +13,10 @@ public interface BuildMapper {
     public boolean setBuild(Build build);
     //按开发商id和名字查询楼盘(张宝)
     public List<Build> selectBuildByCondition(ComidAndBuildName companyIdAndBuildName);
+    //按楼盘id删除楼盘（张宝）
+    public boolean deleteBuildById(int buildingid);
+    //按楼盘id查询楼盘（张宝）
+    public Build selectBuildById(int buildingid);
     //通过 开发商id，楼盘面积，省市区，地址，单价总价 特点等等查找楼盘 分页插件 珂
     public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);
     //查询所有楼盘 珂

@@ -12,4 +12,9 @@
     <select id="selectCompanyByName" parameterType="String" resultType="Company">
         SELECT * from company where comuname=#{_parameter}
     </select>
+    <!--//按id查找（张宝）-->
+    <!--public Company selectCompanyById(int comid );-->
+    <select id="selectCompanyById" parameterType="int" resultType="Company">
+        SELECT * from company WHERE comid=#{_parameter}
+    </select>
 </mapper>
