@@ -81,13 +81,15 @@ public class HouseControl {
     public void updatehouse(int id , HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         House house=houseService.getHouse(id);
         House doorinfo=houseService.perDoorInfo(id);
+    House htype=houseService.showHouseTypeInfo(id);
     System.out.println(doorinfo);
     System.out.println(house);
             System.out.println(house.getAnalysis()+"========");
             if (house!=null){
                 request.setAttribute("doorifo",doorinfo);
-            request.setAttribute("house" , house);
+                 request.setAttribute("house" , house);
 
+                request.setAttribute("htype",htype);
             request.getRequestDispatcher("/developer/Updatehouse.jsp").forward(request,response);
         }else {
 //                商品不存在

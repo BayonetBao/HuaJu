@@ -127,7 +127,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">参考单价：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="hperprice" value="${house.hperprice}" class="text-word">元左右
+                            <input type="" name="hperprice" value="${house.hperprice}元左右" class="text-word">
 
                         </td>
                     </tr>
@@ -158,7 +158,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房型：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="" value="${doorinfo.doorname}" readonly="readonly" class="text-word">
+                            <input type="" name="" value="${house.doorid}" readonly="readonly" class="text-word">
 
                         </td>
                     </tr>
@@ -166,7 +166,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">居室：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="" value="${house.butypeid}" readonly="readonly" class="text-word">
+                            <input type="" name="" value="${htype.buildType.type.typename}" readonly="readonly" class="text-word">
 
                         </td>
                     </tr>
