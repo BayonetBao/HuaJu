@@ -345,7 +345,7 @@
                         <div class="form-group">
                             <label for="bline" class="col-sm-2 control-label">环&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="bline" id="bline" value="build.bline" placeholder="环线">
+                                <input type="text" class="form-control" name="bline" id="bline" value="${build.bline}" placeholder="环线">
                             </div>
                         </div>
                         <div class="form-group">
@@ -429,7 +429,7 @@
                             <div class="form-group">
                                 <label for="bsalestatus" class="col-sm-2 control-label">销售情况</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="bsalestatus" id="bsalestatus" value="${build.bsalestatus}" placeholder="装修状况">
+                                    <input type="text" class="form-control" name="bsalestatus" id="bsalestatus" value="${build.bsalestatus}" placeholder="销售状况">
                                 </div>
                             </div>
 

@@ -111,14 +111,12 @@ public class BuildControl {
             file.mkdirs();
         }
         bpicture1.transferTo(file );
-        build.setBpicture(imagesTotalPath+"/"+image);
+        //build.setBpicture(imagesTotalPath+"/"+image);
         System.out.println(build.getEndtime());
-        if(buildService.setBuild(build))
-        request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request,response);
         build.setBpicture(image);
 
         if(buildService.setBuild(build)) {
-            request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request, response);
+            request.getRequestDispatcher("/build/showBuildInfo.action").forward(request, response);
         }
 
 

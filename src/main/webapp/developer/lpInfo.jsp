@@ -88,7 +88,7 @@
         <c:forEach items="${pageInfo.list}" var="build">
             <tr id="${build.buildingid}">
                 <td colspan="2">
-                    <div style="width:1400px;margin:10px auto; background-color:#FFF; overflow:auto;">
+                    <div style="width:1500px;margin:10px auto; background-color:#FFF; overflow:auto;">
                         <!--楼盘图片-->
                         <div style="float:left; margin:10px 10px;"><img width="260px" height="180" src="${pageContext.request.contextPath}/${build.bpicture}">
 
@@ -102,17 +102,18 @@
                             </div>
                         </div>
                         <!--楼盘简介-->
-                        <div style="overflow:auto; float:left; width:30%">
+                        <div style="overflow:auto; float:left; width:45%">
                             <table style="border-collapse:separate; border-spacing:10px 10px;">
                                 <tr>
                                     <td>报价:</td>
-                                    <td>最低${build.btotalprice}元/㎡</td>
+                                    <td>最低<fmt:formatNumber value=" ${build.bperprice}" type="number" maxFractionDigits="3"/>元/㎡</td>
 
                                 </tr>
                                 <tr>
-                                    <td>地址:</td>
+                                    <td co>地址:</td>
                                     <td>${build.province}${build.city}${build.barea}${build.bdetail}</td>
                                 </tr>
+
                                 <tr>
                                     <td>优惠信息:</td>
                                     <c:if test="${empty build.discounts}">
