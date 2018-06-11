@@ -22,16 +22,17 @@ public class FavorControl {
     @RequestMapping(value = "clickFavor.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void clickFavor(HttpSession session,Favor favor, HttpServletRequest request, HttpServletResponse response){
         String type= (String) session.getAttribute("userType");
+        System.out.println(type);
         if("1".equals(type)){
-            favor.setFavortype("用户");
+            favor.setFavortype(1);
             User user = (User) session.getAttribute("user");
             favor.setUserid(user.getUserid());
         }else if("2".equals(type)){
-            favor.setFavortype("开发商");
+            favor.setFavortype(2);
             Company com= (Company) session.getAttribute("user");
             favor.setUserid(com.getComid());
         }else{
-            favor.setFavortype("咨询");
+            favor.setFavortype(3);
             Cta cta= (Cta) session.getAttribute("user");
             favor.setUserid(cta.getCtaid());
         }

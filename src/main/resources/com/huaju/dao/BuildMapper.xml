@@ -5,6 +5,7 @@
  <select id="selectCompanyInBuild" resultType="Company">
      select DISTINCT build.comid,company.comname from build,company where build.comid=company.comid
  </select>
+
     <!--public List<Build> selectBuilding();-->
 <select id="selectBuilding" resultType="Build">
     SELECT * FROM build
@@ -92,6 +93,9 @@
            </if>
            <if test="comid neq null">
                and comid =#{comid}
+           </if>
+           <if test="isonsale neq null">
+               and discounts is not null
            </if>
        </where>
    </select>

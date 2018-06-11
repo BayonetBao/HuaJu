@@ -13,6 +13,7 @@ public interface BuildService {
     public List<Company> selectCompanyInBuild();
     //通过封装的查询条件实体 各种条件查询楼盘 分页插件 珂
     public PageInfo<Build> selectBuildQueryPojo(Map<String,Object> cmap);
+
   //    /添加楼盘(张宝)
     public boolean setBuild(Build build);
     //按开发商id查询楼盘(张宝),使用第三方插件分页

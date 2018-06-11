@@ -13,11 +13,12 @@
         <result property="building" column="building"/>
         <collection property="favors" ofType="Favor">
             <result property="userid" column="fuserid"/>
+            <result property="favortype" column="favortype"/>
         </collection>
     </resultMap>
     <!--public List<Comment>  selectCommentByQueryPojo(CommentQueryPojo commentQueryPojo);-->
     <select id="selectCommentByQueryPojo" parameterType="CommentQueryPojo" resultMap="CommentMap">
-        select comment.* ,build.building ,favor.userid as fuserid,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
+        select comment.* ,build.building ,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
               idtype like "%" "用户" "%"
@@ -32,7 +33,7 @@
             </if>
         </where>
         UNION
-        select comment.* ,build.building ,favor.userid as fuserid,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
+        select comment.* ,build.building ,favor.userid as fuserid,favor.favortype,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
             idtype like "%" "咨询" "%"

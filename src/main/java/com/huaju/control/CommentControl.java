@@ -116,7 +116,8 @@ public class CommentControl {
             User user = (User) session.getAttribute("user");
             comment.setId(user.getUserid());
         }else if("2".equals(type)){
-
+              result="开发商不要评论呦";
+              return result;
         }else{
             comment.setIdtype("咨询");
             Cta cta= (Cta) session.getAttribute("user");

@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <html>
 
@@ -147,13 +148,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-9 forsales-left">
                     <div class="forsale">
                         <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
                             <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
                                 <li role="presentation" class="active">
                                     <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部楼盘
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">优惠楼盘</a>
+                                    <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action?isonsale='abc'" role="tab"   aria-controls="profile">优惠楼盘</a>
                                 </li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
@@ -161,10 +163,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     <c:forEach items="${pageInfo.list}" var="b">
                                         <div class="forsale-grids">
-                                            <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >${b.building}</a></h4>
+                                            <h4><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a></h4>
                                             <div class="forsale1">
                                                 <div class="forsale-left">
-                                                    <a href="#"><img src="${pageContext.request.contextPath}/user/ke/images/${b.bpicture}" class="img-responsive" alt="楼盘"></a>
+                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" alt="楼盘"></a>
                                                 </div>
                                                 <div class="forsale-right">
                                                     <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
@@ -176,7 +178,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     <p>${b.bdetail}<br/>
                                                         <a href="地图链接"> 查看地图</a><br/> 2018.05.24
                                                         <a href="楼盘详情页面">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
-                                                    </p>
+                                                    </p>${b.discounts}
                                                     <a href="楼盘详情页面" class="button4">更多详情</a>
                                                 </div>
                                                 <div class="zixunshi">
@@ -188,16 +190,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <ul>
-
-                                                    <li>
-                                                        <a href="楼盘详情页面">紧凑实用</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="楼盘详情页面">幼儿园</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="楼盘详情页面">公园地产</a>
-                                                    </li>
+                                                   <c:forEach items="${fn:split(b.charactere,'，')}" var="ch">
+                                                       <li>
+                                                           <a href="楼盘详情页面">${ch}</a>
+                                                       </li>
+                                                   </c:forEach>
                                                     <li>
                                                         <a href="楼盘详情页面">向他咨询</a>
                                                     </li>
@@ -208,36 +205,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="col-md-offset-4">
                                         <nav>
                                             <ul class="pagination pagination-lg">
-                                                <a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a>
-                                                <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
-                                                <span>当前第<b>${pageInfo.pageNum}</b>页</span>
-                                                <c:if test="${!pageInfo.isLastPage}"><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></c:if>
-                                                <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a>
-
-                                                <li>
-                                                    <a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">${pageInfo.prePage}</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">${pageInfo.pageNum}</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">...</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">${pageInfo.lastPage}</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" aria-label="Next"><span aria-hidden="true">»</span></a>
-                                                </li>
+                                               <li><a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a></li>
+                                                <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
+                                                <li><span>当前第<b>${pageInfo.pageNum}</b>页</span></li>
+                                                <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
+                                               <li> <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a></li>
+                                         
                                             </ul>
                                         </nav>
                                     </div>
@@ -249,7 +222,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="col-md-4 forsale-grid1">
                                             <img src="images/s7.jpg" class="img-responsive" alt="/">
                                             <div class="sale-info">
-                                                <span>For Rent</span>
+                                                <span>for rent</span>
                                             </div>
                                             <h5>114㎡, 升龙楼盘</h5>
                                             <p>朝向南, 在地铁附近,…
@@ -265,7 +238,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 properties-right">
+                <div class="col-md-3 properties-right" >
                     <div class="properties-top">
                         <h4 style="font-family: 'Open Sans', sans-serif"><a href="javascript:mainForm()">找房</a></h4>
                         <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
@@ -288,15 +261,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                             </div>
                             <div class="yourplace col-md-12">
-                                <h5>开发商</h5>
-                                <select class="sel2" name="comid">
-                                    <option value="">不限</option>
-                                    <c:forEach items="companies" var="c">
-                                        <option value="${c.comid}">${c.comname}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                            <div class="yourplace col-md-12">
                                 <h5>户型</h5>
                                 <select class="sel2" name="typeid">
                                     <option value="">不限</option>
@@ -305,6 +269,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <option value="3">三居</option>
                                     <option value="4">四居</option>
                                     <option value="5">五居及以上</option>
+                                </select>
+                            </div>
+                            <div class="yourplace col-md-12">
+                                <h5>开发商</h5>
+                                <select class="sel2" name="comid">
+                                    <option value="">不限</option>
+                                    <c:forEach items="${companies}" var="com">
+                                        <option value="${com.comid}">${com.comname}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="yourplace col-md-12">
@@ -339,7 +312,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <option value="">>500万</option>
                                 </select>
                             </div>
-                            <div class="clearfix"></div>
                             <div class="yourplace-grids1">
                                 <div class="col-md-6 yourplace-grid">
                                     <h5>单价</h5>
@@ -363,8 +335,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <option value="150">150~</option>
                                     </select>
                                 </div>
-                                <div class="clearfix"></div>
                             </div>
+
                         </form>
                     </div>
 <script>
@@ -379,17 +351,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $("#mainForm").submit();
     }
 </script>
-                    <div class="feature">
-                        <h4>优惠楼盘</h4>
-                        <div class="feature-top">
-                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                            <h5>114㎡, 升龙楼盘</h5>
-                            <p>朝向南, 在地铁附近,…
-                                <a href="#">Know More</a>
-                            </p>
-                        </div>
 
-                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>

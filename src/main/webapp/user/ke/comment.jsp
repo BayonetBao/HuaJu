@@ -259,7 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <a href="javascript:void(0)"  onclick="favor(${comment.commentid})">
                                           <c:set var="flag" value="false"/>
                                             <c:forEach items="${comment.favors}" var="fa">
-                                                    <c:if test="${fa.userid eq '1'}">
+                                                    <c:if test="${fa.userid eq sessionScope.uid && fa.favortype eq sessionScope.userType}">
                                                         <c:set var="flag" value="true"/>
                                                     </c:if>
                                             </c:forEach>
@@ -274,24 +274,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="col-md-offset-3">
                                     <nav>
                                         <ul class="pagination pagination-sm">
-                                            <li><a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                                             <a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a>
                                             <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
-                                            <span>当前第<b>${pageInfo.pageNum}</b>页</span>
+                                            <span>${pageInfo.pageNum}/<b>${pageInfo.pages}</b></span>
                                             <c:if test="${!pageInfo.isLastPage}"><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></c:if>
                                             <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a>
-
-                                            <li><a href="#">1</a></li>
-                                            <li><a href="#">2</a></li>
-                                            <li><a href="#">3</a></li>
-                                            <li><a href="#">...</a></li>
-                                            <li><a href="#">6</a></li>
-                                            <li><a href="#">7</a></li>
-                                            <li><a href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                                        </ul>
+                                       </ul>
                                     </nav>
                                 </div>
-                                <p style="font-size:24px">留下你的评论吧~~~</p>
+                                <p style="font-size:24px">留下你的评论吧~~~</          p>
                                 <form method="post" action="#">
                                     <input type="hidden"  name="buildingid1" value="1"/>
                                     <input type="radio"  name="comtype1" value="好评" class="radio-danger"><span class="badge badge-danger">好评</span></input>
