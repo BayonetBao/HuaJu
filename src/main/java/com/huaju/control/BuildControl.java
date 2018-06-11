@@ -166,4 +166,24 @@ public class BuildControl {
             request.getRequestDispatcher("/developer/buildDetailInfo.jsp").forward(request,response);
         }
     }
+    @RequestMapping(value = "/updateBuildAllInfo.action",method = RequestMethod.POST)
+    public void updateBuildBasicInfo(String updateType,Build build,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        if("1".equals(updateType)){
+        if (buildService.updateBuildBasicInfo(build)){
+            request.setAttribute("upState","success");
+            request.getRequestDispatcher("/build/selectBuildById.action").forward(request,response);
+        }
+    }else if("2".equals(updateType)){
+        if (buildService.updateBuildSaleInfo(build)){
+            request.setAttribute("upState","success");
+            request.getRequestDispatcher("/build/selectBuildById.action").forward(request,response);
+        }
+    }else if("3".equals(updateType)){
+        if (buildService.updateBuildSpaceInfo(build)){
+            request.setAttribute("upState","success");
+            request.getRequestDispatcher("/build/selectBuildById.action").forward(request,response);
+        }
+    }
+    }
 }

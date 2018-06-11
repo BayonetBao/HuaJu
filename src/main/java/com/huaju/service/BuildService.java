@@ -17,4 +17,10 @@ public interface BuildService {
     public boolean deleteBuildById(int buildingid);
     //按楼盘id查询楼盘（张宝）
     public Build selectBuildById(int buildingid);
+    //更新楼盘基本信息(张宝)
+    public boolean updateBuildBasicInfo(Build build);
+    //更新楼盘销售信息(张宝)
+    public boolean updateBuildSaleInfo(Build build);
+    //更新楼盘小区信息(张宝)
+    public boolean updateBuildSpaceInfo(Build build);
 }

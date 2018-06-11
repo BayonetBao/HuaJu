@@ -24,7 +24,7 @@
         #search{ font-size:12px; background:#548fc9; margin:10px 10px 0 0; display:inline; width:100%; color:#FFF; float:left}
         #search form span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
         #search form input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
-        #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
+        #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(${pageContext.request.contextPath}/developer/images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
         #search a.add{ background:url(images/main/add.jpg) no-repeat -3px 7px #548fc9; padding:0 10px 0 26px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#FFF; float:right}
         #search a:hover.add{ text-decoration:underline; color:#d2e9ff;}
         #main-tab{ border:1px solid #eaeaea; background:#FFF; font-size:12px;}
@@ -130,7 +130,7 @@
                                 </tr>
                                 <tr>
                                     <td>参考总价:</td>
-                                    <td><fmt:formatNumber value=" ${build.btotalprice}" type="number" maxFractionDigits="3"/>—<fmt:formatNumber value=" ${build.bmaxtotalprice}" type="number" maxFractionDigits="3"/>万</td>
+                                    <td>${build.btotalprice}—${build.bmaxtotalprice}万</td>
                                 </tr>
                                 <tr>
                                     <td>房屋面积:</td>
@@ -326,35 +326,26 @@
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="">
+                    <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/build/updateBuildAllInfo.action">
+                        <input type="hidden" name="updateType" value="1">
+                        <input type="hidden" name="buildingid" value="${build.buildingid}">
                         <div class="form-group">
                             <label for="building" class="col-sm-2 control-label">楼盘名称</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="building" id="building" placeholder="楼盘名称">
+                                <input type="text" class="form-control" name="building" id="building" value="${build.building}" placeholder="楼盘名称">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="address" class="col-sm-2 control-label">楼盘地址</label>
-                            <div class="col-sm-10">
-                                <input type="text" readonly="readonly" value="${build.province}${build.city}${build.barea}${build.bdetail}" class="form-control" name="address" id="address">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="tenement" class="col-sm-2 control-label">物业类型</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" name="tenement" id="tenement" placeholder="物业类型">
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <label for="btype" class="col-sm-2 control-label">建筑类型</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="btype" id="btype" placeholder="建筑类型">
+                                <input type="text" class="form-control" name="btype" id="btype" value="${build.btype}" placeholder="建筑类型">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="bline" class="col-sm-2 control-label">环&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="bline" id="bline" placeholder="环线">
+                                <input type="text" class="form-control" name="bline" id="bline" value="build.bline" placeholder="环线">
                             </div>
                         </div>
                         <div class="form-group">
@@ -366,26 +357,33 @@
                         <div class="form-group">
                             <label for="charactere" class="col-sm-2 control-label">楼盘特点</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="charactere" id="charactere" placeholder="楼盘特点">
+                                <input type="text" class="form-control" name="charactere" id="charactere" value="${build.charactere}" placeholder="楼盘特点">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="address" class="col-sm-2 control-label">楼盘地址</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly="readonly" value="${build.province}${build.city}${build.barea}${build.bdetail}" class="form-control" name="address" id="address">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                            </button>
+                            <button type="submit" class="btn btn-info">
+                                提交更改
+                            </button>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                    </button>
-                    <button type="submit" class="btn btn-info">
-                        提交更改
-                    </button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal -->
     </div>
+</div>
     <!--修改销售信息-->
     <div class="update_modal">
         <div class="modal fade" id="modifySaleInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabe2" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="width:600px;">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             &times;
@@ -395,82 +393,90 @@
                         </h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/build/updateBuildAllInfo.action">
+                            <input type="hidden" name="updateType" value="2">
+                            <input type="hidden" name="buildingid" value="${build.buildingid}">
                             <div class="form-group">
                                 <label for="bperprice" class="col-sm-2 control-label">参考单价</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" name="bperprice" id="bperprice" placeholder="参考单价">
+                                    <input type="number" class="form-control" name="bperprice" id="bperprice" value="${build.bperprice}" placeholder="参考单价">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="" class="col-sm-2 control-label" for="btotalprice">参考总价</label>
+                                <div class="col-sm-8" style="width:80%;border: solid #48ffd6 1px;">
+                                    <input style="width:40%; float:left; border: solid #48ffd6 1px;" class="form-control "name="btotalprice" id="btotalprice" value="${build.btotalprice}"/><span style=" line-height:40px; float:left;">万&nbsp;&nbsp;&nbsp;——&nbsp;&nbsp;&nbsp;</span>
+                                    <input style="width:40%; float:left; border: solid #48ffd6 1px;" class="form-control " name="bmaxtotalprice" id="bmaxtotalprice" value="${build.bmaxtotalprice}"/><span style=" line-height:40px;">万</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label style="" class="col-sm-2 control-label" for="acreage">楼房面积</label>
-                                <div class="col-sm-10" style="width:26%;">
-                                    <input style="width:40%; float:left;" class="form-control "name="acreage" id="acreage"/><span style=" line-height:40px; float:left;">㎡&nbsp;&nbsp;&nbsp;——&nbsp;&nbsp;&nbsp;</span>
-                                    <input style="width:40%; float:left;" class="form-control " name="maxacreage" id="maxacreage"/><span style=" line-height:40px;">㎡</span>
+                                <div class="col-sm-8" style="width:80%;border: solid #48ffd6 1px;">
+                                    <input style="width:40%; float:left; border: solid #48ffd6 1px;" class="form-control "name="acreage" id="acreage" value="${build.acreage}"/><span style=" line-height:40px; float:left;">㎡&nbsp;&nbsp;&nbsp;——&nbsp;&nbsp;&nbsp;</span>
+                                    <input style="width:40%; float:left; border: solid #48ffd6 1px;" class="form-control " name="maxacreage" id="maxacreage" value="${build.maxacreage}"/><span style=" line-height:40px;">㎡</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="conditions" class="col-sm-2 control-label">销售状态</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="conditions" id="conditions">
-                                        <option selected>--销售状态--</option>
-                                        <option>预售</option>
-                                        <option>在售</option>
-                                        <option>售罄</option>
+                                        <option <c:if test="${build.conditions=='预售'}">selected</c:if>>预售</option>
+                                        <option <c:if test="${build.conditions=='在售'}">selected</c:if>>在售</option>
+                                        <option <c:if test="${build.conditions=='售罄'}">selected</c:if>>售罄</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="bsalestatus" class="col-sm-2 control-label">销售情况</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="bsalestatus" id="bsalestatus" placeholder="装修状况">
+                                    <input type="text" class="form-control" name="bsalestatus" id="bsalestatus" value="${build.bsalestatus}" placeholder="装修状况">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="discounts" class="col-sm-2 control-label">优惠信息</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="discounts" id="discounts" placeholder="优惠信息">
+                                    <input type="text" class="form-control" name="discounts" id="discounts" value="${build.discounts}" placeholder="优惠信息">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="starttime" class="col-sm-2 control-label">最早开盘</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" name="starttime" id="starttime" placeholder="最早开盘">
+                                    <input type="date" class="form-control" name="starttime" id="starttime" value="<fmt:formatDate value="${build.starttime}" pattern="yyyy-MM-dd"></fmt:formatDate>" placeholder="最早开盘">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="endtime" class="col-sm-2 control-label">最早交房</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" name="endtime" id="endtime" placeholder="最早交房">
+                                    <input type="date" class="form-control" name="endtime" id="endtime" value="<fmt:formatDate value="${build.endtime}" pattern="yyyy-MM-dd"></fmt:formatDate>" placeholder="最早交房">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="agelimit" class="col-sm-2 control-label">产权年限</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="agelimit" id="agelimit">
+                                    <input type="text" class="form-control" name="agelimit" id="agelimit" value="${build.agelimit}" placeholder="产权年限">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="landtime" class="col-sm-2 control-label">拿地时间</label>
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" name="landtime" id="landtime">
+                                    <input type="date" class="form-control" name="landtime" id="landtime" value="<fmt:formatDate value="${build.landtime}" pattern="yyyy-MM-dd"></fmt:formatDate>" placeholder="拿地时间">
                                 </div>
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                </button>
+                                <button type="submit" class="btn btn-info">
+                                    提交更改
+                                </button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
-                        <button type="button" class="btn btn-info">
-                            提交更改
-                        </button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal -->
         </div><!-- /.update_modal -->
-
+    </div>
         <!--修改小区详情信息-->
         <div class="update_modal">
             <div class="modal fade" id="modifySpaceInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabe3" aria-hidden="true">
@@ -485,63 +491,79 @@
                             </h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-horizontal">
+                            <form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/build/updateBuildAllInfo.action">
+                                <input type="hidden" name="updateType" value="3">
+                                <input type="hidden" name="buildingid" value="${build.buildingid}">
                                 <div class="form-group">
                                     <label for="tencompany" class="col-sm-2 control-label">物业公司</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="tencompany" id="tencompany">
+                                        <input type="text" class="form-control" name="tencompany" id="tencompany" value="${build.tencompany}" placeholder="物业公司">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tenement" class="col-sm-2 control-label">物业类型</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="tenement" id="tenement" value="${build.tenement}" placeholder="物业类型">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="tencost" class="col-sm-2 control-label">物业费用</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" name="tencost" id="tencost" value="1" placeholder="物业费用">
+                                        <input type="number" class="form-control" name="tencost" id="tencost" value="${build.tencost}" placeholder="物业费用">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="tentype" class="col-sm-2 control-label">水电燃气</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="tentype" id="tentype" placeholder="水电燃气">
+                                        <input type="text" class="form-control" name="tentype" id="tentype" value="${build.tentype}"  placeholder="水电燃气">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="greenrate" class="col-sm-2 control-label">绿化率</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" name="greenrate" id="greenrate" placeholder="绿化率">
+                                        <input type="number" class="form-control" name="greenrate" id="greenrate" value="${build.greenrate}" placeholder="绿化率">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="carport" class="col-sm-2 control-label">车位情况</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="carport" id="carport" placeholder="车位情况">
+                                        <input type="text" class="form-control" name="carport" id="carport" value="${build.carport}"  placeholder="车位情况">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="cubage" class="col-sm-2 control-label">容积率</label>
                                     <div class="col-sm-10">
-                                        <input type="number" class="form-control" name="cubage" id="cubage" placeholder="容积率">
+                                        <input type="number" class="form-control" name="cubage" id="cubage" value="${build.cubage}" placeholder="容积率">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fitment" class="col-sm-2 control-label">装修状况</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="fitment" id="fitment" placeholder="装修状况">
+                                        <input type="text" class="form-control" name="fitment" id="fitment" value="${build.fitment}" placeholder="装修状况">
                                     </div>
                                 </div>
-
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                                    </button>
+                                    <button type="submit" class="btn btn-info">
+                                        提交更改
+                                    </button>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                            </button>
-                            <button type="button" class="btn btn-info">
-                                提交更改
-                            </button>
-                        </div>
+
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal -->
             </div><!-- /.update_modal -->
+
 </body>
+<script>
+
+    if(${upState eq 'success'}){
+        alert("修改成功！");
+
+    }
+</script>
 </html>
