@@ -63,5 +63,21 @@ public class BuildServiceImpl implements BuildService{
         return buildMapper.selectBuildById(buildingid);
     }
 
+    @Override
+    //更新楼盘基本信息(张宝)
+    public boolean updateBuildBasicInfo(Build build){
+        return buildMapper.updateBuildBasicInfo(build);
+    }
+    @Override
+    //更新楼盘销售信息(张宝)
+    public boolean updateBuildSaleInfo(Build build){
+        return buildMapper.updateBuildSaleInfo(build);
+    }
+    @Override
+    //更新楼盘小区信息(张宝)
+    public boolean updateBuildSpaceInfo(Build build){
+        return buildMapper.updateBuildSpaceInfo(build);
+    }
+
 
 }

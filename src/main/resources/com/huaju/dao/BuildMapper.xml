@@ -129,4 +129,19 @@
     <select id="selectBuildById" parameterType="int" resultType="Build">
         SELECT * from build WHERE buildingid=#{_parameter}
     </select>
+    <!--//更新楼盘基本信息-->
+    <!--public boolean updateBuildBasicInfo(Build build);-->
+    <update id="updateBuildBasicInfo" parameterType="Build" >
+        UPDATE build set building=#{building},btype=#{btype},bline=#{bline},charactere=#{charactere} WHERE buildingid=#{buildingid}
+    </update>
+    <!--//更新楼盘销售信息(张宝)-->
+    <!--public boolean updateBuildSaleInfo(Build build);-->
+    <update id="updateBuildSaleInfo" parameterType="Build">
+        UPDATE build set bperprice=#{bperprice},btotalprice=#{btotalprice},bmaxtotalprice=#{bmaxtotalprice},acreage=#{acreage},maxacreage=#{maxacreage},conditions=#{conditions},bsalestatus=#{bsalestatus},discounts=#{discounts},starttime=#{starttime},endtime=#{endtime},agelimit=#{agelimit},landtime=#{landtime} WHERE buildingid=#{buildingid}
+    </update>
+    <!--//更新楼盘小区信息(张宝)-->
+    <!--public boolean updateBuildSpaceInfo(Build build);-->
+    <update id="updateBuildSpaceInfo" parameterType="Build">
+        UPDATE build set tencompany=#{tencompany},tenement=#{tenement},tencost=#{tencost},tentype=#{tentype},greenrate=#{greenrate},carport=#{carport},cubage=#{cubage},fitment=#{fitment} WHERE buildingid=#{buildingid}
+    </update>
 </mapper>

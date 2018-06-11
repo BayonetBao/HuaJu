@@ -111,14 +111,12 @@ public class BuildControl {
             file.mkdirs();
         }
         bpicture1.transferTo(file );
-        build.setBpicture(imagesTotalPath+"/"+image);
+        //build.setBpicture(imagesTotalPath+"/"+image);
         System.out.println(build.getEndtime());
-        if(buildService.setBuild(build))
-        request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request,response);
         build.setBpicture(image);
 
         if(buildService.setBuild(build)) {
-            request.getRequestDispatcher("/developer/lpInfo.jsp").forward(request, response);
+            request.getRequestDispatcher("/build/showBuildInfo.action").forward(request, response);
         }
 
 
@@ -181,5 +179,25 @@ public class BuildControl {
             request.setAttribute("build",build);
             request.getRequestDispatcher("/developer/buildDetailInfo.jsp").forward(request,response);
         }
+    }
+    @RequestMapping(value = "/updateBuildAllInfo.action",method = RequestMethod.POST)
+    public void updateBuildBasicInfo(String updateType,Build build,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        if("1".equals(updateType)){
+        if (buildService.updateBuildBasicInfo(build)){
+            request.setAttribute("upState","success");
+            request.getRequestDispatcher("/build/selectBuildById.action").forward(request,response);
+        }
+    }else if("2".equals(updateType)){
+        if (buildService.updateBuildSaleInfo(build)){
+            request.setAttribute("upState","success");
+            request.getRequestDispatcher("/build/selectBuildById.action").forward(request,response);
+        }
+    }else if("3".equals(updateType)){
+        if (buildService.updateBuildSpaceInfo(build)){
+            request.setAttribute("upState","success");
+            request.getRequestDispatcher("/build/selectBuildById.action").forward(request,response);
+        }
+    }
     }
 }
