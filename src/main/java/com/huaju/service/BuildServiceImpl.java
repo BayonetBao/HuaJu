@@ -6,6 +6,7 @@ import com.huaju.dao.BuildMapper;
 import com.huaju.entity.Build;
 import com.huaju.entity.BuildQueryPojo;
 import com.huaju.entity.ComidAndBuildName;
+import com.huaju.entity.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,12 @@ import java.util.Map;
 public class BuildServiceImpl implements BuildService{
     @Autowired
     BuildMapper buildMapper;
+
+    @Override
+    public List<Company> selectCompanyInBuild() {
+        return buildMapper.selectCompanyInBuild();
+    }
+
     @Override
     public PageInfo<Build> selectBuildQueryPojo(Map<String, Object> cmap) {
         BuildQueryPojo buildQueryPojo = (BuildQueryPojo) cmap.get("buildQueryPojo");

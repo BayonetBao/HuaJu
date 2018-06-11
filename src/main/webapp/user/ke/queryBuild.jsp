@@ -208,26 +208,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <div class="col-md-offset-4">
                                         <nav>
                                             <ul class="pagination pagination-lg">
+                                                <a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a>
+                                                <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
+                                                <span>当前第<b>${pageInfo.pageNum}</b>页</span>
+                                                <c:if test="${!pageInfo.isLastPage}"><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></c:if>
+                                                <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a>
+
                                                 <li>
                                                     <a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">1</a>
+                                                    <a href="#"></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">2</a>
+                                                    <a href="#">${pageInfo.prePage}</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">3</a>
+                                                    <a href="#">${pageInfo.pageNum}</a>
                                                 </li>
                                                 <li>
                                                     <a href="#">...</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">6</a>
+                                                    <a href="#"></a>
                                                 </li>
                                                 <li>
-                                                    <a href="#">7</a>
+                                                    <a href="#">${pageInfo.lastPage}</a>
                                                 </li>
                                                 <li>
                                                     <a href="#" aria-label="Next"><span aria-hidden="true">»</span></a>
@@ -261,63 +267,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-3 properties-right">
                     <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif" onclick="subFind()">找房</h4>
+                        <h4 style="font-family: 'Open Sans', sans-serif"><a href="javascript:mainForm()">找房</a></h4>
                         <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
                             <input type="hidden" value="1" name="curPage" />
                             <div data-toggle="distpicker">
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
                                     <label class="sr-only" for="province1">Province</label>
-                                    <select class="form-control" id="province1" name="province"></select>
+                                    <select class="form-control" name="province" id="province1" name="province"></select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>城市</h5>
                                     <label class="sr-only" for="city1">City</label>
-                                    <select class="form-control" id="city1" name="city"></select>
+                                    <select class="form-control" name="city" id="city1" name="city"></select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>区域</h5>
                                     <label class="sr-only" for="district1" name="district">District</label>
-                                    <select class="form-control" id="district1" name="district"></select>
+                                    <select class="form-control" name="district" id="district1" name="district"></select>
                                 </div>
                             </div>
                             <div class="yourplace col-md-12">
                                 <h5>开发商</h5>
                                 <select class="sel2" name="comid">
-                                    <option value="">升龙</option>
-                                    <option value="">万达</option>
-                                    <option value="">等等</option>
+                                    <option value="">不限</option>
+                                    <c:forEach items="companies" var="c">
+                                        <option value="${c.comid}">${c.comname}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="yourplace col-md-12">
                                 <h5>户型</h5>
                                 <select class="sel2" name="typeid">
                                     <option value="">不限</option>
-                                    <option value="">一居</option>
-                                    <option value="">二居</option>
-                                    <option value="">三居</option>
-                                    <option value="">四居</option>
-                                    <option value="">五居及以上</option>
+                                    <option value="1">一居</option>
+                                    <option value="2">二居</option>
+                                    <option value="3">三居</option>
+                                    <option value="4">四居</option>
+                                    <option value="5">五居及以上</option>
                                 </select>
                             </div>
                             <div class="yourplace col-md-12">
                                 <h5>特色</h5>
                                 <select class="sel3" name="character">
                                     <option value="">不限</option>
-                                    <option value="">小户型</option>
-                                    <option value="">临地铁</option>
-                                    <option value="">精装修</option>
-                                    <option value="">现房</option>
-                                    <option value="">品牌地产</option>
+                                    <option value="小户型">小户型</option>
+                                    <option value="临地铁">临地铁</option>
+                                    <option value="临地铁">精装修</option>
+                                    <option value="现房">现房</option>
+                                    <option value="品牌地产">品牌地产</option>
                                 </select>
                             </div>
                             <div class="yourplace col-md-6">
                                 <h5>类型</h5>
                                 <select class="sel2" name="genre">
                                     <option value="">不限</option>
-                                    <option value="">住宅</option>
-                                    <option value="">别墅</option>
-                                    <option value="">商业</option>
+                                    <option value="住宅">住宅</option>
+                                    <option value="别墅">别墅</option>
+                                    <option value="商业</">商业</option>
                                 </select>
                             </div>
                             <div class="col-md-6 yourplace-grid">

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.BuildMapper">
+    <!--public List<Company> selectCompanyInBuild();查找有楼盘发布的开发商的id和公司名字  珂-->
+ <select id="selectCompanyInBuild" resultType="Company">
+     select DISTINCT build.comid,company.comname from build,company where build.comid=company.comid
+ </select>
     <!--public List<Build> selectBuilding();-->
 <select id="selectBuilding" resultType="Build">
     SELECT * FROM build
@@ -47,20 +51,20 @@
             <result property="typename" column="typename" />
         </collection>
     </resultMap>
-    <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);-->
+    <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);珂-->
    <select id="selectBuildQueryPojo" parameterType="BuildQueryPojo" resultMap="BuildMap">
        select build.* ,cta.ctaname,cta.ctaimg,buildtype.butypeid,buildtype.count,type.typename from
        build left join buildtype on(build.buildingid=buildtype.buildingid) left join type on(buildtype.typeid=type.typeid)
        left join cta on (build.ctaid=cta.ctaid)
        <where>
            <if test="province neq null">
-               and province=#{province}
+               and province like "%" #{province} "%"
            </if>
            <if test="city neq null">
-               and city=#{city}
+               and city like "%" #{city} "%"
            </if>
            <if test="district neq null">
-               and district=#{district}
+               and barea like "%" #{district} "%"
            </if>
            <if test="character neq null">
                and character like "%" #{character} "%"

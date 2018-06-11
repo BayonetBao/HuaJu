@@ -1,7 +1,5 @@
 package com.huaju.util.miaodiyun.httpApiDemo.common;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,7 +8,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import org.apache.commons.codec.*;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * http请求工具

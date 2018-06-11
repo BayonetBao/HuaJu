@@ -293,13 +293,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </div>
                                 <p style="font-size:24px">留下你的评论吧~~~</p>
                                 <form method="post" action="#">
-                                    <input type="hidden" name="id1" value="1"/>
-                                    <input type="hidden" name="idtype1" value="用户"/>
                                     <input type="hidden"  name="buildingid1" value="1"/>
                                     <input type="radio"  name="comtype1" value="好评" class="radio-danger"><span class="badge badge-danger">好评</span></input>
                                     <input type="radio"  name="comtype1" value="中评" class="radio-danger"><span class="badge badge-warning">中评</span></input>
                                     <input type="radio"  name="comtype1" value="差评" class="radio-danger"><span class="badge badge-info">差评</span></input>
-                                    <textarea type="text" name="comcontent1" onfocus="this.value = '';" style="width:70%" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
+                                    <textarea type="text" id="comcontent1" onfocus="this.value = '';" style="width:70%" onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
                                     <div class="tags" style="margin-top: 0px;"><ul><li><a href="javascript:subm()">Submit Comment</a></li></ul></div>
                                     <label style="position: relative;left: 140px;top:-50px;"><input type="checkbox" value="Sign me up for the newsletter">Sign me up for the newsletter</label>
                                 </form>
@@ -330,12 +328,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     }
                                     function favor(commentid) {
-                                        var userid=1;
-                                        var usertype="用户";
                                         $.ajax({
                                             type:"post",
                                             url:"${pageContext.request.contextPath}/favor/clickFavor.action",
-                                            data:"commentid="+commentid+"&userid="+userid+"&favortype="+usertype,
+                                            data:"commentid="+commentid,
                                             success:function(data){
                                                 var d=document.getElementById("count_"+commentid);
                                                 var span2=$("#click_favor_"+commentid);
@@ -353,18 +349,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         });
                                     }
                                     function subm() {
-                                        var id=$("input[name='id1']").val();
-                                        var idtype=$("input[name='idtype1']").val();
                                         var buildingid=$("input[name='buildingid1']").val();
                                         var comtype=$("input[name='comtype1']").val();
-                                        var comcontent=$("input[name='comcontent1']").val();
+                                        var comcontent=$("#comcontent1").val();
                                         if(confirm("要发表了奥~~")){
                                             $.ajax({
                                                 type:"post",
                                                 url:'${pageContext.request.contextPath}/comment/insertComment.action',
-                                                data:"id="+id+"&idtype="+idtype+"&buildingid="+buildingid+"&comtype="+comtype+"&comcontent="+comcontent,
+                                                data:"buildingid="+buildingid+"&comtype="+comtype+"&comcontent="+comcontent,
                                                 success:function (data) {
-                                                    $("input[name='comcontent1']").val("");
+
                                                     alert(data+"刷新查看呦~");
                                                 }
                                             });
