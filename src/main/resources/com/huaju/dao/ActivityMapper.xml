@@ -34,9 +34,7 @@
     SELECT * FROM activity WHERE ctaid=#{_parameter}
 </select>
     <!--public List<Activity> selectActivityByTime(Date Actime);-->
-<select id="selectActivityByTime" resultType="selectActivityByTime" parameterType="Date">
-    SELECT * FROM activity WHERE actime=#{_parameter}
-</select>
+
     <!--public Activity selecttotal(int id);-->
 <select id="selecttotal" resultType="Activity" parameterType="int">
     SELECT * FROM WHERE actid=#{_parameter}

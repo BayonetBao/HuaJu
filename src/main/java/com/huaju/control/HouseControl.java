@@ -4,6 +4,7 @@ import com.huaju.entity.BuildType;
 import com.huaju.entity.Door;
 import com.huaju.entity.House;
 
+import com.huaju.entity.Type;
 import com.huaju.service.BuildTypeService;
 import com.huaju.service.DoorService;
 import com.huaju.service.HouseService;
@@ -11,13 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import sun.awt.geom.AreaOp;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static org.apache.tools.ant.types.resources.MultiRootFileSet.SetType.file;
@@ -42,120 +47,6 @@ public class HouseControl {
         httpServletRequest.getRequestDispatcher("/developer/houselistzyj.jsp").forward(httpServletRequest, httpServletResponse);
     }
 
-////  添加页面列出户型下拉框ABCD
-//    @RequestMapping(value = "/doorlist.action",method = RequestMethod.POST)
-//    public void showDoorInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        Door door=doorService.showAllDoorInfo();
-//        request.setAttribute("door",door);
-//        request.getRequestDispatcher("/developer/addinfo_housezyj.jsp").forward(request,response);
-//    }
-//
-////    添加页面显示出居室下拉框   几居
-//    public void  showBuildTypeInfo(int id, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-//        BuildType buildType=buildTypeService.showBuildTypeInfo(id);
-//        request.setAttribute("btype",buildType);
-//        request.getRequestDispatcher("developer/addinfo_housezyj.jsp").forward(request,response);
-//
-//    }
-
-
-    @RequestMapping(value = "/addHouseInfo.action", method = RequestMethod.GET)
-    public ModelAndView uoloadImageList(int id,HttpServletRequest request, HttpServletResponse response,MultipartFile file) throws Exception{
-        saveFile(id,request,response,file);
-        ModelAndView model = new ModelAndView();
-        model.addObject("message",model);
-        model.setViewName("result");
-        return model;
-    }
-    private void saveFile(int id,HttpServletRequest request,HttpServletResponse response, MultipartFile file) {
-        InputStream is = null;
-        OutputStream os = null;
-        if(!file.isEmpty()){
-            try {
-                is = file.getInputStream();
-
-                String uploadPath="/developer/main/images";
-                String realUploadPath=request.getSession().getServletContext().getRealPath(uploadPath);
-
-                String des = realUploadPath+ "/"+file.getOriginalFilename();
-
-                String houseid=request.getParameter("houseid");
-                String hname = request.getParameter("hname");
-                String hmoney = request.getParameter("hmoney");
-                String hperprice = request.getParameter("hperprice");
-                String butypleid = request.getParameter("butypleid");
-                String doorid = request.getParameter("doorid");
-                String forward = request.getParameter("forward");
-                String harea = request.getParameter("harea");
-                String htype = request.getParameter("htype");
-                String hsalestatus = request.getParameter("hsalestatus");
-                String payment = request.getParameter("payment");
-                String monthpay = request.getParameter("monthpay");
-//                String updatename=request.getParameter("updatename");
-//                String analysis = request.getParameter("analysis");
-
-//      封装一个house对象
-                House house =new House();
-                house.setHouseid(Integer.parseInt(houseid));
-                house.setHname(hname);
-                house.setHmoney(Double.parseDouble(hmoney));
-                house.setHperprice(Double.parseDouble(hperprice));
-                house.setButypeid(Integer.parseInt(butypleid));
-                house.setDoorid(Integer.parseInt(doorid));
-                house.setForward(forward);
-                house.setHarea(Double.valueOf(harea));
-                house.setHtype(htype);
-                house.setHsalestatus(hsalestatus);
-                house.setPayment(Double.valueOf(payment));
-                house.setMonthpay(Double.valueOf(monthpay));
-                // house.setUpdatename(updatename);
-                house.setHtypeimg(uploadPath+ "/"+file.getOriginalFilename());
-
-                houseService.addHouseInfoZYJ(house);
-
-
-                //    添加页面显示出居室下拉框   几居
-                    BuildType buildType= (BuildType) buildTypeService.showBuildTypeInfo(id);
-                    request.setAttribute("buildtype", buildType);
-                //  添加页面列出户型下拉框ABCD
-                Door door=doorService.showAllDoorInfo();
-                request.setAttribute("door",door);
-
-
-                request.getRequestDispatcher("/developer/houselistzyj.jsp").forward(request, response);
-                System.err.println(des);
-                os = new FileOutputStream(des);
-                byte[] buffer = new byte[1024];
-                int len = 0;
-
-                while((len = is.read(buffer))>0){
-                    os.write(buffer);
-                }
-
-            } catch (Exception e) {
-                e.getStackTrace();
-            }finally{
-                if(is!=null){
-                    try{
-                        is.close();
-                    }catch (Exception e2){
-                        e2.printStackTrace();
-                    }finally{
-                        if(os!=null){
-                            try{
-                                os.close();
-                            }catch (Exception e2){
-                                e2.printStackTrace();
-                            }
-                        }
-                    }
-                }
-
-            }
-
-        }
-    }
-
 
     //    house详细信息
 @RequestMapping(value = "/detailhouse.action" , method = RequestMethod.GET)
@@ -166,7 +57,6 @@ public class HouseControl {
         request.setAttribute("house",house);
         request.setAttribute("htype",htype);
         request.getRequestDispatcher("/developer/detialhousezyj.jsp").forward(request,response);
-
     }
 
 //删除信息
@@ -183,6 +73,64 @@ public class HouseControl {
         out.print("0");
     }
     }
+
+
+
+
+@RequestMapping("/update.action")
+    public void updatehouse(int id , HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        House house=houseService.getHouse(id);
+        House doorinfo=houseService.perDoorInfo(id);
+    System.out.println(doorinfo);
+    System.out.println(house);
+            System.out.println(house.getAnalysis()+"========");
+            if (house!=null){
+                request.setAttribute("doorifo",doorinfo);
+            request.setAttribute("house" , house);
+
+            request.getRequestDispatcher("/developer/Updatehouse.jsp").forward(request,response);
+        }else {
+//                商品不存在
+        }
+    }
+
+
+
+//更改商品信息
+@RequestMapping(value = "/updateTrue.action",method = RequestMethod.POST)
+public void updateTrue(MultipartFile imgfile ,House house ,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        String  imgname=imgfile.getOriginalFilename();//获得文件名
+        System.out.println(imgname);
+        String ms=System.currentTimeMillis()+"";
+        imgname=ms + "_"+ imgname;//图片的新名字
+        System.out.println(imgname);
+//    获得该文件的绝对路径
+    String imgfilepath="D:\\xImage\\images";
+    String img=imgfilepath+"/"+imgname;
+    File file=new File(img);
+        if(!file.exists()){
+            file.mkdirs();
+        }else {
+            file.delete();
+
+            file.mkdirs();
+        }
+    imgfile.transferTo(file);//图片的复制
+    house.setHtypeimg("images/"+imgname);
+            if (houseService.updatehouse(house)){
+                    request.getRequestDispatcher("/developer/detialhousezyj.jsp").forward(request,response);
+            }
+
+}
+
+
+
+
+
+
+
+
+
 
 
 

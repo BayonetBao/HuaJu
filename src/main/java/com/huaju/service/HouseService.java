@@ -24,4 +24,14 @@ public interface HouseService {
     //删除house信息
     public void removeHouse(int houseid);
 
+
+
+    //    根据id查询房子信息
+    public House getHouse(int houseid);
+
+   //修改商品
+    public boolean updatehouse(House house);
+
+//修改信息页面显示当前id下door的信息
+    public  House  perDoorInfo(int doorid);
 }

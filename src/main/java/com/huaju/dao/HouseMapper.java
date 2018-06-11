@@ -12,8 +12,6 @@ public interface HouseMapper {
     public List<House> selectHouseInfoZYJ();
 
 
-
-
 //显示house和房型的信息
     public House showHouseDoorAllInfo(int houseid);
 
@@ -21,18 +19,28 @@ public interface HouseMapper {
     public House showHouseTypeInfo(int houseid);
 
 
-
-
 //删除house信息
     public void removeHouse(int houseid);
 
 
 
+//    根据id查询房子信息
+    public House getHouse(int houseid);
 
 
-
+//修改商品
+    public boolean updatehouse(House house);
 
 
 //    添加house信息
     public void addHouseInfoZYJ(House house);
+
+
+
+
+    //根据id查询door信息
+    public  House  perDoorInfo(int doorid);
 }
+
+
+

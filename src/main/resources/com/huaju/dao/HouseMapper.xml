@@ -7,22 +7,12 @@
         SELECT  * FROM house
     </select>
 
+    <!--//    添加house信息-->
+    <!--  public void addHouseInfoZYJ(House house);-->
+<insert id="addHouseInfoZYJ" parameterType="House" useGeneratedKeys="true" keyProperty="houseid">
+      insert into house values(#{houseid},#{hname},#{hmoney},#{htypeimg},#{hperprice},#{updatename},#{forward},#{harea},#{htype},#{hsalestatus},#{payment},#{monthpay},#{analysis},#{doorid},#{butypeid});
+</insert>
 
-
-
-
-
-
-
-
-    <!--&lt;!&ndash;//    添加house信息&ndash;&gt;-->
-    <!--&lt;!&ndash;  public void addHouseInfoZYJ(House house);&ndash;&gt;-->
-<!--<insert id="addHouseInfoZYJ" parameterType="House">-->
-    <!--insert into house-->
-     <!--(houseid, hname, hmoney, htypeimg, hperprice, updatename, forward, harea, htype, hsalestatus, payment, monthpay,analysis  )-->
-    <!--values-->
-    <!--( #{houseid} ,#{hname}, #{hmoney}, #{htypeimg}, #{hperprice}, #{updatename}, #{forward}, #{harea}, #{htype}, #{hsalestatus}, #{payment}, #{monthpay}, #{analysis} );-->
-<!--</insert>-->
 
     <!--显示house和房型Door的信息-->
     <resultMap id="showHouseDoorAllInfoMap" type="House">
@@ -45,6 +35,7 @@
            <result column="doorname" property="doorname"/>
        </association>
     </resultMap>
+
     <!--public House showHouseDoorAllInfo(int houseid);-->
     <select id="showHouseDoorAllInfo" resultMap="showHouseDoorAllInfoMap" parameterType="int">
         select h.* , d.doorname from house h,door d WHERE h.doorid=d.doorid AND  h.houseid=#{_parameter}
@@ -72,15 +63,47 @@
         AND  h.houseid=#{_parameter}
     </select>
 
-
+<!--==================删除操作========================================================================================================-->
     <!--//删除house信息-->
     <!--public void removeHouse(int houseid);-->
     <delete id="removeHouse" parameterType="int">
         DELETE FROM  house WHERE houseid=#{_parameter}
     </delete>
 
+<!--=============更新操作=================================================================================================================-->
+    <!--//    根据id查询房子信息-->
+    <!--public House getHouse(int houseid);-->
+   <select id="getHouse" parameterType="int" resultType="House">
+       SELECT * from house WHERE houseid=#{_parameter}
+   </select>
 
 
+    <!--//修改商品-->
+    <!--public boolean updatehouse(House house);-->
+    <update id="updatehouse" parameterType="House" >
+        UPDATE  house set
+          hmoney=#{hmoney},htypeimg=#{htypeimg},hperprice=#{hperprice},payment=#{payment},monthpay=#{monthpay},updatename=#{updatename},htype=#{htype},
+          hsalestatus=#{hsalestatus},analysis=#{analysis}
+        WHERE  houseid=#{houseid}
+    </update>
+
+
+
+
+    <!--//根据id查询door信息-->
+    <resultMap id="perDoorInfoMap" type="House">
+        <id column="houseid" property="houseid"></id>
+        <result column="doorid" property="doorid"/>
+        <association property="door" javaType="Door">
+            <id column="doorid" property="doorid"/>
+            <result column="doorname" property="doorname"></result>
+        </association>
+
+    </resultMap>
+    <!--public  void  perDoorInfo(int doorid);-->
+    <select id="perDoorInfo" resultMap="perDoorInfoMap" parameterType="int">
+        select door.doorname from door,house WHERE door.doorid=house.doorid AND house.doorid=#{_parameter};
+    </select>
 
 
 </mapper>

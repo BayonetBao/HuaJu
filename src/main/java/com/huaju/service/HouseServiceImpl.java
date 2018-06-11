@@ -40,4 +40,20 @@ public class HouseServiceImpl implements HouseService{
         houseMapper.removeHouse(houseid);
     }
 
+    @Override
+    public House getHouse(int houseid) {
+        return houseMapper.getHouse(houseid);
+    }
+
+    @Override
+    public boolean updatehouse(House house) {
+        return houseMapper.updatehouse(house);
+    }
+
+    @Override
+    public House perDoorInfo(int doorid) {
+        return houseMapper.perDoorInfo(doorid);
+    }
+
+
 }
