@@ -3,6 +3,7 @@ package com.huaju.control;
 import com.github.pagehelper.PageInfo;
 import com.huaju.entity.*;
 import com.huaju.service.CommentService;
+import com.huaju.service.RecommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +21,7 @@ import java.util.*;
 public class CommentControl {
     @Autowired
     private CommentService commentService;
+
 //    后台查询
     @RequestMapping(value = "selectAllCommentByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllCommentByQueryPojo(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,7 +39,7 @@ public class CommentControl {
             commentQueryPojo.setBuildingid(buildingid);
         }
         if (idtype != null && !idtype.trim().equals("")) {
-            commentQueryPojo.setIdtype(idtype);
+            commentQueryPojo.setIdtype(new Integer(idtype));
         }
         if (comtype != null && !comtype.trim().equals("")) {
             commentQueryPojo.setComtype(comtype);
@@ -72,7 +74,8 @@ public class CommentControl {
             commentQueryPojo.setBuildingid(buildingid);
         }
         if (idtype != null && !idtype.trim().equals("")) {
-            commentQueryPojo.setIdtype(idtype);
+            Integer idtype1=new Integer(idtype);
+            commentQueryPojo.setIdtype(idtype1);
         }
         if (comtype != null && !comtype.trim().equals("")) {
             commentQueryPojo.setComtype(comtype);
@@ -95,13 +98,12 @@ public class CommentControl {
     }
 //    通过id删除评论
     @RequestMapping(value = "deleteCommentById.action",method = {RequestMethod.GET,RequestMethod.POST})
-    public String deleteCommentById(HttpServletRequest request,HttpServletResponse response){
-        Integer id=Integer.parseInt(request.getParameter("commentid"));
+    public String deleteCommentById(Integer commentid,HttpServletRequest request,HttpServletResponse response){
         String result;
-        if(commentService.deleteComment(id)){
+        if(commentService.deleteComment(commentid)){
             result="success";
         }else{
-            result="error";
+            result="fail";
         }
         return result;
     }
@@ -110,19 +112,10 @@ public class CommentControl {
     public String insertComment(HttpSession session,Comment comment,HttpServletRequest request,HttpServletResponse response){
         String result="";
         Date date=new Date();
-        String type= (String) session.getAttribute("userType");
-        if("1".equals(type)){
-            comment.setIdtype("用户");
-            User user = (User) session.getAttribute("user");
-            comment.setId(user.getUserid());
-        }else if("2".equals(type)){
-              result="开发商不要评论呦";
-              return result;
-        }else{
-            comment.setIdtype("咨询");
-            Cta cta= (Cta) session.getAttribute("user");
-            comment.setId(cta.getCtaid());
-        }
+        Integer type= new Integer((String) session.getAttribute("userType"));
+        Integer id=new Integer((String) session.getAttribute("uid"));
+        comment.setId(id);
+        comment.setIdtype(type);
         if(comment.getComtype().equals("")||comment.getComtype()==null){
             comment.setComtype("好评");
         }

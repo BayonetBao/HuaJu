@@ -96,8 +96,9 @@
                 <span>评论人员：</span>
                 <select name="idtype" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
                     <option value="" >请选择</option>
-                    <option value="咨询师" <c:if test="${commentQueryPojo.idtype eq '咨询师'}">selected</c:if>>咨询师</option>
-                    <option value="用户" <c:if test="${commentQueryPojo.idtype eq '用户'}">selected</c:if>>用户</option>
+                    <option value="3" <c:if test="${commentQueryPojo.idtype eq 3}">selected</c:if>>咨询师</option>
+                    <option value="1" <c:if test="${commentQueryPojo.idtype eq 1}">selected</c:if>>用户</option>
+                    <option value="2" <c:if test="${commentQueryPojo.idtype eq 2}">selected</c:if>>开发商</option>
                 </select>
                 <input  type="submit" value="查询" class="text-but">
             </form>
@@ -120,7 +121,15 @@
                 <tr   id="tr_${c.commentid}" onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                     <td  align="left" valign="middle" class="borderright borderbottom">${c.commentid}</td>
                     <td align="left" valign="middle" class="borderright borderbottom">${c.comtype}</td>
-                    <td align="left" valign="middle" class="borderright borderbottom">${c.idtype}</td>
+                    <td align="left" valign="middle" class="borderright borderbottom">
+                        <c:choose>
+                            <c:when test="${c.idtype eq 1}">用户</c:when>
+                            <c:when test="${c.idtype eq 2}">开发商</c:when>
+                            <c:otherwise>
+                                咨询师
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
                     <td align="left" valign="middle" class="borderright borderbottom">${c.uname}</td>
                     <td align="left" valign="middle" class="borderright borderbottom"><a href="${c.buildingid}" target="mainFrame" onFocus="this.blur()">${c.building}</a></td>
                     <td align="left" valign="middle" class="borderright borderbottom">${c.comcontent}</td>

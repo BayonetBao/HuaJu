@@ -8,10 +8,11 @@ public class Comment {
     private Date comtime;
     private Integer buildingid;
     private Integer id;
-    private String idtype;
+    private Integer idtype;
     private String comtype;
     private String comcontent;
     private String uname;//用户名字
+    private String userpic;
     private String building;//楼按名字
     private List<Favor> favors;
 
@@ -21,6 +22,14 @@ public class Comment {
 
     public String getBuilding() {
         return building;
+    }
+
+    public String getUserpic() {
+        return userpic;
+    }
+
+    public void setUserpic(String userpic) {
+        this.userpic = userpic;
     }
 
     public void setBuilding(String building) {
@@ -43,41 +52,16 @@ public class Comment {
         super();
     }
 
-    public Comment(Date comtime, Integer buildingid, Integer id, String idtype, String comtype, String comcontent) {
+    public Comment(Date comtime, Integer buildingid, Integer id, Integer idtype, String comtype, String comcontent, String uname, String building, List<Favor> favors) {
         this.comtime = comtime;
         this.buildingid = buildingid;
         this.id = id;
         this.idtype = idtype;
         this.comtype = comtype;
         this.comcontent = comcontent;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Comment comment = (Comment) o;
-
-        if (commentid != null ? !commentid.equals(comment.commentid) : comment.commentid != null) return false;
-        if (comtime != null ? !comtime.equals(comment.comtime) : comment.comtime != null) return false;
-        if (buildingid != null ? !buildingid.equals(comment.buildingid) : comment.buildingid != null) return false;
-        if (id != null ? !id.equals(comment.id) : comment.id != null) return false;
-        if (idtype != null ? !idtype.equals(comment.idtype) : comment.idtype != null) return false;
-        if (comtype != null ? !comtype.equals(comment.comtype) : comment.comtype != null) return false;
-        return comcontent != null ? comcontent.equals(comment.comcontent) : comment.comcontent == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = commentid != null ? commentid.hashCode() : 0;
-        result = 31 * result + (comtime != null ? comtime.hashCode() : 0);
-        result = 31 * result + (buildingid != null ? buildingid.hashCode() : 0);
-        result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (idtype != null ? idtype.hashCode() : 0);
-        result = 31 * result + (comtype != null ? comtype.hashCode() : 0);
-        result = 31 * result + (comcontent != null ? comcontent.hashCode() : 0);
-        return result;
+        this.uname = uname;
+        this.building = building;
+        this.favors = favors;
     }
 
     @Override
@@ -125,12 +109,12 @@ public class Comment {
         this.id = id;
     }
 
-    public String getIdtype() {
+    public Integer getIdtype() {
         return idtype;
     }
 
-    public void setIdtype(String idtype) {
-        this.idtype = idtype == null ? null : idtype.trim();
+    public void setIdtype(Integer idtype) {
+        this.idtype = idtype;
     }
 
     public String getComtype() {
