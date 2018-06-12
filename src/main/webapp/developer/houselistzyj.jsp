@@ -66,27 +66,30 @@
 </style>
 </head>
 <body>
-<div class="image">
-    <a href="${pageContext.request.contextPath}/developer/picture.jsp?buildingid=1"><img src="<%=basePath%>developer/images/main/add.svg" /></a>
-</div>
+
 
 
 <!--main_top-->
-
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
+
     <tr>
-        <td align="left" valign="top" id="addinfo">
-
-            <a href="main.html" onFocus="this.blur()" class="add">返回</a>
-        </td>
+        <td width="99%" align="left" valign="top">您的位置：楼房列表</td>
     </tr>
+    <tr>
+        <div class="image">
+            <%--传参楼盘id--%>
+            <a href="${pageContext.request.contextPath}/picture/before.action?buildingid=${buildingid}"><img src="<%=basePath%>developer/images/main/add.svg" /></a>
+        </div>
 
+    </tr>
     <tr>
         <td align="left" valign="top">
             <form method="post" action="">
+                <input name="buildingid" value="${buildingid}" hidden="hidden"/>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                 <%--表格字段名--%>
                 <tr>
+
                     <th align="center" valign="middle" class="borderright">编号</th>
                     <th align="center" valign="middle" class="borderright">房名</th>
                     <th align="center" valign="middle" class="borderright">参考总价</th>
@@ -119,6 +122,7 @@
     </tr>
 
 </table>
+
 
 <script type="text/javascript">
 

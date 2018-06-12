@@ -87,9 +87,9 @@
 
     <tr>
         <td align="left" valign="top" id="addinfo">
-            <a href="楼盘信息详情页" target="mainFrame" onFocus="this.blur()" class="add">id楼盘名字&nbsp;&nbsp;</a>
-            <a href="楼盘信息详情页" target="mainFrame" onFocus="this.blur()" class="add">房子编号${house.houseid}&nbsp;&nbsp;</a>
-            <a href="main_message.html" target="mainFrame" onFocus="this.blur()" class="add">&nbsp;&nbsp;返回</a>
+            <input type=button value="楼盘" style="background: none;border: none" onclick="window.history.go(-2)">
+            <a target="mainFrame" onFocus="this.blur()" class="add">房子编号${house.houseid}&nbsp;&nbsp;</a>
+            <input type="button" value="返回" style="background: none;border: none" onclick="window.history.go(-1)">
         </td>
     </tr>
     <tr>
@@ -105,11 +105,12 @@
                     <%--</tr>--%>
                         <input hidden="hidden" name="houseid" value="${house.houseid}"/>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">名字：</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">房名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="hname" value="${house.hname}" class="text-word">
+                            <input type="" name="hname" readonly="readonly" value="${house.hname}" class="text-word">不可修改
                         </td>
                     </tr>
+
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">更新时间：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -119,62 +120,65 @@
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">参考总价：</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">参考总价(万元左右)：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="hmoney" value="${house.hmoney}" class="text-word">万元左右
+                            <input type="" name="hmoney" value="${house.hmoney}" class="text-word">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">参考单价：</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">参考单价(元左右)：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="hperprice" value="${house.hperprice}元左右" class="text-word">
-
-                        </td>
-                    </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">首付：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="" value="${house.payment}" class="text-word">万元左右
+                            <input type="" name="hperprice" value="${house.hperprice}" class="text-word">
 
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">月供：</td>
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">首付(万元左右)：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="monthpay" value="${house.monthpay}" class="text-word">元左右
+                            <input type="" name="payment" value="${house.payment}" class="text-word">
+
+                        </td>
+                    </tr>
+                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">月供(元左右)：</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">
+                            <input type="" name="monthpay" value="${house.monthpay}" class="text-word">
 
                         </td>
                     </tr>
 
+                        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                            <td align="right" valign="middle" class="borderright borderbottom bggray">户型：</td>
+                            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                                <input type="" name="" value="${house.door.doorname}" readonly="readonly" class="text-word">不可修改
+
+                            </td>
+                        </tr>
+
+                        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                            <td align="right" valign="middle" class="borderright borderbottom bggray">居室：</td>
+                            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                                <input type="" name="typename" value="${htype.buildType.type.typename}" readonly="readonly" class="text-word">不可修改
+
+                            </td>
+                        </tr>
 
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">朝向：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="forward" value="${house.forward}" class="text-word">
+                            <input type="" name="forward" value="${house.forward}" readonly="readonly" class="text-word">不可修改
 
                         </td>
                     </tr>
 
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">房型：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="" value="${house.doorid}" readonly="readonly" class="text-word">
 
-                        </td>
-                    </tr>
 
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">居室：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="" value="${htype.buildType.type.typename}" readonly="readonly" class="text-word">
 
-                        </td>
-                    </tr>
 
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">面积：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="" name="harea" readonly="readonly" value="${house.harea}" class="text-word">
+                            <input type="" name="harea" readonly="readonly" value="${house.harea}" class="text-word">不可修改
 
                         </td>
                     </tr>
@@ -183,9 +187,21 @@
                         <td align="right" valign="middle" class="borderright borderbottom bggray">类型：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <input type="" name="htype" value="${house.htype}" class="text-word">
+
                         </td>
                     </tr>
 
+                        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                            <td align="right" valign="middle" class="borderright borderbottom bggray">销售状况：</td>
+                            <td align="left" valign="middle" class="borderright borderbottom main-for">
+                                <%--<input type="" name="hsalestatus" value="${house.hsalestatus}" class="text-word">--%>
+                                <select name="hsalestatus" id="level4" value="${house.hsalestatus}">
+                                    <option value="预售">预售</option>
+                                    <option value="在售">在售</option>
+                                    <option value="售罄">售罄</option>
+                                </select>
+                            </td>
+                        </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房型图：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -229,7 +245,7 @@
                         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <input name="House"  type="submit" value="提交" class="text-but">
-                            <!-- <input name="" type="reset" value="重置" class="text-but">-->
+                            <input name="" type="reset" value="重置" class="text-but">
 
                         </td>
                     </tr>
@@ -281,15 +297,7 @@
                 }
             }
         })
-
-
-
     })
-
-
 </script>
-
-
-
 </body>
 </html>

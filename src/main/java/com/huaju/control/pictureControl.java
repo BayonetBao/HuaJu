@@ -41,16 +41,33 @@ public class pictureControl {
     }
 
 
-    @RequestMapping(value = "/picture.action", method = {RequestMethod.POST,RequestMethod.GET})
-    public void updateTrue(MultipartFile imgfile,House house,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    @RequestMapping(value = "/beforepicture.action",method = RequestMethod.GET)
+        public void beforepicture(String buildingid,  HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+            request.setAttribute("buildingid",buildingid);
+//            request.getRequestDispatcher("/developer/picture.jsp").forward(request,response);
+//        获得楼盘id后跳转到list页面
+         request.getRequestDispatcher("/developer/houselistzyj.jsp").forward(request,response);
+        }
+
+        @RequestMapping(value = "/before.action",method = RequestMethod.GET)
+        public void before(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+            request.setAttribute("buildingid",buildingid);
+            request.getRequestDispatcher("/developer/picture.jsp").forward(request,response);
+        }
+
+    @RequestMapping(value = "/picture.action", method = {RequestMethod.POST,RequestMethod.GET})
+    public void updateTrue(MultipartFile imgfile,String buildingid ,House house,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String ll=request.getParameter("buildingid");
+        System.out.println(ll);
         String  imgname=imgfile.getOriginalFilename();//获得文件名
         System.out.println(imgname);
 //        以时间毫秒数命名
         String ms=System.currentTimeMillis()+"";
         imgname=ms + "_"+ imgname;//图片的新名字
         System.out.println(imgname);
-//    获得该文件的绝对路径
+//    获得该文件的绝对路径s
         String imgfilepath="D:\\xImage\\images";
         System.out.println(imgfilepath+"=============================");
         String img=imgfilepath+"/"+imgname;
@@ -66,6 +83,15 @@ public class pictureControl {
         imgfile.transferTo(file);//图片的复制
 
         house.setHtypeimg("images/"+imgname);
+//        从前台获得居室对应的id
+        String btyid=request.getParameter("butypeid");
+        int tyid=Integer.parseInt(btyid);
+
+//        获得楼盘的id
+            int buildingid1=Integer.parseInt(buildingid);
+//            查询出居室对应的楼户id
+           int hbtyid=houseService.searchHouseBtypeid(tyid,buildingid1);
+            house.setButypeid(hbtyid);
 
                 houseService.addHouseInfoZYJ(house);
 
@@ -79,8 +105,9 @@ public class pictureControl {
 
                 System.out.println(houseanly);
                 System.out.println(house.getHname());
+                request.setAttribute("buildingid",buildingid1);
 
-        request.getRequestDispatcher("developer/houselistzyj.jsp").forward(request,response);
+        request.getRequestDispatcher("/houseInfo/houseInfo.action").forward(request,response);
 
     }
 

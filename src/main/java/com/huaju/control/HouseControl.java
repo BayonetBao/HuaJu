@@ -38,17 +38,24 @@ public class HouseControl {
     private BuildTypeService buildTypeService;
 
     //    表格列出house信息
-    @RequestMapping(value = "/houseInfo.action", method = RequestMethod.GET)
-    public void houseInfo(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+    @RequestMapping(value = "/houseInfo.action",method ={RequestMethod.GET,RequestMethod.POST})
+    public void houseInfo(String buildingid,HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
 //          把从houseService获得的信息存到houselist中
-        List<House> houses = houseService.selectHouseInfoZYJ();
+        int id=Integer.parseInt(buildingid);
+//        id为楼盘的id
+        List<House> houses = houseService.showHouseList(id);
+        httpServletRequest.setAttribute("buildingid",buildingid);
         httpServletRequest.setAttribute("houselist", houses);
-        httpServletRequest.getRequestDispatcher("/developer/houselistzyj.jsp").forward(httpServletRequest, httpServletResponse);
+        httpServletRequest.getRequestDispatcher("/houseInfo/beforeadd.action").forward(httpServletRequest, httpServletResponse);
     }
 
-
+    @RequestMapping(value = "/beforeadd.action",method ={RequestMethod.GET,RequestMethod.POST})
+  public void beforeadd(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("buildingid",buildingid);
+        request.getRequestDispatcher("/developer/houselistzyj.jsp").forward(request,response);
+  }
     //    house详细信息
-@RequestMapping(value = "/detailhouse.action" , method = RequestMethod.GET)
+@RequestMapping(value = "/detailhouse.action" , method = {RequestMethod.GET,RequestMethod.POST})
     public  void  showHouseAllInfo(String id, HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
        int idd=Integer.parseInt(id);
         House house=houseService.showHouseDoorAllInfo(idd);
@@ -78,14 +85,14 @@ public class HouseControl {
 
 @RequestMapping("/update.action")
     public void updatehouse(int id , HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        House house=houseService.getHouse(id);
-        House doorinfo=houseService.perDoorInfo(id);
+
+    House house=houseService.showHouseDoorAllInfo(id);
     House htype=houseService.showHouseTypeInfo(id);
-    System.out.println(doorinfo);
+    System.out.println(house);
     System.out.println(house);
             System.out.println(house.getAnalysis()+"========");
             if (house!=null){
-                request.setAttribute("doorifo",doorinfo);
+                request.setAttribute("doorifo",house);
                  request.setAttribute("house" , house);
 
                 request.setAttribute("htype",htype);
@@ -116,14 +123,33 @@ public void updateTrue(MultipartFile imgfile ,House house ,HttpServletRequest re
 
             file.mkdirs();
         }
+
     imgfile.transferTo(file);//图片的复制
     house.setHtypeimg("images/"+imgname);
+//    从前台获取houseid
+    String houseid=request.getParameter("houseid");
             if (houseService.updatehouse(house)){
-                    request.getRequestDispatcher("/developer/detialhousezyj.jsp").forward(request,response);
+                    request.getRequestDispatcher("/houseInfo/detailhouse.action?id="+houseid).forward(request,response);
             }
 
 }
 
+@RequestMapping(value = "/beforeupdate.action",method = RequestMethod.GET)
+   public void beforeupdate(String houseid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        Integer houseid1=Integer.parseInt(houseid);
+//        根据id显示house信息
+    House house=houseService.showHouseDoorAllInfo(houseid1);
+//        根据id显示
+
+    House htype=houseService.showHouseTypeInfo(houseid1);
+
+//
+        request.setAttribute("house",house);
+        request.setAttribute("htype",htype);
+        request.getRequestDispatcher("/developer/detialhousezyj.jsp").forward(request,response);
+
+   }
 
 
 

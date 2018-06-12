@@ -18,12 +18,23 @@ public class HouseServiceImpl implements HouseService{
         return houseMapper.selectHouseInfoZYJ();
     }
 
+    @Override
+    public List<House> showHouseList(int buildingid) {
+        return houseMapper.showHouseList(buildingid);
+    }
+
 
     @Override
     public void addHouseInfoZYJ(House house) {
 
         houseMapper.addHouseInfoZYJ(house);
     }
+
+    @Override
+    public int searchHouseBtypeid(int btypeid, int buildingid) {
+        return houseMapper.searchHouseBtypeid(btypeid,buildingid);
+    }
+
 
     @Override
     public House showHouseDoorAllInfo(int houseid) {
