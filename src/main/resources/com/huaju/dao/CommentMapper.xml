@@ -11,42 +11,59 @@
         <result property="comcontent" column="comcontent"/>
         <result property="uname" column="uname"/>
         <result property="building" column="building"/>
+        <result property="userpic" column="userpic"/>
         <collection property="favors" ofType="Favor">
             <result property="userid" column="fuserid"/>
+            <result property="favortype" column="favortype"/>
         </collection>
     </resultMap>
     <!--public List<Comment>  selectCommentByQueryPojo(CommentQueryPojo commentQueryPojo);-->
     <select id="selectCommentByQueryPojo" parameterType="CommentQueryPojo" resultMap="CommentMap">
-        select comment.* ,build.building ,favor.userid as fuserid,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
+        select comment.* ,build.building , user.userpic as userpic,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
-              idtype like "%" "用户" "%"
+              idtype=1
             <if test="buildingid neq null">
                 and comment.buildingid=#{buildingid}
             </if>
             <if test="idtype neq null">
-                and comment.idtype like "%" #{idtype} "%"
+                and comment.idtype = #{idtype}
             </if>
             <if test="comtype neq null">
                 and comment.comtype like "%" #{comtype} "%"
             </if>
         </where>
         UNION
-        select comment.* ,build.building ,favor.userid as fuserid,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
+        select comment.* ,build.building,cta.ctaimg as userpic ,favor.userid as fuserid,favor.favortype,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
-            idtype like "%" "咨询" "%"
+            idtype =3
             <if test="buildingid neq null">
                 and comment.buildingid=#{buildingid}
             </if>
             <if test="idtype neq null">
-                and comment.idtype like "%" #{idtype} "%"
+                and comment.idtype= #{idtype}
             </if>
             <if test="comtype neq null">
                 and comment.comtype like "%" #{comtype} "%"
             </if>
         </where>
-        ORDER BY  comtime
+        UNION
+        select comment.* ,build.building ,company.compic as userpic,favor.userid as fuserid,favor.favortype,company.comuname as uname from  comment left  join company on(comment.id=company.comid) left  join
+        build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
+        <where>
+            idtype =2
+            <if test="buildingid neq null">
+                and comment.buildingid=#{buildingid}
+            </if>
+            <if test="idtype neq null">
+                and comment.idtype= #{idtype}
+            </if>
+            <if test="comtype neq null">
+                and comment.comtype like "%" #{comtype} "%"
+            </if>
+        </where>
+        ORDER BY comtime DESC
 
     </select>
     <!--public List<Build> selectBuildInComment(Integer comid);-->

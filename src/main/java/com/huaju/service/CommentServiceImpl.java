@@ -4,9 +4,12 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.huaju.dao.CommentMapper;
+import com.huaju.dao.FavorMapper;
+import com.huaju.dao.RecommentMapper;
 import com.huaju.entity.Build;
 import com.huaju.entity.Comment;
 import com.huaju.entity.CommentQueryPojo;
+import com.huaju.entity.Favor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -20,6 +23,10 @@ import java.util.Map;
 public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentMapper commentMapper;
+    @Autowired
+    private RecommentMapper recommentMapper;
+    @Autowired
+    private FavorMapper favorMapper;
 
     @Override
     public List<Comment> selectAllComment() {
@@ -51,7 +58,14 @@ public class CommentServiceImpl implements CommentService {
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT)
     @Override
     public boolean deleteComment(Integer id) {
-        return commentMapper.deleteComment(id);
+        boolean flag=true;
+        if(recommentMapper.deleteRecomentByCommentid(id)){
+            favorMapper.deleteFavorByUseridAndCommentid(new Favor(id,null,null));
+            commentMapper.deleteComment(id);
+        }else {
+            flag=false;
+        }
+        return flag;
     }
 
     @Override

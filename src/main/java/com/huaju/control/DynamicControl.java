@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.huaju.dao.BuildMapper;
 import com.huaju.dao.DynamicMapper;
 import com.huaju.entity.*;
+import com.huaju.service.BuildService;
 import com.huaju.service.DynamicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,8 @@ public class DynamicControl {
     private DynamicService dynamicService;
     @Autowired
     private  DynamicMapper dynamicMapper;
+    @Autowired
+    private BuildMapper buildMapper;
 
     @RequestMapping(value = "selectAllDynamicByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllDynamicByQueryPojo(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -58,10 +61,8 @@ public class DynamicControl {
         request.getRequestDispatcher("/developer/dynamicList.jsp").forward(request, response);
     }
     @RequestMapping(value = "selectDynamicByBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
-    public void selectDynamicByBuild(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        DynamicQueryPojo dynamicQueryPojo=new DynamicQueryPojo();
-        Company com= (Company) session.getAttribute("user");
-        dynamicQueryPojo.setBuildingid(com.getComid());
+    public void selectDynamicByBuild(DynamicQueryPojo dynamicQueryPojo,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        dynamicQueryPojo.setBuildingid(dynamicQueryPojo.getBuildingid());
         List<Dynamic> dynamics=dynamicMapper.selectAllDynamicByQueryPojo(dynamicQueryPojo);
         request.setAttribute("dynamics",dynamics);
         request.getRequestDispatcher("/user/ke/dynamic.jsp").forward(request,response);
@@ -69,7 +70,9 @@ public class DynamicControl {
       @RequestMapping(value = "insertDynamicBefore.action",method = {RequestMethod.POST,RequestMethod.GET})
       public void insertDynamicBefore(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Company com= (Company) session.getAttribute("user");
-        List<Build> blist=dynamicService.selectBuildingInDynamic(com.getComid());
+        BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
+        buildQueryPojo.setComid(com.getComid());
+        List<Build> blist=buildMapper.selectBuildQueryPojo(buildQueryPojo);
           request.setAttribute("blist",blist);
           request.getRequestDispatcher("/developer/dynamicAdd.jsp").forward(request,response);
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaju.dao.RecommentMapper">
+    <!--public boolean addRecoment(Recomment recomment);-->
+<insert id="addRecoment" parameterType="Recomment">
+    insert into recomment(commentid,reuserid,reusertype,recontent,recomtime,reobjectid,reobjecttype,reusername,reobjectname)
+    VALUES (#{commentid},#{reuserid},#{reusertype},#{recontent},#{recomtime},#{reobjectid},#{reobjecttype},#{reusername},#{reobjectname})
+</insert>
+    <!--public boolean deleteRecomment(Integer recommentid);-->
+    <delete id="deleteRecomment" parameterType="Int">
+        DELETE from recomment where recommentid=#{_parameter}
+    </delete>
+    <!--public boolean deleteRecomentByCommentid(Integer commentid);-->
+    <delete id="deleteRecomentByCommentid" parameterType="int">
+        DELETE  from recomment where commentid=#{_parameter}
+    </delete>
+    <!--public List<Recomment> selectRecommentByQueryPojo(RecommentQueryPojo recommentQueryPojo);-->
+<select id="selectRecommentByQueryPojo" parameterType="RecommentQueryPojo" resultType="Recomment">
+      SELECT * from recomment
+      <where>
+          <if test="commentid neq null">
+              and commentid=#{commentid}
+          </if>
+          <if test="reuserid neq null">
+              and reuserid=#{reuserid}
+          </if>
+          <if test="reuserType neq null">
+              and reuserType=#{reuserType}
+          </if>
+          <if test="reobjectid neq null">
+              and reobjectid=#{reobjectid}
+          </if>
+          <if test="reobjectType neq null">
+              and reobjectType=#{reobjectType}
+          </if>
+          <if test="reusername neq null">
+          and reusername=#{reusername}
+          </if>
+          <if test="reobjectname neq null">
+              and reobjectname=#{reobjectname}
+          </if>
+          <if test="restate neq null">
+              and restate=#{restate}
+          </if>
+      </where>
+</select>
+</mapper>
