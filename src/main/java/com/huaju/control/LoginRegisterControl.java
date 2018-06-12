@@ -1,6 +1,7 @@
 package com.huaju.control;
 
 import com.huaju.entity.Company;
+import com.huaju.entity.Cta;
 import com.huaju.entity.User;
 import com.huaju.service.AllUserService;
 import com.huaju.util.miaodiyun.httpApiDemo.IndustrySMS;
@@ -71,7 +72,7 @@ public class LoginRegisterControl {
                 if(user.getUpwd().equals(password)){
                     session.setAttribute("user",user);
                     session.setAttribute("userType",userType);
-                    System.out.println(2);
+                    //System.out.println(2);
                     return "2";
                 }else{
                     System.out.println(1);
@@ -89,9 +90,16 @@ public class LoginRegisterControl {
                 return "1";
             }
         }else {
-
+            Cta cta=allUserService.selectCtaByName(uname);
+            if(cta!=null){
+                if(cta.getCtapassword().equals(password)){
+                    session.setAttribute("user",cta);
+                    session.setAttribute("userType",userType);
+                    return "2";
+                }
+                return "1";
+            }
         }
-
         return "0";
     }
     //开发商注册

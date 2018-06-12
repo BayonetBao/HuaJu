@@ -10,4 +10,9 @@
     <select id="CtaByActivity" resultType="Cta" parameterType="int">
         SELECT * FROM cta WHERE ctaid=#{_parameter}
     </select>
+    <!--//按用户名查询咨询师(张宝)-->
+    <!--public boolean selectCtaByName(String ctaname);-->
+    <select id="selectCtaByName" parameterType="String" resultType="Cta">
+        SELECT * from cta where ctaname=#{_parmeter}
+    </select>
 </mapper>
