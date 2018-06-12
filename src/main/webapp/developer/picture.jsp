@@ -12,6 +12,9 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    //图片路径
+    String imgPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/upImage"+"/";
+
 %>
 <html>
 <head>
@@ -85,17 +88,19 @@
 
     <tr>
         <td align="left" valign="top" id="addinfo">
-            <a href="楼盘信息详情页" target="mainFrame" onFocus="this.blur()" class="add">id楼盘名字&nbsp;&nbsp;</a>
-            <a href="main_message.html" target="mainFrame" onFocus="this.blur()" class="add">&nbsp;&nbsp;返回</a>
+            <input type=button value="楼盘列列表" onclick="window.history.go(-2)">
+            <%--<a href="main_message.html" target="mainFrame" onFocus="this.blur()" class="add" >&nbsp;&nbsp;返回</a>--%>
+            <input type=button style="background: none;border: none" value=返回 onclick="window.history.go(-1)">
         </td>
     </tr>
     <tr>
+
         <td align="left" valign="top">
            <%-- <form method="post" action="${pageContext.request.contextPath}/picture/picture.action" enctype="multipart/form-data">--%>
-                <form method="post" action="${pageContext.request.contextPath}/picture/picture.action" enctype="multipart/form-data">
+                <form method="post" action="${pageContext.request.contextPath}/picture/picture.action?buildingid=${buildingid}"enctype="multipart/form-data">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                     </tr>
-
+                    <input hidden="hidden" name="buildingid"  value="${buildingid}"/>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
@@ -123,6 +128,20 @@
                         <td align="right" valign="middle" class="borderright borderbottom bggray">参考单价(元)：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <input type="text" name="hperprice" value="" class="text-word">
+                        </td>
+                    </tr>
+
+                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">首付(万元)：</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">
+                            <input type="text" name="payment" value="" class="text-word">
+                        </td>
+                    </tr>
+
+                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+                        <td align="right" valign="middle" class="borderright borderbottom bggray">月供(元)：</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for">
+                            <input type="text" name="monthpay" value="" class="text-word">
                         </td>
                     </tr>
 
@@ -191,19 +210,6 @@
 
 
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">首付(万元)：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="payment" value="" class="text-word">
-                        </td>
-                    </tr>
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-                        <td align="right" valign="middle" class="borderright borderbottom bggray">月供(元)：</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" name="monthpay" value="" class="text-word">
-                        </td>
-                    </tr>
-
-                    <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房型图：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <!--<input type="" name="" value="" class="text-word">-->
@@ -211,7 +217,7 @@
                                 <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
 
                                     <div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">
-                                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="images/noimage.png" alt="" />
+                                        <img id='picImg' style="width: 100%;height: auto;max-height: 140px;" src="<%=imgPath%>images/noimage.png" alt="" />
 
                                     </div>
 

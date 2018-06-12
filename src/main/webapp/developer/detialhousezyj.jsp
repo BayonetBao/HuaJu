@@ -60,7 +60,7 @@
       </tr>-->
     <tr>
         <td align="left" valign="top" id="addinfo">
-            <a href="<%=basePath%>developer/houselistzyj.jsp" target="mainFrame" onFocus="this.blur()" class="add">返回上一级</a>
+            <input type=button style="background: none;border: none" value=返回 onclick="window.history.go(-1)">
         </td>
     </tr>
     <tr>

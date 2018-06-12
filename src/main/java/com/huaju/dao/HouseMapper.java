@@ -11,6 +11,8 @@ public interface HouseMapper {
 // 显示house数据列表信息
     public List<House> selectHouseInfoZYJ();
 
+//根据楼盘id查找楼房信息
+    public List<House> showHouseList(int buildingid);
 
 //显示house和房型的信息
     public House showHouseDoorAllInfo(int houseid);
@@ -34,6 +36,8 @@ public interface HouseMapper {
 
 //    添加house信息
     public void addHouseInfoZYJ(House house);
+//查询出居室id对应的楼户id
+    public int searchHouseBtypeid(int btypeid , int buildingid);
 
 
 
