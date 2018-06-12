@@ -89,7 +89,16 @@ public class LoginRegisterControl {
                 return "1";
             }
         }else {
-
+            Cta cta=allUserService.selectCtaByName(uname);
+            if(cta!=null){
+                if(cta.getCtapassword().equals(password)){
+                    session.setAttribute("user",cta);
+                    session.setAttribute("userType",userType);
+                    session.setAttribute("uid",cta.getCtaid());
+                    return "2";
+                }
+                return "1";
+            }
         }
 
         return "0";

@@ -1,6 +1,7 @@
 package com.huaju.service;
 
 import com.huaju.entity.Company;
+import com.huaju.entity.Cta;
 import com.huaju.entity.User;
 //张宝
 public interface AllUserService {
@@ -14,4 +15,6 @@ public interface AllUserService {
     public boolean setCompany(Company company);
     //按id查找（张宝）
     public Company selectCompanyById(int comid );
+    //按用户名查询咨询师(张宝)
+    public Cta selectCtaByName(String ctaname);
 }
