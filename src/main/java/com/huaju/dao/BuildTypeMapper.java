@@ -1,6 +1,7 @@
 package com.huaju.dao;
 
 import com.huaju.entity.BuildType;
+import com.huaju.entity.Type;
 
 import java.util.List;
 
