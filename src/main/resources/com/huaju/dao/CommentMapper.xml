@@ -19,7 +19,7 @@
     </resultMap>
     <!--public List<Comment>  selectCommentByQueryPojo(CommentQueryPojo commentQueryPojo);-->
     <select id="selectCommentByQueryPojo" parameterType="CommentQueryPojo" resultMap="CommentMap">
-        select comment.* ,build.building , '' as userpic,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
+        select comment.* ,build.building , user.userpic as userpic,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
               idtype=1
@@ -49,7 +49,7 @@
             </if>
         </where>
         UNION
-        select comment.* ,build.building ,'' as userpic,favor.userid as fuserid,favor.favortype,company.comuname as uname from  comment left  join company on(comment.id=company.comid) left  join
+        select comment.* ,build.building ,company.compic as userpic,favor.userid as fuserid,favor.favortype,company.comuname as uname from  comment left  join company on(comment.id=company.comid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
             idtype =2
