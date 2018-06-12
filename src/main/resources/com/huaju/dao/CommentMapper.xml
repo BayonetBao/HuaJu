@@ -63,7 +63,7 @@
                 and comment.comtype like "%" #{comtype} "%"
             </if>
         </where>
-        ORDER BY  comtime
+        ORDER BY comtime DESC
 
     </select>
     <!--public List<Build> selectBuildInComment(Integer comid);-->

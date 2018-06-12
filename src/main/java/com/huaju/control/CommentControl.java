@@ -113,7 +113,7 @@ public class CommentControl {
         String result="";
         Date date=new Date();
         Integer type= new Integer((String) session.getAttribute("userType"));
-        Integer id=new Integer((String) session.getAttribute("uid"));
+        Integer id=new Integer((Integer) session.getAttribute("uid"));
         comment.setId(id);
         comment.setIdtype(type);
         if(comment.getComtype().equals("")||comment.getComtype()==null){

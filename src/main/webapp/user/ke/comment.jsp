@@ -314,13 +314,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
                                             <span>${pageInfo.pageNum}/<b>${pageInfo.pages}</b></span>
                                             <c:if test="${!pageInfo.isLastPage}"><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></c:if>
-                                            <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a>
+                                            <a href="javascript:getPage(${pageInfo.lastPage})">末页</a>
                                        </ul>
                                     </nav>
                                 </div>
                                 <p style="font-size:24px">留下你的评论吧~~~</p>
                                 <form method="post" action="#">
-                                    <input type="hidden"  name="buildingid1" value="1"/>
+                                    <input type="hidden"  name="buildingid1" value="${commentQueryPojo.buildingid}"/>
                                     <input type="radio"  name="comtype1" value="好评" class="radio-danger"><span class="badge badge-danger">好评</span></input>
                                     <input type="radio"  name="comtype1" value="中评" class="radio-danger"><span class="badge badge-warning">中评</span></input>
                                     <input type="radio"  name="comtype1" value="差评" class="radio-danger"><span class="badge badge-info">差评</span></input>
@@ -500,6 +500,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 url:'${pageContext.request.contextPath}/comment/insertComment.action',
                                                 data:"buildingid="+buildingid+"&comtype="+comtype+"&comcontent="+comcontent,
                                                 success:function (data) {
+                                                    $("#comcontent1").val("");
                                                     alert(data+"刷新查看呦~");
                                                 }
                                             });
