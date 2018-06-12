@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.BuildMapper">
+    <!--public List<Company> selectCompanyInBuild();查找有楼盘发布的开发商的id和公司名字  珂-->
+ <select id="selectCompanyInBuild" resultType="Company">
+     select DISTINCT build.comid,company.comname from build,company where build.comid=company.comid
+ </select>
     <!--public List<Build> selectBuilding();-->
 <select id="selectBuilding" resultType="Build">
     SELECT * FROM build
@@ -22,8 +26,7 @@
         <result property="btotalprice" column="btotalprice"/>
         <result property="acreage" column="acreage"/>
         <result property="conditions" column="conditions"/>
-        <result property="starttime" column="starttime"/>
-        <result property="endtime" column="endtime"/>
+        <result property="starttime" column="starttime"/><result property="endtime" column="endtime"/>
         <result property="genre" column="genre"/>
         <result property="agelimit" column="agelimit"/>
         <result property="landtime" column="landtime"/>
@@ -33,29 +36,35 @@
         <result property="greenrate" column="greenrate"/>
         <result property="carport" column="carport"/>
         <result property="cubage" column="cubage"/>
+        <result property="bdetail" column="bdetail"/>
         <result property="fitment" column="fitment"/>
         <result property="bmaxtotalprice" column="bmaxtotalprice"/>
         <result property="maxacreage" column="maxacreage"/>
         <result property="bsalestatus" column="bsalestatus"/>
-        <collection property="buildType" javaType="BuildType">
+        <association property="cta" javaType="Cta">
+            <result property="ctaname" column="ctaname"/>
+            <result property="ctaimg" column="ctaimg"/>
+        </association>
+        <collection property="buildType" ofType="BuildType">
             <id property="butypeid" column="butypeid"/>
             <result property="count" column="count" />
             <result property="typename" column="typename" />
         </collection>
     </resultMap>
-    <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);-->
+    <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);珂-->
    <select id="selectBuildQueryPojo" parameterType="BuildQueryPojo" resultMap="BuildMap">
-       select build.* ,buildtype.butypeid,buildtype.count,type.typename from build,buildtype,type
+       select build.* ,cta.ctaname,cta.ctaimg,buildtype.butypeid,buildtype.count,type.typename from
+       build left join buildtype on(build.buildingid=buildtype.buildingid) left join type on(buildtype.typeid=type.typeid)
+       left join cta on (build.ctaid=cta.ctaid)
        <where>
-           build.buildingid=buildtype.buildingid and buildtype.butypeid=type.butypeid
            <if test="province neq null">
-               and province=#{province}
+               and province like "%" #{province} "%"
            </if>
            <if test="city neq null">
-               and city=#{city}
+               and city like "%" #{city} "%"
            </if>
            <if test="district neq null">
-               and district=#{district}
+               and barea like "%" #{district} "%"
            </if>
            <if test="character neq null">
                and character like "%" #{character} "%"
@@ -86,14 +95,49 @@
            </if>
        </where>
    </select>
-    <!--//添加楼盘
+    <!--//添加楼盘（张宝）
     insert into build(building,ctaid,province,city,berea,bdetail,bpicture,tenement,btype,bline,comid,character,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,condition,discounts,starttime,endtime,genre,agelimit,landtime,tencompany,tencost,tentype,greenrate,carport,cubage,fitment,bsalestatus)
        VALUES (#{building},#{ctaid},#{province},#{city},#{berea},#{bdetail},#{bpicture},#{tenement},#{btype},#{bline},#{comid},#{character},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{condition},#{discounts},#{starttime},#{endtime},#{genre},#{agelimit},#{landtime},#{tencompany},#{tencost},#{tentype},#{greenrate},#{carport},#{cubage},#{fitment},#{bsalestatus})
         -->
-    <!--public void setBuild(Build build);-->
+    <!--public boolean setBuild(Build build);-->
     <insert id="setBuild" parameterType="Build">
-       insert into build(building,province,city,barea,bdetail,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
-      VALUES (#{building},#{province},#{city},#{barea},#{bpicture},#{tenement},#{btype},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
+       insert into build(building,province,city,barea,bdetail,bpicture,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
+      VALUES (#{building},#{province},#{city},#{barea},#{bdetail},#{bpicture},#{tenement},#{btype},#{comid},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
   </insert>
-
+    <!--//按开发商id和名字查询楼盘(张宝)-->
+    <!--public List<Build> selectBuildByCondition(CompanyIdAndBuildName companyIdAndBuildName);-->
+    <select id="selectBuildByCondition" parameterType="ComidAndBuildName" resultType="Build">
+        SELECT * from build
+        <where> comid=#{comid}
+            <if test="building neq null">
+                and building like "%" #{building} "%"
+            </if>
+            ORDER by buildingid DESC
+        </where>
+    </select>
+    <!--//按楼盘id删除楼盘（张宝）-->
+    <!--public boolean deleteBuildById(int buildId);-->
+    <delete id="deleteBuildById" parameterType="int">
+        DELETE FROM build WHERE buildingid=#{_parameter}
+    </delete>
+    <!--//按楼盘id查询楼盘（张宝）-->
+    <!--public Build selectBuildById(int buildingid);-->
+    <select id="selectBuildById" parameterType="int" resultType="Build">
+        SELECT * from build WHERE buildingid=#{_parameter}
+    </select>
+    <!--//更新楼盘基本信息-->
+    <!--public boolean updateBuildBasicInfo(Build build);-->
+    <update id="updateBuildBasicInfo" parameterType="Build" >
+        UPDATE build set building=#{building},btype=#{btype},bline=#{bline},charactere=#{charactere} WHERE buildingid=#{buildingid}
+    </update>
+    <!--//更新楼盘销售信息(张宝)-->
+    <!--public boolean updateBuildSaleInfo(Build build);-->
+    <update id="updateBuildSaleInfo" parameterType="Build">
+        UPDATE build set bperprice=#{bperprice},btotalprice=#{btotalprice},bmaxtotalprice=#{bmaxtotalprice},acreage=#{acreage},maxacreage=#{maxacreage},conditions=#{conditions},bsalestatus=#{bsalestatus},discounts=#{discounts},starttime=#{starttime},endtime=#{endtime},agelimit=#{agelimit},landtime=#{landtime} WHERE buildingid=#{buildingid}
+    </update>
+    <!--//更新楼盘小区信息(张宝)-->
+    <!--public boolean updateBuildSpaceInfo(Build build);-->
+    <update id="updateBuildSpaceInfo" parameterType="Build">
+        UPDATE build set tencompany=#{tencompany},tenement=#{tenement},tencost=#{tencost},tentype=#{tentype},greenrate=#{greenrate},carport=#{carport},cubage=#{cubage},fitment=#{fitment} WHERE buildingid=#{buildingid}
+    </update>
 </mapper>

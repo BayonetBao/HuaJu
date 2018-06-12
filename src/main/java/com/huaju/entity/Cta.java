@@ -2,11 +2,19 @@ package com.huaju.entity;
 
 public class Cta {
     private Integer ctaid;
-
     private String ctarelname;
     private String ctapassword;
+    private String ctaimg;
+    private String ctaphone;
+    private Integer ctatime;
+    private String education;
+    private String ctaname;
+    private String intro;
+    private String remark;
 
-
+    public Cta() {
+        super();
+    }
 
     public String getCtarelname() {
         return ctarelname;
@@ -23,21 +31,6 @@ public class Cta {
     public void setCtapassword(String ctapassword) {
         this.ctapassword = ctapassword;
     }
-
-    private String ctaimg;
-
-    private String ctaphone;
-
-    private Integer ctatime;
-
-    private String education;
-
-    private String ctaname;
-
-    private String intro;
-
-    private String remark;
-
     public String getCtaname() {
         return ctaname;
     }

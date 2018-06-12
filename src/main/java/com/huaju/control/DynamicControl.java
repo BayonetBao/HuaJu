@@ -3,10 +3,7 @@ package com.huaju.control;
 import com.github.pagehelper.PageInfo;
 import com.huaju.dao.BuildMapper;
 import com.huaju.dao.DynamicMapper;
-import com.huaju.entity.Build;
-import com.huaju.entity.BuildQueryPojo;
-import com.huaju.entity.Dynamic;
-import com.huaju.entity.DynamicQueryPojo;
+import com.huaju.entity.*;
 import com.huaju.service.DynamicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.PageContext;
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,12 +25,15 @@ import java.util.*;
 public class DynamicControl {
     @Autowired
     private DynamicService dynamicService;
+    @Autowired
+    private  DynamicMapper dynamicMapper;
 
     @RequestMapping(value = "selectAllDynamicByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
-    public void selectAllDynamicByQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void selectAllDynamicByQueryPojo(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DynamicQueryPojo dynamicQueryPojo=new DynamicQueryPojo();
-        dynamicQueryPojo.setComid(1);
-        List<Build> blist=dynamicService.selectBuildingInDynamic(1);
+        Company com= (Company) session.getAttribute("user");
+        dynamicQueryPojo.setComid(com.getComid());
+        List<Build> blist=dynamicService.selectBuildingInDynamic(com.getComid());
         Map<String, Object> cmap=new HashMap<>();
         String scurPage = request.getParameter("curPage");
         String id = request.getParameter("buildingid");
@@ -41,7 +42,7 @@ public class DynamicControl {
             dynamicQueryPojo.setBuildingid(buildid);
         }
        cmap.put("dynamicQueryPojo",dynamicQueryPojo);
-        int pageSize = 2;
+        int pageSize = 5;
         //当前的页面默认是首页
         int curPage = 1;
 
@@ -57,12 +58,18 @@ public class DynamicControl {
         request.getRequestDispatcher("/developer/dynamicList.jsp").forward(request, response);
     }
     @RequestMapping(value = "selectDynamicByBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
-    public void selectDynamicByBuild(DynamicQueryPojo dynamicQueryPojo,HttpServletRequest request,HttpServletResponse response){
-
+    public void selectDynamicByBuild(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        DynamicQueryPojo dynamicQueryPojo=new DynamicQueryPojo();
+        Company com= (Company) session.getAttribute("user");
+        dynamicQueryPojo.setBuildingid(com.getComid());
+        List<Dynamic> dynamics=dynamicMapper.selectAllDynamicByQueryPojo(dynamicQueryPojo);
+        request.setAttribute("dynamics",dynamics);
+        request.getRequestDispatcher("/user/ke/dynamic.jsp").forward(request,response);
     }
       @RequestMapping(value = "insertDynamicBefore.action",method = {RequestMethod.POST,RequestMethod.GET})
-      public void insertDynamicBefore(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          List<Build> blist=dynamicService.selectBuildingInDynamic(1);
+      public void insertDynamicBefore(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Company com= (Company) session.getAttribute("user");
+        List<Build> blist=dynamicService.selectBuildingInDynamic(com.getComid());
           request.setAttribute("blist",blist);
           request.getRequestDispatcher("/developer/dynamicAdd.jsp").forward(request,response);
     }
@@ -89,6 +96,7 @@ public class DynamicControl {
         }
         return result;
     }
+
     @RequestMapping(value = "dynamicUpdateBefore.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void dynamicUpdateBefore(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         Integer id=Integer.parseInt(request.getParameter("id"));

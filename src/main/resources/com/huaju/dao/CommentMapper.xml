@@ -11,7 +11,7 @@
         <result property="comcontent" column="comcontent"/>
         <result property="uname" column="uname"/>
         <result property="building" column="building"/>
-        <collection property="favors" javaType="Favor">
+        <collection property="favors" ofType="Favor">
             <result property="userid" column="fuserid"/>
         </collection>
     </resultMap>
@@ -46,7 +46,7 @@
                 and comment.comtype like "%" #{comtype} "%"
             </if>
         </where>
-        ORDER BY  commentid
+        ORDER BY  comtime
 
     </select>
     <!--public List<Build> selectBuildInComment(Integer comid);-->

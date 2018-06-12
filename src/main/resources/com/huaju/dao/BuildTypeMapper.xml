@@ -2,5 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.BuildTypeMapper">
 
+    <!--//    根据楼盘名字查询居室，显示在房子添加页面的居室选择上-->
+    <resultMap id="showBuildTypeInfoMap" type="Type">
+        <id column="butypeid" property="butypeid"/>
+        <result column="typeid" property="typeid"/>
+        <result column="buildingid" property="buildingid"/>
+        <collection property="typeList" ofType="Type">
+            <id column="typeid" property="typeid"/>
+            <result column="typename" property="typename"/>
+        </collection>
+
+    </resultMap>
+    <!--public List<Type> showBuildTypeInfo(int buildingid);-->
+    <select id="showBuildTypeInfo" resultMap="showBuildTypeInfoMap" parameterType="int">
+        SELECT t.typename  FROM type t , buildtype b WHERE
+          t.typeid=b.typeid AND b.buildingid=#{_parameter}
+    </select>
+    <!--//根据楼盘id查询各个户型的数量(张宝)-->
+    <!--public List<BuildType> selectTypeCount(int buildIngid);-->
+    <select id="selectTypeCount" parameterType="int" resultType="BuildType">
+        SELECT * from buildtype where buildingid=#{_parameter}
+    </select>
 
 </mapper>

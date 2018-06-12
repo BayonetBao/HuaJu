@@ -42,7 +42,9 @@ public class LoginRegisterControl {
             user.setUname(runame);
             user.setUpwd(rpass);
             user.setUphone(rphone);
-            allUserService.setUser(user);
+            if(allUserService.setUser(user)){
+
+            }
         }
     }
     //查询用户名是否已经注册（张宝）
@@ -57,7 +59,7 @@ public class LoginRegisterControl {
         return "0";
     }
     //所有用户登录用户名查询
-    @RequestMapping(value="/checkLoginUname.action")
+    @RequestMapping(value="/checkLoginUname.action",method = RequestMethod.GET)
     public String checkLoginUname(String uname,String userType,String password,HttpSession session){
         System.out.println("uname:"+uname);
         System.out.println("userType:"+userType);
@@ -69,11 +71,12 @@ public class LoginRegisterControl {
                 if(user.getUpwd().equals(password)){
                     session.setAttribute("user",user);
                     session.setAttribute("userType",userType);
+                    System.out.println(2);
                     return "2";
                 }else{
+                    System.out.println(1);
                     return "1";
                 }
-
             }
         }else if("2".equals(userType)){
             Company company=allUserService.selectCompanyByName(uname);
@@ -87,8 +90,8 @@ public class LoginRegisterControl {
             }
         }else {
 
-
         }
+
         return "0";
     }
     //开发商注册
@@ -194,7 +197,9 @@ public class LoginRegisterControl {
         company.setImplement(imagesTotalPath+"/"+company.getComuname()+"/implementss."+ FilenameUtils.getExtension(clicenses.getOriginalFilename()));
         company.setQuality(imagesTotalPath+"/"+company.getComuname()+"/qualitys."+ FilenameUtils.getExtension(clicenses.getOriginalFilename()));
         company.setInstruction(imagesTotalPath+"/"+company.getComuname()+"/instructions."+ FilenameUtils.getExtension(clicenses.getOriginalFilename()));
-        allUserService.setCompany(company);
+        if(allUserService.setCompany(company)){
+
+        }
 
     }
     @RequestMapping(value = "/login.action",method = RequestMethod.POST)

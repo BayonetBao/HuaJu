@@ -15,8 +15,8 @@ public class AllUserServiceImpl implements AllUserService {
     private CompanyMapper companyMapper;
     //注册用户
     @Override
-    public void setUser(User user) {
-        userMapper.setUser(user);
+    public boolean setUser(User user) {
+        return userMapper.setUser(user);
     }
     // 按用户名查找
     @Override
@@ -30,7 +30,13 @@ public class AllUserServiceImpl implements AllUserService {
     }
 
     @Override
-    public void setCompany(Company company) {
-        companyMapper.setCompany(company);
+    public boolean setCompany(Company company) {
+
+        return companyMapper.setCompany(company);
+    }
+    //按id查找（张宝）
+    @Override
+    public Company selectCompanyById(int comid) {
+        return companyMapper.selectCompanyById(comid);
     }
 }

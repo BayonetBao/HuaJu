@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>主要内容区main</title>
+    <title>主页</title>
     <link href="css/css.css" type="text/css" rel="stylesheet" />
     <link href="css/main.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="images/main/favicon.ico" />

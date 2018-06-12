@@ -25,7 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static org.apache.tools.ant.types.resources.MultiRootFileSet.SetType.file;
 
 @RequestMapping("/houseInfo")
 @Controller

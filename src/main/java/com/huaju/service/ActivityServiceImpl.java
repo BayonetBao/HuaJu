@@ -5,6 +5,7 @@ import com.huaju.dao.BuildMapper;
 import com.huaju.dao.CtaMapper;
 import com.huaju.entity.Activity;
 import com.huaju.entity.Build;
+import com.huaju.entity.BuildQueryPojo;
 import com.huaju.entity.Cta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,11 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public List<Build> selectBuilding() {
         return buildMapper.selectBuilding();
+    }
+
+    @Override
+    public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo) {
+        return buildMapper.selectBuildQueryPojo(buildQueryPojo);
     }
 
 }
