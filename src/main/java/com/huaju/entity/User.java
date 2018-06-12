@@ -10,6 +10,15 @@ public class User {
     private String uphone;
 
     private String remark;
+    private String userpic;
+
+    public String getUserpic() {
+        return userpic;
+    }
+
+    public void setUserpic(String userpic) {
+        this.userpic = userpic;
+    }
 
     public Integer getUserid() {
         return userid;
