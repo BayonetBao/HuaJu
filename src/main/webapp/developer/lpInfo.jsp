@@ -229,8 +229,14 @@
                         if(da==1){
                             obj.remove();
                             alert("删除成功！");
+                        }else {
+                            alert("sb");
                         }
-                    }
+
+                    },
+                error:function () {
+                    alert("SB")
+                }
             });
 
         }

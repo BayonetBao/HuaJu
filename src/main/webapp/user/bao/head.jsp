@@ -474,3 +474,330 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </body>
 </html>
+<!-- login -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info" style="min-width: 550px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body real-spa">
+                <div class="login-grids">
+                    <div class="login">
+
+                        <div class="login-right">
+                            <form  action="${pageContext.request.contextPath}/login.action" method="post" onsubmit="return loginsubmint('p')">
+                                <h3>Login</h3>
+                                <div class="form-group">
+                                    <label for="uname"><span style="font-size:18px">用户名:</span></label>
+                                    <input id="uname" name="uname" type="text" placeholder="用户名">
+                                    <span></span>
+                                </div>
+                                <p/>
+                                <div class="form-group">
+                                    <label for="password"><span style="font-size:18px">密&nbsp;&nbsp;&nbsp;&nbsp;码:</span></label>
+                                    <input id="password" name="password" type="password" placeholder="密码">
+                                    <span></span>
+                                </div>
+                                <label class="radio-inline">
+                                    <input type="radio" name="userType"  value="1" checked>普通用户
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="userType"  value="2">开发商
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="userType"  value="3">咨询师
+                                </label>
+                                <p/>
+                                <div class="single-bottom">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox2" value="option2">记住密码
+                                    </label>
+                                </div>
+                                <input type="submit" value="登录" >
+                            </form>
+                        </div>
+
+                    </div>
+                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- //login -->
+<!-- Register -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info" style="min-width: 550px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body real-spa">
+                <div class="login-grids">
+                    <div class="login">
+                        <div class="login-right">
+                            <form action="${pageContext.request.contextPath}/register.action" method="post" onsubmit="return registersubmit('p')">
+                                <h3>普通用户注册 </h3>
+                                <input style="color:#000" id="runame" name="runame" type="text" placeholder="用户名" >
+                                <span></span>
+                                <input style="color:#000" id="rpass" name="rpass" type="password" placeholder="密码" >
+                                <span></span>
+                                <input style="color:#000" id="repass" name="repass" type="password" placeholder="确认密码" >
+                                <span></span>
+                                <input style="color:#000" id="rphone" name="rphone" type="text" placeholder="手机号">
+                                <span></span>
+                                <br>
+                                <input style="color:#000;width:160px;" id="yanzm" name="yanzm" type="text" placeholder="验证码">
+
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" style="background: #2EA9E0; width:250px;border-radius:5px; height:45px; text-align:center; color:#FFF" id="b1">获取验证码</button>
+                                <span></span>
+
+                                <input type="submit" value="注册" >
+                            </form>
+                        </div>
+                    </div>
+                    <p><a href="${pageContext.request.contextPath}/user/bao/developerRegister/register.jsp">开发商注册>></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    <!--短信验证-->
+    var timer;
+    var time=5;
+    var yznum;
+    $("#b1").click(function(){
+        var phonea=$("#rphone");
+        var regphonea=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        if(regphonea.test(phonea.val())){
+            yznum="";
+            for(var i=0;i<6;i++){
+                yznum+=Math.floor(Math.random()*10);
+            }
+            alert(yznum);
+            $.ajax({
+                type:"get",
+                url:"${pageContext.request.contextPath}/sendyanzm.action",
+                data:"yznum="+yznum+"&rphone="+$('#rphone').val(),
+                success:function (da) {
+
+                    if(da==1){
+
+                    }
+                }
+            });
+            $("#b1").text("5秒后重新获取");
+
+            $("#b1").attr("disabled", true);
+            $("#b1").css("background","#F0F0F0");
+            $("#b1").css("color","black");
+            timer=setInterval('time1()',1000);
+        }else{
+            phonea.next("SPAN").text("请输入正确的手机号");
+            phonea.next("SPAN").removeClass();
+
+            phonea.next("SPAN").addClass("error");
+        }
+
+//
+    });
+    function time1(){
+        time--;
+        $("#b1").text(time+"秒后重新获取");
+        if(time==0){
+            clearInterval(timer);
+            $("#b1").removeAttr("disabled");
+            $("#b1").text("获取验证码");
+            time=5;
+            $("#b1").css("background","#3587FF");
+            $("#b1").removeAttr("color");
+            $("#b1").css("color","white");
+            return;
+        }
+    }
+    onload=registersubmit;
+    function registersubmit(param){
+        var flag=true;
+        //验证用户名
+        var uname=$("#runame");
+        var regname=/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
+        checkuanme(uname,function (val1) {
+            if(regname.test(val1)){
+                return true;
+            }else {
+                flag= false;
+                return false;
+            }
+        },function (val2) {
+            if(val2==0){
+                return true;
+            }else {
+                flag= false;
+                return false;
+            }
+        },param);
+
+        //验证密码
+        var pass=$("#rpass");
+        var regpass=/^[\w]{6,12}$/;
+        checkData(pass,function (val) {
+            if(regpass.test(val)){
+                return true;
+            }else {
+                flag=false;
+                return false;
+            }
+        },"密码长度在6~12之间，只能包含字母、数字和下划线",param)
+        //验证密码
+        var repass=$("#repass");
+
+        checkData(repass,function (val) {
+            if(val!=""&&pass.val()==val){
+                return true;
+            }else {
+                flag=false;
+                return false;
+            }
+        },"两次密码输入不一致",param)
+        //验证手机号
+        var phone=$("#rphone");
+        var regphone=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        checkData(phone,function (val) {
+            if(regphone.test(val)){
+                return true;
+            }else{
+                flag=false;
+                return false;
+            }
+        },"请输入正确的手机号",param);
+        //验证验证码
+
+        var reyanznum=$("#yanzm");
+//
+        reyanznum.focus(function () {
+            $("#b1").next("SPAN").text("");
+        });
+        if(param=='p'){
+            if(reyanznum.val()==yznum){
+                //验证码正确
+            }else {
+                //alert(${pageContext.session.getAttribute("yznum")});
+                $("#b1").next("SPAN").text("验证码错误");
+                $("#b1").next("SPAN").removeClass();
+                $("#b1") .next("SPAN").addClass("error");
+                flag=false;
+            }
+        }
+        return flag;
+    }
+    //验证用户名函数
+    function checkuanme(obj,fun1,fun2,param) {
+        var span=obj.next("SPAN");
+
+        obj.focus(function () {
+            span.text("");
+            span.removeClass();
+        });
+        obj.blur(function () {
+            var value=obj.val();
+            if(fun1(value)){
+
+                $.ajax({
+                    type:"get",
+                    url:"${pageContext.request.contextPath}/checkUname.action",
+                    data:"runame="+$("#runame").val(),
+                    success:function (da) {
+
+                        if(fun2(da)){
+                            span.text("OK");
+                            span.removeClass();
+                            span.addClass("success");
+                        }else{
+                            span.text("用户名已存在");
+                            span.removeClass();
+                            span.addClass("error")
+                        }
+                    }
+                });
+            }else {
+                span.text("用户名字母开头，5-16位，字母数字下划线");
+                span.removeClass();
+                span.addClass("error");
+            }
+        });
+        if(param=='p'){
+            obj.blur();
+        }
+    }
+    //验证其他
+    function checkData(obj,fun,info,param){
+        var span=obj.next("SPAN");
+        obj.focus(function () {
+            span.text("");
+            span.removeClass();
+        });
+        obj.blur(function () {
+            var value=obj.val();
+            if(fun(value)){
+                span.text("OK");
+                span.addClass("success");
+            }else {
+                span.text(info);
+                span.removeClass();
+                span.addClass("error");
+            }
+
+        });
+        if(param =='p'){
+            obj.blur();
+        }
+
+    }
+    function  loginsubmint(param) {
+
+        var flag=true;
+        var uname=$("#uname");
+        var password=$("#password");
+        if(param=='p'){
+            $.ajax({
+                async:false,
+                type:"get",
+                url:"${pageContext.request.contextPath}/checkLoginUname.action",
+                data:"uname="+uname.val()+"&userType="+$("input[name='userType']:checked").val()+"&password="+password.val(),
+                success:function (da){
+
+                    if(da==0){
+
+                        uname.next("SPAN").text("用户名不存在");
+                        uname.next("SPAN").removeClass();
+                        uname.next("SPAN").addClass("error");
+                        flag=false;
+                    }else if(da==1){
+
+                        password.next("SPAN").text("密码错误");
+                        password.next("SPAN").removeClass();
+                        password.next("SPAN").addClass("error");
+                        flag=false;
+                    }
+                },
+                error:function () {
+                    alert("sb")
+                }
+            });
+        }
+
+        return flag;
+    }
+    $("#uname").focus(function () {
+        $("#uname").next("SPAN").text("");
+    });
+    $("#password").focus(function () {
+        $("#password").next("SPAN").text("");
+    });
+</script>
+</body>
+</html>

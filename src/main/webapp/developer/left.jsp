@@ -34,7 +34,7 @@
 %>
 <div id="left-top">
     <div><img src="images/main/member.gif" width="44" height="44" /></div>
-    <span>用户：${user.comuname}<br>角色：超级管理员</span>
+    <span>用户：${user.comuname}<br>角色：开发商</span>
 </div>
 <div style="float: left" id="my_menu" class="sdmenu">
     <div class="collapsed">
