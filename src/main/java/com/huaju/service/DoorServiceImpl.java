@@ -5,13 +5,16 @@ import com.huaju.entity.Door;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DoorServiceImpl implements DoorService {
 
     @Autowired
-    private DoorMapper doorMapper;
+    private  DoorMapper doorMapper;
+
     @Override
-    public Door showAllDoorInfo() {
-        return doorMapper.showAllDoorInfo();
+    public List<Door> showDoorInfo() {
+        return doorMapper.showDoorInfo();
     }
 }

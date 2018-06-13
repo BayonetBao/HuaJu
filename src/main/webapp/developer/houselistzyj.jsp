@@ -66,26 +66,30 @@
 </style>
 </head>
 <body>
-<div class="image">
-    <a href="${pageContext.request.contextPath}/houseInfo/addHouseInfo.action?id=1"><img src="<%=basePath%>developer/images/main/add.svg" /></a>
-</div>
+
 
 
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
+
     <tr>
-        <td align="left" valign="top" id="addinfo">
-
-            <a href="main.html" onFocus="this.blur()" class="add">返回</a>
-        </td>
+        <td width="99%" align="left" valign="top">您的位置：楼房列表</td>
     </tr>
+    <tr>
+        <div class="image">
+            <%--传参楼盘id--%>
+            <a href="${pageContext.request.contextPath}/picture/before.action?buildingid=${buildingid}"><img src="<%=basePath%>developer/images/main/add.svg" /></a>
+        </div>
 
+    </tr>
     <tr>
         <td align="left" valign="top">
-
+            <form method="post" action="">
+                <input name="buildingid" value="${buildingid}" hidden="hidden"/>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
                 <%--表格字段名--%>
                 <tr>
+
                     <th align="center" valign="middle" class="borderright">编号</th>
                     <th align="center" valign="middle" class="borderright">房名</th>
                     <th align="center" valign="middle" class="borderright">参考总价</th>
@@ -99,11 +103,12 @@
 
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.houseid}</td>
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.hname}</td>
-                        <td align="center" valign="middle" class="borderright borderbottom">${updatename.hmoney}万元左右</td>
+                        <td align="center" valign="middle" class="borderright borderbottom">${houselist.hmoney}万元左右</td>
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.harea}㎡</td>
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.hsalestatus}</td>
                         <td align="center" valign="middle" class="borderbottom">
                             <a href="${pageContext.request.contextPath}/houseInfo/detailhouse.action?id=${houselist.houseid}" target="mainFrame" onFocus="this.blur()" class="add">详情</a>
+                            <a href="${pageContext.request.contextPath}/houseInfo/update.action?id=${houselist.houseid}" target="mainFrame" onFocus="this.blur()" class="add">|修改</a>
                             |<a href="javascript:void(0)" onclick="remove('${houselist.houseid}')" target="mainFrame" onFocus="this.blur()" class="add">删除</a>
 
                         </td>
@@ -111,12 +116,20 @@
                     </tr>
 
                 </c:forEach>
-            </table></td>
+            </table>
+</form>
+        </td>
     </tr>
 
 </table>
 
+
 <script type="text/javascript">
+
+
+
+
+
     function remove(id) {
         if (confirm("确定要删除么？")){
             var url="${pageContext.request.contextPath}/houseInfo/remove.action";

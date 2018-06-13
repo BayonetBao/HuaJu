@@ -1,9 +1,12 @@
 package com.huaju.entity;
 
+import java.util.List;
+
 public class Type {
     private Integer typeid;
 
     private String typename;
+
 
     public Integer getTypeid() {
         return typeid;

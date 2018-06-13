@@ -14,7 +14,7 @@ public class BuildType {
 
     private Type type;
 
-    private List<Type> typeList;
+    private  List<Type> typeList;
 
     public List<Type> getTypeList() {
         return typeList;
