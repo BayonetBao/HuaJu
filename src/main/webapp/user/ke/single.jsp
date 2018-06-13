@@ -10,7 +10,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Be Angular | Bootstrap Admin Web App with AngularJS</title>
+    <title>个人主页</title>
     <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <script src="${pageContext.request.contextPath}/user/ke/js/jquery.min.js}"></script>
@@ -25,18 +25,16 @@
 
     <style>
         body{
-            background-image: url("${pageContext.request.contextPath}/user/ke/img/bg.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-color: rgba(255,229,9,0.3);
         }
     </style>
 </head>
-<body >
-<div class="app app-header-fixed container"  >
+<body style="height: auto" >
+<div class="app app-header-fixed container  bg-dark" id="maindiv" >
     <!-- navbar -->
-    <div class="app-header navbar">
+    <div class="app-header navbar" style="background-image:none;">
         <!-- navbar header -->
-        <div class="navbar-header bg-dark">
+        <div class="navbar-header bg-dark" >
             <button class="pull-right visible-xs dk" data-toggle="class:show" data-target=".navbar-collapse">
                 <i class="glyphicon glyphicon-cog"></i>
             </button>
@@ -45,7 +43,7 @@
             </button>
             <!-- brand -->
             <a href="#/" class="navbar-brand text-lt">
-                <i class="fa fa-btc"></i>
+                <i class="glyphicon glyphicon-user"></i>
                 <img src="${pageContext.request.contextPath}/user/ke/img/logo.png" alt="." class="hide">
                 <span class="hidden-folded m-l-xs">个人中心</span>
             </a>
@@ -54,7 +52,7 @@
         <!-- / navbar header -->
 
         <!-- navbar collapse -->
-        <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only">
+        <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only" >
 
             <!-- link and dropdown -->
             <ul class="nav navbar-nav hidden-sm">
@@ -98,7 +96,7 @@
                 <img src="${pageContext.request.contextPath}/user/ke/img/a0.jpg" alt="...">
                 <i class="on md b-white bottom"></i>
                 </span>
-                        <span class="hidden-sm hidden-md">个人名字</span>
+                        <span class="hidden-sm hidden-md">${sessionScope.user.uname}</span>
                     </a>
                 </li>
             </ul>
@@ -148,12 +146,6 @@
                             <a href class="auto">
                                 <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
                                 <span class="font-bold" translate="aside.nav.DASHBOARD">我的预约</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active">
-                            <a ui-sref="app.calendar">
-                                <i class="glyphicon glyphicon-calendar icon text-info-dker"></i>
-                                <span class="font-bold" translate="aside.nav.CALENDAR">日程表</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
@@ -211,7 +203,7 @@
     <!-- / menu -->
 
     <!-- content -->
-    <div class="app-content" id="app" >
+    <div class="app-content bg-white" id="app" >
         <div ui-butterbar></div>
         <a href class="off-screen-toggle hide" data-toggle="class:off-screen" data-target=".app-aside" ></a>
         <div class="app-content-body fade-in-up">
@@ -227,14 +219,9 @@
                                     </a>
                                     <div class="clear m-b">
                                         <div class="m-b m-t-sm">
-                                            <span class="h3 text-black">John.Smith</span>
+                                            <span class="h3 text-black">${sessionScope.user.uname}</span>
                                             <small class="m-l">London, UK</small>
                                         </div>
-                                        <p class="m-b">
-                                            <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-twitter"></i></a>
-                                            <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-facebook"></i></a>
-                                            <a href class="btn btn-sm btn-bg btn-rounded btn-default btn-icon"><i class="fa fa-google-plus"></i></a>
-                                        </p>
                                         <a href class="btn btn-sm btn-success btn-rounded">Follow</a>
                                     </div>
                                 </div>
@@ -268,7 +255,7 @@
                                 </a>
                                 <div class="m-l-lg">
                                     <div class="m-b-xs">
-                                        <a href class="h4">John smith</a>
+                                        <a href class="h4">${sessionScope.user.uname}</a>
                                         <span class="text-muted m-l-sm pull-right">
                           Just now
                         </span>
@@ -392,88 +379,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col w-lg bg-light lter b-l bg-auto">
-                    <div class="wrapper">
-                        <div class="">
-                            <h4 class="m-t-xs m-b-xs">Who to follow</h4>
-                            <ul class="list-group no-bg no-borders pull-in">
-                                <li class="list-group-item">
-                                    <a herf class="pull-left thumb-sm avatar m-r">
-                                        <img src="${pageContext.request.contextPath}/user/ke/img/a4.jpg" alt="..." class="img-circle">
-                                        <i class="on b-white bottom"></i>
-                                    </a>
-                                    <div class="clear">
-                                        <div><a href>Chris Fox</a></div>
-                                        <small class="text-muted">Designer, Blogger</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <a herf class="pull-left thumb-sm avatar m-r">
-                                        <img src="${pageContext.request.contextPath}/user/ke/img/a5.jpg" alt="..." class="img-circle">
-                                        <i class="on b-white bottom"></i>
-                                    </a>
-                                    <div class="clear">
-                                        <div><a href>Mogen Polish</a></div>
-                                        <small class="text-muted">Writter, Mag Editor</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <a herf class="pull-left thumb-sm avatar m-r">
-                                        <img src="${pageContext.request.contextPath}/user/ke/img/a6.jpg" alt="..." class="img-circle">
-                                        <i class="busy b-white bottom"></i>
-                                    </a>
-                                    <div class="clear">
-                                        <div><a href>Joge Lucky</a></div>
-                                        <small class="text-muted">Art director, Movie Cut</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <a herf class="pull-left thumb-sm avatar m-r">
-                                        <img src="${pageContext.request.contextPath}/user/ke/img/a7.jpg" alt="..." class="img-circle">
-                                        <i class="away b-white bottom"></i>
-                                    </a>
-                                    <div class="clear">
-                                        <div><a href>Folisise Chosielie</a></div>
-                                        <small class="text-muted">Musician, Player</small>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel b-a">
-                            <h4 class="font-thin padder">Latest Tweets</h4>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <p>Wellcome <a href class="text-info">@Drew Wllon</a> and play this web application template, have fun1 </p>
-                                    <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</small>
-                                </li>
-                                <li class="list-group-item">
-                                    <p>Morbi nec <a href class="text-info">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
-                                    <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
-                                </li>
-                                <li class="list-group-item">
-                                    <p><a href class="text-info">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
-                                    <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel b-light clearfix">
-                            <div class="panel-body">
-                                <a href class="thumb pull-left m-r">
-                                    <img src="${pageContext.request.contextPath}/user/ke/img/a0.jpg" class="img-circle">
-                                </a>
-                                <div class="clear">
-                                    <a href class="text-info">@Mike Mcalidek <i class="fa fa-twitter"></i></a>
-                                    <small class="block text-muted">2,415 followers / 225 tweets</small>
-                                    <a href class="btn btn-xs btn-success m-t-xs">Follow</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- PASTE above -->
         </div>
-    </div>
+    </div >
     <!-- /content -->
 
     <!-- aside right -->
@@ -492,7 +401,7 @@
                             <div class="clear">
                                 <div class="pos-rlt wrapper-sm b b-light r m-l-sm">
                                     <span class="arrow left pull-up"></span>
-                                    <p class="m-b-none">Hi John, What's up...</p>
+                                    <p class="m-b-none">Hi ${sessionScope.user.uname}, What's up...</p>
                                 </div>
                                 <small class="text-muted m-l-sm"><i class="fa fa-ok text-success"></i> 2 minutes ago</small>
                             </div>
