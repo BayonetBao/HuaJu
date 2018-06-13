@@ -98,7 +98,7 @@
                             <div style=" float:left;margin:10px 10px;"><a href="${pageContext.request.contextPath}/build/selectBuildById.action?buildingid=${build.buildingid}" style="font-size:22px;"><b>${build.building}</b></a>&nbsp;&nbsp;&nbsp;&nbsp;<span style=" color:#0cf;border:solid #0CF 1px; border-radius:15px;padding:0px 8px; font-size:9px;">${build.conditions}</span>
                             </div>
                             <!--添加房型-->
-                            <div style="float:right;margin:10px 10px;"><a href="${pageContext.request.contextPath}/houseInfo/houseInfo.action?buildingid=${build.buildingid}"style=" color:#09F;">添加房型信息</a>
+                            <div style="float:right;margin:10px 10px;"><a href="${pageContext.request.contextPath}/houseInfo/houseInfo.action?buildingid=${build.buildingid}"style=" color:#09F;">房型信息管理</a>
                             </div>
                         </div>
                         <!--楼盘简介-->

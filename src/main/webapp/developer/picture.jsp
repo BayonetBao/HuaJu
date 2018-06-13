@@ -26,6 +26,8 @@
     <link href="<%=basePath%>developer/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=basePath%>developer/css/bootstrap-fileinput.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/developer/My97DatePicker/WdatePicker.js"></script>
+    <script src="${pageContext.request.contextPath}/developer/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/developer/js/bootstrap-fileinput.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -257,12 +259,8 @@
         </td>
     </tr>
 </table>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap-fileinput.js"></script>
-<script type="text/javascript">
 
 
-</script>
 
 </body>
 </html>

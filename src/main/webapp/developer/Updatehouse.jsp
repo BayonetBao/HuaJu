@@ -25,6 +25,8 @@
     <link href="<%=basePath%>developer/css/bootstrap.min.css" rel="stylesheet">
     <link href="<%=basePath%>developer/css/bootstrap-fileinput.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/developer/My97DatePicker/WdatePicker.js"></script>
+    <script src="${pageContext.request.contextPath}/developer/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/developer/js/bootstrap-fileinput.js"></script>
     <style>
         body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
         #searchmain{ font-size:12px;}
@@ -257,47 +259,5 @@
         </td>
     </tr>
 </table>
-
-
-<%--<div class="fileinput-new thumbnail" style="width: 200px;height: auto;max-height:150px;">--%>
-    <%--<input type="file" name="imgfile" id="picID" accept="image/gif,image/jpeg,image/x-png">--%>
-    <%--<img id='picImg' style="width:160px;height: 140px;" src="<%=imgPath%>/${house.htypeimg}" alt="" />--%>
-<%--</div>--%>
-<script type="text/javascript" src="<%=basePath%>jquery1.8.3.min.js"></script>
-<script type="text/javascript">
-
-    $(function () {
-        //建立一個可存取到該file的url
-        function getObjectURL(file) {
-            var url = null;
-            if (window.createObjectURL != undefined) { // basic
-                url = window.createObjectURL(file);
-            } else if (window.URL != undefined) { // mozilla(firefox)
-                url = window.URL.createObjectURL(file);
-            } else if (window.webkitURL != undefined) { // webkit or chrome
-                url = window.webkitURL.createObjectURL(file);
-            }
-            return url;
-        }
-
-        //获取点击的元素
-        var  divimg=$('.hahha').children('img');
-//        获取上传图片的input标签
-        var divinput=$('.hahha').children('input');
-//        设置input的大小和img的大小一致
-        divinput.css({'width':divimg.css('width'),'heigth':divimg.css('heigth'),'border':solid});
-//       input透明度为0，定位，优先级比图片的高
-        divinput.css({'opacity':0,'position':'absolute','z-index':100});
-//        判断input的图文件改变则img图片也替换为input选择的图片
-        divinput.change(function () {
-            if(this.files&&this.files[0]){
-                var objurl=getObjectURL(this.files[0]);
-                if (objurl){
-                    $(this).siblings('img').attr("src",objurl);
-                }
-            }
-        })
-    })
-</script>
 </body>
 </html>
