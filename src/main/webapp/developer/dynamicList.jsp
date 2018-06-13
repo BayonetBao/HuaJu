@@ -91,7 +91,7 @@
                     <th  valign="middle" class="borderright">编号</th>
                     <th  valign="middle" class="borderright">楼盘</th>
                     <th  valign="middle" class="borderright">标题</th>
-                    <th  valign="middle" class="borderright">动态内容</th>
+                    <th style="width: 50%;" valign="middle" class="borderright">动态内容</th>
                     <th  valign="middle" class="borderright">动态时间</th>
                     <th  valign="middle">操作</th>
                 </tr>

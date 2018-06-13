@@ -115,7 +115,7 @@ public class BuildControl {
         System.out.println(build.getEndtime());
         build.setBpicture(image);
         if(buildService.setBuild(build)) {
-            request.getRequestDispatcher("/build/showBuildInfo.action").forward(request, response);
+            response.sendRedirect(request.getContextPath()+"/build/showBuildInfo.action");
         }
 
 
