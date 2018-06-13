@@ -247,7 +247,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
                                     <label class="sr-only" for="province1">Province</label>
-                                    <select class="form-control" name="province" id="province1" name="province"></select>
+                                    <select class="form-control" name="province" id="province1" name="province">
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>城市</h5>
@@ -304,12 +305,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <h5>总价</h5>
                                 <select class="sel3" name="bTotalprice">
                                     <option value="">总价</option>
-                                    <option value="">
+                                    <option value="1000000">
                                         <100万</option>
-                                    <option value="">100-200万</option>
-                                    <option value="">200-300万</option>
-                                    <option value="">300-500万</option>
-                                    <option value="">>500万</option>
+                                    <option value="1000000-2000000">100-200万</option>
+                                    <option value="2000000-3000000">200-300万</option>
+                                    <option value="3000000-5000000">300-500万</option>
+                                    <option value="5000000">>500万</option>
                                 </select>
                             </div>
                             <div class="yourplace-grids1">

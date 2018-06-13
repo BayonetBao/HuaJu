@@ -54,7 +54,7 @@
     </resultMap>
     <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);珂-->
    <select id="selectBuildQueryPojo" parameterType="BuildQueryPojo" resultMap="BuildMap">
-       select build.* ,cta.ctaname,cta.ctaimg,buildtype.butypeid,buildtype.count,type.typename from
+       select build.* ,cta.ctaname,cta.ctaimg,buildtype.butypeid,buildtype.count,type.typename,type.typeid from
        build left join buildtype on(build.buildingid=buildtype.buildingid) left join type on(buildtype.typeid=type.typeid)
        left join cta on (build.ctaid=cta.ctaid)
        <where>
@@ -94,6 +94,10 @@
            <if test="comid neq null">
                and comid =#{comid}
            </if>
+           <if test="typeid neq null">
+               and typeid =#{typeid}
+           </if>
+
            <if test="isonsale neq null">
                and discounts is not null
            </if>
