@@ -250,18 +250,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
                                     <label class="sr-only" for="province1">Province</label>
-                                    <select class="form-control" name="province" id="province1" name="province">
+                                    <select class="form-control" name="province" id="province1">
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>城市</h5>
                                     <label class="sr-only" for="city1">City</label>
-                                    <select class="form-control" name="city" id="city1" name="city"></select>
+                                    <select class="form-control" name="city" id="city1"></select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>区域</h5>
                                     <label class="sr-only" for="district1" name="district">District</label>
-                                    <select class="form-control" name="district" id="district1" name="district"></select>
+                                    <select class="form-control" name="district" id="district1"></select>
                                 </div>
                             </div>
                             <div class="yourplace col-md-12">
