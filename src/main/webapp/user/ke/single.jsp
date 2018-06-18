@@ -6,33 +6,33 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <meta charset="utf-8" />
     <title>个人主页</title>
     <meta name="description" content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <script src="${pageContext.request.contextPath}/user/ke/js/jquery.min.js}"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/bootstrapSingle.css" type="text/css" />
+    <script src="${pageContext.request.contextPath}/user/ke/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/bootstrapSingle.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/animate.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/simple-line-icons.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/app.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/font.css" type="text/css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/font-awesome.min.css" type="text/css" />
-    <script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js"></script>
-
     <style>
         body{
             background-color: rgba(255,229,9,0.3);
+            overflow: hidden;
         }
     </style>
 </head>
 <body style="height: auto" >
+<div style="border: 1px;height: 30px;"></div>
 <div class="app app-header-fixed container  bg-dark" id="maindiv" >
     <!-- navbar -->
-    <div class="app-header navbar" style="background-image:none;">
+    <div class="app-header navbar" >
         <!-- navbar header -->
         <div class="navbar-header bg-dark" >
             <button class="pull-right visible-xs dk" data-toggle="class:show" data-target=".navbar-collapse">
@@ -52,18 +52,17 @@
         <!-- / navbar header -->
 
         <!-- navbar collapse -->
-        <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only" >
-
+        <div class="collapse pos-rlt navbar-collapse box-shadow bg-white-only" style="margin-left: 200px; padding-left: 0px;" >
             <!-- link and dropdown -->
             <ul class="nav navbar-nav hidden-sm">
-                <li class="dropdown pos-stc">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+                <li>
+                    <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action" >
                         <span>去查房源</span>
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">
-                        <span >welcome</span>
+                <li>
+                    <a href="${pageContext.request.contextPath}/user/ke/dynamicTalk.jsp" target="myframe">
+                        <span >welcome小客服</span>
                     </a>
                 </li>
             </ul>
@@ -75,7 +74,7 @@
                     <div class="input-group">
                         <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="Search projects...">
                         <span class="input-group-btn">
-                <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
+                <button type="submit" class="btn btn-sm bg-light rounded"><i class="glyphicon glyphicon-search"></i></button>
               </span>
                     </div>
                 </div>
@@ -128,31 +127,35 @@
                 <!-- nav -->
                 <nav ui-nav class="navi">
                     <ul class="nav">
-                        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                            <span translate="aside.nav.HEADER">Navigation</span>
-                        </li>
-                        <li ng-class="{active:$state.includes('app.form')}">
-                            <a href="javascript:add('http://www.baidu.com')" class="auto">
-                  <span class="pull-right text-muted">
-                    <i class="glyphicon glyphicon-hand-left"></i>
-                  </span>
+                         <li >
+                             <a href="${pageContext.request.contextPath}/user/ke/content.jsp" target="myframe" class="auto">
+                             <span class="pull-right text-muted">
+                          </span>
+                                 <i class="glyphicon glyphicon-hand-right"></i>
+                                 <span >个人信息</span>
+                             </a>
+                         </li>
+                         <li>
+                            <a href="${pageContext.request.contextPath}/user/ke/updateInfo.jsp" target="myframe" class="auto">
+                             <span class="pull-right text-muted">
+                          </span>
                                 <i class="glyphicon glyphicon-edit"></i>
-                                <span translate="aside.nav.components.form.FORM">修改信息</span>
+                                <span>修改信息</span>
                             </a>
 
 
                         </li>
                         <li>
-                            <a href class="auto">
+                            <a href="javascript:clickdiv(single.jsp)" class="auto">
                                 <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
-                                <span class="font-bold" translate="aside.nav.DASHBOARD">我的预约</span>
+                                <span >我的预约</span>
                             </a>
                         </li>
                         <li ui-sref-active="active">
                             <a ui-sref="app.mail.list">
                                 <b class="badge bg-info pull-right">9</b>
                                 <i class="glyphicon glyphicon-envelope icon text-info-lter"></i>
-                                <span class="font-bold" translate="aside.nav.EMAIL">我的消息</span>
+                                <span >我的消息</span>
                             </a>
                         </li>
                         <li>
@@ -169,7 +172,7 @@
                         <li>
                             <a href class="auto">
                                 <i class="glyphicon glyphicon-th-large icon text-success"></i>
-                                <span class="font-bold">我的评论</span>
+                                <span>我的评论</span>
                             </a>
 
                         </li>
@@ -204,184 +207,8 @@
 
     <!-- content -->
     <div class="app-content bg-white" id="app" >
-        <div ui-butterbar></div>
-        <a href class="off-screen-toggle hide" data-toggle="class:off-screen" data-target=".app-aside" ></a>
-        <div class="app-content-body fade-in-up">
-            <!-- COPY the content from "tpl/" -->
-            <div class="hbox hbox-auto-xs hbox-auto-sm">
-                <div class="col">
-                    <div style="background:url('${pageContext.request.contextPath}/user/ke/img/c4.jpg') center center; background-size:cover">
-                        <div class="wrapper-lg bg-white-opacity">
-                            <div class="row m-t">
-                                <div class="col-sm-7">
-                                    <a href class="thumb-lg pull-left m-r">
-                                        <img src="${pageContext.request.contextPath}/user/ke/img/a0.jpg" class="img-circle">
-                                    </a>
-                                    <div class="clear m-b">
-                                        <div class="m-b m-t-sm">
-                                            <span class="h3 text-black">${sessionScope.user.uname}</span>
-                                            <small class="m-l">London, UK</small>
-                                        </div>
-                                        <a href class="btn btn-sm btn-success btn-rounded">Follow</a>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="pull-right pull-none-xs text-center">
-                                        <a href class="m-b-md inline m">
-                                            <span class="h3 block font-bold">2k</span>
-                                            <small>Followers</small>
-                                        </a>
-                                        <a href class="m-b-md inline m">
-                                            <span class="h3 block font-bold">250</span>
-                                            <small>Following</small>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wrapper bg-white b-b">
-                        <ul class="nav nav-pills nav-sm">
-                            <li class="active"><a href>Stream</a></li>
-                            <li><a href>Profile</a></li>
-                            <li><a href>Messages</a></li>
-                        </ul>
-                    </div>
-                    <div class="padder">
-                        <div class="streamline b-l b-info m-l-lg m-b padder-v">
-                            <div>
-                                <a class="pull-left thumb-sm avatar m-l-n-md">
-                                    <img src="${pageContext.request.contextPath}/user/ke/img/a9.jpg" class="img-circle" alt="...">
-                                </a>
-                                <div class="m-l-lg">
-                                    <div class="m-b-xs">
-                                        <a href class="h4">${sessionScope.user.uname}</a>
-                                        <span class="text-muted m-l-sm pull-right">
-                          Just now
-                        </span>
-                                    </div>
-                                    <div class="m-b">
-                                        <div>Lorem ipsum dolor sit amet, consecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
-                                        <div class="m-t-sm">
-                                            <a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
-                                            <a href class="text-muted m-xs"><i class="icon-star"></i></a>
-                                            <a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- .comment-reply -->
-                            <div class="m-l-lg">
-                                <a class="pull-left thumb-sm avatar">
-                                    <img src="${pageContext.request.contextPath}/user/ke/img/a5.jpg" alt="...">
-                                </a>
-                                <div class="m-l-xxl panel b-a">
-                                    <div class="panel-heading pos-rlt">
-                                        <span class="arrow left pull-up"></span>
-                                        <span class="text-muted m-l-sm pull-right">
-                          10m ago
-                        </span>
-                                        <a href>Mika Sam</a>
-                                        Report this comment is helpful
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- / .comment-reply -->
-                            <div>
-                                <a class="pull-left thumb-sm avatar m-l-n-md">
-                                    <img src="${pageContext.request.contextPath}/user/ke/img/a3.jpg" alt="...">
-                                </a>
-                                <div class="m-l-lg m-b-lg panel b-a bg-light lt">
-                                    <div class="panel-heading pos-rlt b-light">
-                                        <span class="arrow arrow-light left"></span>
-                                        <a href>By me</a>
-                                        <span class="text-muted m-l-sm pull-right">
-                          1h ago
-                        </span>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div>This comment was posted by you.</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <a class="pull-left thumb-sm avatar m-l-n-md">
-                                    <img src="${pageContext.request.contextPath}/user/ke/img/a6.jpg" class="img-circle" alt="...">
-                                </a>
-                                <div class="m-l-lg m-b-lg">
-                                    <div class="m-b-xs">
-                                        <a href class="h4">Jessica</a>
-                                        <span class="text-muted m-l-sm pull-right">
-                          3h ago
-                        </span>
-                                    </div>
-                                    <div class="m-b">
-                                        <div class="m-b">Cecteter adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
-                                        <img src="${pageContext.request.contextPath}/user/ke/img/c5.jpg" class="b b-a wrapper-xs bg-white img-responsive">
-                                        <div class="m-t-sm">
-                                            <a href class="text-muted m-xs"><i class="icon-action-redo"></i></a>
-                                            <a href class="text-muted m-xs"><i class="icon-star"></i></a>
-                                            <a href class="text-muted m-xs"><i class="icon-refresh"></i> 13</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <a class="pull-left thumb-sm avatar m-l-n-md">
-                                    <img src="${pageContext.request.contextPath}/user/ke/img/a4.jpg" class="img-circle" alt="...">
-                                </a>
-                                <div class="m-l-lg m-b-lg">
-                                    <div class="m-b-xs">
-                                        <a href class="h4">Fisio</a>
-                                        <span class="text-muted m-l-sm pull-right">
-                          4h ago
-                        </span>
-                                    </div>
-                                    <div>
-                                        <div class="m-b">Diam nonummy nibh euismod tincidunt ut laoreet. ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin </div>
-                                        <div class="panel panel-default m-t-md m-b-n-sm pos-rlt">
-                                            <form>
-                                                <textarea class="form-control no-border" rows="3" placeholder="Your comment..."></textarea>
-                                            </form>
-                                            <div class="panel-footer bg-light lter">
-                                                <button class="btn btn-info pull-right btn-sm">Comment</button>
-                                                <ul class="nav nav-pills nav-sm">
-                                                    <li><a href><i class="fa fa-camera text-muted"></i></a></li>
-                                                    <li><a href><i class="fa fa-video-camera text-muted"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <a class="pull-left thumb-sm avatar m-l-n-md">
-                                    <img src="${pageContext.request.contextPath}/user/ke/img/a2.jpg" alt="...">
-                                </a>
-                                <div class="m-l-lg panel b-a">
-                                    <div class="panel-heading pos-rlt b-b b-light">
-                                        <span class="arrow left"></span>
-                                        <a href>Peter</a>
-                                        <label class="label bg-light m-l-xs">VIP</label>
-                                        <span class="text-muted m-l-sm pull-right">
-                          9h ago
-                        </span>
-                                    </div>
-                                    <div class="panel-body">
-                                        <blockquote>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                                            <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
-                                        </blockquote>
-                                        <div>Lorem ipsum dolor sit amet, consecteter adipiscing elit...</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- PASTE above -->
-        </div>
+        <iframe src="${pageContext.request.contextPath}/user/ke/content.jsp" name="myframe" width='100%' height='100%' frameborder='0'  id="myframe" >
+        </iframe>
     </div >
     <!-- /content -->
 
@@ -452,11 +279,6 @@
     <!-- / footer -->
 </div>
 
-<script>
-    function add(v2){
-        $("#app").load(v2);
-    }
-</script>
 </body>
 </html>
 

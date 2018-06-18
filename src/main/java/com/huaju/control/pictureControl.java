@@ -60,13 +60,10 @@ public class pictureControl {
     public void updateTrue(MultipartFile imgfile,String buildingid ,House house,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String ll=request.getParameter("buildingid");
-        System.out.println(ll);
         String  imgname=imgfile.getOriginalFilename();//获得文件名
-        System.out.println(imgname);
 //        以时间毫秒数命名
         String ms=System.currentTimeMillis()+"";
         imgname=ms + "_"+ imgname;//图片的新名字
-        System.out.println(imgname);
 //    获得该文件的绝对路径s
         String imgfilepath="D:\\xImage\\images";
         System.out.println(imgfilepath+"=============================");
