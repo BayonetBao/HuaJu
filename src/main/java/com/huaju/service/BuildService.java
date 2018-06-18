@@ -28,4 +28,6 @@ public interface BuildService {
     public boolean updateBuildSaleInfo(Build build);
     //更新楼盘小区信息(张宝)
     public boolean updateBuildSpaceInfo(Build build);
+    //按楼盘id查询开发商（张宝）
+    public Company selectCompanyByBuildId(int buildingid);
 }

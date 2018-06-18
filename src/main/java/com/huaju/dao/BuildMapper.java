@@ -29,6 +29,8 @@ public interface BuildMapper {
     public List<Build> selectBuilding();
     //查询发布楼盘的开发商的id 和名字 珂
     public List<Company> selectCompanyInBuild();
+    //按楼盘id查询开发商（张宝）
+    public Company selectCompanyByBuildId(int buildingid);
 
 
 }
