@@ -11,6 +11,8 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    //图片路径
+    String imgPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/upImage"+"/";
 %>
 <html>
 <head>
@@ -58,7 +60,7 @@
       </tr>-->
     <tr>
         <td align="left" valign="top" id="addinfo">
-            <a href="<%=basePath%>developer/houselistzyj.jsp" target="mainFrame" onFocus="this.blur()" class="add">返回上一级</a>
+            <input type=button style="background: none;border: none" value=返回 onclick="window.history.go(-1)">
         </td>
     </tr>
     <tr>
@@ -71,11 +73,6 @@
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.houseid}</td>
                     </tr>
 
-
-
-
-
-
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">房名：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.hname}</td>
@@ -83,7 +80,7 @@
 
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">参考总价</td>
-                        <td align="left" valign="middle" class="borderright borderbottom main-for">${house.hmoney}万元左右</td>
+                        <td align="left" valign="middle" class="borderright borderbottom main-for" >${house.hmoney}万元左右</td>
                     </tr>
 
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -132,39 +129,27 @@
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.monthpay}元左右</td>
                     </tr>
 
-
-
-
-
-
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">参考首付</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.payment}万元左右</td>
                     </tr>
 
-
-
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">户型图</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <img src="<%=application.getContextPath()%>/${house.htypeimg}" width="30px" height="40px" ></td>
+                            <img src="<%=imgPath%>${house.htypeimg}" width="200px" height="150px" ></td>
 
                     </tr>
-
-
-
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">户型解析</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">${house.analysis}</td>
                     </tr>
-
-
-
 
                 </table>
             <%--</form>  --%>
         </td>
     </tr>
 </table>
+
 </body>
 </html>

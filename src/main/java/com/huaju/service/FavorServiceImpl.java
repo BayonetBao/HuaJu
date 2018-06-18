@@ -14,6 +14,7 @@ public class FavorServiceImpl implements FavorService{
     @Autowired
     private FavorMapper favorMapper;
 
+
     @Override
     public List<Favor> selectFavor(Favor favor) {
         return favorMapper.selectFavor(favor);

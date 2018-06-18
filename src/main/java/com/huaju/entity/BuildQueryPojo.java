@@ -14,6 +14,15 @@ public class BuildQueryPojo {
     private Double acreage;//面积
     private Double maxAcreage;//最大面积
     private Integer comid;//开发商id
+    private String isonsale;//优惠
+
+    public String getIsonsale() {
+        return isonsale;
+    }
+
+    public void setIsonsale(String isonsale) {
+        this.isonsale = isonsale;
+    }
 
     public BuildQueryPojo(String province, String city, String district, Integer typeid, String character, String genre, Double bTotalprice, Double bMaxTotalprice, Double bPerprice, Double bMaxprice, Double acreage, Double maxAcreage, Integer comid) {
         this.province = province;

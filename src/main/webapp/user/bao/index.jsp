@@ -48,19 +48,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <!---fonts-->
-    <!-- FlexSlider -->
-    <script src="${pageContext.request.contextPath}/user/bao/js/jquery.flexslider.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/bao/css/flexslider.css" type="text/css" media="screen" />
+    <script src="${pageContext.request.contextPath}/user/bao/js/responsiveslides.min.js"></script>
     <script>
-        // Can also be used with $(document).ready()
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto:true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                pager:true,
             });
         });
     </script>
-    <!-- //FlexSlider-->
+    <link href="${pageContext.request.contextPath}/user/bao/css/owl.carousel.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/user/bao/js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#owl-demo").owlCarousel({
+                items : 1,
+                lazyLoad : true,
+                autoPlay : true,
+                navigation : false,
+                navigationText :  false,
+                pagination : true,
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -80,10 +93,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>咨询热线：400-606-2695 </li>
                     <c:if test="${not empty sessionScope.user}">
                         <c:if test="${sessionScope.userType==1}">
-                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action" ><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/user/ke/single.jsp">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action" ><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
                         <c:if test="${sessionScope.userType==2}">
                             <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>开发商用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.comuname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userType==3}">
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
 
                     </c:if>
@@ -108,9 +124,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
-                        <a href="forrent.html">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
@@ -126,495 +142,269 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!---header--->
 <!---banner--->
-<div class="banner-section">
-    <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+<div class="slider">
+    <div class="callbacks_container">
+        <ul class="rslides" id="slider">
+            <div class="slid banner1">
+                <div class="caption">
+                    <h3>1400 Anastasia Avenue</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec pellentesque ex. Morbi iaculis mi in varius auctor. Nullam feugiat erat .</p>
+                    <a href="#" class="button">know more</a>
+                </div>
+            </div>
+            <div class="slid banner2">
+                <div class="caption">
+                    <h3>Oakland, NJ94605</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec pellentesque ex. Morbi iaculis mi in varius auctor. Nullam feugiat erat .</p>
+                    <a href="#" class="button">know more</a>
+                </div>
+            </div>
+            <div class="slid banner3">
+                <div class="caption">
+                    <h3>Florida 5, Pinecrest, FL</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec pellentesque ex. Morbi iaculis mi in varius auctor. Nullam feugiat erat .</p>
+                    <a href="#" class="button">know more</a>
+                </div>
+            </div>
+        </ul>
     </div>
 </div>
+<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
 <!---banner--->
 <div class="content">
-    <div class="properties-section">
+    <div class="place-section">
         <div class="container">
-            <div class="properties-grids">
-                <div class="col-md-9 forsales-left">
-                    <div class="forsale">
-                        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-                            <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部楼盘
-                                    </a></li>
-                                <li role="presentation">
-                                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">优惠楼盘</a></li>
-                            </ul>
-                            <div id="myTabContent" class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-                                    <div class="forsale-grids">
-
-                                        <h4 ><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif" >最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/>
-                                                    2018.05.24 <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面"class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px"src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px"><a>李安|咨询</a></p>                           </div>
-
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li><a href="楼盘详情页面">紧凑实用</a></li>
-                                                <li><a href="楼盘详情页面">幼儿园</a></li>
-                                                <li><a href="楼盘详情页面">公园地产</a></li>
-                                                <li><a href="楼盘详情页面">向他咨询</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4 ><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif" >最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/>
-                                                    2018.05.24 <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面"class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px"src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px"><a>李安|咨询</a></p>                           </div>
-
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li><a href="楼盘详情页面">紧凑实用</a></li>
-                                                <li><a href="楼盘详情页面">幼儿园</a></li>
-                                                <li><a href="楼盘详情页面">公园地产</a></li>
-                                                <li><a href="楼盘详情页面">向他咨询</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4 ><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif" >最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/>
-                                                    2018.05.24 <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面"class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px"src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px"><a>李安|咨询</a></p>                           </div>
-
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li><a href="楼盘详情页面">紧凑实用</a></li>
-                                                <li><a href="楼盘详情页面">幼儿园</a></li>
-                                                <li><a href="楼盘详情页面">公园地产</a></li>
-                                                <li><a href="楼盘详情页面">向他咨询</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4 ><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif" >最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/>
-                                                    2018.05.24 <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面"class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px"src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px"><a>李安|咨询</a></p>                           </div>
-
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li><a href="楼盘详情页面">紧凑实用</a></li>
-                                                <li><a href="楼盘详情页面">幼儿园</a></li>
-                                                <li><a href="楼盘详情页面">公园地产</a></li>
-                                                <li><a href="楼盘详情页面">向他咨询</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="forsale-grids">
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-                                        <div class="forsale1">
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p3.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-                                                <h5 style="font-family: 'Open Sans', sans-serif" >最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/>
-                                                    2018.05.24 <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面"class="button4">更多详情</a>
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px"src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px"><a>李安|咨询</a></p>                           </div>
-
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li><a href="楼盘详情页面">紧凑实用</a></li>
-                                                <li><a href="楼盘详情页面">幼儿园</a></li>
-                                                <li><a href="楼盘详情页面">公园地产</a></li>
-                                                <li><a href="楼盘详情页面">向他咨询</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>60 Merrick Way, Miami</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 2,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s5.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>Florida 5, Pinecrest, FL</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 4,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>109 Bollywood Boulevard</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 9,500 </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s4.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>60 Merrick Way, Miami</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 2,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s2.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>Florida 5, Pinecrest, FL</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 5,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s3.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>109 Bollywood Boulevard</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 7,500 </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>60 Merrick Way, Miami</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 3,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s4.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>Florida 5, Pinecrest, FL</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 4,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>109 Bollywood Boulevard</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$9,500 </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s3.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>60 Merrick Way, Miami</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 2,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s5.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>Florida 5, Pinecrest, FL</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$4,500 </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>109 Bollywood Boulevard</h5>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                                            <h6>$ 7,500 </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
+            <h2>find your place</h2>
+            <div class="place-grids">
+                <div class="col-md-3 place-grid">
+                    <h5>all location</h5>
+                    <select class="sel">
+                        <option value="">All Locations</option>
+                        <option value="">New Jersey</option>
+                        <option value="">New York</option>
+                        <option value="">Australia</option>
+                        <option value="">Canada</option>
+                        <option value="">India</option>
+                    </select>
+                </div>
+                <div class="col-md-3 place-grid">
+                    <h5>all sub location</h5>
+                    <select class="sel">
+                        <option value="">All Locations</option>
+                        <option value="">New Jersey</option>
+                        <option value="">New York</option>
+                        <option value="">Australia</option>
+                        <option value="">Canada</option>
+                        <option value="">India</option>
+                    </select>
+                </div>
+                <div class="col-md-3 place-grid">
+                    <h5>Property Status</h5>
+                    <select class="sel">
+                        <option value="">All status</option>
+                        <option value="">none</option>
+                        <option value="">open house</option>
+                        <option value="">rent</option>
+                        <option value="">sale</option>
+                    </select>
+                </div>
+                <div class="col-md-3 place-grid">
+                    <h5>Property Type</h5>
+                    <select class="sel">
+                        <option value="">All Type</option>
+                        <option value="">Commercial</option>
+                        <option value="">- Office</option>
+                        <option value="">- Buy</option>
+                        <option value="">Residential</option>
+                        <option value="">-Apartment</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="place-grids">
+                <div class="col-md-2 place-grid1">
+                    <h5>Min Beds</h5>
+                    <select class="sel">
+                        <option value="">any</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                    </select>
+                </div>
+                <div class="col-md-2 place-grid1">
+                    <h5>Min Baths</h5>
+                    <select class="sel">
+                        <option value="">any</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                    </select>
+                </div>
+                <div class="col-md-2 place-grid1">
+                    <h5>Min Price</h5>
+                    <select class="sel">
+                        <option value="">any</option>
+                        <option value="">$500</option>
+                        <option value="">$1000</option>
+                        <option value="">$2000</option>
+                        <option value="">$3000</option>
+                        <option value="">$4000</option>
+                        <option value="">$5000</option>
+                        <option value="">$75000</option>
+                        <option value="">$10000</option>
+                    </select>
+                </div>
+                <div class="col-md-2 place-grid1">
+                    <h5>Max Price</h5>
+                    <select class="sel">
+                        <option value="">any</option>
+                        <option value="">$1000</option>
+                        <option value="">$2000</option>
+                        <option value="">$3000</option>
+                        <option value="">$4000</option>
+                        <option value="">$5000</option>
+                        <option value="">$75000</option>
+                        <option value="">$10000</option>
+                    </select>
+                </div>
+                <div class="col-md-4 search">
+                    <form action="forrent.html">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="friend-agent">
+        <div class="container">
+            <div class="friend-grids">
+                <div class="col-md-4 friend-grid">
+                    <img src="images/p.png">
+                    <h4>Search From Anywhere</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                </div>
+                <div class="col-md-4 friend-grid">
+                    <img src="images/p1.png">
+                    <h4>Friendly Agents</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                </div>
+                <div class="col-md-4 friend-grid">
+                    <img src="images/p2.png">
+                    <h4>Buy or Rent</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="offering">
+        <div class="container">
+            <h3>We are Offering the Best Real Estate Deals</h3>
+            <div class="offer-grids">
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html">Villa In Hialeah, Dade County</a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt=""/></a>
                             </div>
+                            <div class="offer-right">
+                                <h5><label>$</label> 7,500 Per Month - <span>Single Family Home</span></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
+                                <a href="single.html"class="button1">more details</a>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 properties-right">
-                    <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif">找房</h4>
-                        <div class="yourplace">
-                            <h5>三级联</h5>
-                            <select class="sel2">
-                                <option value="">不限</option>
-                                <option value="">吴中</option>
-                                <option value="">吴江</option>
-                                <option value="">相城</option>
-                                <option value="">园区</option>
-                                <option value="">新区</option>
-                            </select>
-                        </div>
-                        <div class="yourplace">
-                            <h5>位置</h5>
-                            <select class="sel2">
-                                <option value="">不限</option>
-                                <option value="">吴中</option>
-                                <option value="">吴江</option>
-                                <option value="">相城</option>
-                                <option value="">园区</option>
-                                <option value="">新区</option>
-                            </select>
-                        </div>
-                        <div class="yourplace">
-                            <h5>地铁</h5>
-                            <select class="sel2">
-                                <option value="">不限</option>
-                                <option value="">地铁一号线</option>
-                                <option value="">地铁二号线</option>
-                                <option value="">地铁三号线</option>
-                                <option value="">地铁四号线</option>
-                                <option value="">地铁五号线</option>
-                            </select>
-                        </div>
-                        <div class="yourplace">
-                            <h5>户型</h5>
-                            <select class="sel2">
-                                <option value="">不限</option>
-                                <option value="">一居</option>
-                                <option value="">二居</option>
-                                <option value="">三居</option>
-                                <option value="">四居</option>
-                                <option value="">五居及以上</option>
-                            </select>
-
-
-                        </div>
-                        <div class="yourplace">
-                            <h5>类型</h5>
-                            <select class="sel2">
-                                <option value="">不限</option>
-                                <option value="">住宅</option>
-                                <option value="">别墅</option>
-                                <option value="">商业</option>
-
-                            </select>
-                        </div>
-                        <div class="yourplace-grids">
-                            <div class="col-md-6 yourplace-grid">
-                                <h5>特色</h5>
-                                <select class="sel3">
-                                    <option value="">不限</option>
-                                    <option value="">小户型</option>
-                                    <option value="">临地铁</option>
-                                    <option value="">精装修</option>
-                                    <option value="">现房</option>
-                                    <option value="">品牌地产</option>
-                                </select>
-                                </select>
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html">401 Biscayne Boulevard, Miami</a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p4.jpg" class="img-responsive zoom-img" alt=""/></a>
                             </div>
-                            <div class="col-md-6 yourplace-grid">
-                                <h5>总价</h5>
-                                <select class="sel3">
-                                    <option value="">总价</option>
-                                    <option value=""><100万</option>
-                                    <option value="">100-200万</option>
-                                    <option value="">200-300万</option>
-                                    <option value="">300-500万</option>
-                                    <option value="">>500万</option>
-                                </select>
+                            <div class="offer-right">
+                                <h5><label>$</label> 3,250 Per Month - <span>Condominium</span></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
+                                <a href="single.html"class="button1">more details</a>
                             </div>
                             <div class="clearfix"></div>
-                        </div>
-                        <div class="yourplace-grids1">
-                            <div class="col-md-6 yourplace-grid">
-                                <h5>单价</h5>
-                                <select class="sel3">
-                                    <option value="">单价</option>
-                                    <option value=""><2万</option>
-                                    <option value="">2-3万</option>
-                                    <option value="">3-4万</option>
-                                    <option value="">4-5万</option>
-                                    <option value="">5-6万</option>
-                                    <option value="">6-7万</option>
-                                    <option value="">7-8万</option>
-                                    <option value="">8万及以上</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 yourplace-grid">
-                                <h5>面积</h5>
-                                <select class="sel3">
-                                    <option value=""><50</option>
-                                    <option value="">100</option>
-                                    <option value="">150</option>
-                                </select>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="search1">
-                            <form>
-                                <input type="submit" value="查找">
-                            </form>
                         </div>
                     </div>
-                    <div class="feature">
-                        <h4>Featured Properties</h4>
-                        <div class="feature-top">
-                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                            <h5>60 Merrick Way, Miami</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="offer-grids">
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html">3895 NW 107th Ave</a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p5.jpg" class="img-responsive zoom-img" alt=""/></a>
+                            </div>
+                            <div class="offer-right">
+                                <h5><label>$</label> 5,200 Per Month - <span>Office</span></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
+                                <a href="single.html"class="button1">more details</a>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="feature-top top2">
-                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                            <h5>Villa in Hialeah, Dade</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html">1400 Anastasia Avenue, Coral</a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p6.jpg" class="img-responsive zoom-img" alt=""/></a>
+                            </div>
+                            <div class="offer-right">
+                                <h5><label>$</label> 525,000 - <span>Villa</span></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
+                                <a href="single.html"class="button1">more details</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="offer-grids">
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="#">12 Apartments Of Type A</a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p7.jpg" class="img-responsive zoom-img" alt=""/></a>
+                            </div>
+                            <div class="offer-right">
+                                <h5><label>$</label> 3,200 Per Month - <span>Apartment</span></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
+                                <a href="single.html"class="button1">more details</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 offer-grid">
+                    <div class="offer-grid1">
+                        <h4><a href="single.html">20 Apartments Of Type B</a></h4>
+                        <div class="offer1">
+                            <div class="offer-left">
+                                <a href="single.html" class="mask"><img src="images/p8.jpg" class="img-responsive zoom-img" alt=""/></a>
+                            </div>
+                            <div class="offer-right">
+                                <h5><label>$</label> 4,200 Per Month - <span>Apartment</span></h5>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
+                                <a href="single.html"class="button1">more details</a>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
@@ -622,6 +412,121 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
     </div>
+    <!---Featured Properties--->
+    <div class="feature-section">
+        <div class="container">
+            <h3>Featured Properties</h3>
+            <div class="feature-grids">
+                <div class="col-md-3 feature-grid">
+                    <img src="images/f1.jpg" class="img-responsive" alt="/">
+                    <h5>Villa in Hialeah, Dade</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
+                    <span>$2,500 Per Month</span>
+                </div>
+                <div class="col-md-3 feature-grid">
+                    <img src="images/f2.jpg" class="img-responsive" alt="/">
+                    <h5>401 Biscayne Boulevard</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
+                    <span>$7,500 Per Month</span>
+                </div>
+                <div class="col-md-3 feature-grid">
+                    <img src="images/f3.jpg" class="img-responsive" alt="/">
+                    <h5>154 Southwest  Terra</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
+                    <span>$9,500 Per Month</span>
+                </div>
+                <div class="col-md-3 feature-grid">
+                    <img src="images/f4.jpg" class="img-responsive" alt="/">
+                    <h5>Florida 5, Pinecrest, FL</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
+                    <span>$5,500 Per Month</span>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!---Featured Properties--->
+    <div class="membership">
+        <div class="container">
+            <h3>Membership Plans</h3>
+            <div class="membership-grids">
+                <div class="col-md-4 membership-grid">
+                    <h4>Personal</h4>
+                    <div class="membership1">
+                        <h5>9.99 <span>USD</span></h5>
+                        <h6>/ 1 month</h6>
+                        <ul class="member">
+                            <li>10 Listings</li>
+                            <li>2 Featured Listings</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 membership-grid">
+                    <h4>Professional</h4>
+                    <div class="membership1">
+                        <h5>49.99 <span>USD</span></h5>
+                        <h6>/ 6 month</h6>
+                        <ul class="member">
+                            <li>40 Listings</li>
+                            <li>10 Featured Listings</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 membership-grid">
+                    <h4>Bussiness</h4>
+                    <div class="membership1">
+                        <h5>99.99 <span>USD</span></h5>
+                        <h6>/ 1 year</h6>
+                        <ul class="member">
+                            <li>Unlimited Listings</li>
+                            <li>20 Featured Listings</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!---testimonials--->
+    <div class="testimonials">
+        <div class="container">
+            <h3>testimonial</h3>
+            <span></span>
+            <div id="owl-demo" class="owl-carousel">
+                <div class="item">
+                    <div class="col-md-2 testmonial-img">
+                        <img src="images/t1.png" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="col-md-10 testmonial-text">
+                        <p>Lorem ipsum dolor sit amet, offendit volutpat sea ex, at omnium scripta pro, at omnium scripta pro, ei mea oratio malorum forensibus. ei mea oratio malorum forensibus. Sed ei omnes laoreet posidonium ei mea oratio malorum forensibus.</p>
+                        <h4><a href="#">Michael Feng</a></h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-2 testmonial-img">
+                        <img src="images/t2.png" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="col-md-10 testmonial-text">
+                        <p>Lorem ipsum dolor sit amet, offendit volutpat sea ex, at omnium scripta pro, at omnium scripta pro, ei mea oratio malorum forensibus. ei mea oratio malorum forensibus. Sed ei omnes laoreet posidonium ei mea oratio malorum forensibus.</p>
+                        <h4><a href="#">Stacy Barron</a></h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="item">
+                    <div class="col-md-2 testmonial-img">
+                        <img src="images/t3.png" class="img-responsive" alt=""/>
+                    </div>
+                    <div class="col-md-10 testmonial-text">
+                        <p>Lorem ipsum dolor sit amet, offendit volutpat sea ex, at omnium scripta pro, at omnium scripta pro, ei mea oratio malorum forensibus. ei mea oratio malorum forensibus. Sed ei omnes laoreet posidonium ei mea oratio malorum forensibus.</p>
+                        <h4><a href="#">Johnson </a></h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---testmonials--->
 </div>
 <!---footer--->
 <div class="footer-section">
@@ -664,6 +569,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="clearfix"> </div>
         </div>
+
     </div>
 </div>
 <!---footer--->
@@ -675,6 +581,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--copy-->
 <!-- login -->
+<div class="update_modal">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-info" style="min-width: 550px;">
@@ -725,8 +632,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
+</div>
 <!-- //login -->
 <!-- Register -->
+<div class="update_modal">
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-info" style="min-width: 550px;">
@@ -764,7 +673,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-
+</div>
         <script>
                                 <!--短信验证-->
                                 var timer;

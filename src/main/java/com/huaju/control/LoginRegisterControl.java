@@ -1,6 +1,7 @@
 package com.huaju.control;
 
 import com.huaju.entity.Company;
+import com.huaju.entity.Cta;
 import com.huaju.entity.User;
 import com.huaju.service.AllUserService;
 import com.huaju.util.miaodiyun.httpApiDemo.IndustrySMS;
@@ -61,9 +62,7 @@ public class LoginRegisterControl {
     //所有用户登录用户名查询
     @RequestMapping(value="/checkLoginUname.action",method = RequestMethod.GET)
     public String checkLoginUname(String uname,String userType,String password,HttpSession session){
-        System.out.println("uname:"+uname);
-        System.out.println("userType:"+userType);
-        System.out.println("passeord:"+password);
+
         if("1".equals(userType)){
             User user=allUserService.selectUserByName(uname);
             System.out.println("user:"+user);
@@ -71,10 +70,10 @@ public class LoginRegisterControl {
                 if(user.getUpwd().equals(password)){
                     session.setAttribute("user",user);
                     session.setAttribute("userType",userType);
-                    System.out.println(2);
+                    session.setAttribute("uid",user.getUserid());
                     return "2";
                 }else{
-                    System.out.println(1);
+
                     return "1";
                 }
             }
@@ -84,12 +83,22 @@ public class LoginRegisterControl {
                 if(company.getCompassword().equals(password)){
                     session.setAttribute("user",company);
                     session.setAttribute("userType",userType);
+                    session.setAttribute("uid",company.getComid());
                     return "2";
                 }
                 return "1";
             }
         }else {
-
+            Cta cta=allUserService.selectCtaByName(uname);
+            if(cta!=null){
+                if(cta.getCtapassword().equals(password)){
+                    session.setAttribute("user",cta);
+                    session.setAttribute("userType",userType);
+                    session.setAttribute("uid",cta.getCtaid());
+                    return "2";
+                }
+                return "1";
+            }
         }
 
         return "0";

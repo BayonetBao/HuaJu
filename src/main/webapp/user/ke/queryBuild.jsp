@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML>
 <html>
 
@@ -25,7 +26,7 @@
         }
     </style>
 
-    <title>For Rent</title>
+    <title>楼盘搜索</title>
     <!---css--->
     <link href="${pageContext.request.contextPath}/user/ke/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/user/ke/css/style.css" rel='stylesheet' type='text/css' />
@@ -86,13 +87,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="email">
                 <ul>
-                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>咨询热线：400-606-2695 </li>
-                    <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i>
-                        <a href="#" data-toggle="modal" data-target="#myModal">登录</a>
-                    </li>
-                    <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i>
-                        <a href="#" data-toggle="modal" data-target="#myModal1">注册</a>
-                    </li>
+                    <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>咨询热线：400-606-2695 </li>
+                    <c:if test="${not empty sessionScope.user}">
+                        <c:if test="${sessionScope.userType==1}">
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action" ><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userType==2}">
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>开发商用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.comuname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.userType==3}">
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                        </c:if>
+
+                    </c:if>
+                    <c:if test="${empty sessionScope.user}">
+                        <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
+                        <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">注册</a></li>
+                    </c:if>
                 </ul>
             </div>
             <div class="clearfix"></div>
@@ -110,20 +121,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="active">
-                        <a href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="forrent.html">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                        <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
-                    <li>
-                        <a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
-                    </li>
+                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
 
@@ -132,13 +137,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </nav>
     </div>
 </div>
-<!---header--->
-<!---banner--->
 <div class="banner-section">
     <div class="container">
         <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
     </div>
 </div>
+<!---header--->
 <!---banner--->
 <div class="content">
     <div class="properties-section">
@@ -147,301 +151,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-9 forsales-left">
                     <div class="forsale">
                         <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+
                             <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
                                 <li role="presentation" class="active">
                                     <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部楼盘
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">优惠楼盘</a>
+                                    <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action?isonsale='abc'" role="tab"   aria-controls="profile">优惠楼盘</a>
                                 </li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-                                    <div class="forsale-grids">
 
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
+                                    <c:forEach items="${pageInfo.list}" var="b">
+                                        <div class="forsale-grids">
+                                            <h4><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a></h4>
+                                            <div class="forsale1">
+                                                <div class="forsale-left">
+                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" alt="楼盘"></a>
+                                                </div>
+                                                <div class="forsale-right">
+                                                    <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
+                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
+                                                        参考总价${b.btotalprice}-${b.bmaxtotalprice}万元
+                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
+                                                        <button style="border:none; background-color: #F60;">${b.conditions}</button>
+                                                    </h5>
+                                                    <p>${b.bdetail}<br/>
+                                                        <a href="地图链接"> 查看地图</a><br/> 2018.05.24
+                                                        <a href="楼盘详情页面">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
+                                                    </p>${b.discounts}
+                                                    <a href="楼盘详情页面" class="button4">更多详情</a>
+                                                </div>
+                                                <div class="zixunshi">
+                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
 
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
+                                                    <p style="margin-top:-175px;font-size:13px;margin-left:15px">
+                                                        <a>${b.cta.ctaname}|咨询</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <ul>
+                                                   <c:forEach items="${fn:split(b.charactere,'，')}" var="ch">
+                                                       <li>
+                                                           <a href="楼盘详情页面">${ch}</a>
+                                                       </li>
+                                                   </c:forEach>
+                                                    <li>
+                                                        <a href="楼盘详情页面">向他咨询</a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
                                         </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="forsale-grids">
-
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-
-                                        <div class="forsale1">
-
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p6.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="forsale-grids">
-                                        <h4><a href="#" style="font-family: 'Open Sans', sans-serif" >华丽家族太湖汇景</a></h4>
-                                        <div class="forsale1">
-                                            <div class="forsale-left">
-                                                <a href="#"><img src="images/p3.jpg" class="img-responsive" alt="/"></a>
-                                            </div>
-                                            <div class="forsale-right">
-                                                <h5 style="font-family: 'Open Sans', sans-serif">最低13,000元每平方米起
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    参考总价121-182万元
-                                                    &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                    <button style="border:none; background-color: #F60;">在售</button>
-                                                </h5>
-                                                <p>[吴中-环太湖]花丽路一号（香山中学向南...<br/>
-                                                    <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                    <a href="楼盘详情页面">太湖汇景93-140平房源在售</a>
-                                                </p>
-
-                                                <a href="楼盘详情页面" class="button4">更多详情</a>
-                                            </div>
-
-                                            <div class="zixunshi">
-                                                <img style="border-radius:300px; width:90px; margin-top:-130px" src="images/a3.jpg" href="" />
-
-                                                <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                    <a>李安|咨询</a>
-                                                </p>
-                                            </div>
-
-                                            <div class="clearfix"></div>
-                                            <ul>
-                                                <li>
-                                                    <a href="楼盘详情页面">紧凑实用</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">幼儿园</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">公园地产</a>
-                                                </li>
-                                                <li>
-                                                    <a href="楼盘详情页面">向他咨询</a>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
+                                    </c:forEach>
                                     <div class="col-md-offset-4">
                                         <nav>
                                             <ul class="pagination pagination-lg">
-                                                <li>
-                                                    <a href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">1</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">2</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">3</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">...</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">6</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">7</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" aria-label="Next"><span aria-hidden="true">»</span></a>
-                                                </li>
+                                               <li><a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a></li>
+                                                <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
+                                                <li><span><b>${pageInfo.pageNum}</b>/<b>${pageInfo.pages}</b></span></li>
+                                                <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
+                                               <li> <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a></li>
+                                         
                                             </ul>
                                         </nav>
                                     </div>
@@ -453,7 +225,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="col-md-4 forsale-grid1">
                                             <img src="images/s7.jpg" class="img-responsive" alt="/">
                                             <div class="sale-info">
-                                                <span>For Rent</span>
+                                                <span>for rent</span>
                                             </div>
                                             <h5>114㎡, 升龙楼盘</h5>
                                             <p>朝向南, 在地铁附近,…
@@ -461,268 +233,122 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </p>
                                             <h6>￥13222/㎡ </h6>
                                         </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s5.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
+
                                     </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s4.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5 style="font-family: 'Open Sans', sans-serif">114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s2.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s3.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s4.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s3.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s5.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>For Rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 properties-right">
+                <div class="col-md-3 properties-right" >
                     <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif">找房</h4>
-
-                        <form action="">
-                            <input type="hidden" value="" name="curPage" />
-                            <div data-toggle="distpicker">
+                        <h4 style="font-family: 'Open Sans', sans-serif">我要找房</h4>
+                        <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                            <input type="hidden" value="1" id="curPage" name="curPage" />
+                            <div id="distpicker5">
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
                                     <label class="sr-only" for="province1">Province</label>
-                                    <select class="form-control" id="province1" name="province"></select>
+                                    <select class="form-control" name="province" id="province1">
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>城市</h5>
                                     <label class="sr-only" for="city1">City</label>
-                                    <select class="form-control" id="city1" name="city"></select>
+                                    <select class="form-control" name="city" id="city1"></select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <h5>区域</h5>
                                     <label class="sr-only" for="district1" name="district">District</label>
-                                    <select class="form-control" id="district1" name="district"></select>
+                                    <select class="form-control" name="district" id="district1"></select>
                                 </div>
-                            </div>
-                            <div class="yourplace col-md-12">
-                                <h5>开发商</h5>
-                                <select class="sel2" name="comid">
-                                    <option value="">升龙</option>
-                                    <option value="">万达</option>
-                                    <option value="">等等</option>
-                                </select>
                             </div>
                             <div class="yourplace col-md-12">
                                 <h5>户型</h5>
                                 <select class="sel2" name="typeid">
                                     <option value="">不限</option>
-                                    <option value="">一居</option>
-                                    <option value="">二居</option>
-                                    <option value="">三居</option>
-                                    <option value="">四居</option>
-                                    <option value="">五居及以上</option>
+                                    <option value="1">一居</option>
+                                    <option value="2">二居</option>
+                                    <option value="3">三居</option>
+                                    <option value="4">四居</option>
+                                    <option value="5">五居及以上</option>
                                 </select>
                             </div>
+
                             <div class="yourplace col-md-12">
                                 <h5>特色</h5>
                                 <select class="sel3" name="character">
                                     <option value="">不限</option>
-                                    <option value="">小户型</option>
-                                    <option value="">临地铁</option>
-                                    <option value="">精装修</option>
-                                    <option value="">现房</option>
-                                    <option value="">品牌地产</option>
+                                    <option value="小户型">小户型</option>
+                                    <option value="临地铁">临地铁</option>
+                                    <option value="临地铁">精装修</option>
+                                    <option value="现房">现房</option>
+                                    <option value="品牌地产">品牌地产</option>
                                 </select>
                             </div>
                             <div class="yourplace col-md-6">
                                 <h5>类型</h5>
                                 <select class="sel2" name="genre">
                                     <option value="">不限</option>
-                                    <option value="">住宅</option>
-                                    <option value="">别墅</option>
-                                    <option value="">商业</option>
+                                    <option value="住宅">住宅</option>
+                                    <option value="别墅">别墅</option>
+                                    <option value="商业</">商业</option>
                                 </select>
                             </div>
                             <div class="col-md-6 yourplace-grid">
                                 <h5>总价</h5>
                                 <select class="sel3" name="bTotalprice">
                                     <option value="">总价</option>
-                                    <option value="">
+                                    <option value="100">
                                         <100万</option>
-                                    <option value="">100-200万</option>
-                                    <option value="">200-300万</option>
-                                    <option value="">300-500万</option>
-                                    <option value="">>500万</option>
+                                    <option value="100-200">100-200万</option>
+                                    <option value="200-300">200-300万</option>
+                                    <option value="300-500">300-500万</option>
+                                    <option value="500">>500万</option>
                                 </select>
                             </div>
-                            <div class="clearfix"></div>
                             <div class="yourplace-grids1">
                                 <div class="col-md-6 yourplace-grid">
                                     <h5>单价</h5>
                                     <select class="sel3" name="bPerprice">
                                         <option value="">单价</option>
-                                        <option value="">
+                                        <option value="0-20000">
                                             <2万</option>
-                                        <option value="">2-3万</option>
-                                        <option value="">3-4万</option>
-                                        <option value="">4-5万</option>
-                                        <option value="">5-6万</option>
-                                        <option value="">6-7万</option>
-                                        <option value="">7-8万</option>
-                                        <option value="">8万及以上</option>
+                                        <option value="20000-30000">2-3万</option>
+                                        <option value="30000-40000">3-4万</option>
+                                        <option value="40000-50000">4-5万</option>
+                                        <option value="50000">5万及以上</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 yourplace-grid">
                                     <h5>面积</h5>
                                     <select class="sel3" name="acreage">
+                                        <option value="">请选择</option>
                                         <option value="30-50">30-50</option>
                                         <option value="50-100">50-100</option>
                                         <option value="100-150">100-150</option>
                                         <option value="150">150~</option>
                                     </select>
                                 </div>
-                                <div class="clearfix"></div>
                             </div>
-                            <div class="search1">
-                                <input type="submit" value="查找">
-                            </div>
+                            <button style="width: 140px;height: 50px;margin-top: 10px; font-size: 20px;" type="submit" class="btn btn-warning">搜索</button>
                         </form>
                     </div>
+<script>
+    function  getPage(curPage) {
 
-                    <div class="feature">
-                        <h4>优惠楼盘</h4>
-                        <div class="feature-top">
-                            <img src="images/s6.jpg" class="img-responsive" alt="/">
-                            <h5>114㎡, 升龙楼盘</h5>
-                            <p>朝向南, 在地铁附近,…
-                                <a href="#">Know More</a>
-                            </p>
-                        </div>
-                        <div class="feature-top top2">
-                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                            <h5>114㎡, 升龙楼盘</h5>
-                            <p>朝向南, 在地铁附近,…
-                                <a href="#">Know More</a>
-                            </p>
-                        </div>
-                    </div>
+        //将我们这个隐藏域的值变成curPage
+        $("#curPage").val(curPage);
+        //触发表单提交事件
+        $("#mainForm").submit();
+
+    }
+    function mainForm() {
+        $("#mainForm").submit();
+    }
+</script>
+
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -812,7 +438,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- login -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
+        <div class="modal-content modal-info" style="min-width: 550px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
@@ -821,25 +447,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="login">
 
                         <div class="login-right">
-                            <form>
+                            <form  action="${pageContext.request.contextPath}/login.action" method="post" onsubmit="return loginsubmint('p')">
                                 <h3>Login</h3>
-                                <input type="text" value="Enter your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your Email';}" required="">
-                                <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                                <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
-                                <div class="single-bottom">
-                                    <input type="checkbox" id="brand" value="">
-                                    <label for="brand"><span></span>Remember Me.</label>
+                                <div class="form-group">
+                                    <label for="uname"><span style="font-size:18px">用户名:</span></label>
+                                    <input id="uname" name="uname" type="text" placeholder="用户名">
+                                    <span></span>
                                 </div>
-                                <input type="submit" value="Login Now">
+                                <p/>
+                                <div class="form-group">
+                                    <label for="password"><span style="font-size:18px">密&nbsp;&nbsp;&nbsp;&nbsp;码:</span></label>
+                                    <input id="password" name="password" type="password" placeholder="密码">
+                                    <span></span>
+                                </div>
+                                <label class="radio-inline">
+                                    <input type="radio" name="userType"  value="1" checked>普通用户
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="userType"  value="2">开发商
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="userType"  value="3">咨询师
+                                </label>
+                                <p/>
+                                <div class="single-bottom">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" id="inlineCheckbox2" value="option2">记住密码
+                                    </label>
+                                </div>
+                                <input type="submit" value="登录" >
                             </form>
                         </div>
 
                     </div>
-                    <p>By logging in you agree to our
-                        <a href="#">Terms</a> and
-                        <a href="#">Conditions</a> and
-                        <a href="#">Privacy Policy</a>
-                    </p>
+                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
                 </div>
             </div>
         </div>
@@ -849,7 +490,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Register -->
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
+        <div class="modal-content modal-info" style="min-width: 550px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
@@ -857,29 +498,267 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="login-grids">
                     <div class="login">
                         <div class="login-right">
-                            <form>
-                                <h3>Register </h3>
-                                <input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-                                <input type="text" value="Mobile number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile number';}" required="">
-                                <input type="text" value="Email id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email id';}" required="">
-                                <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
+                            <form action="${pageContext.request.contextPath}/register.action" method="post" onsubmit="return registersubmit('p')">
+                                <h3>普通用户注册 </h3>
+                                <input style="color:#000" id="runame" name="runame" type="text" placeholder="用户名" >
+                                <span></span>
+                                <input style="color:#000" id="rpass" name="rpass" type="password" placeholder="密码" >
+                                <span></span>
+                                <input style="color:#000" id="repass" name="repass" type="password" placeholder="确认密码" >
+                                <span></span>
+                                <input style="color:#000" id="rphone" name="rphone" type="text" placeholder="手机号">
+                                <span></span>
+                                <br>
+                                <input style="color:#000;width:160px;" id="yanzm" name="yanzm" type="text" placeholder="验证码">
 
-                                <input type="submit" value="Register Now">
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" style="background: #2EA9E0; width:250px;border-radius:5px; height:45px; text-align:center; color:#FFF" id="b1">获取验证码</button>
+                                <span></span>
+
+                                <input type="submit" value="注册" >
                             </form>
                         </div>
-                        <div class="clearfix"></div>
                     </div>
-                    <p>By logging in you agree to our
-                        <a href="#">Terms</a> and
-                        <a href="#">Conditions</a> and
-                        <a href="#">Privacy Policy</a>
-                    </p>
+                    <p><a href="${pageContext.request.contextPath}/user/bao/developerRegister/register.jsp">开发商注册>></a></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- //Register -->
-</body>
 
+<script>
+    <!--短信验证-->
+    var timer;
+    var time=5;
+    var yznum;
+    $("#b1").click(function(){
+        var phonea=$("#rphone");
+        var regphonea=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        if(regphonea.test(phonea.val())){
+            yznum="";
+            for(var i=0;i<6;i++){
+                yznum+=Math.floor(Math.random()*10);
+            }
+            alert(yznum);
+            $.ajax({
+                type:"get",
+                url:"${pageContext.request.contextPath}/sendyanzm.action",
+                data:"yznum="+yznum+"&rphone="+$('#rphone').val(),
+                success:function (da) {
+
+                    if(da==1){
+
+                    }
+                }
+            });
+            $("#b1").text("5秒后重新获取");
+
+            $("#b1").attr("disabled", true);
+            $("#b1").css("background","#F0F0F0");
+            $("#b1").css("color","black");
+            timer=setInterval('time1()',1000);
+        }else{
+            phonea.next("SPAN").text("请输入正确的手机号");
+            phonea.next("SPAN").removeClass();
+
+            phonea.next("SPAN").addClass("error");
+        }
+
+//
+    });
+    function time1(){
+        time--;
+        $("#b1").text(time+"秒后重新获取");
+        if(time==0){
+            clearInterval(timer);
+            $("#b1").removeAttr("disabled");
+            $("#b1").text("获取验证码");
+            time=5;
+            $("#b1").css("background","#3587FF");
+            $("#b1").removeAttr("color");
+            $("#b1").css("color","white");
+            return;
+        }
+    }
+    onload=registersubmit;
+    function registersubmit(param){
+        var flag=true;
+        //验证用户名
+        var uname=$("#runame");
+        var regname=/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
+        checkuanme(uname,function (val1) {
+            if(regname.test(val1)){
+                return true;
+            }else {
+                flag= false;
+                return false;
+            }
+        },function (val2) {
+            if(val2==0){
+                return true;
+            }else {
+                flag= false;
+                return false;
+            }
+        },param);
+
+        //验证密码
+        var pass=$("#rpass");
+        var regpass=/^[\w]{6,12}$/;
+        checkData(pass,function (val) {
+            if(regpass.test(val)){
+                return true;
+            }else {
+                flag=false;
+                return false;
+            }
+        },"密码长度在6~12之间，只能包含字母、数字和下划线",param)
+        //验证密码
+        var repass=$("#repass");
+
+        checkData(repass,function (val) {
+            if(val!=""&&pass.val()==val){
+                return true;
+            }else {
+                flag=false;
+                return false;
+            }
+        },"两次密码输入不一致",param)
+        //验证手机号
+        var phone=$("#rphone");
+        var regphone=/^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/;
+        checkData(phone,function (val) {
+            if(regphone.test(val)){
+                return true;
+            }else{
+                flag=false;
+                return false;
+            }
+        },"请输入正确的手机号",param);
+        //验证验证码
+
+        var reyanznum=$("#yanzm");
+//
+        reyanznum.focus(function () {
+            $("#b1").next("SPAN").text("");
+        });
+        if(param=='p'){
+            if(reyanznum.val()==yznum){
+                //验证码正确
+            }else {
+                //alert(${pageContext.session.getAttribute("yznum")});
+                $("#b1").next("SPAN").text("验证码错误");
+                $("#b1").next("SPAN").removeClass();
+                $("#b1") .next("SPAN").addClass("error");
+                flag=false;
+            }
+        }
+        return flag;
+    }
+    //验证用户名函数
+    function checkuanme(obj,fun1,fun2,param) {
+        var span=obj.next("SPAN");
+
+        obj.focus(function () {
+            span.text("");
+            span.removeClass();
+        });
+        obj.blur(function () {
+            var value=obj.val();
+            if(fun1(value)){
+
+                $.ajax({
+                    type:"get",
+                    url:"${pageContext.request.contextPath}/checkUname.action",
+                    data:"runame="+$("#runame").val(),
+                    success:function (da) {
+
+                        if(fun2(da)){
+                            span.text("OK");
+                            span.removeClass();
+                            span.addClass("success");
+                        }else{
+                            span.text("用户名已存在");
+                            span.removeClass();
+                            span.addClass("error")
+                        }
+                    }
+                });
+            }else {
+                span.text("用户名字母开头，5-16位，字母数字下划线");
+                span.removeClass();
+                span.addClass("error");
+            }
+        });
+        if(param=='p'){
+            obj.blur();
+        }
+    }
+    //验证其他
+    function checkData(obj,fun,info,param){
+        var span=obj.next("SPAN");
+        obj.focus(function () {
+            span.text("");
+            span.removeClass();
+        });
+        obj.blur(function () {
+            var value=obj.val();
+            if(fun(value)){
+                span.text("OK");
+                span.addClass("success");
+            }else {
+                span.text(info);
+                span.removeClass();
+                span.addClass("error");
+            }
+
+        });
+        if(param =='p'){
+            obj.blur();
+        }
+
+    }
+    function  loginsubmint(param) {
+
+        var flag=true;
+        var uname=$("#uname");
+        var password=$("#password");
+        if(param=='p'){
+            $.ajax({
+                async:false,
+                type:"get",
+                url:"${pageContext.request.contextPath}/checkLoginUname.action",
+                data:"uname="+uname.val()+"&userType="+$("input[name='userType']:checked").val()+"&password="+password.val(),
+                success:function (da){
+
+                    if(da==0){
+
+                        uname.next("SPAN").text("用户名不存在");
+                        uname.next("SPAN").removeClass();
+                        uname.next("SPAN").addClass("error");
+                        flag=false;
+                    }else if(da==1){
+
+                        password.next("SPAN").text("密码错误");
+                        password.next("SPAN").removeClass();
+                        password.next("SPAN").addClass("error");
+                        flag=false;
+                    }
+                },
+                error:function () {
+                    alert("sb")
+                }
+            });
+        }
+
+        return flag;
+    }
+    $("#uname").focus(function () {
+        $("#uname").next("SPAN").text("");
+    });
+    $("#password").focus(function () {
+        $("#password").next("SPAN").text("");
+    });
+</script>
+</body>
 </html>

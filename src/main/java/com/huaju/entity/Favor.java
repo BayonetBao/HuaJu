@@ -6,33 +6,32 @@ public class Favor {
     private Integer commentid;
 
     private Integer userid;
-    private String favortype;
+    private Integer favortype;
 
     public Favor() {
         super();
     }
 
-    public Favor(Integer commentid, Integer userid, String favortype) {
+    public Favor(Integer commentid, Integer userid, Integer favortype) {
         this.commentid = commentid;
         this.userid = userid;
         this.favortype = favortype;
     }
 
-    public Favor(Integer favorid, Integer commentid, Integer userid, String favortype) {
+    public Favor(Integer favorid, Integer commentid, Integer userid, Integer favortype) {
         this.favorid = favorid;
         this.commentid = commentid;
         this.userid = userid;
         this.favortype = favortype;
     }
 
-    public String getFavortype() {
+    public Integer getFavortype() {
         return favortype;
     }
 
-    public void setFavortype(String favortype) {
+    public void setFavortype(Integer favortype) {
         this.favortype = favortype;
     }
-
 
     public Integer getFavorid() {
         return favorid;

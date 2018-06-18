@@ -31,6 +31,15 @@ public class Company {
     private String quality;
 
     private String instruction;
+    private String compic;
+
+    public String getCompic() {
+        return compic;
+    }
+
+    public void setCompic(String compic) {
+        this.compic = compic;
+    }
 
     public String getComuname() {
         return comuname;

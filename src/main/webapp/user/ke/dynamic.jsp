@@ -47,7 +47,7 @@
 				</div>
 				<div class="timeyear">YEAR</div>
 			</div>
-			<a href="http://www.777moban.com/list_35_1.html"  target="_blank" class="clock"></a>
+			<a href="#"  target="_blank" class="clock"></a>
 		</div>
 	</div>
 	
@@ -79,7 +79,7 @@
 </div>
 <div style="text-align:center;clear:both">
 <p>以上为楼盘所有动态。。。。。。。</p>
-<p>来源：<a href="http://777moban.com/" target="_blank">华居数据库</a></p>
+<p>来源：<a href="#" target="_blank">华居数据库</a></p>
 </div>
 </body>
 </html>

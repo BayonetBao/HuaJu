@@ -187,4 +187,27 @@ public class House {
         this.analysis = analysis == null ? null : analysis.trim();
     }
 
+    @Override
+    public String toString() {
+        return "House{" +
+                "houseid=" + houseid +
+                ", hname='" + hname + '\'' +
+                ", hmoney=" + hmoney +
+                ", htypeimg='" + htypeimg + '\'' +
+                ", hperprice=" + hperprice +
+                ", updatename=" + updatename +
+                ", forward='" + forward + '\'' +
+                ", harea=" + harea +
+                ", htype='" + htype + '\'' +
+                ", hsalestatus='" + hsalestatus + '\'' +
+                ", payment=" + payment +
+                ", monthpay=" + monthpay +
+                ", doorid=" + doorid +
+                ", butypeid=" + butypeid +
+                ", analysis='" + analysis + '\'' +
+                ", door=" + door +
+                ", buildType=" + buildType +
+                ", type=" + type +
+                '}';
+    }
 }

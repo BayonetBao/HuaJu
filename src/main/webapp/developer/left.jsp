@@ -34,15 +34,15 @@
 %>
 <div id="left-top">
     <div><img src="images/main/member.gif" width="44" height="44" /></div>
-    <span>用户：admin<br>角色：超级管理员</span>
+    <span>用户：${user.comuname}<br>角色：开发商</span>
 </div>
 <div style="float: left" id="my_menu" class="sdmenu">
     <div class="collapsed">
         <span>楼盘信息</span>
         <%--developer/personalCenter.jsp--%>
-        <a href="${pageContext.request.contextPath}/developer/main.jsp" target="mainFrame" onFocus="this.blur()">后台首页</a>
-        <a href="${pageContext.request.contextPath}/developer/lpInfo.jsp" target="mainFrame" onFocus="this.blur()">楼盘信息</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">楼盘添加</a>
+        <a href="${pageContext.request.contextPath}/developer/personalCenter.jsp" target="mainFrame" onFocus="this.blur()">后台首页</a>
+        <a href="${pageContext.request.contextPath}/build/showBuildInfo.action" target="mainFrame" onFocus="this.blur()">楼盘信息</a>
+        <a href="${pageContext.request.contextPath}/developer/addBuild.jsp" target="mainFrame" onFocus="this.blur()">添加楼盘</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">信息完善</a>
     </div>
     <div>
@@ -68,15 +68,7 @@
         <a href="${pageContext.request.contextPath}/Activity/activityList.action" target="mainFrame" onFocus="this.blur()">活动信息</a>
         <a href="${pageContext.request.contextPath}/Activity/selectctaandbuild.action" target="mainFrame" onFocus="this.blur()">活动添加</a>
     </div>
-
-    <div>
-        <span>系统设置</span>
-        lur()">自定义权限</a>
-    </div>
-    <div>
-        <span>系统设置</span>
-
-    </div>
+    
 </div>
 </body>
 </html>

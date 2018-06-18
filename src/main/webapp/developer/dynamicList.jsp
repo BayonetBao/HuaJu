@@ -25,7 +25,7 @@
         #search form span{height:40px; line-height:40px; padding:0 0px 0 10px; float:left;}
         #search form input.text-word{height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;}
         #search form input.text-but{height:24px; line-height:24px; width:55px; background:url(images/main/list_input.jpg) no-repeat left top; border:none; cursor:pointer; font-family:"Microsoft YaHei","Tahoma","Arial",'宋体'; color:#666; float:left; margin:8px 0 0 6px; display:inline;}
-        #search a.add{ background:url(images/main/add.jpg) no-repeat -3px 7px #548fc9; padding:0 10px 0 26px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#FFF; float:right}
+        #search a.add{ background:url(${pageContext.request.contextPath}/developer/images/main/add.jpg) no-repeat -3px 7px #548fc9; padding:0 10px 0 26px; height:40px; line-height:40px; font-size:14px; font-weight:bold; color:#FFF; float:right}
         #search a:hover.add{ text-decoration:underline; color:#d2e9ff;}
         #main-tab{ border:1px solid #eaeaea; background:#FFF; font-size:12px;}
         #main-tab th{ font-size:12px; background:url(images/main/list_bg.jpg) repeat-x; height:32px; line-height:32px;}
@@ -59,9 +59,9 @@
                     <td width="90%" align="left" valign="middle">
                         <form id="mainForm" method="post" action="<%=basePath%>dynamic/selectAllDynamicByQueryPojo.action">
                             <input type="hidden" id="curPage" name="curPage" value="1"/>
-                            <div class="form-group">
+                            <div class="form-group" style="margin-top: -10px;">
                                 <span style="font-size:14px;">楼盘：</span>
-                                <select name="buildingid" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
+                                <select name="buildingid" class="form-control" style="height:24px; line-height:24px; width:180px; margin:8px 0 6px 0; padding:0 0px 0 10px; float:left; border:1px solid #FFF;">
                                     <option value="">请选择</option>
                                     <c:forEach items="${blist}" var="b">
                                         <c:choose>
@@ -74,7 +74,7 @@
                                         </c:choose>
                                     </c:forEach>
                                 </select>
-                                <input name="" type="submit" value="查询" class="form-control input-sm" style="width:70px;margin-left:250px;margin-top:-30px;">
+                                <input name="" type="submit" value="查询" class="form-control" style="height:24px; line-height:24px; width:60px; margin:8px 0 6px 30px; padding:0 0px 0 10px; float:left; border:1px solid #FFF;">
                             </div>
                         </form>
                     </td>
@@ -91,7 +91,7 @@
                     <th  valign="middle" class="borderright">编号</th>
                     <th  valign="middle" class="borderright">楼盘</th>
                     <th  valign="middle" class="borderright">标题</th>
-                    <th  valign="middle" class="borderright">动态内容</th>
+                    <th style="width: 50%;" valign="middle" class="borderright">动态内容</th>
                     <th  valign="middle" class="borderright">动态时间</th>
                     <th  valign="middle">操作</th>
                 </tr>

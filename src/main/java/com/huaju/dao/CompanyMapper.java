@@ -7,4 +7,6 @@ public interface CompanyMapper {
     public boolean setCompany(Company company);
     //按用户名查找（张宝）
     public Company selectCompanyByName(String comname);
+    //按id查找（张宝）
+    public Company selectCompanyById(int comid );
 }

@@ -3,7 +3,6 @@ package com.huaju.util.miaodiyun.huiDiao;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.huaju.util.miaodiyun.httpApiDemo.common.Config;
 import com.huaju.util.miaodiyun.huiDiao.entity.VoiceBackRep;
 import com.huaju.util.miaodiyun.huiDiao.entity.VoiceBackResp;
-import org.apache.commons.codec.digest.DigestUtils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * 语音验证码状态通知接口
