@@ -109,8 +109,8 @@
         -->
     <!--public boolean setBuild(Build build);-->
     <insert id="setBuild" parameterType="Build">
-       insert into build(building,province,city,barea,bdetail,bpicture,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
-      VALUES (#{building},#{province},#{city},#{barea},#{bdetail},#{bpicture},#{tenement},#{btype},#{comid},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
+       insert into build(building,province,city,barea,bdetail,lng,lat,bpicture,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
+      VALUES (#{building},#{province},#{city},#{barea},#{bdetail},#{lng},#{lat},#{bpicture},#{tenement},#{btype},#{comid},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
   </insert>
     <!--//按开发商id和名字查询楼盘(张宝)-->
     <!--public List<Build> selectBuildByCondition(CompanyIdAndBuildName companyIdAndBuildName);-->
@@ -148,4 +148,9 @@
     <update id="updateBuildSpaceInfo" parameterType="Build">
         UPDATE build set tencompany=#{tencompany},tenement=#{tenement},tencost=#{tencost},tentype=#{tentype},greenrate=#{greenrate},carport=#{carport},cubage=#{cubage},fitment=#{fitment} WHERE buildingid=#{buildingid}
     </update>
+    <!--//按楼盘id查询开发商（张宝）-->
+    <!--public Company selectCompanyByBuildId(int buildingid);-->
+    <select id="selectCompanyByBuildId" parameterType="int" resultType="Company">
+        SELECT * from company where comid=(SELECT comid from build WHERE buildingid=#{_parameter})
+    </select>
 </mapper>

@@ -1,78 +1,144 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 七年
-  Date: 2018/6/5
-  Time: 18:53
+  User: 狂妄小子
+  Date: 2018/6/1
+  Time: 9:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE HTML>
 <html>
-
 <head>
-
     <style>
-        .zixunshi {
-            width: 110px;
-            margin-left: 600px;
-        }
+        .zixunshi{
+            width:110px;
+            margin-left:600px;
 
-        .name {
-            width: 100px;
-            margin-left: 600px;
+        }
+        .name{
+            width:100px;
+            margin-left:600px;
+        }
+        .success{
+            color: #40ff1f;
+        }
+        .error{
+            color: #ff0d20;
         }
     </style>
-
-    <title>楼盘搜索</title>
+    <title>户型分析</title>
     <!---css--->
-    <link href="${pageContext.request.contextPath}/user/ke/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="${pageContext.request.contextPath}/user/ke/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css' />
     <!---css--->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript">
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!---js--->
-    <script src="${pageContext.request.contextPath}/user/ke/js/jquery-1.11.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=NHeOezVjNdxk5C1Q4i14l4SkfTeMdpLp"></script>
+    <script src="${pageContext.request.contextPath}/user/bao/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/user/bao/js/unslider.min.js"></script>
+    <script src="${pageContext.request.contextPath}/user/bao/js/bootstrap.js"></script>
     <!---js--->
     <!---fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <!---fonts-->
-    <!--三级联动-->
-    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.data.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/js/main.js"></script>
-    <!-- FlexSlider -->
-    <script src="${pageContext.request.contextPath}/user/ke/js/jquery.flexslider.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/flexslider.css" type="text/css" media="screen" />
+    <script src="${pageContext.request.contextPath}/user/bao/js/responsiveslides.min.js"></script>
     <script>
-        // Can also be used with $(document).ready()
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto:true,
+                nav: false,
+                speed: 500,
+                namespace: "callbacks",
+                pager:true,
             });
         });
     </script>
-    <!-- //FlexSlider-->
+    <link href="${pageContext.request.contextPath}/user/bao/css/owl.carousel.css" rel="stylesheet">
+    <script src="${pageContext.request.contextPath}/user/bao/js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#owl-demo").owlCarousel({
+                items : 1,
+                lazyLoad : true,
+                autoPlay : true,
+                navigation : false,
+                navigationText :  false,
+                pagination : true,
+            });
+        });
+    </script>
+    <style>
 
+        html, body { font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;}
+
+        ul, ol { padding: 0;}
+
+
+
+        .banner { position: relative; overflow: auto; margin:10px auto; text-align: center;}
+
+        .banner li { list-style: none; }
+
+        .banner ul li { float: left; }
+
+
+        #b04 { width: 520px;}
+        #b04 .dots { position: absolute; left: 0; right: 0; bottom: 10px;}
+
+        #b04 .dots li
+        {
+            display: inline-block;
+
+            width: 10px;
+
+            height: 10px;
+
+            margin: 0 4px;
+
+            text-indent: -999em;
+
+            border: 2px solid #fff;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            opacity: .4;
+
+            -webkit-transition: background .5s, opacity .5s;
+
+            -moz-transition: background .5s, opacity .5s;
+
+            transition: background .5s, opacity .5s;
+
+        }
+
+        #b04 .dots li.active
+
+        {
+
+            background: #fff;
+
+            opacity: 1;
+
+        }
+
+
+        #b04 .arrow { position: absolute; top: 200px;}
+
+        #b04 #al { left: 15px;}
+
+        #b04 #ar { right: 15px;}
+    </style>
 </head>
-
 <body>
 <!---header--->
 <div class="header-section">
@@ -113,7 +179,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="index.html"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1><a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
                 </div>
 
             </div>
@@ -121,8 +187,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
-                    <li class="active">
+                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
@@ -142,214 +208,79 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
     </div>
 </div>
+<!---banner--->
+
+<div style="margin:10px auto;width:1140px;">
+    位置 ：华居>楼盘详情>${build.building}<p/>
+    <p style="margin-top:20px;">
+        <b style="font-size:30px; color: #222">${build.building}
+        </b>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${build.conditions}</span>
+        <c:if test="${not empty build.charactere}">
+            <c:set var="character" value="${build.charactere}"></c:set>
+            <c:set var="characters" value='${fn:split(character, ",")}'></c:set>
+            <c:forEach items="${characters}" var="characterss">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${characterss}</span>
+            </c:forEach>
+        </c:if>
+    </p>
+</div>
+<nav class="navbar-default" style="background-color:#f8f8f8;overflow:auto; min-width:1125px;">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+
+    <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
+
+        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;" class="active"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
+        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
+        <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
+    </ul>
+</nav>
 <!---header--->
 <!---banner--->
-<div class="content">
-    <div class="properties-section">
-        <div class="container">
+<div class="content" style="margin-top:10px;">
+    <div class="properties-section" style="margin-top:0px;padding-top:10px;">
+        <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:1100px;">
             <div class="properties-grids">
-                <div class="col-md-9 forsales-left">
-                    <div class="forsale">
-                        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-
-                            <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部楼盘
-                                    </a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action?isonsale='abc'" role="tab"   aria-controls="profile">优惠楼盘</a>
-                                </li>
-                            </ul>
-                            <div id="myTabContent" class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-
-                                    <c:forEach items="${pageInfo.list}" var="b">
-                                        <div class="forsale-grids">
-                                            <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a></h4>
-                                            <div class="forsale1">
-                                                <div class="forsale-left">
-                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" alt="楼盘"></a>
-                                                </div>
-                                                <div class="forsale-right">
-                                                    <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
-                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                        参考总价${b.btotalprice}-${b.bmaxtotalprice}万元
-                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                        <button style="border:none; background-color: #F60;">${b.conditions}</button>
-                                                    </h5>
-                                                    <p>${b.bdetail}<br/>
-                                                        <a href="地图链接"> 查看地图</a><br/> 2018.05.24
-                                                        <a href="楼盘详情页面">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
-                                                    </p>${b.discounts}
-                                                    <a href="楼盘详情页面" class="button4">更多详情</a>
-                                                </div>
-                                                <div class="zixunshi">
-                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
-
-                                                    <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                        <a>${b.cta.ctaname}|咨询</a>
-                                                    </p>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <ul>
-                                                   <c:forEach items="${fn:split(b.charactere,'，')}" var="ch">
-                                                       <li>
-                                                           <a href="楼盘详情页面">${ch}</a>
-                                                       </li>
-                                                   </c:forEach>
-                                                    <li>
-                                                        <a href="楼盘详情页面">向他咨询</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </c:forEach>
-                                    <div class="col-md-offset-4">
-                                        <nav>
-                                            <ul class="pagination pagination-lg">
-                                               <li><a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a></li>
-                                                <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
-                                                <li><span><b>${pageInfo.pageNum}</b>/<b>${pageInfo.pages}</b></span></li>
-                                                <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
-                                               <li> <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a></li>
-                                         
-                                            </ul>
-                                        </nav>
-                                    </div>
-
-                                </div>
-
-                                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>for rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
+                <div class="col-md-9 properties-left">
+                    <div class="clearfix"></div>
+                    <%--楼盘户型--%>
+                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
+                        <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
+                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">户型分析</span>
+                            <span style="float: right;line-height:48px;">一居（2），二居（3），三居（1），四居（2）</span>
                         </div>
+                        <br>
+                        <div style="border:solid rgba(116,117,112,0.93) 1px; height: 200px;overflow: auto;">
+                            <div style="height: 140px;width: 135px;float: left; border: solid cyan 1px;margin-top:28px;">
+
+                            </div>
+                            <div style="float:left;border: solid chartreuse 1px;margin-top:18px;height: 160px;width: 575px;">
+                                <b style="font-size:24px;">一室一厅建面95㎡</b><span style="border: solid rgba(251,97,95,1) 1px;">在售</span>
+                                <br>
+                                <br>
+                                <p>总价32万左右&nbsp;&nbsp;&nbsp;&nbsp; 首付16万左右&nbsp;&nbsp;&nbsp;&nbsp;报价更新是时间2018-06-18</p>
+
+                                <p>朝向：南&nbsp;&nbsp;&nbsp;&nbsp;类型：商改住</p>
+
+                                <p>户型分析：是哭的今飞凯达交房的房间打开房间打开打飞机快递费...<a>查看全文</a></p>
+                            </div>
+
+                        </div>
+                        <div style="padding-bottom:1px;height: 50px;font-size: 24px;text-align: center;">
+                            <span style="display:block;margin-top:7px;">查看全部</span>
+                        </div>
+
                     </div>
                 </div>
-                <div class="col-md-3 properties-right" >
-                    <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif">我要找房</h4>
-                        <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
-                            <input type="hidden" value="1" id="curPage" name="curPage" />
-                            <div id="distpicker5">
-                                <div class="form-group col-md-12">
-                                    <h5>省份</h5>
-                                    <label class="sr-only" for="province1">Province</label>
-                                    <select class="form-control" name="province" id="province1">
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <h5>城市</h5>
-                                    <label class="sr-only" for="city1">City</label>
-                                    <select class="form-control" name="city" id="city1"></select>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <h5>区域</h5>
-                                    <label class="sr-only" for="district1" name="district">District</label>
-                                    <select class="form-control" name="district" id="district1"></select>
-                                </div>
-                            </div>
-                            <div class="yourplace col-md-12">
-                                <h5>户型</h5>
-                                <select class="sel2" name="typeid">
-                                    <option value="">不限</option>
-                                    <option value="1">一居</option>
-                                    <option value="2">二居</option>
-                                    <option value="3">三居</option>
-                                    <option value="4">四居</option>
-                                    <option value="5">五居及以上</option>
-                                </select>
-                            </div>
 
-                            <div class="yourplace col-md-12">
-                                <h5>特色</h5>
-                                <select class="sel3" name="character">
-                                    <option value="">不限</option>
-                                    <option value="小户型">小户型</option>
-                                    <option value="临地铁">临地铁</option>
-                                    <option value="临地铁">精装修</option>
-                                    <option value="现房">现房</option>
-                                    <option value="品牌地产">品牌地产</option>
-                                </select>
-                            </div>
-                            <div class="yourplace col-md-6">
-                                <h5>类型</h5>
-                                <select class="sel2" name="genre">
-                                    <option value="">不限</option>
-                                    <option value="住宅">住宅</option>
-                                    <option value="别墅">别墅</option>
-                                    <option value="商业</">商业</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 yourplace-grid">
-                                <h5>总价</h5>
-                                <select class="sel3" name="bTotalprice">
-                                    <option value="">总价</option>
-                                    <option value="100">
-                                        <100万</option>
-                                    <option value="100-200">100-200万</option>
-                                    <option value="200-300">200-300万</option>
-                                    <option value="300-500">300-500万</option>
-                                    <option value="500">>500万</option>
-                                </select>
-                            </div>
-                            <div class="yourplace-grids1">
-                                <div class="col-md-6 yourplace-grid">
-                                    <h5>单价</h5>
-                                    <select class="sel3" name="bPerprice">
-                                        <option value="">单价</option>
-                                        <option value="0-20000">
-                                            <2万</option>
-                                        <option value="20000-30000">2-3万</option>
-                                        <option value="30000-40000">3-4万</option>
-                                        <option value="40000-50000">4-5万</option>
-                                        <option value="50000">5万及以上</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 yourplace-grid">
-                                    <h5>面积</h5>
-                                    <select class="sel3" name="acreage">
-                                        <option value="">请选择</option>
-                                        <option value="30-50">30-50</option>
-                                        <option value="50-100">50-100</option>
-                                        <option value="100-150">100-150</option>
-                                        <option value="150">150~</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button style="width: 140px;height: 50px;margin-top: 10px; font-size: 20px;" type="submit" class="btn btn-warning">搜索</button>
-                        </form>
-                    </div>
-<script>
-    function  getPage(curPage) {
-
-        //将我们这个隐藏域的值变成curPage
-        $("#curPage").val(curPage);
-        //触发表单提交事件
-        $("#mainForm").submit();
-
-    }
-    function mainForm() {
-        $("#mainForm").submit();
-    }
-</script>
-
-                </div>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -366,47 +297,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 footer-grid">
                 <h4>Recent Posts</h4>
                 <ul>
-                    <li>
-                        <a href="#">Lorem Post With Image Format</a>
-                    </li>
-                    <li>
-                        <a href="#">Example Video Blog Post</a>
-                    </li>
-                    <li>
-                        <a href="#">Example Post With Gallery Post </a>
-                    </li>
-                    <li>
-                        <a href="#">Example Video Blog Post</a>
-                    </li>
-                    <li>
-                        <a href="#">Lorem Post With Image Format</a>
-                    </li>
-                    <li>
-                        <a href="#">Example Video Blog Post</a>
-                    </li>
+                    <li><a href="#">Lorem Post With Image Format</a></li>
+                    <li><a href="#">Example Video Blog Post</a></li>
+                    <li><a href="#">Example Post With Gallery Post </a></li>
+                    <li><a href="#">Example Video Blog Post</a></li>
+                    <li><a href="#">Lorem Post With Image Format</a></li>
+                    <li><a href="#">Example Video Blog Post</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-grid">
                 <h4>Useful links</h4>
                 <ul>
-                    <li>
-                        <a href="terms.html">Terms of Use</a>
-                    </li>
-                    <li>
-                        <a href="privacy.html">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact Support </a>
-                    </li>
-                    <li>
-                        <a href="agents.html"> All Agents</a>
-                    </li>
-                    <li>
-                        <a href="blog.html">Blog</a>
-                    </li>
-                    <li>
-                        <a href="faqs.html">FAQs</a>
-                    </li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="contact.html">Contact Support </a></li>
+                    <li><a href="agents.html"> All Agents</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
                 </ul>
             </div>
             <div class="col-md-3 footer-grid">
@@ -416,9 +323,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <p>Freephone : +1 234 567 890</p>
                 <p>Telephone : +1 234 567 890</p>
                 <p>FAX : + 1 234 567 890</p>
-                <p>E-mail :
-                    <a href="mailto:example@mail.com"> example@mail.com</a>
-                </p>
+                <p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -428,10 +333,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--copy-->
 <div class="copy-section">
     <div class="container">
-        <p>Copyright &copy; 2016.Company name All rights reserved.More Templates
-            <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from
-            <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-        </p>
+        <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
     </div>
 </div>
 <!--copy-->

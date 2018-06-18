@@ -169,6 +169,7 @@ public class BuildControl {
         }
         return "0";
     }
+    //后台楼盘详情
     @RequestMapping(value = "/selectBuildById.action")
     public void selectBuildById(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
@@ -198,5 +199,26 @@ public class BuildControl {
             request.getRequestDispatcher("/build/selectBuildById.action").forward(request,response);
         }
     }
+    }
+    @RequestMapping(value = "/buildIndex.action",method ={RequestMethod.GET,RequestMethod.POST} )
+    public void buildIndex(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
+        Company company=buildService.selectCompanyByBuildId(Integer.parseInt(buildingid));
+        if(build!=null) {
+            List<BuildType> buildTypes = buildTypeService.selectTypeCount(Integer.parseInt(buildingid));
+            request.setAttribute("buildTypes", buildTypes);
+            request.setAttribute("company",company);
+            request.setAttribute("build", build);
+        }
+        request.getRequestDispatcher("/user/bao/buildIndex.jsp").forward(request,response);
+
+    }
+    @RequestMapping(value = "/buildAroundAnalysis.action")
+    public void buildAroundAnalysis(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
+        if(build!=null){
+            request.setAttribute("build", build);
+            request.getRequestDispatcher("/user/bao/buildAroundAnalysis.jsp").forward(request,response);
+        }
     }
 }
