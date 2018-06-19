@@ -23,5 +23,9 @@
     <select id="selectTypeCount" parameterType="int" resultType="BuildType">
         SELECT * from buildtype where buildingid=#{_parameter}
     </select>
-
+    <!--public List<BuildType> selectByBuildingid(Integer buildingid);-->
+    <select id="selectByBuildingid" resultType="BuildType" parameterType="int">
+        SELECT buildtype.*,typename from buildtype,type where type.typeid=buildtype.typeid
+        and buildingid=#{_parameter}
+</select>
 </mapper>

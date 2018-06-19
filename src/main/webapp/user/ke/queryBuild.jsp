@@ -124,7 +124,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="active">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
-
                     </li>
 
                     <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
@@ -166,7 +165,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     <c:forEach items="${pageInfo.list}" var="b">
                                         <div class="forsale-grids">
-                                            <h4><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a></h4>
+                                            <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a>
+                                                <p  style="position: relative; left: 500px;top: -25px;">
+                                                    <c:forEach items="${b.buildType}" var="type">
+                                                        ${type.typename}(${type.count}) &nbsp;
+                                                    </c:forEach>
+                                                </p>
+                                            </h4>
                                             <div class="forsale1">
                                                 <div class="forsale-left">
                                                     <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" alt="楼盘"></a>
@@ -179,7 +184,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         <button style="border:none; background-color: #F60;">${b.conditions}</button>
                                                     </h5>
                                                     <p>${b.bdetail}<br/>
-                                                        <a href="地图链接"> 查看地图</a><br/> 2018.05.24
+                                                        <a href="地图链接"> 查看地图</a><br/> ${b.starttime}
                                                         <a href="楼盘详情页面">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
                                                     </p>${b.discounts}
                                                     <a href="楼盘详情页面" class="button4">更多详情</a>
@@ -193,11 +198,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <ul>
+                                                    <c:choose>
+                                                    <c:when test="${!empty b.charactere && !(b.charactere eq '')}">
                                                    <c:forEach items="${fn:split(b.charactere,'，')}" var="ch">
                                                        <li>
-                                                           <a href="楼盘详情页面">${ch}</a>
+                                                           <a href="#">${ch}</a>
                                                        </li>
                                                    </c:forEach>
+                                                    </c:when>
+                                                        <c:otherwise>
+                                                            <li><a href="#">敬请期待</a></li>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                     <li>
                                                         <a href="楼盘详情页面">向他咨询</a>
                                                     </li>
@@ -212,30 +224,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
                                                 <li><span><b>${pageInfo.pageNum}</b>/<b>${pageInfo.pages}</b></span></li>
                                                 <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
-                                               <li> <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a></li>
+                                               <li> <a href="javascript:getPage(${pageInfo.lastPage})">末页</a></li>
                                          
                                             </ul>
                                         </nav>
                                     </div>
-
-                                </div>
-
-                                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                                    <div class="forsale-grids1">
-                                        <div class="col-md-4 forsale-grid1">
-                                            <img src="images/s7.jpg" class="img-responsive" alt="/">
-                                            <div class="sale-info">
-                                                <span>for rent</span>
-                                            </div>
-                                            <h5>114㎡, 升龙楼盘</h5>
-                                            <p>朝向南, 在地铁附近,…
-                                                <a href="#">Know More</a>
-                                            </p>
-                                            <h6>￥13222/㎡ </h6>
-                                        </div>
-
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
@@ -266,46 +259,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                             <div class="yourplace col-md-12">
                                 <h5>户型</h5>
-                                <select class="sel2" name="typeid">
+                            <select class="sel2" name="typeid">
+                                <option value="">不限</option>
+                                <c:forEach items="${types}" var="t">
+                                    <option value="${t.typeid}" <c:if test="${buildQueryPojo.typeid eq t.typeid}">selected</c:if> >${t.typename}</option>
+                                </c:forEach>
+                            </select>
+                            </div>
+                            <div class="yourplace col-md-12">
+                                <h5>开发商</h5>
+                                <select class="sel2" name="comid">
                                     <option value="">不限</option>
-                                    <option value="1">一居</option>
-                                    <option value="2">二居</option>
-                                    <option value="3">三居</option>
-                                    <option value="4">四居</option>
-                                    <option value="5">五居及以上</option>
+                                    <c:forEach items="${companies}" var="c">
+                                        <option value="${c.comid}" <c:if test="${buildQueryPojo.comid eq c.comid}">selected</c:if> >${c.comname}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
 
                             <div class="yourplace col-md-12">
                                 <h5>特色</h5>
-                                <select class="sel3" name="character">
+                                <select class="sel3" name="charactere">
                                     <option value="">不限</option>
-                                    <option value="小户型">小户型</option>
-                                    <option value="临地铁">临地铁</option>
-                                    <option value="临地铁">精装修</option>
-                                    <option value="现房">现房</option>
-                                    <option value="品牌地产">品牌地产</option>
+                                    <option value="小户型" <c:if test="${buildQueryPojo.charactere eq '小户型'}">selected</c:if>>小户型</option>
+                                    <option value="临地铁" <c:if test="${buildQueryPojo.charactere eq '临地铁'}">selected</c:if>>临地铁</option>
+                                    <option value="现房" <c:if test="${buildQueryPojo.charactere eq '现房'}">selected</c:if>>现房</option>
+                                    <option value="品牌地产" <c:if test="${buildQueryPojo.charactere eq '品牌地产'}">selected</c:if>>品牌地产</option>
                                 </select>
                             </div>
                             <div class="yourplace col-md-6">
                                 <h5>类型</h5>
                                 <select class="sel2" name="genre">
                                     <option value="">不限</option>
-                                    <option value="住宅">住宅</option>
-                                    <option value="别墅">别墅</option>
-                                    <option value="商业</">商业</option>
+                                    <option value="住宅" <c:if test="${buildQueryPojo.genre eq '住宅'}">selected</c:if>>住宅</option>
+                                    <option value="别墅" <c:if test="${buildQueryPojo.genre eq '别墅'}">selected</c:if>>别墅</option>
+                                    <option value="商业" <c:if test="${buildQueryPojo.genre eq '商业'}">selected</c:if>>商业</option>
                                 </select>
                             </div>
                             <div class="col-md-6 yourplace-grid">
                                 <h5>总价</h5>
                                 <select class="sel3" name="bTotalprice">
                                     <option value="">总价</option>
-                                    <option value="100">
+                                    <option value="0-100" <c:if test="${buildQueryPojo.bTotalprice eq 0}">selected</c:if>>
                                         <100万</option>
-                                    <option value="100-200">100-200万</option>
-                                    <option value="200-300">200-300万</option>
-                                    <option value="300-500">300-500万</option>
-                                    <option value="500">>500万</option>
+                                    <option value="100-200" <c:if test="${buildQueryPojo.bTotalprice eq 100}">selected</c:if>>100-200万</option>
+                                    <option value="200-300" <c:if test="${buildQueryPojo.bTotalprice eq 200}">selected</c:if>>200-300万</option>
+                                    <option value="300-500" <c:if test="${buildQueryPojo.bTotalprice eq 300}">selected</c:if>>300-500万</option>
+                                    <option value="500-10000" <c:if test="${buildQueryPojo.bTotalprice eq 500}">selected</c:if>>>500万</option>
                                 </select>
                             </div>
                             <div class="yourplace-grids1">
@@ -313,12 +312,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <h5>单价</h5>
                                     <select class="sel3" name="bPerprice">
                                         <option value="">单价</option>
-                                        <option value="0-20000">
+                                        <option value="0-20000" <c:if test="${buildQueryPojo.bPerprice eq 0}">selected</c:if>>
                                             <2万</option>
-                                        <option value="20000-30000">2-3万</option>
-                                        <option value="30000-40000">3-4万</option>
-                                        <option value="40000-50000">4-5万</option>
-                                        <option value="50000">5万及以上</option>
+                                        <option value="20000-30000" <c:if test="${buildQueryPojo.bPerprice eq 20000}">selected</c:if>>2-3万</option>
+                                        <option value="30000-40000" <c:if test="${buildQueryPojo.bPerprice eq 30000}">selected</c:if>>3-4万</option>
+                                        <option value="40000-50000" <c:if test="${buildQueryPojo.bPerprice eq 40000}">selected</c:if>>4-5万</option>
+                                        <option value="50000-10000000000" <c:if test="${buildQueryPojo.bPerprice eq 50000}">selected</c:if>>5万及以上</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 yourplace-grid">

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.huaju.entity.Build;
 import com.huaju.entity.BuildQueryPojo;
 import com.huaju.entity.Company;
+import com.huaju.entity.Type;
 
 import java.util.List;
 import java.util.Map;
@@ -28,4 +29,8 @@ public interface BuildService {
     public boolean updateBuildSaleInfo(Build build);
     //更新楼盘小区信息(张宝)
     public boolean updateBuildSpaceInfo(Build build);
+    //按楼盘id查询开发商（张宝）
+    public Company selectCompanyByBuildId(int buildingid);
+    //查询所有的房型
+    public List<Type> slectAllType();
 }

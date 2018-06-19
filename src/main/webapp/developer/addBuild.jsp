@@ -18,6 +18,7 @@
     <link href="http://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/developer/bootstrap/bootstrap.min.css"/>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=NHeOezVjNdxk5C1Q4i14l4SkfTeMdpLp"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/developer/Jequery/Jsquery.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/developer/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/developer/provincecitybarea/dist/distpicker.data.min.js"></script>
@@ -149,7 +150,17 @@
                 <div class="col-sm-1" style="width:11%;">
                     <input type="date" class="form-control" name="endtime" id="endtime"  style="width:80%;"/>
                 </div>
+            </div>
+            <div class="form-group">
+                <label style="width:20%" class="col-sm-4 control-label" for="lng">经度</label>
+                <div class="col-sm-1" style="width:11%;">
+                    <input type="text" class="form-control " name="lng" id="lng" style="width:80%;"/>
+                </div>
 
+                <label style="width:5%;" class="col-sm-1 control-label" for="lat">纬度</label>
+                <div class="col-sm-1" style="width:11%;">
+                    <input type="text" class="form-control " name="lat" id="lat" style="width:80%;"/>
+                </div>
 
             </div>
 
@@ -167,16 +178,77 @@
 
                 </div>
             </div>
-
-
-
-
-
     </form>
-</div>
+        <div style="width:1030px;margin-left:4%;">
+            <div class="form-group" style="overflow:auto;">
+                <label style="width:13%;" class="col-sm-4 control-label" for="position">要查询的地址</label>
+                <div class="col-sm-1" style="width:30%;">
+                    <input type="text" class="form-control " id="position" value="北京" style="width:100%;"/>
+                </div>
+
+                <label style=" margin-left:20px;width:15%;" class="col-sm-1 control-label" for="positionresult">查询结果(经纬度)</label>
+                <div class="col-sm-1" style="width:25%;">
+                    <input type="text" class="form-control " id="positionresult" style="width:100%;"/>
+                </div>
+                <input type="button" class="btn btn-default" style="margin-left:20px;background:#09F; color: #FFF;" value="查询" onclick="searchByStationName();"/>
+            </div>
+
+            <!--要查询的地址：<input id="text_" type="text" value="宁波天一广场" style="margin-right:100px;"/>
+            查询结果(经纬度)：<input id="result_" type="text" />-->
+
+            <div id="container1"
+                 style="position: relative ;
+
+                width: 1030px;
+                height: 590px;
+
+                border: 1px solid gray;
+                overflow:hidden;">
+            </div>
+        </div>
+    </div>
 </div>
 <button type="button" id="test">test</button>
 </body>
+<script type="text/javascript">
+    var map = new BMap.Map("container1");
+    map.centerAndZoom("北京", 12);
+    map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
+    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
+
+    map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
+    map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+    map.addControl(new BMap.OverviewMapControl({ isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开
+
+    var localSearch = new BMap.LocalSearch(map);
+    localSearch.enableAutoViewport(); //允许自动调节窗体大小
+    function searchByStationName() {
+        map.clearOverlays();//清空原来的标注
+        var keyword = document.getElementById("position").value;
+        localSearch.setSearchCompleteCallback(function (searchResult) {
+            var poi = searchResult.getPoi(0);
+            document.getElementById("positionresult").value = poi.point.lng + "," + poi.point.lat;
+            document.getElementById("lng").value = poi.point.lng;
+            document.getElementById("lat").value = poi.point.lat;
+            map.centerAndZoom(poi.point, 13);
+            var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地方对应的经纬度
+            map.addOverlay(marker);
+
+            marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+        });
+        localSearch.search(keyword);
+    }
+    map.addEventListener("click",function(e){
+        map.clearOverlays();//清空原来的标注
+        //alert(e.point.lng + "," + e.point.lat);
+        var point=new BMap.Point(e.point.lng,e.point.lat);
+        var marker = new BMap.Marker(point);  // 创建标注
+        map.addOverlay(marker);
+        document.getElementById("positionresult").value = e.point.lng + "," + e.point.lat;
+        document.getElementById("lng").value = e.point.lng;
+        document.getElementById("lat").value = e.point.lat;
+    });
+</script>
 <script type="text/javascript">
     $("#test").click(function () {
         alert("1");

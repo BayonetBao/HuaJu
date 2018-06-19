@@ -46,16 +46,17 @@
             <result property="ctaname" column="ctaname"/>
             <result property="ctaimg" column="ctaimg"/>
         </association>
-        <collection property="buildType" ofType="BuildType">
-            <id property="butypeid" column="butypeid"/>
-            <result property="count" column="count" />
-            <result property="typename" column="typename" />
+        <collection property="buildType"  ofType="com.huaju.entity.BuildType" column="buildingid"
+                    select="com.huaju.dao.BuildTypeMapper.selectByBuildingid">
+            <result column="typename" property="typename"/>
+            <result column="typeid" property="typeid"/>
+            <result column="count" property="count"/>
         </collection>
     </resultMap>
     <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);珂-->
    <select id="selectBuildQueryPojo" parameterType="BuildQueryPojo" resultMap="BuildMap">
-       select build.* ,cta.ctaname,cta.ctaimg,buildtype.butypeid,buildtype.count,type.typename,type.typeid from
-       build left join buildtype on(build.buildingid=buildtype.buildingid) left join type on(buildtype.typeid=type.typeid)
+       select build.* ,cta.ctaname,cta.ctaimg from
+       build
        left join cta on (build.ctaid=cta.ctaid)
        <where>
            <if test="province neq null">
@@ -67,8 +68,8 @@
            <if test="district neq null">
                and barea like "%" #{district} "%"
            </if>
-           <if test="character neq null">
-               and character like "%" #{character} "%"
+           <if test="charactere neq null">
+               and charactere like "%" #{charactere} "%"
            </if>
            <if test="genre neq null">
                and genre like "%" #{genre} "%"
@@ -77,27 +78,31 @@
                and bTotalprice &gt; #{bTotalprice}
            </if>
            <if test="bMaxTotalprice neq null">
-               and bMaxTotalprice &lt; #{bTotalprice}
+               and bTotalprice &lt; #{bTotalprice}
            </if>
            <if test="bPerprice neq null">
                and bPerprice &gt; #{bPerprice}
            </if>
            <if test="bMaxprice neq null">
-               and bMaxprice &lt; #{bMaxprice}
+               and bPerprice &lt; #{bMaxprice}
            </if>
            <if test="acreage neq null">
                and acreage &gt; #{acreage}
            </if>
            <if test="maxAcreage neq null">
-               and maxAcreage &lt; #{maxAcreage}
+               and acreage &lt; #{maxAcreage}
            </if>
            <if test="comid neq null">
                and comid =#{comid}
            </if>
            <if test="typeid neq null">
-               and typeid =#{typeid}
+               and buildingid in(
+               select buildingid from buildtype where typeid=#{typeid}
+               )
            </if>
-
+           <if test="comid neq null">
+               and comid =#{comid}
+           </if>
            <if test="isonsale neq null">
                and discounts is not null
            </if>
@@ -109,8 +114,8 @@
         -->
     <!--public boolean setBuild(Build build);-->
     <insert id="setBuild" parameterType="Build">
-       insert into build(building,province,city,barea,bdetail,bpicture,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
-      VALUES (#{building},#{province},#{city},#{barea},#{bdetail},#{bpicture},#{tenement},#{btype},#{comid},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
+       insert into build(building,province,city,barea,bdetail,lng,lat,bpicture,tenement,btype,comid,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,conditions,starttime,endtime)
+      VALUES (#{building},#{province},#{city},#{barea},#{bdetail},#{lng},#{lat},#{bpicture},#{tenement},#{btype},#{comid},#{bperprice},#{bmaxtotalprice},#{btotalprice},#{acreage},#{maxacreage},#{conditions},#{starttime},#{endtime})
   </insert>
     <!--//按开发商id和名字查询楼盘(张宝)-->
     <!--public List<Build> selectBuildByCondition(CompanyIdAndBuildName companyIdAndBuildName);-->
@@ -148,4 +153,9 @@
     <update id="updateBuildSpaceInfo" parameterType="Build">
         UPDATE build set tencompany=#{tencompany},tenement=#{tenement},tencost=#{tencost},tentype=#{tentype},greenrate=#{greenrate},carport=#{carport},cubage=#{cubage},fitment=#{fitment} WHERE buildingid=#{buildingid}
     </update>
+    <!--//按楼盘id查询开发商（张宝）-->
+    <!--public Company selectCompanyByBuildId(int buildingid);-->
+    <select id="selectCompanyByBuildId" parameterType="int" resultType="Company">
+        SELECT * from company where comid=(SELECT comid from build WHERE buildingid=#{_parameter})
+    </select>
 </mapper>

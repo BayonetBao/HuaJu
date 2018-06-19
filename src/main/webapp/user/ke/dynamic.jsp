@@ -22,18 +22,18 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/js/history.js"></script>
 
 </head>
-<body>
+<body style="overflow: hidden;margin-left: -230px;margin-top: -50px;">
 
-<div id="arrow">
-	<ul>
+<div id="arrow" >
+	<ul >
 		<li class="arrowup"></li>
 		<li class="arrowdown"></li>
 	</ul>
 </div>
 
-<div id="history">
+<div id="history" style="margin-left: 0px; padding-left: 0px;">
 
-	<div class="title">
+	<div class="title" >
 		<h2>楼盘动态</h2>
 		<div id="circle">
 			<div class="cmsk"></div>
@@ -76,10 +76,6 @@
 			</c:forEach>
 		</ul>
 	</div>
-</div>
-<div style="text-align:center;clear:both">
-<p>以上为楼盘所有动态。。。。。。。</p>
-<p>来源：<a href="#" target="_blank">华居数据库</a></p>
 </div>
 </body>
 </html>

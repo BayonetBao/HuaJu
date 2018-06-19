@@ -18,6 +18,10 @@ public class Build {
 
     private String bdetail;
 
+    private double lng;
+
+    private double lat;
+
     private String bpicture;
 
     private String tenement;
@@ -68,8 +72,25 @@ public class Build {
     private String bsalestatus;
     private List<BuildType> buildType;
 
+
     public Build() {
         super();
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
     public Cta getCta() {

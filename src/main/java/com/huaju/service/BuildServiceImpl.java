@@ -3,10 +3,8 @@ package com.huaju.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.huaju.dao.BuildMapper;
-import com.huaju.entity.Build;
-import com.huaju.entity.BuildQueryPojo;
-import com.huaju.entity.ComidAndBuildName;
-import com.huaju.entity.Company;
+import com.huaju.dao.TypeMapper;
+import com.huaju.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +14,8 @@ import java.util.Map;
 public class BuildServiceImpl implements BuildService{
     @Autowired
     BuildMapper buildMapper;
+    @Autowired
+    TypeMapper typeMapper;
 
     @Override
     public List<Company> selectCompanyInBuild() {
@@ -29,7 +29,7 @@ public class BuildServiceImpl implements BuildService{
         int pageSize=(int) cmap.get("pageSize");
         PageHelper.startPage(curPage,pageSize);
         List<Build> builds=buildMapper.selectBuildQueryPojo(buildQueryPojo);
-        PageInfo<Build> pageInfo=new PageInfo<Build>(builds);
+        PageInfo<Build> pageInfo=new PageInfo<>(builds);
         return pageInfo;
     }
 
@@ -78,6 +78,14 @@ public class BuildServiceImpl implements BuildService{
     public boolean updateBuildSpaceInfo(Build build){
         return buildMapper.updateBuildSpaceInfo(build);
     }
-
+    //按楼盘id查询开发商（张宝）
+    public Company selectCompanyByBuildId(int buildingid){
+        return buildMapper.selectCompanyByBuildId(buildingid);
+    }
+    //查询所有的房型
+    @Override
+    public List<Type> slectAllType() {
+        return typeMapper.slectAllType();
+    }
 
 }
