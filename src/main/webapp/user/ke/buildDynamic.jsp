@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import="java.util.*" %>
 <html>
 <head>
     <style>
@@ -62,7 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <link href="${pageContext.request.contextPath}/user/bao/css/owl.carousel.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/user/ke/css/allDynamic.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/user/bao/js/owl.carousel.js"></script>
+    <script src="${pageContext.request.contextPath}/user/ke/js/allDynamic.js"></script>
     <script>
         $(document).ready(function() {
             $("#owl-demo").owlCarousel({
@@ -231,13 +234,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 
-    <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
+    <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1180px">
 
         <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
         <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
         <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"class="active"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:57px;"class="active"><a href="#" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:57px;" ><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
@@ -247,45 +250,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---banner--->
 <div class="content" style="margin-top:10px;">
     <div class="properties-section" style="margin-top:0px;padding-top:10px;">
-        <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:1100px;">
+        <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:100%;">
             <div class="properties-grids">
-                <div class="col-md-9 properties-left">
+                <div class="col-md-12 properties-left">
                     <div class="clearfix"></div>
                     <%--楼盘动态--%>
-                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
-                        <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">楼盘动态</span>
-                        </div>
-                        <br>
-                        <div style="border:solid rgba(116,117,112,0.93) 1px; height: 200px;overflow: auto;">
+                    <div class="timeline animated container" style="width: 1180px;">
+                    <c:forEach items="${dynamics}" var="d" varStatus="sta">
+                       <c:choose>
+                           <c:when test="${sta.index%2==0}">
+                               <div class="timeline-row">
+                                   <div class="timeline-time"><small><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></small></div>
+                                   <div class="timeline-icon">
+                                       <div class="bg-primary"><i class="glyphicon glyphicon-chevron-left"></i></div>
+                                   </div>
+                                   <div class="panel timeline-content">
+                                       <div class="panel-body">
+                                           <h2>${d.dytitle}</h2>
+                                           <p>${d.dcontent}</p>
+                                       </div>
+                                   </div>
+                               </div>
+                           </c:when>
+                           <c:otherwise>
+                               <div class="timeline-row">
+                                   <div class="timeline-time"><small><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></small>6:14 PM</div>
+                                   <div class="timeline-icon">
+                                       <div class="bg-warning"><i class="glyphicon glyphicon-chevron-right"></i></div>
+                                   </div>
+                                   <div class="panel timeline-content">
+                                       <div class="panel-body">
+                                           <blockquote>
+                                               <p>${d.dcontent}</p>
+                                               <small>${d.dytitle}</small></blockquote>
+                                       </div>
+                                   </div>
+                               </div>
+                           </c:otherwise>
+                       </c:choose>
 
-
-                        </div>
-                        <div style="padding-bottom:1px;height: 50px;font-size: 24px;text-align: center;">
-                            <span style="display:block;margin-top:7px;">查看全部</span>
-                        </div>
+                   </c:forEach>
 
                     </div>
-                </div>
-                <div class="col-md-3 properties-right">
-                    <div class="feature">
-                        <h4 style="font-size: 30px;">推荐楼盘</h4>
-                        <div class="feature-top">
-                            <img src="images/s1.jpg" class="img-responsive" alt="/">
-                            <h5>60 Merrick Way, Miami</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                        </div>
-                        <div class="feature-top top2">
-                            <img src="images/s2.jpg" class="img-responsive" alt="/">
-                            <h5>Villa in Hialeah, Dade</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!---footer--->
 <div class="footer-section">
