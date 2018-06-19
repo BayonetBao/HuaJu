@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.ProtoTypeImgMapper">
-    <!--public List<ProtoTypeImg> AllPrototypeimg(int id);-->
-<select id="AllPrototypeimg" resultType="ProtoTypeImg" parameterType="int">
-    SELECT * FROM prototypeimg WHERE buildingid=#{_parameter}
+    <resultMap id="ProtoTypeImgMap" type="ProtoTypeImg">
+        <id column="proid" property="proid"/>
+        <result column="prototype" property="prototype"/>
+        <result column="buildingid" property="buildingid"/>
+        <association property="build" javaType="Build">
+            <result property="building" column="building"/>
+            <result property="comid" column="comid"/>
+        </association>
+    </resultMap>
+    <!--public ProtoTypeImg AllPrototypeimg(int id);-->
+<select id="AllPrototypeimg" resultMap="ProtoTypeImgMap" parameterType="int">
+    select prototypeimg.*,build.building,build.comid from prototypeimg ,build
+     where prototypeimg.buildingid=build.buildingid and buildid=#{_parameter}
 </select>
     <!--public void addPrototypeimg(ProtoTypeImg protoTypeImg);-->
 <insert id="addPrototypeimg" parameterType="ProtoTypeImg">
-    INSERT INTO prototypeimg (prototype,buildingid) VALUE (#{prototype},#{buildingid})
+    INSERT INTO prototypeimg VALUE (null,#{prototype},#{buildingid})
 </insert>
     <!--public void delectPrototypeimg(int id);-->
 <delete id="delectPrototypeimg" parameterType="int">
     DELETE FROM prototypeimg WHERE proid=#{_parameter}
 </delete>
+    <!--public List<ProtoTypeImg> SelectAllPrototypeimg(ImgQueryPojo imgQueryPojo);-->
+
+    <select id="SelectAllPrototypeimg" resultMap="ProtoTypeImgMap" parameterType="ImgQueryPojo">
+        select prototypeimg.*,build.building,build.comid from prototypeimg,build
+        <where>  prototypeimg.buildingid=build.buildingid
+            <if test="buildingid neq null">
+                and prototypeimg.buildingid=#{buildingid}
+            </if>
+            <if test="comid neq null">
+                and comid=#{comid}
+            </if>
+        </where>
+    </select>
+    <!--public List<Build> selectBuildInProtoimg(Integer comid);-->
+    <select id="selectBuildInProtoimg" resultType="Build" parameterType="int">
+        select DISTINCT build.buildingid,building from build,prototypeimg where build.buildingid=prototypeimg.buildingid
+        and comid=#{_parameter}
+    </select>
+
 </mapper>

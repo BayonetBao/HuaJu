@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.EnvironmentImgMapper">
-    <!--public List<EnvironmentImg> AllEnvironmentimg(int id);-->
-<select id="AllEnvironmentimg" resultType="EnvironmentImg" parameterType="int">
-    SELECT * FROM environmentimg WHERE buildingid=#{_parmeter}
+    <resultMap id="EnvironmentimgMap" type="Environmentimg">
+        <id column="envirid" property="envirid"/>
+        <result column="envirimg" property="envirimg"/>
+        <result column="buildingid" property="buildingid"/>
+        <association property="build" javaType="Build">
+            <result property="building" column="building"/>
+            <result property="comid" column="comid"/>
+        </association>
+    </resultMap>
+    <!--public EnvironmentImg AllEnvironmentimg(int id);-->
+<select id="AllEnvironmentimg" resultMap="EnvironmentimgMap" parameterType="int">
+    select environmentimg.*,build.building,build.comid from environnmentimg ,build
+     where environmentimg.buildingid=build.buildingid and buildid=#{_parameter}
 </select>
     <!--public void AddEnvironmentimg(EnvironmentImg environmentImg);-->
 <insert id="AddEnvironmentimg" parameterType="EnvironmentImg">
@@ -13,4 +23,21 @@
 <delete id="deleteEnvironmentimg" parameterType="int">
     DELETE FROM environmentimg WHERE envirid=#{_parameter}
 </delete>
+    <!--public List<EnvironmentImg> SelectAllEnvironmentimg(ImgQueryPojo imgQueryPojo);-->
+    <select id="SelectAllEnvironmentimg" resultMap="EnvironmentimgMap" parameterType="ImgQueryPojo">
+        select environmentimg.*,build.building,build.comid from environmentimg,build
+        <where>  environmentimg.buildingid=build.buildingid
+            <if test="buildingid neq null">
+                and environmentimg.buildingid=#{buildingid}
+            </if>
+            <if test="comid neq null">
+                and comid=#{comid}
+            </if>
+        </where>
+    </select>
+    <!--public List<Build> selectBuildInEnvirimg(Integer comid);-->
+    <select id="selectBuildInEnvirimg" resultType="Build" parameterType="int">
+        select DISTINCT build.buildingid,building from build,environmentimg where build.buildingid=environmentimg.buildingid
+        and comid=#{_parameter}
+    </select>
 </mapper>

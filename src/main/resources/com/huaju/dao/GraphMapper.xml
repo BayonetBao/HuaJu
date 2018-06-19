@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.GraphMapper">
-    <!--public List<Graph> AllGraph(int id);-->
-<select id="AllGraph" resultType="Graph" parameterType="int">
-    SELECT * FROM graph WHERE bulidingid=#{_parameter}
+    <resultMap id="GraphMap" type="Graph">
+        <id column="graphid" property="graphid"/>
+        <result column="graphurl" property="graphurl"/>
+        <result column="buildingid" property="buildingid"/>
+        <association property="build" javaType="Build">
+            <result property="building" column="building"/>
+            <result property="comid" column="comid"/>
+        </association>
+    </resultMap>
+    <!--public Graph AllGraph(int id);-->
+<select id="AllGraph" resultMap="GraphMap" parameterType="int">
+    select graph.*,build.building,build.comid from graph ,build
+     where graph.buildingid=build.buildingid and graphid=#{_parameter}
 </select>
     <!--public void AddGraph(Graph graph);-->
 <insert id="AddGraph" parameterType="Graph">
-    INSERT INTO graph (graphurl,buildingid) VALUE (#{graphurl},#{buildingid})
+    INSERT INTO graph VALUE (null,#{graphurl},#{buildingid})
 </insert>
-    <!--public void delectGraph(int id);-->
+    <!--public boolean delectGraph(int id);-->
     <delete id="delectGraph" parameterType="int">
         DELETE FROM graph WHERE graphid=#{_parameter}
     </delete>
 
+    <!--public List<Graph> SelectAllGraph(ImgQueryPojo imgQueryPojo);-->
+<select id="SelectAllGraph" resultMap="GraphMap" parameterType="ImgQueryPojo">
+    select graph.*,build.building,build.comid from graph,build
+    <where>  graph.buildingid=build.buildingid
+        <if test="buildingid neq null">
+            and graph.buildingid=#{buildingid}
+        </if>
+        <if test="comid neq null">
+            and comid=#{comid}
+        </if>
+    </where>
+</select>
+    <!--public void UpdateGraph(Graph graph);-->
+<update id="UpdateGraph" parameterType="Graph">
+    update graph SET graphurl=#{graphurl} where graphid=#{graphid}
+</update>
+    <!--public List<Build> selectBuildInGraph(Integer comid);-->
+    <select id="selectBuildInGraph" resultType="Build" parameterType="int">
+        select DISTINCT build.buildingid,building from build,graph where build.buildingid=graph.buildingid
+    and comid=#{_parameter}
+    </select>
 </mapper>
