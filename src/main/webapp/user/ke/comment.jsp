@@ -65,15 +65,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!---banner--->
 <div class="content">
-    <div class="blog-section" >
-        <div class="container"style="border: solid crimson 1px;padding-left: 0px;">
-            <div class="blog-grids"style="border: solid cyan 1px;">
-                <div class="col-md-9 blog-grid"style=" margin-left:0px;border: solid chocolate 1px;">
+    <div class="blog-section">
+        <div  style="padding: 0px;margin: 0px;">
+            <div class="blog-grids">
+                <div class="col-md-12 blog-grid" >
 
                     <!---RESPONSES--->
-                    <div class="coment-form" style="border: solid rebeccapurple 1px;">
-                        <div class="container"style="border: solid chartreuse 1px;">
-                            <div class="grid_3 grid_5" style="border: solid crimson 1px;">
+                    <div class="coment-form col-md-12">
+                        <div>
+                            <div class="grid_3 grid_5" style="width: 1400px;">
                                 <p style="font-size:24px;margin-bottom:5px;"><c:choose>
                                     <c:when test="${commentQueryPojo.idtype!=null && commentQueryPojo.idtype != '' }">
                                         <c:choose>
@@ -170,7 +170,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </a></p>
                                         <div class="dropdown" style="margin-top: 5px;margin-left:95%;">
                                             <a data-toggle="dropdown" href="javascript:void(0)" onmousedown="seeRecomment(${comment.commentid})">回复<span  class="caret"></span></a>
-                                            <ul data-stopPropagation="true" class="dropdown-menu" style="margin-left: -745px;width: 800px;">
+                                            <ul data-stopPropagation="true" class="dropdown-menu" style="margin-left: -920px;width: 1000px;">
                                                 <li  id="ul_${comment.commentid}" > <a name="hui"></a><textarea  type="text" id="recontent_${comment.commentid}" data-stopPropagation="true" onfocus="this.value = '';" style="width:95%; margin-left: 15px;"  onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
                                                     <div class="tags" style="margin-top: 0px;" data-stopPropagation="true">
                                                         <ul data-stopPropagation="true" style="margin-left: 80%">
@@ -398,76 +398,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
             </div>
-
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>
 </div>
-
-<!-- login -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body real-spa">
-                <div class="login-grids">
-                    <div class="login">
-
-                        <div class="login-right">
-                            <form>
-                                <h3>Login</h3>
-                                <input type="text" value="Enter your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your Email';}" required="">
-                                <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                                <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
-                                <div class="single-bottom">
-                                    <input type="checkbox"  id="brand" value="">
-                                    <label for="brand"><span></span>Remember Me.</label>
-                                </div>
-                                <input type="submit" value="Login Now" >
-                            </form>
-                        </div>
-
-                    </div>
-                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //login -->
-<!-- Register -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-info">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body real-spa">
-                <div class="login-grids">
-                    <div class="login">
-                        <div class="login-right">
-                            <form>
-                                <h3>Register </h3>
-                                <input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
-                                <input type="text" value="Mobile number" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mobile number';}" required="">
-                                <input type="text" value="Email id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email id';}" required="">
-                                <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-
-                                <input type="submit" value="Register Now" >
-                            </form>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- //Register -->
 
 </body>
 </html>
