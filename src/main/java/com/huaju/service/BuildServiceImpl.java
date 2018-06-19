@@ -82,7 +82,7 @@ public class BuildServiceImpl implements BuildService{
     public Company selectCompanyByBuildId(int buildingid){
         return buildMapper.selectCompanyByBuildId(buildingid);
     }
-
+    //查询所有的房型
     @Override
     public List<Type> slectAllType() {
         return typeMapper.slectAllType();
