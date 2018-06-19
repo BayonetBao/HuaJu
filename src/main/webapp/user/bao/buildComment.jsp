@@ -28,7 +28,7 @@
             color: #ff0d20;
         }
     </style>
-    <title>楼盘主页</title>
+    <title>楼盘评论</title>
     <!---css--->
     <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css' />
@@ -137,20 +137,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         #b04 #al { left: 15px;}
 
         #b04 #ar { right: 15px;}
-        li{
-            list-style: none;
-        }
-        .map li:hover{
-            background-color:#FAA43D;
-        }
-        a:visited{
-            color: black;
-        }
-        .bgcolor{
-            background-color:#FAA43D;
-        }
-
-
     </style>
 </head>
 <body>
@@ -247,19 +233,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
 
-        <li style="margin-right:57px; margin-left:16px;" class="active"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
         <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;"class="active"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:57px;" ><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
-
     </ul>
-
-
-
 </nav>
 <!---header--->
 <!---banner--->
@@ -268,267 +250,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:1100px;">
             <div class="properties-grids">
                 <div class="col-md-9 properties-left">
-                    <div class="flexslider">
-                        <div class="banner" id="b04" style="border:solid #0F0 1px;">
-                            <ul>
-                                <li><img src="${pageContext.request.contextPath}/${build.bpicture}" alt="" width="520" height="350" ></li>
-
-                                <li><img src="02.jpg" alt="" width="520" height="350" ></li>
-
-                                <li><img src="03.jpg" alt="" width="520" height="350" ></li>
-
-                                <li><img src="04.jpg" alt="" width="520" height="350" ></li>
-
-                                <li><img src="6.jpg" alt="" width="520" height="350" ></li>
-
-                            </ul>
-
-                            <a href="javascript:void(0);" class="unslider-arrow04 prev"><img class="arrow" id="al" src="${pageContext.request.contextPath}/user/bao/images/arrowl.png" alt="prev" width="20" height="35"></a>
-
-                            <a href="javascript:void(0);" class="unslider-arrow04 next"><img class="arrow" id="ar" src="${pageContext.request.contextPath}/user/bao/images/arrowr.png" alt="next" width="20" height="37"></a>
-
-                        </div>
-                        <script>
-                            $(document).ready(function(e) {
-                                var unslider04 = $('#b04').unslider({
-                                        dots: true
-                                    }),
-                                    data04 = unslider04.data('unslider');
-                                $('.unslider-arrow04').click(function() {
-                                    var fn = this.className.split(' ')[1];
-                                    data04[fn]();
-                                });
-                            });
-                        </script>
-                    </div>
                     <div class="clearfix"></div>
-                    <div style="width:100%; min-width:520px;">
-                        <table style="width:520px; margin: auto auto">
-
-                            <tr>
-                                <td><span style="color: #666;">参考单价：</span><b style="font-size:30px; color:#ff6d6f;"><fmt:formatNumber value="${build.bperprice}" type="number" maxFractionDigits="3"></fmt:formatNumber> 元/㎡</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style=" text-decoration:none;border:solid #ff6d6f 1px;color:#ff6d6f;">获取最新价格变动</a></td>
-
-
-                            </tr>
-                            <tr>
-                                <td style="width:80px; height:40px;"><span style="color: #666;">房屋面积：</span>${build.acreage}—${build.maxacreage}㎡</td>
-
-
-                            </tr>
-                            <tr>
-                                <td style="width:80px; height:40px;"><span style="color: #666;">参考总价：</span>${build.btotalprice}—${build.bmaxtotalprice}万元</td>
-
-
-                            </tr>
-                            <tr>
-                                <td style="width:80px;height:40px;"><span style="color: #666;">楼盘户型：</span><c:set var="flag" value="true"></c:set>
-                                    <c:forEach items="${buildTypes}" var="typeCount" >
-
-                                        <c:if test="${typeCount.count==0}">
-
-                                        </c:if>
-                                        <c:if test="${typeCount.count!=0 }">
-                                            <c:set var="flag" value="false"></c:set>
-                                            <c:if test="${typeCount.typeid==1}">
-                                                一居（${typeCount.count}）
-                                            </c:if>
-
-                                            <c:if test="${typeCount.typeid==2}">
-                                                二居（${typeCount.count}）
-                                            </c:if>
-
-                                            <c:if test="${typeCount.typeid==3}">
-                                                三居（${typeCount.count}）
-                                            </c:if>
-                                            <c:if test="${typeCount.typeid==4}">
-                                                四居（${typeCount.count}）
-                                            </c:if>
-                                        </c:if>
-                                    </c:forEach>
-                                    <c:if test="${flag}">
-                                        暂无数据
-                                    </c:if>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="width:80px;height:40px;"><span style="color: #666;">楼盘地址：</span>${build.province}${build.city}${build.barea}${build.bdetail}</td>
-
-
-                            </tr>
-                            <tr>
-                                <td style="width:80px;height:40px;"><span style="color: #666;">最新开盘时间：</span><fmt:formatDate value="${build.starttime}" pattern="yyyy-MM-dd"></fmt:formatDate>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" style=" text-decoration:none;border:solid #ff6d6f 1px;color:#ff6d6f;">关注下次开盘时间</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="additional-details">
-                        <br>
-                        <h3>楼盘详情</h3>
-
-                        <ul>
-                            <li><b style="font-size:30px; color:#000;">基本信息</b></li>
-                            <br>
-                            <br>
-                            <li><span>楼盘名称</span> :${build.building}</li>
-                            <li><span>楼盘地址</span> : ${build.province}${build.city}${build.barea}${build.bdetail}</li>
-                            <li><span>物业类型</span> :  ${build.tenement}</li>
-                            <li><span>建筑类型</span> :  ${build.btype}</li>
-                            <li><span>环&nbsp;&nbsp;&nbsp;&nbsp;线</span> :<c:if test="${empty build.bline}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.bline}">
-                                    ${build.bline}
-                                </c:if></li>
-                            <li><span>开发商</span> : ${company.comname}</li>
-                            <li><span>楼盘特点</span> :  <c:if test="${empty build.charactere}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.charactere}">
-                                    <c:forEach items="${characters}" var="characterss">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${characterss}</span>
-                                    </c:forEach>
-                                </c:if></li>
-                            <br>
-                            <br>
-                            <li><span style="color:#000; font-size:30px;">销售信息</span></li>
-                            <br>
-                            <br>
-                            <li><span>参考单价</span> : <fmt:formatNumber value=" ${build.bperprice}" type="number" maxFractionDigits="3"/>元/㎡</li>
-                            <li><span>销售状态</span> : ${build.conditions}</li>
-                            <li><span>销售情况</span> : <c:if test="${empty build.bsalestatus}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.bsalestatus}">
-                                    ${build.bsalestatus}
-                                </c:if></li>
-
-                            <li><span>优惠信息</span> : <c:if test="${empty build.discounts}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.discounts}">
-                                    ${build.discounts}
-                                </c:if></li>
-                            <li><span>最早开盘</span> : <fmt:formatDate value="${build.starttime}" pattern="yyyy-MM-dd"></fmt:formatDate></li>
-                            <li><span>最早交房</span> : <fmt:formatDate value="${build.endtime}" pattern="yyyy-MM-dd"></fmt:formatDate></li>
-                            <li><span>楼盘户型</span> :  <c:forEach items="${buildTypes}" var="typeCount" >
-
-                                <c:if test="${typeCount.count==0}">
-
-                                </c:if>
-                                <c:if test="${typeCount.count!=0 }">
-                                    <c:set var="flag" value="false"></c:set>
-                                    <c:if test="${typeCount.typeid==1}">
-                                        一居（${typeCount.count}）
-                                    </c:if>
-
-                                    <c:if test="${typeCount.typeid==2}">
-                                        二居（${typeCount.count}）
-                                    </c:if>
-
-                                    <c:if test="${typeCount.typeid==3}">
-                                        三居（${typeCount.count}）
-                                    </c:if>
-                                    <c:if test="${typeCount.typeid==4}">
-                                        四居（${typeCount.count}）
-                                    </c:if>
-                                </c:if>
-                            </c:forEach>
-                                <c:if test="${flag}">
-                                    暂无数据
-                                </c:if>
-                            </li>
-                            <li><span>产权年限</span> : <c:if test="${empty build.agelimit}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.agelimit}">
-                                    ${build.agelimit}
-                                </c:if></li>
-                            <li><span>拿地时间</span> :  <c:if test="${empty build.landtime}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.landtime}">
-                                    <fmt:formatDate value="${build.landtime}" pattern="yyyy-MM-dd"></fmt:formatDate>
-                                </c:if></li>
-                            <br>
-                            <br>
-                            <li><b style="color:#000; font-size:30px;">小区详情</b></li>
-                            <br>
-                            <br>
-                            <li><span>物业公司</span> : <c:if test="${empty build.tencompany}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.tencompany}">
-                                    ${build.tencompany}
-                                </c:if></li>
-                            <li><span>物业费用</span> : <c:if test="${empty build.tencost}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.tencost}">
-                                    ${build.tencost}
-                                </c:if></li>
-                            <li><span>物业类型</span> : ${build.tenement}</li>
-                            <li><span>水电燃气</span> : <c:if test="${empty build.tentype}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.tentype}">
-                                    ${build.tentype}
-                                </c:if></li>
-                            <li><span>绿化率</span> : <c:if test="${empty build.greenrate}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.greenrate}">
-                                    ${build.greenrate}
-                                </c:if></li>
-                            <li><span>车位情况</span> : <c:if test="${empty build.carport}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.carport}">
-                                    ${build.carport}
-                                </c:if></li>
-                            <li><span>容积率</span> : <c:if test="${empty build.cubage}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.cubage}">
-                                    ${build.cubage}
-                                </c:if></li>
-                            <li><span>装修状况</span> :
-                                <c:if test="${empty build.fitment}">
-                                暂无数据
-                            </c:if>
-                                <c:if test="${not empty build.fitment}">
-                                    ${build.fitment}
-                                </c:if></li>
-                        </ul>
-                    </div>
-
-                    <%--楼盘户型--%>
-                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
-                        <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">户型分析</span>
-                            <span style="float: right;line-height:48px;">一居（2），二居（3），三居（1），四居（2）</span>
-                        </div>
-                        <br>
-                        <div style="border:solid rgba(116,117,112,0.93) 1px; height: 200px;overflow: auto;">
-                            <div style="height: 140px;width: 135px;float: left; border: solid cyan 1px;margin-top:28px;">
-
-                            </div>
-                            <div style="float:left;border: solid chartreuse 1px;margin-top:18px;height: 160px;width: 575px;">
-                                <b style="font-size:24px;">一室一厅建面95㎡</b><span style="border: solid rgba(251,97,95,1) 1px;">在售</span>
-                                <br>
-                                <br>
-                                <p>总价32万左右&nbsp;&nbsp;&nbsp;&nbsp; 首付16万左右&nbsp;&nbsp;&nbsp;&nbsp;报价更新是时间2018-06-18</p>
-
-                                <p>朝向：南&nbsp;&nbsp;&nbsp;&nbsp;类型：商改住</p>
-
-                                <p>户型分析：是哭的今飞凯达交房的房间打开房间打开打飞机快递费...<a>查看全文</a></p>
-                            </div>
-
-                        </div>
-                        <div style="padding-bottom:1px;height: 50px;font-size: 24px;text-align: center;">
-                            <span style="display:block;margin-top:7px;">查看全部</span>
-                        </div>
-
-                    </div>
                     <%--楼盘动态--%>
                     <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
                         <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
@@ -544,57 +266,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
 
                     </div>
-                    <%--楼盘周边--%>
-                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;width: 1045px;">
-                        <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">楼盘周边</span>
-                        </div>
-                        <br>
-                        <div style="width:100%;overflow: auto;">
-                            <div style=" margin-right:10px;width:510px;height:600px;border:#ccc solid 1px;float:left;" id="l-map"></div>
-                            <div style=" background-color:cornsilk;float:left;border: solid rgba(255,31,32,0.75) 1px;width:455px; height:35px;">
-                                <ul class="map" style="height: 35px;overflow: auto;">
-                                    <li class="dianji bgcolor" style="float: left;margin-right: 5px; text-align: center; width:80px;line-height:35px;"><a href="javascript:search('公交站',1000)">公交</a></li>
-                                    <li class="dianji" style="float: left; margin-right: 5px;text-align: center; width:80px;line-height:35px;"><a href="javascript:search('地铁站',2000)">地铁</a></li>
-                                    <li class="dianji" style="float: left;margin-right: 5px; text-align: center; width:80px;line-height:35px;"><a href="javascript:search('学校',3000)">学校</a></li>
-                                    <li class="dianji" style="float: left; margin-right: 5px;text-align: center; width:80px;line-height:35px;"><a href="javascript:search('购物',3000)">购物</a></li>
-                                    <li class="dianji" style="float: left;margin-right: 5px; text-align: center; width:80px;line-height:35px;"><a href="javascript:search('医疗',5000)">医疗</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="map" style=" background-color:cornsilk;width:455px;height:565px;border:solid crimson 1px;float:left;" id="r-result">
-
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <%--//评论--%>
-                    <div class="note">
-                        <h4>common note</h4>
-                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam</p>
-                    </div>
-                    <!--popupbox-->
-                    <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-
-
                 </div>
                 <div class="col-md-3 properties-right">
-                    <div class="properties-top">
-                        <h4>咨询师</h4>
-                        <img src="${pageContext.request.contextPath}/${build.bpicture}" class="img-responsive" alt=""/>
-                        <ul class="">
-                            <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> Office : 0041-456-3692</li>
-                            <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i> Mobile : 0200-123-4567</li>
-                            <li><i class="glyphicon glyphicon-print" aria-hidden="true"></i> Fax : 0091-789-456100</li>
-                        </ul>
-                        <p>Lorem agent info ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet  magna…</p>
-                        <a href="#" class="button2">向TA咨询</a>
-
-                    </div>
-
                     <div class="feature">
-                        <h4 style="font-size: 30px;">相似楼盘</h4>
+                        <h4 style="font-size: 30px;">推荐楼盘</h4>
                         <div class="feature-top">
                             <img src="images/s1.jpg" class="img-responsive" alt="/">
                             <h5>60 Merrick Way, Miami</h5>
@@ -990,132 +665,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 </body>
 </html>
-<script type="text/javascript">
-    search("公交站",1000);
-    function search(val,distance) {
-        var map = new BMap.Map("l-map", {enableMapClick: false});
-        map.centerAndZoom(new BMap.Point(116.404, 39.915),15);
-        var options = {
-            onSearchComplete: function (results) {
-                // 判断状态是否正确
-                if (local.getStatus() == BMAP_STATUS_SUCCESS) {
-                    var s = [];
-                    for (var i = 0; i < results.getCurrentNumPois(); i++) {
-                        s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
-                    }
-                    document.getElementById("r-result").innerHTML = s.join("<br/>");
-                }
-            }
-        };
-        var markers=new Array();
-        var pois=new Array();
-        var local = new BMap.LocalSearch(map, {
-            onSearchComplete: function (results) {
-                // 判断状态是否正确
-                if (local.getStatus() == BMAP_STATUS_SUCCESS) {
-                    var s = [];
-                    for (var i = 0; i < results.getCurrentNumPois(); i++) {
-                        //alert(results.getPoi(i).point.lng);
-                        //pois[i]=results.getPoi(i);
-                        var label = new BMap.Label(i + 1, {offset: new BMap.Size(5, 3)});
-                        label.setStyle({
-                            background: 'none',
-                            color: '#fff',
-                            border: 'none'
-                        });
-                        s.push("<li style='height: 50px;'><a style='line-height: 50px;' href='javascript:void(0)' id="+"'res"+i+"'>"+i + "----" + results.getPoi(i).title + ", " + results.getPoi(i).address)+"</a></li>";
-                        var marker = new BMap.Marker(results.getPoi(i).point);
-                        marker.setLabel(label);
-                        var content=results.getPoi(i).address;
-                        map.addOverlay(marker);
-                        var opts = {
-                            width: 200,     // 信息窗口宽度
-                            height: 100,     // 信息窗口高度
-                            title: results.getPoi(i).title, // 信息窗口标题
-                            offset: new BMap.Size(0,-20)  //设置文本偏移量
-                        }
-                        addClickHandler(content,marker,opts)
-                    }
-                    document.getElementById("r-result").innerHTML = s.join("");
-                    for (var j = 0; j < results.getCurrentNumPois(); j++) {
-                        var opts1 = {
-                            width: 200,     // 信息窗口宽度
-                            height: 100,     // 信息窗口高度
-                            offset   : new BMap.Size(0,-20),  //设置文本偏移量
-                            title: results.getPoi(j).title, // 信息窗口标题
-                            enableMessage: true,//设置允许信息窗发送短息
-                            message: "亲耐滴，晚上一起吃个饭吧？戳下面的链接看下地址喔~"
-                        }
-                        var content1=results.getPoi(j).address;
-                        var point1 = results.getPoi(j).point;
-                        addClickHandler1(content1,$("#res"+j),opts1,point1);
-                    }
-                }
-            }
-        });
-        function addClickHandler1(content1,obj,opts1,point1){
-            obj.bind("click",function(){
-                openInfo1(content1,point1,opts1)}
-            );
-        }
-        function addClickHandler(content,marker,opts){
-            marker.addEventListener("click",function(e){
-                openInfo(content,e,opts)}
-            );
-        }
-        function openInfo1(content1,point1,opts1){
-            var infoWindow = new BMap.InfoWindow(content1,opts1);  // 创建信息窗口对象
-            map.openInfoWindow(infoWindow,point1); //开启信息窗口
-        }
-        function openInfo(content,e,opts){
-            var p = e.target;
-            var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
-            var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象
-            map.openInfoWindow(infoWindow,point); //开启信息窗口
-        }
-        var opts2 = {
-            width: 200,     // 信息窗口宽度
-            height: 100,     // 信息窗口高度
-            offset   : new BMap.Size(0,-30),  //设置文本偏移量
-            title:"我的位置" // 信息窗口标题
-        }
-        var marker_myposi = new BMap.Marker(new BMap.Point(116.404, 39.915));  // 创建标注
-        map.addOverlay(marker_myposi);               // 将标注添加到地图中
-        marker_myposi.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-        var infoWindow2 = new BMap.InfoWindow("我在这里哦~~", opts2);
-        map.openInfoWindow(infoWindow2,new BMap.Point(116.404, 39.915)); //开启信息窗口
-        local.searchNearby(val,new BMap.Point(116.404, 39.915),distance);
-        initMap(map);
-    }
-    //地图事件设置函数：
-    function setMapEvent(map){
-        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
-        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
-        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
-        map.enableKeyboard();//启用键盘上下左右键移动地图
-    }
-    //地图控件添加函数：
-    function addMapControl(map){
-        //向地图中添加缩放控件
-        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-        map.addControl(ctrl_nav);
-        //向地图中添加缩略图控件
-        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
-        map.addControl(ctrl_ove);
-        //向地图中添加比例尺控件
-        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-        map.addControl(ctrl_sca);
-    }
-    function initMap(map){
-
-        setMapEvent(map);//设置地图事件
-        addMapControl(map);//向地图添加控件
-
-    }
-    $(".dianji").each(function(){
-        $(this).click(function(){
-            $(".dianji").removeClass("bgcolor");//bgcolor是点击之后的样式,   .dianji是要点击的地方（事件触发）
-            $(this).addClass("bgcolor");
-        });
-    });
-</script>
