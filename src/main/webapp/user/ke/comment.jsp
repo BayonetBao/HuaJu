@@ -65,16 +65,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!---banner--->
 <div class="content">
-    <div class="blog-section">
-
-        <div class="container">
-            <div class="blog-grids">
-                <div class="col-md-9 blog-grid">
+    <div class="blog-section" >
+        <div class="container"style="border: solid crimson 1px;padding-left: 0px;">
+            <div class="blog-grids"style="border: solid cyan 1px;">
+                <div class="col-md-9 blog-grid"style=" margin-left:0px;border: solid chocolate 1px;">
 
                     <!---RESPONSES--->
-                    <div class="coment-form">
-                        <div class="container">
-                            <div class="grid_3 grid_5">
+                    <div class="coment-form" style="border: solid rebeccapurple 1px;">
+                        <div class="container"style="border: solid chartreuse 1px;">
+                            <div class="grid_3 grid_5" style="border: solid crimson 1px;">
                                 <p style="font-size:24px;margin-bottom:5px;"><c:choose>
                                     <c:when test="${commentQueryPojo.idtype!=null && commentQueryPojo.idtype != '' }">
                                         <c:choose>
@@ -399,63 +398,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 blog-grid1">
-                <div class="categ">
-                    <h3>Categories</h3>
-                    <ul>
-                        <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                        <li><a href="#">Duis aute irure dolor in culpa</a></li>
-                        <li><a href="#">Sunt in culpa qui illum</a></li>
-                        <li><a href="#">vel illum qui dolorem man</a></li>
-                        <li><a href="#">The wise man therefore culpa</a></li>
-                        <li><a href="#">Sunt in culpa qui officia</a></li>
-                        <li><a href="#">Lorem ipsum dolor sit qui</a></li>
-                        <li><a href="#">Duis aute irure dolor</a></li>
-                        <li><a href="#">Sunt in culpa qui officia</a></li>
 
-                    </ul>
-                </div>
-                <div class="tags">
-                    <h4>Tags</h4>
-                    <ul>
-                        <li><a href="blog.html">Lorem</a></li>
-                        <li><a href="blog.html">consectetur</a></li>
-                        <li><a href="blog.html">dolore</a></li>
-                        <li><a href="blog.html">aliqua</a></li>
-                        <li><a href="blog.html">sit amet</a></li>
-                        <li><a href="blog.html">ipsum</a></li>
-                        <li><a href="blog.html">Lorem</a></li>
-                        <li><a href="blog.html">consectetur</a></li>
-                        <li><a href="blog.html">dolore</a></li>
-                        <li><a href="blog.html">aliqua</a></li>
-                        <li><a href="blog.html">sit amet</a></li>
-                        <li><a href="blog.html">ipsum</a></li>
-                    </ul>
-                </div>
-                <div class="feature">
-                    <h4>Featured Properties</h4>
-                    <div class="feature-top">
-                        <img src="images/s4.jpg" class="img-responsive" alt="/">
-                        <h5>60 Merrick Way, Miami</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    </div>
-                    <div class="feature-top top2">
-                        <img src="images/s3.jpg" class="img-responsive" alt="/">
-                        <h5>Villa in Hialeah, Dade</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    </div>
-                    <div class="feature-top top2">
-                        <img src="images/s5.jpg" class="img-responsive" alt="/">
-                        <h5>Villa in Hialeah, Dade</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    </div>
-                    <div class="feature-top top2">
-                        <img src="images/s6.jpg" class="img-responsive" alt="/">
-                        <h5>60 Merrick Way, Miami</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    </div>
-                </div>
-            </div>
             <div class="clearfix"></div>
         </div>
     </div>

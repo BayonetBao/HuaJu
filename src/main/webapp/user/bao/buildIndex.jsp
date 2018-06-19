@@ -564,10 +564,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <iframe src="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" name="myframe1" width='100%' height='100%' frameborder='0'  id="myframe1" >
                         </iframe>
                     </div>
-                    <div class="note">
-                        <h4>common note</h4>
-                        <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam</p>
-                    </div>
                     <!--popupbox-->
                     <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 
@@ -985,10 +981,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 </html>
 <script type="text/javascript">
+    alert(${build.lng});
+    alert(${build.lat});
+    alert("1112");
+
+    alert("111");
     search("公交站",1000);
     function search(val,distance) {
         var map = new BMap.Map("l-map", {enableMapClick: false});
-        map.centerAndZoom(new BMap.Point(116.404, 39.915),15);
+        map.centerAndZoom(new BMap.Point(${build.lng},${build.lat}),15);
         var options = {
             onSearchComplete: function (results) {
                 // 判断状态是否正确
@@ -1073,12 +1074,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             offset   : new BMap.Size(0,-30),  //设置文本偏移量
             title:"我的位置" // 信息窗口标题
         }
-        var marker_myposi = new BMap.Marker(new BMap.Point(116.404, 39.915));  // 创建标注
+        var marker_myposi = new BMap.Marker(new BMap.Point(${build.lng},${build.lat}));  // 创建标注
         map.addOverlay(marker_myposi);               // 将标注添加到地图中
         marker_myposi.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-        var infoWindow2 = new BMap.InfoWindow("我在这里哦~~", opts2);
-        map.openInfoWindow(infoWindow2,new BMap.Point(116.404, 39.915)); //开启信息窗口
-        local.searchNearby(val,new BMap.Point(116.404, 39.915),distance);
+        var infoWindow2 = new BMap.InfoWindow("${build.building}", opts2);
+        map.openInfoWindow(infoWindow2,new BMap.Point(${build.lng},${build.lat})); //开启信息窗口
+        local.searchNearby(val,new BMap.Point(${build.lng},${build.lat}),distance);
         initMap(map);
     }
     //地图事件设置函数：
