@@ -19,6 +19,8 @@
     <title>信息照片上传</title>
     <script src="${pageContext.request.contextPath}/user/ke/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js" ></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/message.css" type="text/css" />
+    <script src="${pageContext.request.contextPath}/user/ke/js/message.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/bootstrap.css" type="text/css" />
     <link href="${pageContext.request.contextPath}/user/ke/css/cropper.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/ImgCropping.css">
@@ -60,7 +62,7 @@
             <button class="l-btn cropper-reset-btn">复位</button>
             <button class="l-btn cropper-rotate-btn">旋转</button>
             <button class="l-btn cropper-scaleX-btn">换向</button>
-            <button class="l-btn sureCut" id="sureCut">确定</button>
+            <button class="l-btn sureCut " id="sureCut">确定</button>
         </div>
     </div>
 </div>
@@ -156,12 +158,12 @@
                 data:form,
                 processData:false,
                 contentType:false,
-                success:function(data){
-                    window.clearInterval(timer);
-                    console.log("over..");
-                }
-            });
+                success:function (data) {
 
+                }
+
+            });
+            $.message("上传成功");
             closeTailor();
         }
     });
@@ -213,14 +215,17 @@
         </form>
     </div>
     <div class="aui-btn-default"style="margin-left: 50px;">
-        <button class="aui-btn aui-btn-account" onclick="submainform()">保存并提交审核</button>
+        <button class="aui-btn aui-btn-account btn-success" onclick="submain()">保存并提交审核</button>
     </div>
     <script>
-        function submainform() {
-            if(confirm("确认修改么")){
-                $("#mainform").submit();
-            }
+       function submain(){
+            $.message({
+                messgae:"成功",
+                type:"success"
+            });
+            $("#mainform").submit();
         }
+
     </script>
 </section>
 <!-- mask begin -->

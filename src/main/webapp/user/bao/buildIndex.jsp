@@ -30,6 +30,8 @@
     </style>
     <title>楼盘主页</title>
     <!---css--->
+    <script src="${pageContext.request.contextPath}/user/bao/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/user/bao/js/bootstrap.js"></script>
     <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css' />
     <!---css--->
@@ -40,9 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!---js--->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=NHeOezVjNdxk5C1Q4i14l4SkfTeMdpLp"></script>
-    <script src="${pageContext.request.contextPath}/user/bao/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/user/bao/js/unslider.min.js"></script>
-    <script src="${pageContext.request.contextPath}/user/bao/js/bootstrap.js"></script>
     <!---js--->
     <!---fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -531,18 +531,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <%--楼盘动态--%>
                     <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
-                        <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">楼盘动态</span>
-                        </div>
-                        <br>
-                        <div style="border:solid rgba(116,117,112,0.93) 1px; height: 200px;overflow: auto;">
-
-
-                        </div>
-                        <div style="padding-bottom:1px;height: 50px;font-size: 24px;text-align: center;">
-                            <span style="display:block;margin-top:7px;">查看全部</span>
-                        </div>
-
+                        <iframe src="${pageContext.request.contextPath}/dynamic/selectDynamicByBuild.action?buildingid=${build.buildingid}" name="myframe" width='100%' height='100%' frameborder='0'  id="myframe" >
+                        </iframe>
                     </div>
                     <%--楼盘周边--%>
                     <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;width: 1045px;">
@@ -570,6 +560,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </div>
                     <%--//评论--%>
+                    <div style="width: 1200px;margin-left: -50px;padding: 0px;height:2000px;">
+                        <iframe src="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" name="myframe1" width='100%' height='100%' frameborder='0'  id="myframe1" >
+                        </iframe>
+                    </div>
                     <div class="note">
                         <h4>common note</h4>
                         <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam</p>

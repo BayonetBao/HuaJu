@@ -26,6 +26,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!---js--->
     <script src="${pageContext.request.contextPath}/user/ke/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/message.css" type="text/css" />
+    <script src="${pageContext.request.contextPath}/user/ke/js/message.js"></script>
     <!---js--->
     <!---fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -36,15 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- FlexSlider -->
     <script src="${pageContext.request.contextPath}/user/ke/js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/flexslider.css" type="text/css" media="screen" />
-    <script>
-        // Can also be used with $(document).ready()
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
-            });
-        });
-    </script>
+
     <!-- //FlexSlider-->
     <!-- pop-up -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/swipebox.css">
@@ -69,127 +63,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
-
-<!---header--->
-<div class="header-section">
-    <div class="container">
-        <div class="head-top">
-            <div class="social-icon">
-                <a href="#"><i class="icon"></i></a>
-                <a href="#"><i class="icon1"></i></a>
-                <a href="#"><i class="icon2"></i></a>
-                <a href="#"><i class="icon3"></i></a>
-                <a href="#"><i class="icon4"></i></a>
-            </div>
-            <div class="email">
-                <ul>
-                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>Email: <a href="mailto:info@example.com">info@example.com</a> </li>
-                    <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
-                    <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">Register</a></li>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <nav class="navbar navbar-default">
-            <!---Brand and toggle get grouped for better mobile display--->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-brand">
-                    <h1><a href="index.html"><span>Real </span>Space</a></h1>
-                </div>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="agents.html">Agents</a></li>
-                            <li><a href="forrent.html">For Rent</a></li>
-                            <li><a href="forsale.html">For Sale</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="faqs.html">FAQs</a></li>
-                            <li><a href="idxpress.html">IDXpress</a></li>
-                            <li><a href="terms.html">Terms of Use</a></li>
-                            <li><a href="privacy.html">Privacy Policy</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Property<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="defaultvariation.html">Default – Variation</a></li>
-                            <li><a href="agentinsidebarvariation.html">Agent in Sidebar - Variation</a></li>
-                            <li><a href="galleryvariation.html">Gallery - Variation</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gallery <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="2columnsgallery.html">2 Columns Gallery</a></li>
-                            <li><a href="3columnsgallery.html">3 Columns Gallery</a></li>
-                            <li><a href="4columnsgallery.html">4 Columns Gallery</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="codes.html">Codes</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-                <div class="phone">
-                    <span><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>1-999-4563-555</span>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </nav>
-    </div>
-</div>
-<!---header--->
-<!---banner--->
-<div class="banner-section">
-    <div class="container">
-        <h2>Blog post</h2>
-    </div>
-</div>
 <!---banner--->
 <div class="content">
-
     <div class="blog-section">
 
-        <div class="grid_3 grid_5 container">
-
-            <div class="btn-group"  style="width:100%;margin-bottom:5px;">
-                <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">楼盘详情</button>
-                <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">咨询师评论</button>
-                <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">好评</button>
-                <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">中评</button>
-                <button type="button" class="btn btn-default btn-lg btn-warning" style="width:20%">差评</button>
-            </div>
-
-        </div>
         <div class="container">
             <div class="blog-grids">
                 <div class="col-md-9 blog-grid">
 
                     <!---RESPONSES--->
                     <div class="coment-form">
-                        <div class="blog">
-                            <h3><a href="single.html">News From Nintendo</a></h3>
-                            <p>January 05, 2016 / <a href="#">John Doe</a> / <a href="#">Uncategorized</a> / <a href="#">0 Comments</a></p>
-                            <a href="single.html"><img src="images/b.jpg" class="img-responsive" alt=""></a>
-                            <p>Tart donut gummi bears unerdwear.com tootsie roll chocolate bar gummi bears bear claw. Apple pie tart chocolate cake jelly beans. Unerdwear.com dragée sweet muffin icing macaroon. Jelly marzipan toffee cotton candy sweet roll. Jelly croissant jujubes carrot cake marshmallow donut biscuit wafer marzipan. Muffin pastry jujubes donut pastry chocolate bar cake candy chocolate. Dessert donut</p>
-                            <a href="single.html" class="button5 hvr-shutter-out-horizontal">Read More</a>
-                        </div>
                         <div class="container">
-
-
                             <div class="grid_3 grid_5">
                                 <p style="font-size:24px;margin-bottom:5px;"><c:choose>
                                     <c:when test="${commentQueryPojo.idtype!=null && commentQueryPojo.idtype != '' }">
@@ -246,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             style="font-size:14px;width:70%;height:190px;">
                                         <c:set value="${comment.userpic}" var="pic"/>
                                         <c:if test="${comment.userpic eq null||comment.userpic eq ''}"><c:set value="a2.jpg" var="pic"></c:set></c:if>
-                                        <img src="${pageContext.request.contextPath}/user/ke/images/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
+                                        <img src="${pageContext.request.contextPath}/user/ke/images/userImg/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
                                         <p style="margin-top:10px;margin-left:20px;margin-bottom: 60px;"><span class="glyphicon glyphicon-user">${comment.uname}
                                             <c:choose>
                                                 <c:when test="${comment.idtype eq 3}"><a href=""><img src="${pageContext.request.contextPath}/user/ke/images/zixunshi.png"
@@ -306,16 +190,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </c:forEach>
 
-
-                                <div class="col-md-offset-3">
+                                <div class="col-md-offset-1">
                                     <nav>
-                                        <ul class="pagination pagination-sm">
-                                            <a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a>
-                                            <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
-                                            <span>${pageInfo.pageNum}/<b>${pageInfo.pages}</b></span>
-                                            <c:if test="${!pageInfo.isLastPage}"><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></c:if>
-                                            <a href="javascript:getPage(${pageInfo.lastPage})">末页</a>
-                                       </ul>
+                                        <ul class="pagination pagination-lg">
+                                            <li><a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a></li>
+                                            <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
+                                            <li><span><b>${pageInfo.pageNum}</b>/<b>${pageInfo.pages}</b></span></li>
+                                            <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
+                                            <li> <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a></li>
+
+                                        </ul>
                                     </nav>
                                 </div>
                                 <p style="font-size:24px">留下你的评论吧~~~</p>
@@ -329,6 +213,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <label style="position: relative;left: 140px;top:-50px;"><input type="checkbox" value="Sign me up for the newsletter">Sign me up for the newsletter</label>
                                 </form>
                                 <script>
+                                    function  getPage(curPage) {
+                                        //将我们这个隐藏域的值变成curPage
+                                        $("#curPage").val(curPage);
+                                        //触发表单提交事件
+                                        $("#hiddenForm").submit();
+
+                                    }
                                     function deleteComment(commentid) {
                                         if(confirm("此操作会删除所有回复，确定要删除么？")){
                                             $.ajax({
@@ -338,7 +229,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 success:function (result) {
                                                     var divcom=$("#div_"+commentid);
                                                     divcom.remove();
-                                                    alert(result);
+                                                    $.message("删除成功");
                                                 }
                                             });
                                         }
@@ -368,6 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     }
 
                                                 }
+
                                             }
                                         });
                                     }
@@ -380,7 +272,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 data:"recommentid="+recommentid,
                                                 success:function (result) {
                                                     re.remove();
-                                                    alert(result);
+                                                    $.message("删除成功");
                                                 }
                                             });
                                         }
@@ -427,6 +319,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         reobjectname.val(reobjectname1.val());
                                                         reobjectid.val(reobjectid1.val());
                                                         reobjecttype.val(reobjecttype1.val());
+                                                        $.message("回复成功");
                                                     }
                                                 }
                                             });
@@ -462,13 +355,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                        obj.val(comtype);
                                        hiddenForm.submit();
                                    }
-                                    function  getPage(curPage) {
-                                        //将我们这个隐藏域的值变成curPage
-                                        $("#curPage").val(curPage);
-                                        //触发表单提交事件
-                                        $("#hiddenForm").submit();
 
-                                    }
                                     function favor(commentid) {
                                         $.ajax({
                                             type:"post",
@@ -501,7 +388,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 data:"buildingid="+buildingid+"&comtype="+comtype+"&comcontent="+comcontent,
                                                 success:function (data) {
                                                     $("#comcontent1").val("");
-                                                    alert(data+"刷新查看呦~");
+                                                    $.message("成功~刷新查看");
                                                 }
                                             });
                                         }
@@ -574,57 +461,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 </div>
-<!---footer--->
-<div class="footer-section">
-    <div class="container">
-        <div class="footer-grids">
-            <div class="col-md-3 footer-grid">
-                <h4>About Real Homes</h4>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
-            </div>
-            <div class="col-md-3 footer-grid">
-                <h4>Recent Posts</h4>
-                <ul>
-                    <li><a href="#">Lorem Post With Image Format</a></li>
-                    <li><a href="#">Example Video Blog Post</a></li>
-                    <li><a href="#">Example Post With Gallery Post </a></li>
-                    <li><a href="#">Example Video Blog Post</a></li>
-                    <li><a href="#">Lorem Post With Image Format</a></li>
-                    <li><a href="#">Example Video Blog Post</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 footer-grid">
-                <h4>Useful links</h4>
-                <ul>
-                    <li><a href="terms.html">Terms of Use</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="contact.html">Contact Support </a></li>
-                    <li><a href="agents.html"> All Agents</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="faqs.html">FAQs</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 footer-grid">
-                <h4>Get In Touch</h4>
-                <p>8901 Marmora Road</p>
-                <p>Glasgow, DO4 89GR.</p>
-                <p>Freephone : +1 234 567 890</p>
-                <p>Telephone : +1 234 567 890</p>
-                <p>FAX : + 1 234 567 890</p>
-                <p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
-<!---footer--->
-<!--copy-->
-<div class="copy-section">
-    <div class="container">
-        <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-    </div>
-</div>
-<!--copy-->
+
 <!-- login -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
