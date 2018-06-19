@@ -2,6 +2,7 @@ package com.huaju.control;
 
 import com.github.pagehelper.PageInfo;
 import com.huaju.entity.*;
+import com.huaju.service.BuildService;
 import com.huaju.service.CommentService;
 import com.huaju.service.RecommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.util.*;
 public class CommentControl {
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private BuildService buildService;
 
 //    后台查询
     @RequestMapping(value = "selectAllCommentByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
@@ -65,6 +68,45 @@ public class CommentControl {
         Map<String, Object> cmap=new HashMap<>();
         CommentQueryPojo commentQueryPojo=new CommentQueryPojo();
         String bid=request.getParameter("buildingid");//楼盘id
+        Build build=buildService.selectBuildById(new Integer(bid));
+        String idtype=request.getParameter("idtype");//评论人员的类型 用户咨询师
+        String comtype=request.getParameter("comtype");//评论的类型 好评差评
+        String scurPage=request.getParameter("curPage");
+        Integer buildingid;
+        if (bid != null && !bid.trim().equals("")) {
+            buildingid = new Integer(bid);
+            commentQueryPojo.setBuildingid(buildingid);
+        }
+        if (idtype != null && !idtype.trim().equals("")) {
+            Integer idtype1=new Integer(idtype);
+            commentQueryPojo.setIdtype(idtype1);
+        }
+        if (comtype != null && !comtype.trim().equals("")) {
+            commentQueryPojo.setComtype(comtype);
+        }
+        int pageSize = 5;
+        //当前的页面默认是首页
+        int curPage = 1;
+        if (scurPage != null && !scurPage.trim().equals("")) {
+            curPage = Integer.parseInt(scurPage);
+        }
+        cmap.put("pageSize", pageSize);
+        cmap.put("curPage",curPage);
+        cmap.put("commentQueryPojo",commentQueryPojo);
+        List<Comment> comments=commentService.selectCommentByQueryPojo(commentQueryPojo);
+        PageInfo<Comment> pageInfo = commentService.selectCommentByQueryPojo(cmap);
+        request.setAttribute("comments",comments);
+        request.setAttribute("pageInfo", pageInfo);
+        request.setAttribute("build",build);
+        request.setAttribute("commentQueryPojo", commentQueryPojo);
+        request.getRequestDispatcher("/user/ke/comment.jsp").forward(request, response);
+    }
+    //单独的评论页面
+    @RequestMapping(value = "selectAllCommentByQueryPojoFrontSingle.action",method = {RequestMethod.POST,RequestMethod.GET})
+    public void selectAllCommentByQueryPojoFrontSingle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Map<String, Object> cmap=new HashMap<>();
+        CommentQueryPojo commentQueryPojo=new CommentQueryPojo();
+        String bid=request.getParameter("buildingid");//楼盘id
         String idtype=request.getParameter("idtype");//评论人员的类型 用户咨询师
         String comtype=request.getParameter("comtype");//评论的类型 好评差评
         String scurPage=request.getParameter("curPage");
@@ -94,7 +136,7 @@ public class CommentControl {
         request.setAttribute("comments",comments);
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("commentQueryPojo", commentQueryPojo);
-        request.getRequestDispatcher("/user/ke/comment.jsp").forward(request, response);
+        request.getRequestDispatcher("/user/ke/allComment.jsp").forward(request, response);
     }
 //    通过id删除评论
     @RequestMapping(value = "deleteCommentById.action",method = {RequestMethod.GET,RequestMethod.POST})
