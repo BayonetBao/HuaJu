@@ -10,4 +10,16 @@
     <select id="selectUserByName" parameterType="String" resultType="User">
         SELECT * from user where uname=#{_parameter}
     </select>
+    <!--public  boolean updateUser(User user);-->
+    <update id="updateUser" parameterType="User">
+        update user SET uname=#{uname},uphone=#{uphone},remark=#{remark} where userid=#{userid}
+    </update>
+    <!--public  boolean updatePassword(User user);-->
+    <update id="updatePassword" parameterType="User">
+        update user set upwd=#{upwd} where userid=#{userid}
+    </update>
+    <!--public  boolean updatePic(User user);-->
+<update id="updatePic" parameterType="User">
+            update user SET userpic=#{userpic} where userid=#{userid}
+</update>
 </mapper>

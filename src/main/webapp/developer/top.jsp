@@ -22,7 +22,7 @@
         <td align="left" valign="bottom">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td align="left" valign="bottom" id="header-name">侯马经济开发区</td>
+                    <td align="left" valign="bottom" id="header-name">华居后台</td>
                     <td align="right" valign="top" id="header-right">
                         <a href="${pageContext.request.contextPath}/exit.action" target="_parent" onFocus="this.blur()" class="admin-out">注销</a>
 

@@ -45,13 +45,8 @@
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-
-
-
-
-
-  <!--<welcome-file-list>-->
-    <!--<welcome-file>/te</welcome-file>-->
-  <!--</welcome-file-list>-->
+<welcome-file-list>
+  <welcome-file>/user/init.action</welcome-file>
+</welcome-file-list>
 
 </web-app>

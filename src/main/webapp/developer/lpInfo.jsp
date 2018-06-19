@@ -106,7 +106,7 @@
                             <table style="border-collapse:separate; border-spacing:10px 10px;">
                                 <tr>
                                     <td>报价:</td>
-                                    <td>最低<fmt:formatNumber value=" ${build.bperprice}" type="number" maxFractionDigits="3"/>元/㎡</td>
+                                    <td>最低<fmt:formatNumber value="${build.bperprice}" type="number" maxFractionDigits="3"/>元/㎡</td>
 
                                 </tr>
                                 <tr>
@@ -229,8 +229,14 @@
                         if(da==1){
                             obj.remove();
                             alert("删除成功！");
+                        }else {
+                            alert("sb");
                         }
-                    }
+
+                    },
+                error:function () {
+                    alert("SB")
+                }
             });
 
         }

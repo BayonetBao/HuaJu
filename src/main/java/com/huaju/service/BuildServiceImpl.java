@@ -78,6 +78,9 @@ public class BuildServiceImpl implements BuildService{
     public boolean updateBuildSpaceInfo(Build build){
         return buildMapper.updateBuildSpaceInfo(build);
     }
-
+    //按楼盘id查询开发商（张宝）
+    public Company selectCompanyByBuildId(int buildingid){
+        return buildMapper.selectCompanyByBuildId(buildingid);
+    }
 
 }
