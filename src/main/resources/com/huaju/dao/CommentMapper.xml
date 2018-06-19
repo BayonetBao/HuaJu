@@ -32,6 +32,9 @@
             <if test="comtype neq null">
                 and comment.comtype like "%" #{comtype} "%"
             </if>
+            <if test="userid neq null">
+                and comment.id =#{userid}
+            </if>
         </where>
         UNION
         select comment.* ,build.building,cta.ctaimg as userpic ,favor.userid as fuserid,favor.favortype,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
