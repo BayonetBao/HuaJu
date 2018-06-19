@@ -96,10 +96,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action" ><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
                         <c:if test="${sessionScope.userType==2}">
-                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>开发商用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.comuname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>开发商用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.comuname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
                         <c:if test="${sessionScope.userType==3}">
-                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
 
                     </c:if>
@@ -130,7 +130,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </li>
 
-                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="${pageContext.request.contextPath}/user/ZYJ/ctalist.jsp">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
@@ -140,12 +140,119 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </nav>
     </div>
 </div>
-<!---header--->
+
 <div class="banner-section">
     <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+        <h2 style="font-family: 'Open Sans', sans-serif">咨&nbsp;询&nbsp;师&nbsp;们</h2>
     </div>
 </div>
+<!---header--->
+<%--咨询师‘--%>
+<script src="${pageContext.request.contextPath}/ZYJ/js/jquery-1.8.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/ZYJ/js/list.js"></script>
+<script >
+    function getPage(curPage) {
+        //将隐藏域的值变成curPage
+        document.getElementById("curPage").value=curPage;
+
+//             触发表单的提交事件
+        document.getElementById("mainForm").submit();
+
+    }
+
+
+</script>
+<form action="${pageContext.request.contextPath}/cta/ctalist.action" id="mainForm" method="get">
+    <%--隐藏域 保存我们当前的页面数--%>
+    <input type="hidden" name="curPage" id="curPage"/>
+
+    <div class="content">
+    <div class="agent-section">
+        <div class="container">
+
+
+            <div class="agent-grids">
+                <c:forEach items="${pageInfo.list}" var="cta">
+                <div class="col-md-6 agent-grid"  style="margin-bottom: 40px ; border: solid">
+                    <div class="agent-left">
+                        <img src="images/a2.jpg" name="ctaimg" class="img-responsive" alt="/">
+                    </div>
+                    <div class="agent-right">
+                        <h4>${cta.ctarelname}</h4>
+                        <ul>
+                            <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i> Tel : ${cta.ctaphone}</li>
+                            <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i> 学历:${cta.education}</li>
+                            <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>咨询次数 :${cta.ctatime}</li>
+                            <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
+                        </ul>
+                        <a href="johnnguyen.html" class="button3 hvr-shutter-out-horizontal">更多·咨询</a>
+                    </div>
+                </div>
+                </c:forEach>
+            </div>
+        </div>
+        <div class='page fix'style="left: 400px">
+            共 <b>${pageInfo.total}</b> 条
+            <a href="javascript:getPage(${pageInfo.firstPage})" >首页</a>
+            <c:if test="${!pageInfo.isFirstPage}">
+                <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
+            </c:if>
+            当前第<span>${pageInfo.pageNum}</span>页
+            <c:if test="${!pageInfo.isLastPage}">
+                <a href="javascript:getPage(${pageInfo.nextPage})" >下一页</a>
+            </c:if>
+            <a href="javascript:getPage(${pageInfo.lastPage})" >末页</a>
+        </div>
+
+    </div>
+</div>
+
+</form>
+<!---footer--->
+<div class="footer-section">
+    <div class="container">
+        <div class="footer-grids">
+            <div class="col-md-3 footer-grid">
+                <h4 style="font-family: 'Open Sans', sans-serif">关于华居</h4>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+            </div>
+            <div class="col-md-3 footer-grid">
+                <h4 style="font-family: 'Open Sans', sans-serif">近来动态</h4>
+                <ul>
+                    <li><a href="#">Lorem Post With Image Format</a></li>
+                    <li><a href="#">Example Video Blog Post</a></li>
+                    <li><a href="#">Example Post With Gallery Post </a></li>
+                    <li><a href="#">Example Video Blog Post</a></li>
+                    <li><a href="#">Lorem Post With Image Format</a></li>
+                    <li><a href="#">Example Video Blog Post</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-grid">
+                <h4 style="font-family: 'Open Sans', sans-serif">友情连接</h4>
+                <ul>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="contact.html">Contact Support </a></li>
+                    <li><a href="agents.html"> All Agents</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 footer-grid">
+                <h4 style="font-family: 'Open Sans', sans-serif">联系我们</h4>
+                <p>8901 Marmora Road</p>
+                <p>Glasgow, DO4 89GR.</p>
+                <p>Freephone : +1 234 567 890</p>
+                <p>Telephone : +1 234 567 890</p>
+                <p>FAX : + 1 234 567 890</p>
+                <p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!---footer--->
+
 <!-- login -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">

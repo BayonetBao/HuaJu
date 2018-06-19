@@ -94,4 +94,20 @@ public class Cta {
     public void setEducation(String education) {
         this.education = education == null ? null : education.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Cta{" +
+                "ctaid=" + ctaid +
+                ", ctarelname='" + ctarelname + '\'' +
+                ", ctapassword='" + ctapassword + '\'' +
+                ", ctaimg='" + ctaimg + '\'' +
+                ", ctaphone='" + ctaphone + '\'' +
+                ", ctatime=" + ctatime +
+                ", education='" + education + '\'' +
+                ", ctaname='" + ctaname + '\'' +
+                ", intro='" + intro + '\'' +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

@@ -100,7 +100,6 @@
                 <%--内容--%>
                 <c:forEach items="${houselist}" var="houselist">
                     <tr id="${houselist.houseid}_house"  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.houseid}</td>
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.hname}</td>
                         <td align="center" valign="middle" class="borderright borderbottom">${houselist.hmoney}万元左右</td>
