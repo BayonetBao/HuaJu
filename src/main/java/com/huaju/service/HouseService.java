@@ -11,8 +11,8 @@ public interface HouseService {
 
     //根据楼盘id查找楼房信息
     public List<House> showHouseList(int buildingid);
-
-
+    //根据楼盘id查找楼房信息的全部信息(张宝)
+    public List<House> selectHouseListBybuildingid(int buildingid);
 //    添加house信息
     public void addHouseInfoZYJ(House house);
     //查询出居室id对应的楼户id

@@ -16,6 +16,8 @@ import java.util.Map;
 public class CtaServiceImpl implements CtaService{
     @Autowired
     private SqlSessionFactory factory;
+    @Autowired
+    private CtaMapper ctaMapper;
     @Override
     public PageInfo<Cta> AllCta(Map<String, Object> map) {
         SqlSession sqlSession=factory.openSession();
@@ -33,5 +35,11 @@ public class CtaServiceImpl implements CtaService{
 
         return pageInfo;
 
+    }
+
+    @Override
+    //添加咨询师(张宝)
+    public boolean addCta(Cta cta){
+        return ctaMapper.addCta(cta);
     }
 }

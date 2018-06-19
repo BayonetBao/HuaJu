@@ -29,7 +29,7 @@ public class BuildServiceImpl implements BuildService{
         int pageSize=(int) cmap.get("pageSize");
         PageHelper.startPage(curPage,pageSize);
         List<Build> builds=buildMapper.selectBuildQueryPojo(buildQueryPojo);
-        PageInfo<Build> pageInfo=new PageInfo<Build>(builds);
+        PageInfo<Build> pageInfo=new PageInfo<>(builds);
         return pageInfo;
     }
 

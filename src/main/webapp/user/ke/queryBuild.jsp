@@ -24,6 +24,12 @@
             width: 100px;
             margin-left: 600px;
         }
+        .success{
+            color: #40ff1f;
+        }
+        .error{
+            color: #ff0d20;
+        }
     </style>
 
     <title>楼盘搜索</title>

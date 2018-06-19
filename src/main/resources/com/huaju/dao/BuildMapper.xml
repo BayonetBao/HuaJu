@@ -57,51 +57,51 @@
        select build.* ,cta.ctaname,cta.ctaimg,buildtype.butypeid,buildtype.count,type.typename,type.typeid from
        build left join buildtype on(build.buildingid=buildtype.buildingid) left join type on(buildtype.typeid=type.typeid)
        left join cta on (build.ctaid=cta.ctaid)
-       <where>
-           <if test="province neq null">
-               and province like "%" #{province} "%"
-           </if>
-           <if test="city neq null">
-               and city like "%" #{city} "%"
-           </if>
-           <if test="district neq null">
-               and barea like "%" #{district} "%"
-           </if>
-           <if test="character neq null">
-               and character like "%" #{character} "%"
-           </if>
-           <if test="genre neq null">
-               and genre like "%" #{genre} "%"
-           </if>
-           <if test="bTotalprice neq null">
-               and bTotalprice &gt; #{bTotalprice}
-           </if>
-           <if test="bMaxTotalprice neq null">
-               and bMaxTotalprice &lt; #{bTotalprice}
-           </if>
-           <if test="bPerprice neq null">
-               and bPerprice &gt; #{bPerprice}
-           </if>
-           <if test="bMaxprice neq null">
-               and bMaxprice &lt; #{bMaxprice}
-           </if>
-           <if test="acreage neq null">
-               and acreage &gt; #{acreage}
-           </if>
-           <if test="maxAcreage neq null">
-               and maxAcreage &lt; #{maxAcreage}
-           </if>
-           <if test="comid neq null">
-               and comid =#{comid}
-           </if>
-           <if test="typeid neq null">
-               and typeid =#{typeid}
-           </if>
+       <!--<where>-->
+           <!--<if test="province neq null">-->
+               <!--and province like "%" #{province} "%"-->
+           <!--</if>-->
+           <!--<if test="city neq null">-->
+               <!--and city like "%" #{city} "%"-->
+           <!--</if>-->
+           <!--<if test="district neq null">-->
+               <!--and barea like "%" #{district} "%"-->
+           <!--</if>-->
+           <!--<if test="character neq null">-->
+               <!--and character like "%" #{character} "%"-->
+           <!--</if>-->
+           <!--<if test="genre neq null">-->
+               <!--and genre like "%" #{genre} "%"-->
+           <!--</if>-->
+           <!--<if test="bTotalprice neq null">-->
+               <!--and bTotalprice &gt; #{bTotalprice}-->
+           <!--</if>-->
+           <!--<if test="bMaxTotalprice neq null">-->
+               <!--and bMaxTotalprice &lt; #{bTotalprice}-->
+           <!--</if>-->
+           <!--<if test="bPerprice neq null">-->
+               <!--and bPerprice &gt; #{bPerprice}-->
+           <!--</if>-->
+           <!--<if test="bMaxprice neq null">-->
+               <!--and bMaxprice &lt; #{bMaxprice}-->
+           <!--</if>-->
+           <!--<if test="acreage neq null">-->
+               <!--and acreage &gt; #{acreage}-->
+           <!--</if>-->
+           <!--<if test="maxAcreage neq null">-->
+               <!--and maxAcreage &lt; #{maxAcreage}-->
+           <!--</if>-->
+           <!--<if test="comid neq null">-->
+               <!--and comid =#{comid}-->
+           <!--</if>-->
+           <!--<if test="typeid neq null">-->
+               <!--and typeid =#{typeid}-->
+           <!--</if>-->
 
-           <if test="isonsale neq null">
-               and discounts is not null
-           </if>
-       </where>
+           <!--<if test="isonsale neq null">-->
+               <!--and discounts is not null-->
+           <!--</if>-->
+       <!--</where>-->
    </select>
     <!--//添加楼盘（张宝）
     insert into build(building,ctaid,province,city,berea,bdetail,bpicture,tenement,btype,bline,comid,character,bperprice,bmaxtotalprice,btotalprice,acreage,maxacreage,condition,discounts,starttime,endtime,genre,agelimit,landtime,tencompany,tencost,tentype,greenrate,carport,cubage,fitment,bsalestatus)

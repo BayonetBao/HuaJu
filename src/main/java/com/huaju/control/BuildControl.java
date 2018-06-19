@@ -7,6 +7,7 @@ import com.huaju.entity.BuildQueryPojo;
 import com.huaju.entity.Company;
 import com.huaju.service.BuildService;
 import com.huaju.service.BuildTypeService;
+import com.huaju.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,8 @@ public class BuildControl {
 //    分页按条件查询楼盘 并查询开发商list对象返回前端jsp 等等 珂
     @Autowired
     private BuildTypeService buildTypeService;
+    @Autowired
+    private HouseService houseService;
     @RequestMapping(value = "/selectBuildQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
@@ -206,9 +209,11 @@ public class BuildControl {
         Company company=buildService.selectCompanyByBuildId(Integer.parseInt(buildingid));
         if(build!=null) {
             List<BuildType> buildTypes = buildTypeService.selectTypeCount(Integer.parseInt(buildingid));
+            List<House> houseList=houseService.selectHouseListBybuildingid(Integer.parseInt(buildingid));
             request.setAttribute("buildTypes", buildTypes);
             request.setAttribute("company",company);
             request.setAttribute("build", build);
+            request.setAttribute("houseList",houseList);
         }
         request.getRequestDispatcher("/user/bao/buildIndex.jsp").forward(request,response);
 
@@ -221,4 +226,22 @@ public class BuildControl {
             request.getRequestDispatcher("/user/bao/buildAroundAnalysis.jsp").forward(request,response);
         }
     }
+    @RequestMapping(value = "/buildDetailInfo.action")
+    public void buildDetailInfo(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
+        if(build!=null){
+            request.setAttribute("build", build);
+            request.getRequestDispatcher("/user/bao/buildDetailInfo.jsp").forward(request,response);
+        }
+    }
+    @RequestMapping(value = "/buildImages.action")
+    public void buildImages(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
+        if(build!=null){
+            request.setAttribute("build", build);
+            request.getRequestDispatcher("/user/bao/buildImages.jsp").forward(request,response);
+        }
+    }
+
+
 }
