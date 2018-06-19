@@ -6,7 +6,7 @@ body{color:#535353;font-size:12px;font-family: "arial","微软雅黑";background
 .clear{clear:both;display:block;height:0;overflow:hidden;}
 
 /* history */
-#history{width:700px;height:450px;position:relative;margin:50px auto 0 auto;}
+#history{width:1180px;height:450px;position:relative;margin:50px auto 0 auto;}
 .title{height:95px;line-height:95px;text-indent:280px;}
 .title h2{color:#7c7c7c;font-size:18px;font-weight:500;}
 #circle{
@@ -46,12 +46,12 @@ body{color:#535353;font-size:12px;font-family: "arial","微软雅黑";background
 .timeblock .nums{background-position:0px 0px;}
 .timeblock .numt{background-position:0px -24px;}
 .timeblock .numfo{background-position:0px -72px;}
-#content{height:355px;width:500px;overflow:hidden;background:url(../images/vertical.png) no-repeat 434px 2px;padding-top:10px;}
-.list{overflow:hidden;position:relative;width:500px;}
-.list li{height:110px;width:100px;vertical-align:bottom;overflow:hidden;position:relative;}
+#content{height:355px;width:1180px;overflow:hidden;background:url(../images/vertical.png) no-repeat 434px 2px;padding-top:10px;}
+.list{overflow:hidden;position:relative;}
+.list li{height:110px;vertical-align:bottom;overflow:hidden;position:relative;}
 .liwrap{height:55px;margin-top:28px;}
-.lileft{position:absolute;top:0;left:0px;height:55px;width:100px;line-height:55px;text-align:right;}
-.liright{position:absolute;top:0;right:0px;height:55px;width:400px;}
+.lileft{position:absolute;top:0;left:0px;height:55px;width:400px;line-height:55px;text-align:right;}
+.liright{position:absolute;top:0;right:0px;height:55px;width:700px;}
 .histt{height:35px;line-height:35px;}
 .hisct{font-size:14px;color:#6e6e6e;}
 .md{font-size:18px;color:#AEAEAE;}
@@ -75,11 +75,11 @@ body{color:#535353;font-size:12px;font-family: "arial","微软雅黑";background
 	-o-transition:all 0.3s linear;
 	transition:all 0.3s linear;
 }
-#arrow{position:fixed;top:50%;left:70px;}
+#arrow{position:fixed;top:50%;right:30px;}
 *html #arrow{position:absolute;top:expression(eval(document.documentElement.scrollTop));margin-top:350px;}
 
 #arrow ul li{
-	display:block;height:20px;width:20px;background:url("${pageContext.request.contextPath}/user/ke/images/icons.png") no-repeat 0 0;cursor:pointer;
+	display:block;height:20px;width:20px;background:url(../images/icons.png) no-repeat 0 0;cursor:pointer;
 	-webkit-transition:all 0.2s ease-out;
 	-moz-transition:all 0.2s ease-out;
 	-o-transition:all 0.2s ease-out;
@@ -94,4 +94,4 @@ body{color:#535353;font-size:12px;font-family: "arial","微软雅黑";background
 	transition:all 0.1s ease-in;
 }
 #arrow ul .arrowup{background-position:0px -26px;margin-bottom:10px;}
-#arrow ul .arrowdown{background-position:0px 0px;cursor:pointer}
+#arrow ul .arrowdown{background-position:0px 0px;}
