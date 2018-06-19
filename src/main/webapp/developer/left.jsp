@@ -52,12 +52,11 @@
    </div>
     <div>
         <span>楼盘图册</span>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">楼盘图册</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加样板间</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加环境规划图</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加配套实景图</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加楼盘实景图</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">增加效果</a>
+        <a href="${pageContext.request.contextPath}/Graph/selectAllGraphByQueryPojo.action" target="mainFrame" onFocus="this.blur()">效果图</a>
+        <a href="${pageContext.request.contextPath}/ProtoType/selectAllProtoTypeByQueryPojo.action" target="mainFrame" onFocus="this.blur()">样板间</a>
+        <a href="${pageContext.request.contextPath}/Arround/selectAllArroundByQueryPojo.action" target="mainFrame" onFocus="this.blur()">环境规划图</a>
+        <a href="${pageContext.request.contextPath}/Buildimg/selectAllBuildimgByQueryPojo.action" target="mainFrame" onFocus="this.blur()">楼盘实景图</a>
+        <a href="${pageContext.request.contextPath}/Environment/selectAllEnvirByQueryPojo.action" target="mainFrame" onFocus="this.blur()">配套实景图</a>
     </div>
     <div>
         <span>评论信息</span>

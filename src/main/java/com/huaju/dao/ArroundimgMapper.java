@@ -1,15 +1,20 @@
 package com.huaju.dao;
 
 import com.huaju.entity.Arroundimg;
+import com.huaju.entity.Build;
+import com.huaju.entity.ImgQueryPojo;
 
 import java.util.List;
 
 public interface ArroundimgMapper {
 
-    public List<Arroundimg> AllArroundimg(int id);
+    public Arroundimg AllArroundimg(int id);
 
     public void AddArroundimg(Arroundimg arroundimg);
 
-    public void deleteArroundimg(int id);
+    public boolean deleteArroundimg(int id);
 
+    public List<Arroundimg> SelectAllArrountimg(ImgQueryPojo imgQueryPojo);
+
+    public List<Build> selectBuildInArroundimg(Integer comid);
 }

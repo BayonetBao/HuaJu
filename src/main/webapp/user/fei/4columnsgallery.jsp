@@ -111,9 +111,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="gallery-grids">
 						<p style="font-size: 20px;color:#F2F2F2">效果图</p>
 						<hr />
-						<c:forEach items="graphs" var="graphs">
+						<c:forEach items="${graphs}" var="graphs">
 						<div class="col-md-3 gallery-grid" id="divs">
-						<a href="images/s4.jpg" class="swipebox"><span class="rollover1"> </span></a>
+						<a href="<%=basePath%>${graphs.graphuil}" class="swipebox"><span class="rollover1"> </span></a>
 						<img src="<%=basePath%>${graphs.graphuil}" class="img-responsive" alt="/">
 						</div>
 						</c:forEach>
@@ -123,9 +123,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="gallery-grids galry">
 						<p style="font-size: 20px;color: #F2F2F2;">样板间</p>
 						<hr />
-						<c:forEach items="buildimgs" var="buildimgs">
+						<c:forEach items="${buildimgs}" var="buildimgs">
 						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s1.jpg" class="swipebox"><span class="rollover1"> </span></a>
+						<a href="<%=basePath%>${buildimgs.buildimg}" class="swipebox"><span class="rollover1"> </span></a>
 						<img src="<%=basePath%>${buildimgs.buildimg}" class="img-responsive" alt="/">
 						</div>
 						</c:forEach>
@@ -134,10 +134,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="gallery-grids galry">
 						<p style="font-size: 20px;color: #F2F2F2;">环境规划图</p>
 						<hr />
-						<c:forEach items="arroundimgs" var="arroundimgs">
+						<c:forEach items="${arroundimgs}" var="arroundimgs">
 						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s7.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="<%=basePath%>" class="img-responsive" alt="/">
+						<a href="<%=basePath%>${arroundimgs.arrimg}" class="swipebox"><span class="rollover1"> </span></a>
+						<img src="<%=basePath%>${arroundimgs.arrimg}" class="img-responsive" alt="/">
 						</div>
 						</c:forEach>
 						
@@ -146,71 +146,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="gallery-grids galry">
 						<p style="font-size: 20px;color: #F2F2F2;">楼盘实景图</p>
 						<hr />
+						<c:forEach items="${protoTypeImgs}" var="protoTypeImgs">
 						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s7.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s7.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s6.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s6.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s1.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s1.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s5.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s5.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid" id="divs">
-						<a href="images/s5.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s5.jpg" class="img-responsive" alt="/">
-						</div>
+						<a href="<%=basePath%>${protoTypeImgs.prototype}" class="swipebox"><span class="rollover1"> </span></a>
+						<img src="<%=basePath%>${protoTypeImgs.prototype}" class="img-responsive" alt="/">
+					</div>
+					</c:forEach>
+
 						<div class="clearfix"></div>
 					</div>
 					<div class="gallery-grids galry">
 						<p style="font-size: 20px;color: #F2F2F2;">配套实景图</p>
 						<hr />
+						<c:forEach items="${environmentImgs}" var="environmentImgs">
 						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s7.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s7.jpg" class="img-responsive" alt="/">
+						<a href="<%=basePath%>${environmentImgs.envirimg}" class="swipebox"><span class="rollover1"> </span></a>
+						<img src="<%=basePath%>${environmentImgs.envirimg}" class="img-responsive" alt="/">
 						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s6.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s6.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s1.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s1.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s5.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s5.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s7.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s7.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s6.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s6.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s1.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s1.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s5.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s5.jpg" class="img-responsive" alt="/">
-						</div><div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s7.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s7.jpg" class="img-responsive" alt="/">
-						</div>
-						<div class="col-md-3 gallery-grid"id="divs">
-						<a href="images/s6.jpg" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="images/s6.jpg" class="img-responsive" alt="/">
-						</div>
-						
+						</c:forEach>
 						<div class="clearfix"></div>
 					</div>
 				</div>
