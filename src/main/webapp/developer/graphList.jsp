@@ -91,7 +91,7 @@
                     <tr id="tr_${graph.graphid}"  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td  valign="middle" class="borderright borderbottom">${graph.graphid}</td>
                         <td  valign="middle" class="borderright borderbottom">${graph.build.building}</td>
-                        <td  valign="middle" class="borderright borderbottom"><img src="${pageContext.request.contextPath}${graph.graphurl}"></td>
+                        <td  valign="middle" class="borderright borderbottom"><img src="${pageContext.request.contextPath}${graph.graphurl}" width="300px" height="200px"></td>
                         <td  valign="middle" class="borderbottom">
                             <%--<a href="${pageContext.request.contextPath}/Graph/UpdateGraphBefore.action?id=${graph.graphid}"  target="mainFrame" onFocus="this.blur()" class="add">编辑</a>--%>
                             <span class="gray">&nbsp;|&nbsp;</span>

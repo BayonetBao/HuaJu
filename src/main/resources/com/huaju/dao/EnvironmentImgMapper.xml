@@ -17,7 +17,7 @@
 </select>
     <!--public void AddEnvironmentimg(EnvironmentImg environmentImg);-->
 <insert id="AddEnvironmentimg" parameterType="EnvironmentImg">
-    INSERT INTO environmentimg (emvirimg,buildingid) VALUE (#{emvirimg},#{buildingid})
+    INSERT INTO environmentimg VALUE (null,#{envirimg},#{buildingid})
 </insert>
     <!--public void deleteEnvironmentimg(int id);-->
 <delete id="deleteEnvironmentimg" parameterType="int">
