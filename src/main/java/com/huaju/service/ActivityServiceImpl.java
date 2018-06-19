@@ -55,6 +55,7 @@ public class ActivityServiceImpl implements ActivityService {
         return activityMapper.selecttotal(id);
     }
 
+//咨询师列表
     @Override
     public List<Cta> AllCta() {
         return ctaMapper.AllCta();

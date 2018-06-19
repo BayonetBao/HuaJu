@@ -195,7 +195,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             <li><a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a></li>
                                             <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
                                             <li><span><b>${pageInfo.pageNum}</b>/<b>${pageInfo.pages}</b></span></li>
-                                            <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
+                                            <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:getPage(${pageInfo.nextPage})"  >下一页</a></li></c:if>
                                             <li> <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a></li>
 
                                         </ul>
@@ -251,9 +251,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         +"<a style='color: blue;display: inline;' href='id=recomment'>"+recomment.reusername+"</a>"+"回复 @"
                                                         +"<a style='color: blue;display: inline;' href='id=recomments'>"+recomment.reobjectname+"</a>"+":  "
                                                         +recomment.recontent+"      "+s+"      <a style='color:darkslategray;display: inline;' href='javascript:hui1("+zxdxx+")'>"+"回复</a></li>");
-                                                   var type=${sessionScope.userType};
-                                                   var id=${sessionScope.uid};
-                                                    if(id==recomment.reuserid&&type==recomment.reusertype){
+                                                    var type=${sessionScope.userType};
+                                                    var id=${sessionScope.uid};
+                                                   if(id==recomment.reuserid&&type==recomment.reusertype){
                                                         $("#reli_"+recomment.recommentid).append("<a  style='color:darkslategray;display: inline;' href='javascript:deleteRecomment("+recomment.recommentid+")'>删除</a>");
                                                     }
 
@@ -291,7 +291,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         reobjectid.val(zxdxx.reuserid);
                                     }
                                     function addrecomment(commentid) {
-                                        if(confirm("确认回复么？")){
+                                        var id=${sessionScope.uid};
+                                        if(id==-1){
+                                            alert("先登录呦");
+                                        }else if(confirm("确认回复么？")){
                                             var reul=$("#ul_"+commentid);
                                             var reobjectname=$("#reobjectname_"+commentid);
                                             var reobjectid=$("#reobjectid_"+commentid);
@@ -356,7 +359,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                    }
 
                                     function favor(commentid) {
-                                        $.ajax({
+                                        var id=${sessionScope.uid};
+                                        if(id==-1){
+                                            alert("先登录呦");
+                                            return;
+                                        }
+                                            $.ajax({
                                             type:"post",
                                             url:"${pageContext.request.contextPath}/favor/clickFavor.action",
                                             data:"commentid="+commentid,
