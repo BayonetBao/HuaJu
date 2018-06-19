@@ -30,7 +30,6 @@ public class BuildServiceImpl implements BuildService{
         PageHelper.startPage(curPage,pageSize);
         List<Build> builds=buildMapper.selectBuildQueryPojo(buildQueryPojo);
         PageInfo<Build> pageInfo=new PageInfo<>(builds);
-        pageInfo.setTotal(builds.size());
         return pageInfo;
     }
 
