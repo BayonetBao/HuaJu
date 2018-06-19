@@ -91,7 +91,7 @@
                     <tr id="tr_${buildimg.buimgid}"  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td  valign="middle" class="borderright borderbottom">${buildimg.buimgid}</td>
                         <td  valign="middle" class="borderright borderbottom">${buildimg.build.building}</td>
-                        <td  valign="middle" class="borderright borderbottom">${buildimg.buildimg}</td>
+                        <td  valign="middle" class="borderright borderbottom"><img src="${pageContext.request.contextPath}${buildimg.buildimg}"></td>
                         <td  valign="middle" class="borderbottom">
                             <%--<a href="${pageContext.request.contextPath}/Graph/UpdateGraphBefore.action?id=${graph.graphid}"  target="mainFrame" onFocus="this.blur()" class="add">编辑</a>--%>
                             <span class="gray">&nbsp;|&nbsp;</span>

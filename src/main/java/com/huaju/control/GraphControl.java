@@ -107,7 +107,7 @@ public class GraphControl {
             try {
                 is = file.getInputStream();
 
-                String uploadPath="/img";
+                String uploadPath="/developer/images";
                 String realUploadPath=request.getSession().getServletContext().getRealPath(uploadPath);
 
                 String des = realUploadPath+ "/"+file.getOriginalFilename();
