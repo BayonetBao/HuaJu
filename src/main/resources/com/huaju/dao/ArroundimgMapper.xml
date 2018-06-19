@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.ArroundimgMapper">
-    <!--public List<Arroundimg> AllArroundimg(int id);-->
-<select id="AllArroundimg" resultType="Arroundimg" parameterType="int">
-    SELECT * FROM arroundimg WHERE buildingid=#{_parameter}
+    <resultMap id="ArroundimgMap" type="Arroundimg">
+        <id column="arrid" property="arrid"/>
+        <result column="arrimg" property="arrimg"/>
+        <result column="buildingid" property="buildingid"/>
+        <association property="build" javaType="Build">
+            <result property="building" column="building"/>
+            <result property="comid" column="comid"/>
+        </association>
+    </resultMap>
+    <!--public Arroundimg AllArroundimg(int id);-->
+<select id="AllArroundimg" resultMap="ArroundimgMap" parameterType="int">
+    select arroundimg.*,build.building,build.comid from arroundimg ,build
+     where arroundimg.buildingid=build.buildingid and buildid=#{_parameter}
  </select>
     <!--public void AddArroundimg(Arroundimg arroundimg);-->
 <insert id="AddArroundimg" parameterType="Arroundimg">
@@ -13,5 +23,21 @@
 <delete id="deleteArroundimg" parameterType="int">
     DELETE FROM arroundimg WHERE arrid=#{_parameter}
 </delete>
-
+    <!--public List<Arroundimg> SelectAllArrountimg(ImgQueryPojo imgQueryPojo);-->
+    <select id="SelectAllArrountimg" resultMap="ArroundimgMap" parameterType="ImgQueryPojo">
+        select arroundimg.*,build.building,build.comid from arroundimg,build
+        <where>  arroundimg.buildingid=build.buildingid
+            <if test="buildingid neq null">
+                and arroundimg.buildingid=#{buildingid}
+            </if>
+            <if test="comid neq null">
+                and comid=#{comid}
+            </if>
+        </where>
+    </select>
+    <!--public List<Build> selectBuildInArroundimg(Integer comid);-->
+    <select id="selectBuildInArroundimg" resultType="Build" parameterType="int">
+        select DISTINCT build.buildingid,building from build,arroundimg where build.buildingid=arroundimg.buildingid
+        and comid=#{_parameter}
+    </select>
 </mapper>
