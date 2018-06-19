@@ -37,12 +37,13 @@ public class BuildControl {
          BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
          Map<String,Object> cmap=new HashMap<>();
          List<Company> companies=buildService.selectCompanyInBuild();
+         List<Type> types=buildService.slectAllType();
          String province=request.getParameter("province");
+         String company=request.getParameter("comid");
          String city=request.getParameter("city");
          String district=request.getParameter("district");
-         String comid=request.getParameter("comid");
          String typeid=request.getParameter("typeid");
-         String character=request.getParameter("character");
+         String character=request.getParameter("charactere");
          String genre=request.getParameter("genre");
          String bTotalprice=request.getParameter("bTotalprice");
          String bPerprice=request.getParameter("bPerprice");
@@ -51,7 +52,7 @@ public class BuildControl {
             buildQueryPojo.setProvince(province);
         }
         if (character != null && !character.trim().equals("")) {
-            buildQueryPojo.setCharacter(character);
+            buildQueryPojo.setCharactere(character);
         }
         if (genre != null && !genre.trim().equals("")) {
             buildQueryPojo.setGenre(genre);
@@ -62,8 +63,9 @@ public class BuildControl {
         if (district != null && !district.trim().equals("")) {
             buildQueryPojo.setDistrict(district);
         }
-        if (comid != null && !comid.trim().equals("")) {
-            buildQueryPojo.setComid(new Integer(comid));
+        if (company != null && !company.trim().equals("")) {
+            Integer comid=new Integer(company);
+            buildQueryPojo.setComid(comid);
         }
         if (typeid != null && !typeid.trim().equals("")) {
             buildQueryPojo.setTypeid(new Integer(typeid));
@@ -81,8 +83,8 @@ public class BuildControl {
             buildQueryPojo.setMaxAcreage(new Double(acreage.split("-")[1]));
         }
         cmap.put("buildQueryPojo",buildQueryPojo);
+        int pageSize =3;
         int curPage = 1;
-        int pageSize = 7;
         String scurPage = request.getParameter("curPage");
         if (scurPage != null && !scurPage.trim().equals("")) {
             curPage = Integer.parseInt(scurPage);
@@ -92,6 +94,7 @@ public class BuildControl {
         PageInfo<Build> pageInfo = buildService.selectBuildQueryPojo(cmap);
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("companies",companies);
+        request.setAttribute("types",types);
         request.setAttribute("buildQueryPojo",buildQueryPojo);
         request.getRequestDispatcher("/user/ke/queryBuild.jsp").forward(request,response);
     }

@@ -30,6 +30,8 @@ public class DynamicControl {
     private  DynamicMapper dynamicMapper;
     @Autowired
     private BuildMapper buildMapper;
+    @Autowired
+    private  BuildService buildService;
 
     @RequestMapping(value = "selectAllDynamicByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllDynamicByQueryPojo(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,6 +68,15 @@ public class DynamicControl {
         List<Dynamic> dynamics=dynamicMapper.selectAllDynamicByQueryPojo(dynamicQueryPojo);
         request.setAttribute("dynamics",dynamics);
         request.getRequestDispatcher("/user/ke/dynamic.jsp").forward(request,response);
+    }
+    @RequestMapping(value = "selectAllDynamicByBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
+    public void selectAllDynamicByBuild(DynamicQueryPojo dynamicQueryPojo,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        dynamicQueryPojo.setBuildingid(dynamicQueryPojo.getBuildingid());
+        Build build=buildService.selectBuildById(dynamicQueryPojo.getBuildingid());
+        List<Dynamic> dynamics=dynamicMapper.selectAllDynamicByQueryPojo(dynamicQueryPojo);
+        request.setAttribute("dynamics",dynamics);
+        request.setAttribute("build",build);
+        request.getRequestDispatcher("/user/ke/buildDynamic.jsp").forward(request,response);
     }
       @RequestMapping(value = "insertDynamicBefore.action",method = {RequestMethod.POST,RequestMethod.GET})
       public void insertDynamicBefore(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

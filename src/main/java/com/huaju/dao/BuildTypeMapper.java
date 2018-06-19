@@ -11,9 +11,6 @@ public interface BuildTypeMapper {
     public List<Type> showBuildTypeInfo(int buildingid);
     //根据楼盘id查询各个户型的数量(张宝)
     public List<BuildType> selectTypeCount(int buildIngid);
-
-//    添加页面显示居室下拉框
-
-
-
+    //根据楼盘查询buildtype 珂
+    public List<BuildType> selectByBuildingid(Integer buildingid);
 }

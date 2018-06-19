@@ -72,6 +72,7 @@ public class Build {
     private String bsalestatus;
     private List<BuildType> buildType;
 
+
     public Build() {
         super();
     }
