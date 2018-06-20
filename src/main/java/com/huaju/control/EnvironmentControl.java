@@ -95,7 +95,7 @@ public class EnvironmentControl {
                 saveFile(request, file);
             }
         }
-        request.getRequestDispatcher("/Graph/selectAllGraphByQueryPojo.action").forward(request,response);
+        request.getRequestDispatcher("/Environment/selectAllEnvirByQueryPojo.action").forward(request,response);
     }
     private void saveFile(HttpServletRequest request, MultipartFile file) {
         InputStream is = null;

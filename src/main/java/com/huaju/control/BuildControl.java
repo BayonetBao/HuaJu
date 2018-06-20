@@ -46,6 +46,7 @@ public class BuildControl {
          List<Company> companies=buildService.selectCompanyInBuild();
          List<Type> types=buildService.slectAllType();
          String province=request.getParameter("province");
+         String isonsale=request.getParameter("isonsale");
          String company=request.getParameter("comid");
          String city=request.getParameter("city");
          String district=request.getParameter("district");
@@ -57,6 +58,9 @@ public class BuildControl {
          String acreage=request.getParameter("acreage");
         if (province != null && !province.trim().equals("")) {
             buildQueryPojo.setProvince(province);
+        }
+        if (isonsale != null && !isonsale.trim().equals("")) {
+            buildQueryPojo.setIsonsale(isonsale);
         }
         if (character != null && !character.trim().equals("")) {
             buildQueryPojo.setCharactere(character);

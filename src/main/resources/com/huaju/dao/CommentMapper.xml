@@ -26,6 +26,9 @@
             <if test="buildingid neq null">
                 and comment.buildingid=#{buildingid}
             </if>
+            <if test="commentid neq null">
+                and comment.commentid=#{commentid}
+            </if>
             <if test="idtype neq null">
                 and comment.idtype = #{idtype}
             </if>

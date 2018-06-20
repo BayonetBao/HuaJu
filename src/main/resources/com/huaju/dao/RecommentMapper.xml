@@ -44,4 +44,8 @@
           </if>
       </where>
 </select>
+    <!--public boolean changestate(Integer recommetid);-->
+    <update id="changestate" parameterType="int">
+        update recomment set restate=1 where recommentid=#{_parameter}
+    </update>
 </mapper>

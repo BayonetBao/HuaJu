@@ -17,7 +17,7 @@
 </select>
     <!--public void AddBuildimg(Buildimg buildimg);-->
 <insert id="AddBuildimg" parameterType="Buildimg">
-    INSERT INTO buildimg (buildimg,buildingid) VALUE (#{buildimg},#{buildingid})
+    INSERT INTO buildimg VALUE (null,#{buildimg},#{buildingid})
 </insert>
     <!--public boolean deleteBuildimg(int id);-->
     <delete id="deleteBuildimg" parameterType="int">
