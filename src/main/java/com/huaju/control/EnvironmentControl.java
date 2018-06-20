@@ -95,7 +95,7 @@ public class EnvironmentControl {
                 saveFile(request, file);
             }
         }
-        request.getRequestDispatcher("/Graph/selectAllGraphByQueryPojo.action").forward(request,response);
+        request.getRequestDispatcher("/Environment/selectAllEnvirByQueryPojo.action").forward(request,response);
     }
     private void saveFile(HttpServletRequest request, MultipartFile file) {
         InputStream is = null;
@@ -104,7 +104,7 @@ public class EnvironmentControl {
             try {
                 is = file.getInputStream();
 
-                String uploadPath="/img";
+                String uploadPath="/developer/images";
                 String realUploadPath=request.getSession().getServletContext().getRealPath(uploadPath);
 
                 String des = realUploadPath+ "/"+file.getOriginalFilename();

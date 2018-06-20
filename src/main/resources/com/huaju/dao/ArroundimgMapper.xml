@@ -17,7 +17,7 @@
  </select>
     <!--public void AddArroundimg(Arroundimg arroundimg);-->
 <insert id="AddArroundimg" parameterType="Arroundimg">
-    INSERT INTO arroundimg (arrimg,buildingid) VALUE (arrimg,buildingid)
+    INSERT INTO arroundimg VALUE (null,#{arrimg},#{buildingid})
 </insert>
     <!--public void deleteArroundimg(int id);-->
 <delete id="deleteArroundimg" parameterType="int">

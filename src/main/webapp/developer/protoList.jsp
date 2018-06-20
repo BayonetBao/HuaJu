@@ -91,7 +91,7 @@
                     <tr id="tr_${proto.proid}"  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td  valign="middle" class="borderright borderbottom">${proto.proid}</td>
                         <td  valign="middle" class="borderright borderbottom">${proto.build.building}</td>
-                        <td  valign="middle" class="borderright borderbottom">${proto.prototype}</td>
+                        <td  valign="middle" class="borderright borderbottom"><img src="${pageContext.request.contextPath}${proto.prototype}"></td>
                         <td  valign="middle" class="borderbottom">
                             <%--<a href="${pageContext.request.contextPath}/Graph/UpdateGraphBefore.action?id=${graph.graphid}"  target="mainFrame" onFocus="this.blur()" class="add">编辑</a>--%>
                             <span class="gray">&nbsp;|&nbsp;</span>

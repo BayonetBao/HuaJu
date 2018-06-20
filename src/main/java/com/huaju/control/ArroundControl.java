@@ -86,7 +86,7 @@ public class ArroundControl {
         buildQueryPojo.setComid(com.getComid());
         List<Build> blist=buildMapper.selectBuildQueryPojo(buildQueryPojo);
         request.setAttribute("blist",blist);
-        request.getRequestDispatcher("/developer/AddArrount.jsp").forward(request,response);
+        request.getRequestDispatcher("/developer/AddArround.jsp").forward(request,response);
     }
     @RequestMapping(value = "/insertArroundAfter.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void insertArroundAfter(@RequestParam(value="myfiles")MultipartFile[] files, Dynamic dynamic, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
@@ -106,7 +106,7 @@ public class ArroundControl {
             try {
                 is = file.getInputStream();
 
-                String uploadPath="/img";
+                String uploadPath="/developer/images";
                 String realUploadPath=request.getSession().getServletContext().getRealPath(uploadPath);
 
                 String des = realUploadPath+ "/"+file.getOriginalFilename();
