@@ -12,8 +12,8 @@ public interface BuildTypeMapper {
     //根据楼盘id查询各个户型的数量(张宝)
     public List<BuildType> selectTypeCount(int buildIngid);
 
-//    添加页面显示居室下拉框
-
+//    根据楼盘id查询楼盘下所有的房子个数    全部（n）ZYJ
+    public int sumHouse(int buildingid);
 
 
 }

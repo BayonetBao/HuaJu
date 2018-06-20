@@ -24,4 +24,9 @@
         SELECT * from buildtype where buildingid=#{_parameter}
     </select>
 
-</mapper>
+    <!--//    根据楼盘id查询楼盘下所有的房子个数    全部（n）ZYJ-->
+    <!--public int sumHouse(int buildingid);-->
+    <select id="sumHouse" resultType="int">
+       SELECT SUM(count) FROM buildtype WHERE buildingid=#{_parameter}
+    </select>
+ </mapper>

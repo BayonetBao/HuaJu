@@ -17,7 +17,7 @@ public class HouseServiceImpl implements HouseService{
     public List<House> selectHouseInfoZYJ() {
         return houseMapper.selectHouseInfoZYJ();
     }
-
+//根据楼盘id查找house消息
     @Override
     public List<House> showHouseList(int buildingid) {
         return houseMapper.showHouseList(buildingid);

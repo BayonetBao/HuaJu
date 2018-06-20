@@ -11,16 +11,25 @@ import java.util.List;
 @Service
 public class BuildTypeServiceImpl implements BuildTypeService{
 
+
     @Autowired
     private  BuildTypeMapper buildTypeMapper;
     @Override
     public List<Type> showBuildTypeInfo(int buildingid) {
         return buildTypeMapper.showBuildTypeInfo(buildingid);
     }
+
     //根据楼盘id查询各个户型的数量(张宝)
     @Override
     public List<BuildType> selectTypeCount(int buildIngid) {
+
         return buildTypeMapper.selectTypeCount(buildIngid);
+    }
+
+    //    根据楼盘id查询楼盘下所有的房子个数    全部（n）ZYJ
+    @Override
+    public int sumHouse(int buildingid) {
+        return buildTypeMapper.sumHouse(buildingid);
     }
 
 
