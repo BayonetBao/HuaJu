@@ -42,4 +42,10 @@ public class CtaServiceImpl implements CtaService{
     public boolean addCta(Cta cta){
         return ctaMapper.addCta(cta);
     }
+
+    @Override
+    //按楼盘id查询咨询师(张宝)
+    public Cta seletCtaByBuildingid(int buildingid){
+        return ctaMapper.seletCtaByBuildingid(buildingid);
+    }
 }

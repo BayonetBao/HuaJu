@@ -16,4 +16,7 @@ public interface ProtoTypeImgMapper {
     public List<ProtoTypeImg> SelectAllPrototypeimg(ImgQueryPojo imgQueryPojo);
 
     public List<Build> selectBuildInProtoimg(Integer comid);
+
+    //按楼盘id查询样板间
+    public List<ProtoTypeImg> selectProtoTypeImgByBuildingid(int buildingid);
 }

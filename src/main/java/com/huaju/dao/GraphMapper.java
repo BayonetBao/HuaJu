@@ -19,4 +19,7 @@ public interface GraphMapper {
 
     public List<Build> selectBuildInGraph(Integer comid);
 
+    //按楼盘id查询效果图
+    public List<Graph> selectGraphByBuildingid(int buildingid);
+
 }

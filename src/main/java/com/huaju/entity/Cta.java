@@ -11,9 +11,27 @@ public class Cta {
     private String ctaname;
     private String intro;
     private String remark;
+    private  String school;
+    private String charactere;
 
     public Cta() {
         super();
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getCharactere() {
+        return charactere;
+    }
+
+    public void setCharactere(String charactere) {
+        this.charactere = charactere;
     }
 
     public String getCtarelname() {

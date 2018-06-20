@@ -42,4 +42,10 @@
         and comid=#{_parameter}
     </select>
 
+
+    <!--//按楼盘id查询样板间-->
+    <!--public List<ProtoTypeImg> selectProtoTypeImgByBuildingid(int buildingid);-->
+    <select id="selectProtoTypeImgByBuildingid" resultType="ProtoTypeImg" parameterType="int">
+         SELECT * from ProtoTypeImg WHERE buildingid=#{_parameter}
+    </select>
 </mapper>

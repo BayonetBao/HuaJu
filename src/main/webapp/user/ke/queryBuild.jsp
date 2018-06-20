@@ -196,10 +196,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     <a href="楼盘详情页面" class="button4">更多详情</a>
                                                 </div>
                                                 <div class="zixunshi">
-                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
+                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/${b.cta.ctaimg}" href="#" />
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                        <a>${b.cta.ctaname}|咨询</a>
+
+                                                        <a>${b.cta.ctarelname}|咨询</a>
                                                     </p>
                                                 </div>
                                                 <div class="clearfix"></div>

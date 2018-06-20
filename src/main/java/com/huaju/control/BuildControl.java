@@ -5,9 +5,7 @@ import com.huaju.entity.*;
 import com.huaju.entity.Build;
 import com.huaju.entity.BuildQueryPojo;
 import com.huaju.entity.Company;
-import com.huaju.service.BuildService;
-import com.huaju.service.BuildTypeService;
-import com.huaju.service.HouseService;
+import com.huaju.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +33,12 @@ public class BuildControl {
     private BuildTypeService buildTypeService;
     @Autowired
     private HouseService houseService;
+    @Autowired
+    private GraphimgService graphimgService;
+    @Autowired
+    private ProtoService protoService;
+    @Autowired
+    private CtaService ctaService;
     @RequestMapping(value = "/selectBuildQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
          BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
@@ -208,15 +212,22 @@ public class BuildControl {
     }
     @RequestMapping(value = "/buildIndex.action",method ={RequestMethod.GET,RequestMethod.POST} )
     public void buildIndex(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
-        Company company=buildService.selectCompanyByBuildId(Integer.parseInt(buildingid));
+        int bid=Integer.parseInt(buildingid);
+        Build build=buildService.selectBuildById(bid);
+        Company company=buildService.selectCompanyByBuildId(bid);
         if(build!=null) {
-            List<BuildType> buildTypes = buildTypeService.selectTypeCount(Integer.parseInt(buildingid));
-            List<House> houseList=houseService.selectHouseListBybuildingid(Integer.parseInt(buildingid));
+            List<BuildType> buildTypes = buildTypeService.selectTypeCount(bid);
+            List<House> houseList=houseService.selectHouseListBybuildingid(bid);
+            List<Graph> graphList=graphimgService.selectGraphByBuildingid(bid);
+            List<ProtoTypeImg> protoTypeImgList=protoService.selectProtoTypeImgByBuildingid(bid);
+            Cta cta=ctaService.seletCtaByBuildingid(bid);
             request.setAttribute("buildTypes", buildTypes);
             request.setAttribute("company",company);
             request.setAttribute("build", build);
             request.setAttribute("houseList",houseList);
+            request.setAttribute("graphList",graphList);
+            request.setAttribute("protoTypeImgList",protoTypeImgList);
+            request.setAttribute("cta",cta);
         }
         request.getRequestDispatcher("/user/bao/buildIndex.jsp").forward(request,response);
 

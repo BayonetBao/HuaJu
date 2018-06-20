@@ -10,4 +10,6 @@ public interface CtaService {
     public PageInfo<Cta> AllCta(Map<String,Object> map);
     //添加咨询师(张宝)
     public boolean addCta(Cta cta);
+    //按楼盘id查询咨询师(张宝)
+    public Cta seletCtaByBuildingid(int buildingid);
 }
