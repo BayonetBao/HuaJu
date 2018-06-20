@@ -1,7 +1,7 @@
 /* c-message组件样式 */
 .c-message{
     position:fixed;
-    top:50%;
+    top:10%;
     left:50%;
     /* transform:translateX(-50%); */
     padding-left:50px;

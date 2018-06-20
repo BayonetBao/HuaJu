@@ -252,24 +252,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </nav>
 <!---header--->
 <!---banner--->
-<div class="content" style="margin-top:10px;">
-    <div class="properties-section" style="margin-top:0px;padding-top:10px;">
-        <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:1180px;">
-            <div class="properties-grids">
-                <div class="col-md-9 properties-left">
-                    <div class="clearfix"></div>
+<div class="content" style="margin-top:0px;">
+    <div class="properties-section" style="margin-top:0px;padding-top:0px;">
+        <div class="container" style="margin-top:0px;padding-top:0px;background-color:rgba(98,98,98,0.15);width:1180px;">
+            <div class="properties-grids" >
+                <div class="col-md-9 properties-left" >
                     <%--楼盘动态--%>
                     <div class="content">
-                        <div class="blog-section">
+                        <div class="blog-section"  style="margin-top: 0px;padding-top: 0px;">
                             <div  style="padding: 0px;margin: 0px;">
-                                <div class="blog-grids" style="width: 1180px;">
+                                <div class="blog-grids" style="width: 1180px;"  style="margin-top: 0px;padding-top: 0px;">
                                     <div class="col-md-12 blog-grid" >
-
                                         <!---RESPONSES--->
                                         <div class="coment-form col-md-12">
                                             <div>
-                                                <div class="grid_3 grid_5 col-md-12">
-                                                    <p style="font-size:24px;margin-bottom:5px;"><c:choose>
+                                                <div class="grid_3 grid_5 col-md-12"  style="margin-top: 0px;padding-top: 0px;">
+                                                    <p style="font-size:24px;margin-bottom:5px;margin-top: 0px;padding-top: 0px;"><c:choose>
                                                         <c:when test="${commentQueryPojo.idtype!=null && commentQueryPojo.idtype != '' }">
                                                             <c:choose>
                                                                 <c:when test="${commentQueryPojo.idtype eq 1}">用户</c:when>
@@ -309,8 +307,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         <button value="差评" type="button" onclick="hiddenComtype(this.value)" class="btn btn-default btn-lg btn-warning" style="width:33%">差评</button>
                                                     </div>
                                                     <%--查找评论的隐藏表单 通过按钮触发script 更改hidden的input的value submit--%>
-                                                    <form id="hiddenForm" action="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action" method="post">
+                                                    <form id="hiddenForm" action="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action" method="post">
                                                         <input type="hidden" id="curPage" name="curPage" value="1"/>
+                                                        <input type="hidden" id="buildingid" name="buildingid" value="${build.buildingid}"/>
                                                         <input type="hidden" id="comtype" name="comtype" value="${commentQueryPojo.comtype}"/>
                                                         <input type="hidden" id="idtype" name="idtype" value="${commentQueryPojo.idtype}"/>
                                                     </form>

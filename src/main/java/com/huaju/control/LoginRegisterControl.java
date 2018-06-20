@@ -65,7 +65,6 @@ public class LoginRegisterControl {
 
         if("1".equals(userType)){
             User user=allUserService.selectUserByName(uname);
-            System.out.println("user:"+user);
             if(user!=null){
                 if(user.getUpwd().equals(password)){
                     session.setAttribute("user",user);

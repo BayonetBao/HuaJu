@@ -152,7 +152,7 @@
                             </a>
                         </li>
                         <li ui-sref-active="active">
-                            <a ui-sref="app.mail.list">
+                            <a href="${pageContext.request.contextPath}/recomment/selectRecommentById.action?reobjectid=${sessionScope.uid}&reobjectType=${sessionScope.userType}&restate=0"  target="myframe"  class="auto">
                                 <b class="badge bg-info pull-right">9</b>
                                 <i class="glyphicon glyphicon-envelope icon text-info-lter"></i>
                                 <span >我的消息</span>
@@ -166,13 +166,6 @@
                                 <b class="badge bg-info pull-right">3</b>
                                 <i class="glyphicon glyphicon-th"></i>
                                 <span>我的活动</span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href class="auto">
-                                <i class="glyphicon glyphicon-th-large icon text-success"></i>
-                                <span>我的评论</span>
                             </a>
 
                         </li>
@@ -207,7 +200,7 @@
 
     <!-- content -->
     <div class="app-content bg-white" id="app" >
-        <iframe src="${pageContext.request.contextPath}/user/ke/content.jsp" name="myframe" width='100%' height='100%' frameborder='0'  id="myframe" >
+        <iframe src="${pageContext.request.contextPath}/comment/selectCommentByUser.action" name="myframe" width='100%' height='100%' frameborder='0'  id="myframe" >
         </iframe>
     </div >
     <!-- /content -->

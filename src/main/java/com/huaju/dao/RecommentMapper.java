@@ -10,4 +10,5 @@ public interface RecommentMapper {
     public boolean addRecoment(Recomment recomment);
     public boolean deleteRecomment(Integer recommentid);
     public boolean deleteRecomentByCommentid(Integer commentid);
+    public boolean changestate(Integer recommetid);
 }
