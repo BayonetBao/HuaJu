@@ -40,6 +40,7 @@
        and comid=#{comid}
        </if>
        </where>
+       ORDER  BY dytime DESC
    </select>
 
     <!--public int selectCountDynamic();-->

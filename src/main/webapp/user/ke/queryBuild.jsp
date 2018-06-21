@@ -153,18 +153,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
                                 <li role="presentation" class="active">
-                                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部楼盘
+                                    <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部楼盘
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action?isonsale='abc'" role="tab"   aria-controls="profile">优惠楼盘</a>
+                                    <a href="javascript:onsale()"   aria-controls="profile">优惠楼盘</a>
                                 </li>
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 
                                     <c:forEach items="${pageInfo.list}" var="b">
-                                        <div class="forsale-grids">
+                                        <div class="forsale-grids" style="background-color:rgba(79,152,34,0.16)">
                                             <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a>
                                                 <p  style="position: relative; left: 500px;top: -25px;">
                                                     <c:forEach items="${b.buildType}" var="type">
@@ -174,7 +174,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             </h4>
                                             <div class="forsale1">
                                                 <div class="forsale-left">
-                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" alt="楼盘"></a>
+                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" width="240px" height="170px" alt="楼盘"></a>
                                                 </div>
                                                 <div class="forsale-right">
                                                     <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
@@ -184,12 +184,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         <button style="border:none; background-color: #F60;">${b.conditions}</button>
                                                     </h5>
                                                     <p>${b.bdetail}<br/>
-                                                        <a href="地图链接"> 查看地图</a><br/> ${b.starttime}
-                                                        <a href="楼盘详情页面">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
+                                                        <a href="#"> 查看地图</a><br/> ${b.starttime}
+                                                        <a href="#">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
                                                     </p>${b.discounts}
-                                                    <a href="楼盘详情页面" class="button4">更多详情</a>
+                                                    <a href="#" class="button4">更多详情</a>
+                                                    <p><span>优惠信息</span> ${b.discounts}</p>
                                                 </div>
-                                                <div class="zixunshi">
+                                                <div class="zixunshi" style="margin-left: 700px;">
                                                     <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
@@ -239,6 +240,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h4 style="font-family: 'Open Sans', sans-serif">我要找房</h4>
                         <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
                             <input type="hidden" value="1" id="curPage" name="curPage" />
+                            <input type="hidden" value="" id="isonsale" name="isonsale"/>
                             <div id="distpicker5">
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
@@ -335,6 +337,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </form>
                     </div>
 <script>
+    function onsale() {
+        $("#isonsale").val("abc");
+        $("#mainForm").submit();
+    }
     function  getPage(curPage) {
 
         //将我们这个隐藏域的值变成curPage

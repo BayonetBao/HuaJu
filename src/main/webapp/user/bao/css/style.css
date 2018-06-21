@@ -425,6 +425,10 @@ a.button:hover {
     float: left;
     width: 48%;
 }
+.offer-left1 {
+    float: left;
+    width:25%;
+}
 .offer-right {
    float: left;
     width: 52%;
@@ -853,7 +857,7 @@ a.button3 {
     cursor: default;
     background-color: #2da9e1;
     border: 1px solid #2da9e1;
-    border-bottom-color: none !important;
+    border-bottom-color:none !important;
 }
 .nav-tabs {
     border-bottom: none!important;

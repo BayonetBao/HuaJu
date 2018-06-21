@@ -39,6 +39,7 @@
         <result property="cubage" column="cubage"/>
         <result property="bdetail" column="bdetail"/>
         <result property="fitment" column="fitment"/>
+        <result property="discounts" column="discounts"/>
         <result property="bmaxtotalprice" column="bmaxtotalprice"/>
         <result property="maxacreage" column="maxacreage"/>
         <result property="bsalestatus" column="bsalestatus"/>
@@ -104,7 +105,7 @@
                and comid =#{comid}
            </if>
            <if test="isonsale neq null">
-               and discounts is not null
+               and discounts is not null and discounts != ''
            </if>
        </where>
    </select>

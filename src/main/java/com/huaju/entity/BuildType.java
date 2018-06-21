@@ -83,4 +83,16 @@ public class BuildType {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "BuildType{" +
+                "butypeid=" + butypeid +
+                ", typeid=" + typeid +
+                ", buildingid=" + buildingid +
+                ", count=" + count +
+                ", typename='" + typename + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

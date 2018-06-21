@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -57,24 +58,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <!---fonts-->
     <script src="${pageContext.request.contextPath}/user/bao/js/responsiveslides.min.js"></script>
-
-
-    <!-- FlexSlider -->
-    <script src="${pageContext.request.contextPath}/user/bao/js/jquery.flexslider.js"></script>
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-    <script>
-        // Can also be used with $(document).ready()
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
-            });
-        });
-    </script>
-    <!-- //FlexSlider-->
-
-
-
     <script>
         $(function () {
             $("#slider").responsiveSlides({
@@ -255,79 +238,170 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <nav class="navbar-default" style="background-color:#f8f8f8;overflow:auto; min-width:1125px;">
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-
+    <%--<input hidden="hidden" name="buildingid" value="${buildTypes.buildingid}"/>--%>
     <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
 
-        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:57px;" class="active"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
+        <li style="margin-right:50px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:50px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:50px;" class="active"><a href="#" style="color: #0b0b0b;">户型分析</a></li>
+        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
+
     </ul>
 </nav>
-<%--house详情--%>
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">全部(5)</a></li>
-    <li role="presentation"><a href="#">一居(2)</a></li>
-    <li role="presentation"><a href="#">二居(1)</a></li>
-    <li role="presentation"><a href="#">三居(2)</a></li>
-</ul>
-<div class="content">
 
-    <div class="blog-section">
-        <div class="container">
-            <div class="blog-grids">
-                <div class="col-md-9 blog-grid">
+<%--houselist--%>
+<div class="offering">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#">全部(${sumhouse})</a></li>
+            <c:set var="flag" value="true"></c:set>
+            <c:forEach items="${buildTypes}" var="buildTypes">
+                <c:if test="${buildTypes.count==0}">
 
-                    <div class="blog">
-                        <h3 style="font-family: '微软雅黑'; color:orange;">${house.hname}-${house.door.doorname}户型</h3>
-                        <hr />
+                </c:if>
+                <c:if test="${buildTypes.count!=0}">
+                    <c:set var="flag" value="false"></c:set>
+                    <c:if test="${buildTypes.typeid==1}">
+                        <li role="presentation"><a href="#"> 一居(${buildTypes.count})</a></li>
+                    </c:if>
+                    <c:if test="${buildTypes.typeid==2}">
+                        <li role="presentation"><a href="#">二居(${buildTypes.count})</a></li>
+                    </c:if>
+                    <c:if test="${buildTypes.typeid==3}">
+                        <li role="presentation"><a href="#">三居(${buildTypes.count})</a></li>
+                    </c:if>
+                    <c:if test="${buildTypes.typeid==4}">
+                        <li role="presentation"><a href="#">四居(${buildTypes.count})</a></li>
+                    </c:if>
+                </c:if>
+            </c:forEach>
+            <c:if test="${flag}">
+                暂无数据
+            </c:if>
+        </ul>
 
-                        <a href="single.html"><img src="<%=imgPath%>${house.htypeimg}" class="img-responsive" alt=""/></a>
+
+
+        <div class="offer-grids">
+
+
+
+
+            <c:forEach items="${houses}" var="houses">
+            <div class="col-md-10 offer-grid">
+                <div class="offer-grid1">
+                    <h4><a href="${pageContext.request.contextPath}/buildType/houselist.action?houseid=${houses.houseid}" style="font-family: 'Open Sans', sans-serif">${houses.hname}</a></h4>
+                    <div class="offer1">
+                        <div class="offer-left1">
+                            <img src="<%=imgPath%>${houses.htypeimg}" style="width: 200px; height: 150px;" class="img-responsive zoom-img" alt=""/>
+                        </div>
+                        <div>
+                            <div class="offer-right">
+                                <h5>总价：${houses.hmoney}万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首付：${houses.payment}万元
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="button" style="width: 40px; height: 20px; background-color: red; color: white; border: none; font-family: '微软雅黑'; font-size: 13px;" value="${houses.hsalestatus}"/></h5>
+                                <p>朝向:${houses.forward}&nbsp;&nbsp;&nbsp;&nbsp;类型:${houses.htype}&nbsp;&nbsp;&nbsp;&nbsp;最近更新时间:<fmt:formatDate value="${houses.updatename}" pattern="yyyy-MM-dd"></fmt:formatDate> </p>
+                                <p style="width:600px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;">户型解析:${houses.analysis}</p>
+
+                                <a href="${pageContext.request.contextPath}/buildType/houselist.action?houseid=${houses.houseid}" class="button1"  style="background-color: orangered;color: white">查看详情</a>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="rules">
-                        <h5 style="font-family: '微软雅黑'; color: gray;">了解更详细的户型分析</h5>
-
-                        <p class="rules-text">
-                            <input type="text" style="width: 620px;height: 31px;" placeholder="请输入您的手机号" /><button style="border: none; background-color:coral; color: white;width: 160px; height: 32px;"><img src="${pageContext.request.contextPath}/user/bao/images/电话 (2).svg"/>了解一下下</button>
-                        <hr />
-                        <p>免费咨询热线:<span style="color: red;font-weight: 600;">400-606-2695</span></p>
-                        </p>
-                        <!--<p class="rule-text">各个空间户型方正，方便室内家具布置；户型不是南北通透，整体空间无穿：整体户型方正，活动区域开阔，居住舒适度高；通透户型，居住舒适度较高</p>-->
-                    </div>
-
                 </div>
-                <!--户型详解-->
-                <div class="col-md-3 blog-grid1">
-                    <div class="categ" style="background-color: white; padding-bottom: 13px;padding-top: 13px;" >
 
-                        <h3 style="font-family: '微软雅黑';text-align: center;">详情</h3>
-                        <ul>
-                            <li style="text-align: center;"><span style="color: gray;" >朝向：</span><span>${house.forward}</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">建面：</span><span>${house.harea}㎡</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">类型：</span><span>${house.htype}</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考总价：</span><span>${house.hmoney}万元左右</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考单价：</span><span>${house.hperprice}元/㎡左右</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考首付：</span><span>${house.payment}万元左右</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考月供：</span><span>${house.monthpay}元左右</span></li>
-
-                        </ul>
-                    </div>
-                    <div class="col-md-14 blog-grid1" >
-                        <p class="rule-text">户型解析:${house.analysis}</p>
-
-                    </div>
-
-
-                </div>
-                <div class="clearfix"></div>
             </div>
+
+            </c:forEach>
+
+
+
+
+            <%--<div class="col-md-10 offer-grid">--%>
+                <%--<div class="offer-grid1">--%>
+                    <%--<h4><a href="single.html" style="font-family: 'Open Sans', sans-serif">四室二厅一卫</a></h4>--%>
+                    <%--<div class="offer1">--%>
+                        <%--<div class="offer-left1">--%>
+                            <%--<img src="images/p3.jpg" style="width: 200px; height: 150px;" class="img-responsive zoom-img" alt=""/>--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<div class="offer-right">--%>
+                                <%--<h5>总价：1000万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首付：123万元--%>
+                                    <%--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                                    <%--<input type="button" style="width: 40px; height: 20px; background-color: red; color: white; border: none; font-family: '微软雅黑'; font-size: 13px;" value="在售"/></h5>--%>
+                                <%--<p>朝向:南&nbsp;&nbsp;&nbsp;&nbsp;类型:商改&nbsp;&nbsp;&nbsp;&nbsp;最近更新时间:2018-6-19</p>--%>
+                                <%--<p style="width:600px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;">户型解析:各个空间户型方正，方便室内家具布置；户型不是南北通透，整体空间无穿：整体户型方正，活动区域开阔，居住舒适度高；通透户型，居住舒适度较高</p>--%>
+
+                                <%--<a href="single.html"class="button1"  style="background-color: orangered;color: white">了解最新报价</a>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="clearfix"></div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+
+            <%--</div>--%>
+            <%--<div class="col-md-10 offer-grid">--%>
+                <%--<div class="offer-grid1">--%>
+                    <%--<h4><a href="single.html" style="font-family: 'Open Sans', sans-serif">四室二厅一卫</a></h4>--%>
+                    <%--<div class="offer1">--%>
+                        <%--<div class="offer-left1">--%>
+                            <%--<img src="images/p3.jpg" style="width: 200px; height: 150px;" class="img-responsive zoom-img" alt=""/>--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<div class="offer-right">--%>
+                                <%--<h5>总价：1000万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首付：123万元--%>
+                                    <%--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                                    <%--<input type="button" style="width: 40px; height: 20px; background-color: red; color: white; border: none; font-family: '微软雅黑'; font-size: 13px;" value="在售"/></h5>--%>
+                                <%--<p>朝向:南&nbsp;&nbsp;&nbsp;&nbsp;类型:商改&nbsp;&nbsp;&nbsp;&nbsp;最近更新时间:2018-6-19</p>--%>
+                                <%--<p style="width:600px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;">户型解析:各个空间户型方正，方便室内家具布置；户型不是南北通透，整体空间无穿：整体户型方正，活动区域开阔，居住舒适度高；通透户型，居住舒适度较高</p>--%>
+
+                                <%--<a href="single.html"class="button1"  style="background-color: orangered;color: white">了解最新报价</a>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="clearfix"></div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+
+            <%--</div>--%>
+            <%--<div class="col-md-10 offer-grid">--%>
+                <%--<div class="offer-grid1">--%>
+                    <%--<h4><a href="single.html" style="font-family: 'Open Sans', sans-serif">四室二厅一卫</a></h4>--%>
+                    <%--<div class="offer1">--%>
+                        <%--<div class="offer-left1">--%>
+                            <%--<img src="images/p3.jpg" style="width: 200px; height: 150px;" class="img-responsive zoom-img" alt=""/>--%>
+                        <%--</div>--%>
+                        <%--<div>--%>
+                            <%--<div class="offer-right">--%>
+                                <%--<h5>总价：1000万元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首付：123万元--%>
+                                    <%--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                                    <%--<input type="button" style="width: 40px; height: 20px; background-color: red; color: white; border: none; font-family: '微软雅黑'; font-size: 13px;" value="在售"/></h5>--%>
+                                <%--<p>朝向:南&nbsp;&nbsp;&nbsp;&nbsp;类型:商改&nbsp;&nbsp;&nbsp;&nbsp;最近更新时间:2018-6-19</p>--%>
+                                <%--<p style="width:600px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;">户型解析:各个空间户型方正，方便室内家具布置；户型不是南北通透，整体空间无穿：整体户型方正，活动区域开阔，居住舒适度高；通透户型，居住舒适度较高</p>--%>
+
+                                <%--<a href="single.html"class="button1"  style="background-color: orangered;color: white">了解最新报价</a>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="clearfix"></div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+
+            <%--</div>--%>
         </div>
+
+
     </div>
 </div>
+
+
+
 
 
 
