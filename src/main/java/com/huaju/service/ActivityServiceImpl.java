@@ -1,17 +1,18 @@
 package com.huaju.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.huaju.dao.ActivityMapper;
 import com.huaju.dao.BuildMapper;
 import com.huaju.dao.CtaMapper;
-import com.huaju.entity.Activity;
-import com.huaju.entity.Build;
-import com.huaju.entity.BuildQueryPojo;
-import com.huaju.entity.Cta;
+import com.huaju.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ActivityServiceImpl implements ActivityService {
@@ -25,37 +26,34 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private CtaMapper ctaMapper;
 
+
     @Override
-    public List<Activity> ActivityList() {
-        return activityMapper.ActivityList();
+    public PageInfo<Activity> selectActivityByBuildAndCta(Map<String, Object> map) {
+        ActivityQueryPojo activityQueryPojo = (ActivityQueryPojo) map.get("activityQueryPojo");
+        int curPage=(int)map.get("curPage");
+        int pageSize=(int) map.get("pageSize");
+        Page page= PageHelper.startPage(curPage,pageSize);
+        List<Activity> activities=activityMapper.SelectAllActivity(activityQueryPojo);
+        PageInfo<Activity> pageInfo = new PageInfo<>(activities);
+        return pageInfo;
     }
 
     @Override
-    public void AddActivity(Activity activity) {
-        activityMapper.AddActivity(activity);
+    public List<Build> selectBuildInActivity(Integer comid) {
+        return activityMapper.selectBuildInActivity(comid);
     }
 
     @Override
-    public List<Activity> selectActivityByBuild(int id) {
-        return activityMapper.selectActivityByBuild(id);
+    public boolean AddActivity(Activity activity) {
+       return activityMapper.AddActivity(activity);
     }
 
     @Override
-    public List<Activity> selectActivityByCta(int id) {
-        return activityMapper.selectActivityByCta(id);
+    public Activity selectActivity(Integer id) {
+        return activityMapper.selectActivity(id);
     }
 
-    @Override
-    public List<Activity> selectActivityByTime(Date Actime) {
-        return activityMapper.selectActivityByTime(Actime);
-    }
-
-    @Override
-    public Activity selecttotal(int id) {
-        return activityMapper.selecttotal(id);
-    }
-
-//咨询师列表
+    //咨询师列表
     @Override
     public List<Cta> AllCta() {
         return ctaMapper.AllCta();

@@ -11,33 +11,49 @@
         <result column="parnum" property="parnum"/>
         <result column="actcontent" property="actcontent"/>
         <result column="actnote" property="actnote"/>
-        <association property="build" javaType="Build">
+        <collection property="build" javaType="Build">
             <id column="buildingid" property="buildingid"/>
             <result column="building" property="building"/>
-        </association>
+            <result column="comid"property="comid"/>
+        </collection>
+        <collection property="cta" javaType="Cta">
+            <id column="ctaid" property="ctaid"/>
+            <result column="ctaname" property="ctaname"/>
+            <result column="ctaimg" property="ctaimg"/>
+        </collection>
     </resultMap>
-<select id="ActivityList" resultType="Activity">
-    SELECT * FROM activity
+    <!--public List<Activity> SelectAllActivity(ActivityQueryPojo activityQueryPojo);-->
+<select id="SelectAllActivity" resultMap="ActivityListMap" parameterType="ActivityQueryPojo">
+    select activity.*,build.building,build.comid,cta.ctaid,cta.ctaname from activity JOIN build
+    ON activity.buildingid=build.buildingid
+      <where>
+        <if test="buildingid neq null">
+            and acitivity.buildingid=#{buildingid}
+        </if>
+        <if test="comid neq null">
+            and comid=#{comid}
+        </if>
+      </where>
+    JOIN cta ON activity.ctaid=cta.ctaid
+      <where>
+          <if test="ctaid neq null">
+              AND activity.ctaid=#{ctaid}
+          </if>
+      </where>
 </select>
-    <!--public void AddActivity(Activity activity);-->
-    <insert id="AddActivity" parameterType="Activity">
-        INSERT INTO activity (actid,actime,ctaid,buildingid,actcontent,totalnum,painum,actnote) VALUE (#{actid},#{actime},#{ctaid},#{buildingid},#{actcontent},#{totalnum},#{painum},#{actnote})
-    </insert>
-
-    <!--public List<Activity> selectActivityByBuild(int id);-->
-    <select id="selectActivityByBuild" resultType="Activity" parameterType="int">
-        SELECT * FROM activity WHERE buildingid=#{_parameter}
+    <!--public List<Build> selectBuildInActivity(Integer comid);-->
+    <select id="selectBuildInActivity" resultMap="ActivityListMap" parameterType="int">
+    select DISTINCT build.buildingid,building from build,activity where build.buildingid=activity.buildingid
+    and comid=#{_parameter}
     </select>
-
-    <!--public List<Activity> selectActivityByCta(int id);-->
-<select id="selectActivityByCta" resultType="Activity" parameterType="int">
-    SELECT * FROM activity WHERE ctaid=#{_parameter}
-</select>
-    <!--public List<Activity> selectActivityByTime(Date Actime);-->
-
-    <!--public Activity selecttotal(int id);-->
-<select id="selecttotal" resultType="Activity" parameterType="int">
-    SELECT * FROM WHERE actid=#{_parameter}
+    <!--public void AddActivity(Activity activity);-->
+<insert id="AddActivity" parameterType="Activity">
+    INSERT INTO activity VALUE (null,#{actime},#{ctaid},#{buildingid},#{actcontent},#{totalnum},#{parnum},#{actnote})
+</insert>
+    <!--public Activity selectActivity(Integer id);-->
+<select id="selectActivity" resultMap="ActivityListMap" parameterType="int">
+    select activity.*,build.buildingid,build.building,build.comid,cta.ctaid,cta.ctaname,cta.ctaimg from activity JOIN build
+     ON activity.buildingid=build.buildingid JOIN cta ON activity.ctaid=cta.ctaid AND actid=#{actid}
 </select>
 
 </mapper>

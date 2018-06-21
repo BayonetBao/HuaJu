@@ -1,27 +1,20 @@
 package com.huaju.service;
 
 import com.github.pagehelper.PageInfo;
-import com.huaju.entity.Activity;
-import com.huaju.entity.Build;
-import com.huaju.entity.BuildQueryPojo;
-import com.huaju.entity.Cta;
+import com.huaju.entity.*;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 public interface ActivityService {
-    public List<Activity> ActivityList();
+    public PageInfo<Activity> selectActivityByBuildAndCta(Map<String,Object> map);
 
-    public void AddActivity(Activity activity);
+    public List<Build> selectBuildInActivity(Integer comid);
 
-    public List<Activity> selectActivityByBuild(int id);
+    public boolean AddActivity(Activity activity);
 
-    public List<Activity> selectActivityByCta(int id);
-
-    public List<Activity> selectActivityByTime(Date Actime);
-
-    public Activity selecttotal(int id);
+    public Activity selectActivity(Integer id);
 //咨询师列表
     public List<Cta> AllCta();
 
