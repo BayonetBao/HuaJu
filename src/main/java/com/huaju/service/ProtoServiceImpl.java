@@ -49,4 +49,10 @@ public class ProtoServiceImpl implements ProtoService {
     public List<Build> selectBuildInProtoTypeImg(Integer comid) {
         return protoTypeImgMapper.selectBuildInProtoimg(comid);
     }
+
+    @Override
+    //按楼盘id查询样板间
+    public List<ProtoTypeImg> selectProtoTypeImgByBuildingid(int buildingid){
+        return protoTypeImgMapper.selectProtoTypeImgByBuildingid(buildingid);
+    }
 }

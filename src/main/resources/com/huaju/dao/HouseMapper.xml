@@ -28,8 +28,11 @@
     <select id="showHouseList" resultMap="showHouseListMap" parameterType="int">
        SELECT h.houseid,h.hname,h.hmoney , h.harea , h.hsalestatus,h.htypeimg,h.hperprice,h.updatename,h.forward,h.htype,h.payment,h.monthpay ,h.analysis from house h,buildtype b where h.butypeid=b.butypeid AND b.buildingid=#{_parameter}
     </select>
-
-
+    <!--//根据楼盘id查找楼房信息的全部信息(张宝)-->
+    <!--public List<House> selectHouseListBybuildingid(int buildingid);-->
+    <select id="selectHouseListBybuildingid" resultType="House" parameterType="int">
+        SELECT * from house h,buildtype b where h.butypeid=b.butypeid AND b.buildingid=#{_parameter}
+    </select>
 
 <!--========添加操作=================================================================================================================-->
     <!--//    添加house信息-->

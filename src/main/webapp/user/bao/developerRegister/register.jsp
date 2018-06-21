@@ -32,7 +32,7 @@
 <h1>开发商注册</h1>
 <div class="container">
     <%--enctype="multipart/form-data" 文件上传 --%>
-    <form enctype="multipart/form-data" action="/registerCompany.action" method="post">
+    <form enctype="multipart/form-data" action="${pageContext.request.contextPath}/registerCompany.action" method="post">
     <div class="left w3l">
         <h3>REGISTER MUST</h3>
         <div class="register agileits">

@@ -177,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <c:if test="${not empty build.charactere}">
             <c:set var="character" value="${build.charactere}"></c:set>
-            <c:set var="characters" value='${fn:split(character, ",")}'></c:set>
+            <c:set var="characters" value='${fn:split(character, "，")}'></c:set>
             <c:forEach items="${characters}" var="characterss">
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${characterss}</span>
@@ -194,14 +194,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
     <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
 
-        <li style="margin-right:57px; margin-left:16px;" class=""><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:57px; margin-left:16px;" class=""><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
         <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
-        <li class="active"><a href="contact.html" style="color: #0b0b0b;">楼盘周边</a></li>
+        <li class="active"><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
     </ul>
 </nav>
 <!---banner--->
@@ -691,10 +691,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 </html>
 <script type="text/javascript">
+
     search("公交站",1000);
     function search(val,distance) {
         var map = new BMap.Map("l-map", {enableMapClick: false});
-        map.centerAndZoom(new BMap.Point(116.404, 39.915),15);
+        map.centerAndZoom(new BMap.Point(${build.lng},${build.lat}),15);
         var options = {
             onSearchComplete: function (results) {
                 // 判断状态是否正确
@@ -703,6 +704,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     for (var i = 0; i < results.getCurrentNumPois(); i++) {
                         s.push(results.getPoi(i).title + ", " + results.getPoi(i).address);
                     }
+                    //document.getElementById("r-result").innerHTML ="";
                     document.getElementById("r-result").innerHTML = s.join("<br/>");
                 }
             }
@@ -715,16 +717,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 if (local.getStatus() == BMAP_STATUS_SUCCESS) {
                     var s = [];
                     for (var i = 0; i < results.getCurrentNumPois(); i++) {
-                        //alert(results.getPoi(i).point.lng);
-                        //pois[i]=results.getPoi(i);
                         var label = new BMap.Label(i + 1, {offset: new BMap.Size(5, 3)});
                         label.setStyle({
                             background: 'none',
                             color: '#fff',
                             border: 'none'
                         });
-                        s.push("<li style='height: 50px;'><a style='line-height: 50px;' href='javascript:void(0)' id="+"'res"+i+"'>"+i + "----" + results.getPoi(i).title + ", " + results.getPoi(i).address)+"</a></li>";
-                         var marker = new BMap.Marker(results.getPoi(i).point);
+                        s.push("<li style='height: 50px; float: none;'><a style='line-height: 50px;' href='javascript:void(0)' id="+"'res"+i+"'>"+(i+1) + "----" + results.getPoi(i).title + ", " + results.getPoi(i).address)+"</a></li>";
+                        var marker = new BMap.Marker(results.getPoi(i).point);
                         marker.setLabel(label);
                         var content=results.getPoi(i).address;
                         map.addOverlay(marker);
@@ -750,6 +750,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         var point1 = results.getPoi(j).point;
                         addClickHandler1(content1,$("#res"+j),opts1,point1);
                     }
+                }else{
+                    var s1=["暂时没有数据哦"];
+                    document.getElementById("r-result").innerHTML = s1.join("");
                 }
             }
         });
@@ -779,12 +782,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             offset   : new BMap.Size(0,-30),  //设置文本偏移量
             title:"我的位置" // 信息窗口标题
         }
-        var marker_myposi = new BMap.Marker(new BMap.Point(116.404, 39.915));  // 创建标注
+        var marker_myposi = new BMap.Marker(new BMap.Point(${build.lng},${build.lat}));  // 创建标注
         map.addOverlay(marker_myposi);               // 将标注添加到地图中
         marker_myposi.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-        var infoWindow2 = new BMap.InfoWindow("我在这里哦~~", opts2);
-        map.openInfoWindow(infoWindow2,new BMap.Point(116.404, 39.915)); //开启信息窗口
-        local.searchNearby(val,new BMap.Point(116.404, 39.915),distance);
+        var infoWindow2 = new BMap.InfoWindow("${build.building}", opts2);
+        map.openInfoWindow(infoWindow2,new BMap.Point(${build.lng},${build.lat})); //开启信息窗口
+
+        local.searchNearby(val,new BMap.Point(${build.lng},${build.lat}),distance);
         initMap(map);
     }
     //地图事件设置函数：

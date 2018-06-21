@@ -24,6 +24,12 @@
             width: 100px;
             margin-left: 600px;
         }
+        .success{
+            color: #40ff1f;
+        }
+        .error{
+            color: #ff0d20;
+        }
     </style>
 
     <title>楼盘搜索</title>
@@ -194,7 +200,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
-                                                        <a>${b.cta.ctaname}|咨询</a>
+
+                                                        <a>${b.cta.ctarelname}|咨询</a>
                                                     </p>
                                                 </div>
                                                 <div class="clearfix"></div>

@@ -18,5 +18,4 @@ public interface BuildTypeMapper {
     public int sumHouse(int buildingid);
 
 
-
 }

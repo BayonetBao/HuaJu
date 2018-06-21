@@ -45,4 +45,10 @@
         select DISTINCT build.buildingid,building from build,graph where build.buildingid=graph.buildingid
     and comid=#{_parameter}
     </select>
+
+    <!--//按楼盘id查询效果图-->
+    <!--public List<Graph> selectGraphByBuildingid(int buildingid);-->
+    <select id="selectGraphByBuildingid" parameterType="int" resultType="Graph">
+        SELECT * from graph WHERE buildingid=#{_parameter}
+    </select>
 </mapper>

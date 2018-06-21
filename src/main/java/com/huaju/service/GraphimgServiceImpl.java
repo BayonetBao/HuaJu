@@ -59,4 +59,10 @@ private GraphMapper graphMapper;
     public void UpdateGraph(Graph graph) {
         graphMapper.UpdateGraph(graph);
     }
+
+    @Override
+    //按楼盘id查询效果图
+    public List<Graph> selectGraphByBuildingid(int buildingid){
+        return graphMapper.selectGraphByBuildingid(buildingid);
+    }
 }

@@ -18,4 +18,7 @@ public interface ProtoService {
     public PageInfo<ProtoTypeImg> selectprototypeimgByBuild(Map<String,Object> map);
 
     public List<Build> selectBuildInProtoTypeImg(Integer comid);
+
+    //按楼盘id查询样板间
+    public List<ProtoTypeImg> selectProtoTypeImgByBuildingid(int buildingid);
 }

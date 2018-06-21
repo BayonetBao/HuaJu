@@ -23,6 +23,13 @@ public class HouseServiceImpl implements HouseService{
         return houseMapper.showHouseList(buildingid);
     }
 
+    @Override
+
+    //根据楼盘id查找楼房信息的全部信息(张宝)
+    public List<House> selectHouseListBybuildingid(int buildingid){
+        return houseMapper.selectHouseListBybuildingid(buildingid);
+    }
+
 
     @Override
     public void addHouseInfoZYJ(House house) {

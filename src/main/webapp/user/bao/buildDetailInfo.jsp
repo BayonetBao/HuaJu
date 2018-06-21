@@ -28,7 +28,7 @@
             color: #ff0d20;
         }
     </style>
-    <title>楼盘动态</title>
+    <title>楼盘详情</title>
     <!---css--->
     <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css' />
@@ -234,10 +234,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <ul class="nav navbar-nav" style="float:none; margin:0px auto; width:1120px;">
 
         <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;" class="active"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"class="active"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:57px;" ><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
@@ -251,20 +251,159 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="properties-grids">
                 <div class="col-md-9 properties-left">
                     <div class="clearfix"></div>
-                    <%--楼盘动态--%>
-                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
-                        <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">楼盘动态</span>
-                        </div>
+                    <%--楼盘详情--%>
+                    <div class="additional-details">
                         <br>
-                        <div style="border:solid rgba(116,117,112,0.93) 1px; height: 200px;overflow: auto;">
+                        <h3>楼盘详情</h3>
+                        <ul>
 
+                            <div>
+                                <li><b style="font-size:30px; color:#000;">基本信息</b></li>
+                                <br>
+                                <br>
+                                <div style="margin-left: 130px;">
+                                    <li><span>楼盘名称</span> :${build.building}</li>
+                                    <li><span>楼盘地址</span> : ${build.province}${build.city}${build.barea}${build.bdetail}
+                                    </li>
+                                    <li><span>物业类型</span> : ${build.tenement}</li>
+                                    <li><span>建筑类型</span> : ${build.btype}</li>
+                                    <li><span>环&nbsp;&nbsp;&nbsp;&nbsp;线</span> :<c:if test="${empty build.bline}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.bline}">
+                                            ${build.bline}
+                                        </c:if></li>
+                                    <li><span>开发商</span> : ${company.comname}</li>
+                                    <li><span>楼盘特点</span> : <c:if test="${empty build.charactere}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.charactere}">
+                                            <c:forEach items="${characters}" var="characterss">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${characterss}</span>
+                                            </c:forEach>
+                                        </c:if></li>
+                                </div>
+                                <br>
+                                <br>
+                                <li><span style="color:#000; font-size:30px;">销售信息</span></li>
+                                <br>
+                                <br>
+                                <div style="margin-left: 130px;">
+                                    <li><span>参考单价</span> : <fmt:formatNumber value=" ${build.bperprice}" type="number"
+                                                                              maxFractionDigits="3"/>元/㎡
+                                    </li>
+                                    <li><span>销售状态</span> : ${build.conditions}</li>
+                                    <li><span>销售情况</span> : <c:if test="${empty build.bsalestatus}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.bsalestatus}">
+                                            ${build.bsalestatus}
+                                        </c:if></li>
 
-                        </div>
-                        <div style="padding-bottom:1px;height: 50px;font-size: 24px;text-align: center;">
-                            <span style="display:block;margin-top:7px;">查看全部</span>
-                        </div>
+                                    <li><span>优惠信息</span> : <c:if test="${empty build.discounts}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.discounts}">
+                                            ${build.discounts}
+                                        </c:if></li>
+                                    <li><span>最早开盘</span> : <fmt:formatDate value="${build.starttime}"
+                                                                            pattern="yyyy-MM-dd"></fmt:formatDate></li>
+                                    <li><span>最早交房</span> : <fmt:formatDate value="${build.endtime}"
+                                                                            pattern="yyyy-MM-dd"></fmt:formatDate></li>
+                                    <li><span>楼盘户型</span> : <c:forEach items="${buildTypes}" var="typeCount">
 
+                                        <c:if test="${typeCount.count==0}">
+
+                                        </c:if>
+                                        <c:if test="${typeCount.count!=0 }">
+                                            <c:set var="flag" value="false"></c:set>
+                                            <c:if test="${typeCount.typeid==1}">
+                                                一居（${typeCount.count}）
+                                            </c:if>
+
+                                            <c:if test="${typeCount.typeid==2}">
+                                                二居（${typeCount.count}）
+                                            </c:if>
+
+                                            <c:if test="${typeCount.typeid==3}">
+                                                三居（${typeCount.count}）
+                                            </c:if>
+                                            <c:if test="${typeCount.typeid==4}">
+                                                四居（${typeCount.count}）
+                                            </c:if>
+                                        </c:if>
+                                    </c:forEach>
+                                        <c:if test="${flag}">
+                                            暂无数据
+                                        </c:if>
+                                    </li>
+                                    <li><span>产权年限</span> : <c:if test="${empty build.agelimit}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.agelimit}">
+                                            ${build.agelimit}
+                                        </c:if></li>
+                                    <li><span>拿地时间</span> : <c:if test="${empty build.landtime}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.landtime}">
+                                            <fmt:formatDate value="${build.landtime}"
+                                                            pattern="yyyy-MM-dd"></fmt:formatDate>
+                                        </c:if></li>
+                                </div>
+                                <br>
+                                <br>
+                                <li><b style="color:#000; font-size:30px;">小区详情</b></li>
+                                <br>
+                                <br>
+                                <div style="margin-left: 130px;">
+                                    <li><span>物业公司</span> : <c:if test="${empty build.tencompany}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.tencompany}">
+                                            ${build.tencompany}
+                                        </c:if></li>
+                                    <li><span>物业费用</span> : <c:if test="${empty build.tencost}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.tencost}">
+                                            ${build.tencost}
+                                        </c:if></li>
+                                    <li><span>物业类型</span> : ${build.tenement}</li>
+                                    <li><span>水电燃气</span> : <c:if test="${empty build.tentype}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.tentype}">
+                                            ${build.tentype}
+                                        </c:if></li>
+                                    <li><span>绿化率</span> : <c:if test="${empty build.greenrate}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.greenrate}">
+                                            ${build.greenrate}
+                                        </c:if></li>
+                                    <li><span>车位情况</span> : <c:if test="${empty build.carport}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.carport}">
+                                            ${build.carport}
+                                        </c:if></li>
+                                    <li><span>容积率</span> : <c:if test="${empty build.cubage}">
+                                        暂无数据
+                                    </c:if>
+                                        <c:if test="${not empty build.cubage}">
+                                            ${build.cubage}
+                                        </c:if></li>
+                                    <li><span>装修状况</span> :
+                                        <c:if test="${empty build.fitment}">
+                                            暂无数据
+                                        </c:if>
+                                        <c:if test="${not empty build.fitment}">
+                                            ${build.fitment}
+                                        </c:if></li>
+                                </div>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-md-3 properties-right">

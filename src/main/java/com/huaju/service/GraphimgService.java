@@ -20,4 +20,7 @@ public interface GraphimgService {
     public List<Build> selectBuildInGraph(Integer comid);
 
     public void UpdateGraph(Graph graph);
+
+    //按楼盘id查询效果图
+    public List<Graph> selectGraphByBuildingid(int buildingid);
 }

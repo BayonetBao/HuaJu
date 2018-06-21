@@ -13,6 +13,8 @@ public interface HouseMapper {
 
 //根据楼盘id查找楼房信息
     public List<House> showHouseList(int buildingid);
+    //根据楼盘id查找楼房信息的全部信息(张宝)
+    public List<House> selectHouseListBybuildingid(int buildingid);
 
 //显示house和房型的信息
     public House showHouseDoorAllInfo(int houseid);
