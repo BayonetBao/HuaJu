@@ -50,9 +50,9 @@
                 <div class="col-md-6 blog-grid"  style="margin: 0px;padding-left: 12px;">
                     <div class="blog">
                         <p style="font-size: 24px;font-weight: 300;margin:0px;padding: 2px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" target="_blank">${build.building}</a></p>
-                        <p>January 05, 2016 / <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">查看更多</a> </p>
+                        <p><fmt:formatDate value="${build.starttime}" pattern="yyyy-MM-dd hh:mm:ss"/> <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">查看更多</a> </p>
                         <a href="#"><img src="${pageContext.request.contextPath}/user/bao/images/g4.jpg" class="img-responsive" alt=""/></a>
-                        <p>Tart donut gummi bears unerdwear.com tootsie roll chocolate bar gummi bears bear claw. Apple pie tart chocolate cake jelly beans. Unerdwear.com dragée sweet muffin icing macaroon. Jelly marzipan toffee cotton candy sweet roll. Jelly croissant jujubes carrot cake marshmallow donut biscuit wafer marzipan. Muffin pastry jujubes donut pastry chocolate bar cake candy chocolate. Dessert donut</p>
+                        <p></p>
                         <a href="#" class="button5 hvr-shutter-out-horizontal">so on</a>
                     </div>
                 </div>

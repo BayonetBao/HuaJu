@@ -11,17 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ActivityService {
-    public List<Activity> ActivityList();
-
-    public void AddActivity(Activity activity);
-
-    public List<Activity> selectActivityByBuild(int id);
-
-    public List<Activity> selectActivityByCta(int id);
-
-    public List<Activity> selectActivityByTime(Date Actime);
-
-    public Activity selecttotal(int id);
 //咨询师列表
     public List<Cta> AllCta();
 

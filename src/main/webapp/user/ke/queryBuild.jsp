@@ -197,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     <p><span>优惠信息</span> ${b.discounts}</p>
                                                 </div>
                                                 <div class="zixunshi" style="margin-left: 700px;">
-                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
+                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/${b.cta.ctaimg}" href="" />
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
 

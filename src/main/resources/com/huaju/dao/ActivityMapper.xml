@@ -16,28 +16,4 @@
             <result column="building" property="building"/>
         </association>
     </resultMap>
-<select id="ActivityList" resultType="Activity">
-    SELECT * FROM activity
-</select>
-    <!--public void AddActivity(Activity activity);-->
-    <insert id="AddActivity" parameterType="Activity">
-        INSERT INTO activity (actid,actime,ctaid,buildingid,actcontent,totalnum,painum,actnote) VALUE (#{actid},#{actime},#{ctaid},#{buildingid},#{actcontent},#{totalnum},#{painum},#{actnote})
-    </insert>
-
-    <!--public List<Activity> selectActivityByBuild(int id);-->
-    <select id="selectActivityByBuild" resultType="Activity" parameterType="int">
-        SELECT * FROM activity WHERE buildingid=#{_parameter}
-    </select>
-
-    <!--public List<Activity> selectActivityByCta(int id);-->
-<select id="selectActivityByCta" resultType="Activity" parameterType="int">
-    SELECT * FROM activity WHERE ctaid=#{_parameter}
-</select>
-    <!--public List<Activity> selectActivityByTime(Date Actime);-->
-
-    <!--public Activity selecttotal(int id);-->
-<select id="selecttotal" resultType="Activity" parameterType="int">
-    SELECT * FROM WHERE actid=#{_parameter}
-</select>
-
 </mapper>
