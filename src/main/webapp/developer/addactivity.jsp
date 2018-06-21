@@ -136,7 +136,6 @@
                             type:"post",
                             data:"buildingid="+buildingid.val()+"&ctaid="+ctaid.val()+"&totalnum="+totalnum.val()+"&parnum="+parnum.val()+"&actime="+actime.val()+"&actcontent="+actcontent.val()+"&actnote="+actnote.val(),
                             success:function(data){
-                                buildingid.val("");
                                 ctaid.val("");
                                 totalnum.val("");
                                 parnum.val("");

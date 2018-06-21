@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.ActivityMapper">
-
+    <!--public List<Activity> ActivityList();-->
+    <resultMap id="ActivityListMap" type="Activity">
+        <id column="actid" property="actid"/>
+        <result column="actime" property="actime"/>
+        <result column="ctaid" property="ctaid"/>
+        <result column="buildingid" property="buildingid"/>
+        <result column="totalnum" property="totalnum"/>
+        <result column="parnum" property="parnum"/>
+        <result column="actcontent" property="actcontent"/>
+        <result column="actnote" property="actnote"/>
+        <collection property="build" javaType="Build">
+            <id column="buildingid" property="buildingid"/>
+            <result column="building" property="building"/>
+            <result column="comid"property="comid"/>
+        </collection>
+        <collection property="cta" javaType="Cta">
+            <id column="ctaid" property="ctaid"/>
+            <result column="ctaname" property="ctaname"/>
+            <result column="ctaimg" property="ctaimg"/>
+        </collection>
+    </resultMap>
+    <!--public List<Activity> SelectAllActivity(ActivityQueryPojo activityQueryPojo);-->
+<select id="SelectAllActivity" resultMap="ActivityListMap" parameterType="ActivityQueryPojo">
+    select activity.*,build.building,build.comid,cta.ctaid,cta.ctaname from activity JOIN build
+    ON activity.buildingid=build.buildingid
+      <where>
+        <if test="buildingid neq null">
+            and acitivity.buildingid=#{buildingid}
+        </if>
+        <if test="comid neq null">
+            and comid=#{comid}
+        </if>
+      </where>
+    JOIN cta ON activity.ctaid=cta.ctaid
+      <where>
+          <if test="ctaid neq null">
+              AND activity.ctaid=#{ctaid}
+          </if>
+      </where>
+</select>
+    <!--public List<Build> selectBuildInActivity(Integer comid);-->
+    <select id="selectBuildInActivity" resultMap="ActivityListMap" parameterType="int">
+    select DISTINCT build.buildingid,building from build,activity where build.buildingid=activity.buildingid
+    and comid=#{_parameter}
+    </select>
+    <!--public void AddActivity(Activity activity);-->
+<insert id="AddActivity" parameterType="Activity">
+    INSERT INTO activity VALUE (null,#{actime},#{ctaid},#{buildingid},#{actcontent},#{totalnum},#{parnum},#{actnote})
+</insert>
+    <!--public Activity selectActivity(Integer id);-->
+<select id="selectActivity" resultMap="ActivityListMap" parameterType="int">
+    select activity.*,build.buildingid,build.building,build.comid,cta.ctaid,cta.ctaname,cta.ctaimg from activity JOIN build
+     ON activity.buildingid=build.buildingid JOIN cta ON activity.ctaid=cta.ctaid AND actid=#{actid}
+</select>
 
 </mapper>
