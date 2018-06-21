@@ -260,6 +260,15 @@ public class BuildControl {
             request.getRequestDispatcher("/user/bao/buildImages.jsp").forward(request,response);
         }
     }
-
+@RequestMapping(value = "/index.action")
+    public void indexInfo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        List<Cta> ctas=ctaService.selectAllCta();
+        List<Build> discountBuildList = buildService.selectDiscountBuild();
+        List<Build> adviceBuildList=buildService.selectAdviceBuild();
+        request.setAttribute("ctas",ctas);
+        request.setAttribute("discountBuildList",discountBuildList);
+        request.setAttribute("adviceBuildList",adviceBuildList);
+        request.getRequestDispatcher("/user/bao/index.jsp").forward(request,response);
+}
 
 }

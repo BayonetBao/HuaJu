@@ -468,6 +468,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </tr>
                         </table>
                     </div>
+                    <%--推荐理由--%>
+                    <c:if test="${not empty build.advice}">
+                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
+                        <div style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
+                            <span style="line-height:48px;font-size: 22px;color:black;">推荐理由</span>
+                        </div>
+                        <br>
+                        <div style="margin: auto auto">
+                            <p style="color: black;">${build.advice}</p>
+                        </div>
+                    </div>
+                    </c:if>
                     <%--楼盘详情--%>
                     <div class="additional-details">
                         <br>

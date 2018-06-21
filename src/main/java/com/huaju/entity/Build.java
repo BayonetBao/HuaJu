@@ -67,6 +67,7 @@ public class Build {
 
     private Double cubage;
 
+    private String advice;
     private String fitment;
     private Cta cta;
     private String bsalestatus;
@@ -75,6 +76,14 @@ public class Build {
 
     public Build() {
         super();
+    }
+
+    public String getAdvice() {
+        return advice;
+    }
+
+    public void setAdvice(String advice) {
+        this.advice = advice;
     }
 
     public double getLng() {

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <style>
@@ -124,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
@@ -280,211 +281,79 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
     </div>
+    <c:if test="${not empty ctas}">
     <div class="friend-agent">
-        <div class="container">
+        <div class="container" >
+            <div style="overflow: auto;height: 50px;margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">华居咨询师</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;">更多咨询师</span></div>
             <div class="friend-grids">
-                <div class="col-md-4 friend-grid">
-                    <img src="images/p.png">
-                    <h4>Search From Anywhere</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                </div>
-                <div class="col-md-4 friend-grid">
-                    <img src="images/p1.png">
-                    <h4>Friendly Agents</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                </div>
-                <div class="col-md-4 friend-grid">
-                    <img src="images/p2.png">
-                    <h4>Buy or Rent</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                </div>
+                    <c:forEach items="${ctas}" var="cta" varStatus="i">
+                        <c:if test="${i.index<3}">
+                            <div class="col-md-4 friend-grid" >
+                                <img src="${pageContext.request.contextPath}/${cta.ctaimg}">
+                                <h4>优秀咨询师</h4>${cta.ctarelname}
+                                <p>毕业于${cta.school}</p>
+                                <p>${cta.education}</p>
+                                <p>${cta.intro}</p>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
+    </c:if>
     <div class="offering">
-        <div class="container">
-            <h3>We are Offering the Best Real Estate Deals</h3>
-            <div class="offer-grids">
-                <div class="col-md-6 offer-grid">
+        <div class="container" style="border: solid #c3c3c3 1px;">
+            <div style="overflow: auto;height: 50px; margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">优惠楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多优惠楼盘</a></span></div>
+            <div class="offer-grids" style="margin-top: 15px;">
+                <c:forEach items="${discountBuildList}" var="disblist" varStatus="i">
+                    <c:if test="${i.index<4}">
+                <div class="col-md-6 offer-grid" style="margin-bottom:30px;width: 540px;height: 230px;">
                     <div class="offer-grid1">
-                        <h4><a href="single.html">Villa In Hialeah, Dade County</a></h4>
+                        <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${disblist.buildingid}">${disblist.building}</a></h4>
                         <div class="offer1">
                             <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt=""/></a>
+                                <a href="#" class="mask"><img width="245" height="170" src="${pageContext.request.contextPath}/${disblist.bpicture}" class="img-responsive zoom-img" alt=""/></a>
                             </div>
                             <div class="offer-right">
-                                <h5><label>$</label> 7,500 Per Month - <span>Single Family Home</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
+                                <h5>最低<label>￥</label><fmt:formatNumber value=" ${disblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起<span></span></h5>
+                                <p>建面 ${disblist.acreage}—${disblist.maxacreage} ㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${blist.city}</p>
+                                <p>${disblist.discounts}</p>
+                                <p><a style="color: #00ccff" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${disblist.buildingid}">查看详情</a></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">401 Biscayne Boulevard, Miami</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p4.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 3,250 Per Month - <span>Condominium</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="offer-grids">
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">3895 NW 107th Ave</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p5.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 5,200 Per Month - <span>Office</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">1400 Anastasia Avenue, Coral</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p6.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 525,000 - <span>Villa</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="offer-grids">
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="#">12 Apartments Of Type A</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p7.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 3,200 Per Month - <span>Apartment</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">20 Apartments Of Type B</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p8.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 4,200 Per Month - <span>Apartment</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
+                    </c:if>
+                </c:forEach>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <!---Featured Properties--->
     <div class="feature-section">
-        <div class="container">
-            <h3>Featured Properties</h3>
+        <div class="container" style="border: solid #c3c3c3 1px;">
+            <div style="overflow: auto;height: 50px; margin-top: 15px;">
+                <h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">品质楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多好盘</a></span>
+            </div>
+                <c:forEach items="${adviceBuildList}" var="advblist" varStatus="i">
+                <c:if test="${i.index<5}">
             <div class="feature-grids">
                 <div class="col-md-3 feature-grid">
-                    <img src="images/f1.jpg" class="img-responsive" alt="/">
-                    <h5>Villa in Hialeah, Dade</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$2,500 Per Month</span>
+                    <img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive" alt="/">
+                    <h5 style="font-size: 24px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}"></a>${advblist.building}</h5>
+
+                    <p><fmt:formatNumber value=" ${advblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>
+                    <p>建面 ${advblist.acreage}—${advblist.maxacreage} ㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${advblist.city}</p>
+                    推荐理由：<p style="text-indent: 2em;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 4;overflow: hidden;">${advblist.advice}</p>
+                    <p><a style="color: #00ccff" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}">查看详情</a></p>
                 </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="images/f2.jpg" class="img-responsive" alt="/">
-                    <h5>401 Biscayne Boulevard</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$7,500 Per Month</span>
-                </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="images/f3.jpg" class="img-responsive" alt="/">
-                    <h5>154 Southwest  Terra</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$9,500 Per Month</span>
-                </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="images/f4.jpg" class="img-responsive" alt="/">
-                    <h5>Florida 5, Pinecrest, FL</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$5,500 Per Month</span>
-                </div>
-                <div class="clearfix"></div>
             </div>
-        </div>
-    </div>
-    <!---Featured Properties--->
-    <div class="membership">
-        <div class="container">
-            <h3>Membership Plans</h3>
-            <div class="membership-grids">
-                <div class="col-md-4 membership-grid">
-                    <h4>Personal</h4>
-                    <div class="membership1">
-                        <h5>9.99 <span>USD</span></h5>
-                        <h6>/ 1 month</h6>
-                        <ul class="member">
-                            <li>10 Listings</li>
-                            <li>2 Featured Listings</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 membership-grid">
-                    <h4>Professional</h4>
-                    <div class="membership1">
-                        <h5>49.99 <span>USD</span></h5>
-                        <h6>/ 6 month</h6>
-                        <ul class="member">
-                            <li>40 Listings</li>
-                            <li>10 Featured Listings</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 membership-grid">
-                    <h4>Bussiness</h4>
-                    <div class="membership1">
-                        <h5>99.99 <span>USD</span></h5>
-                        <h6>/ 1 year</h6>
-                        <ul class="member">
-                            <li>Unlimited Listings</li>
-                            <li>20 Featured Listings</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+            </c:if>
+            </c:forEach>
+            <div class="clearfix"></div>
         </div>
     </div>
     <!---testimonials--->

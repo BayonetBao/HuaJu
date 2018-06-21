@@ -31,6 +31,10 @@ public interface BuildMapper {
     public List<Company> selectCompanyInBuild();
     //按楼盘id查询开发商（张宝）
     public Company selectCompanyByBuildId(int buildingid);
+    //优惠楼盘搜索（张宝）
+    public List<Build> selectDiscountBuild();
+    //推荐楼盘搜索（张宝）
+    public List<Build> selectAdviceBuild();
 
 
 }

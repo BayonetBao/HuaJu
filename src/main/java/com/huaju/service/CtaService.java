@@ -3,6 +3,7 @@ package com.huaju.service;
 import com.github.pagehelper.PageInfo;
 import com.huaju.entity.Cta;
 
+import java.util.List;
 import java.util.Map;
 
 public interface CtaService {
@@ -12,4 +13,6 @@ public interface CtaService {
     public boolean addCta(Cta cta);
     //按楼盘id查询咨询师(张宝)
     public Cta seletCtaByBuildingid(int buildingid);
+    //查询所有咨询师
+    public List<Cta> selectAllCta();
 }
