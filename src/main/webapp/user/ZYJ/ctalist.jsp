@@ -191,17 +191,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </c:forEach>
             </div>
         </div>
-        <div class='page fix'style="left: 400px">
-            共 <b>${pageInfo.total}</b> 条
-            <a href="javascript:getPage(${pageInfo.firstPage})" >首页</a>
-            <c:if test="${!pageInfo.isFirstPage}">
-                <a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>
-            </c:if>
-            当前第<span>${pageInfo.pageNum}</span>页
-            <c:if test="${!pageInfo.isLastPage}">
-                <a href="javascript:getPage(${pageInfo.nextPage})" >下一页</a>
-            </c:if>
-            <a href="javascript:getPage(${pageInfo.lastPage})" >末页</a>
+        <%--<div class='page fix'>--%>
+            <%--共 <b>${pageInfo.total}</b> 条--%>
+            <%--<a href="javascript:getPage(${pageInfo.firstPage})" >首页</a>--%>
+            <%--<c:if test="${!pageInfo.isFirstPage}">--%>
+                <%--<a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>--%>
+            <%--</c:if>--%>
+            <%--当前第<span>${pageInfo.pageNum}</span>页--%>
+            <%--<c:if test="${!pageInfo.isLastPage}">--%>
+                <%--<a href="javascript:getPage(${pageInfo.nextPage})" >下一页</a>--%>
+            <%--</c:if>--%>
+            <%--<a href="javascript:getPage(${pageInfo.lastPage})" >末页</a>--%>
+        <%--</div>--%>
+        <div class="col-md-offset-4">
+            <nav>
+                <ul class="pagination pagination-lg">
+                    <li><a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a></li>
+                    <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
+                    <li><span><b>${pageInfo.pageNum}</b>/<b>${pageInfo.pages}</b></span></li>
+                    <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
+                    <li> <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a></li>
+
+                </ul>
+            </nav>
         </div>
 
     </div>
