@@ -28,17 +28,9 @@
         SELECT buildtype.*,typename from buildtype,type where type.typeid=buildtype.typeid
         and buildingid=#{_parameter}
 </select>
-</mapper>
-
     <!--//    根据楼盘id查询楼盘下所有的房子个数    全部（n）ZYJ-->
     <!--public int sumHouse(int buildingid);-->
     <select id="sumHouse" resultType="int">
        SELECT SUM(count) FROM buildtype WHERE buildingid=#{_parameter}
     </select>
- </mapper>
-    <!--public List<BuildType> selectByBuildingid(Integer buildingid);-->
-    <select id="selectByBuildingid" resultType="BuildType" parameterType="int">
-        SELECT buildtype.*,typename from buildtype,type where type.typeid=buildtype.typeid
-        and buildingid=#{_parameter}
-</select>
 </mapper>
