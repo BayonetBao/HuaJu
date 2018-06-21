@@ -122,15 +122,27 @@
 
     }
 
-    function delDynamic(id){
-        if(confirm("你确认要删除吗?")){
+    function addGraph(){
+        if(confirm("你确认要添加吗?")){
+            var buildingid=$("#buildingid");
+            var ctaid=$("#ctaid");
+            var totalnum=$("#totalnum");
+            var parnum=$("#parnum");
+            var actime=$("#actime");
+            var actcontent=$("#actcontent");
+            var actnote=$("#actnote");
             $.ajax({
-                url:"${pageContext.request.contextPath}/dynamic/deleteDynamicById.action",
+                url:"${pageContext.request.contextPath}/Activity/addActivity.action",
                 type:"post",
-                data:"id="+id,
+                data:"buildingid="+buildingid.val()+"&ctaid="+ctaid.val()+"&totalnum="+totalnum.val()+"&parnum="+parnum.val()+"&actime="+actime.val()+"&actcontent="+actcontent.val()+"&actnote="+actnote.val(),
                 success:function(data){
-                    var tr=$("#tr_"+id);
-                    tr.remove();
+                    buildingid.val("");
+                    ctaid.val("");
+                    totalnum.val("");
+                    parnum.val("");
+                    actime.val("");
+                    actcontent.val("");
+                    actnote.val("");
                     alert(data);
                 },
                 error:function(XMLHttpRequest, textStatus, errorThrown){
@@ -139,6 +151,7 @@
                 }
             });
         }
+
     }
 </script>
 </body>

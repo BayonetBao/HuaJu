@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.BuildimgMapper">
-    <!--public List<Buildimg> AllBuildimg(int id);-->
-<select id="AllBuildimg" resultType="Buildimg" parameterType="int">
-    SELECT * FROM buildimg WHERE buildingid=#{_parameter}
+    <resultMap id="BuildimgMap" type="Buildimg">
+        <id column="buimgid" property="buimgid"/>
+        <result column="buildimg" property="buildimg"/>
+        <result column="buildingid" property="buildingid"/>
+        <association property="build" javaType="Build">
+            <result property="building" column="building"/>
+            <result property="comid" column="comid"/>
+        </association>
+    </resultMap>
+    <!--public Buildimg AllBuildimg(int id);-->
+<select id="AllBuildimg" resultMap="BuildimgMap" parameterType="int">
+    select buildimg.*,build.building,build.comid from buildimg ,build
+     where buildimg.buildingid=build.buildingid and buildid=#{_parameter}
 </select>
     <!--public void AddBuildimg(Buildimg buildimg);-->
 <insert id="AddBuildimg" parameterType="Buildimg">
-    INSERT INTO buildimg (buildimg,buildingid) VALUE (#{buildimg},#{buildingid})
+    INSERT INTO buildimg VALUE (null,#{buildimg},#{buildingid})
 </insert>
-    <!--public void deleteBuildimg(int id);-->
+    <!--public boolean deleteBuildimg(int id);-->
     <delete id="deleteBuildimg" parameterType="int">
         DELETE FROM buildimg WHERE buimgid=#{_parameter}
     </delete>
+    <!--public List<Buildimg> SelectAllBuildimg(ImgQueryPojo imgQueryPojo);-->
+<select id="SelectAllBuildimg" resultMap="BuildimgMap" parameterType="ImgQueryPojo">
+    select buildimg.*,build.building,build.comid from buildimg,build
+    <where>  buildimg.buildingid=build.buildingid
+        <if test="buildingid neq null">
+            and buildimg.buildingid=#{buildingid}
+        </if>
+        <if test="comid neq null">
+            and comid=#{comid}
+        </if>
+    </where>
+</select>
+    <!--public List<Build> selectBuildInBuildimg(Integer comid);-->
+    <select id="selectBuildInBuildimg" resultType="Build" parameterType="int">
+        select DISTINCT build.buildingid,building from build,buildimg where build.buildingid=buildimg.buildingid
+        and comid=#{_parameter}
+    </select>
 </mapper>

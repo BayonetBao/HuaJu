@@ -1,18 +1,30 @@
 package com.huaju.entity;
 
 public class CommentQueryPojo {
+    private Integer commentid;//评论id
     private Integer buildingid;//楼盘id
     private Integer idtype;//评论人员的类型 用户咨询师
     private String comtype;//评论的类型 好评差评
+    private Integer userid;//评论人的id
 
     public CommentQueryPojo() {
         super();
     }
 
-    public CommentQueryPojo(Integer buildingid, Integer idtype, String comtype) {
-        this.buildingid = buildingid;
-        this.idtype = idtype;
-        this.comtype = comtype;
+    public Integer getCommentid() {
+        return commentid;
+    }
+
+    public void setCommentid(Integer commentid) {
+        this.commentid = commentid;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public Integer getBuildingid() {

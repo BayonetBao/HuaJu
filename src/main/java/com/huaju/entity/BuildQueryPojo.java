@@ -5,7 +5,7 @@ public class BuildQueryPojo {
     private String city;
     private String district;
     private Integer typeid;//户型id
-    private String  character;//楼盘特色
+    private String  charactere;//楼盘特色
     private String genre;//楼盘类型 别墅 住宅
     private Double bTotalprice;//总价
     private Double bMaxTotalprice;//最高总价
@@ -24,21 +24,6 @@ public class BuildQueryPojo {
         this.isonsale = isonsale;
     }
 
-    public BuildQueryPojo(String province, String city, String district, Integer typeid, String character, String genre, Double bTotalprice, Double bMaxTotalprice, Double bPerprice, Double bMaxprice, Double acreage, Double maxAcreage, Integer comid) {
-        this.province = province;
-        this.city = city;
-        this.district = district;
-        this.typeid = typeid;
-        this.character = character;
-        this.genre = genre;
-        this.bTotalprice = bTotalprice;
-        this.bMaxTotalprice = bMaxTotalprice;
-        this.bPerprice = bPerprice;
-        this.bMaxprice = bMaxprice;
-        this.acreage = acreage;
-        this.maxAcreage = maxAcreage;
-        this.comid = comid;
-    }
 
     public Double getbTotalprice() {
         return bTotalprice;
@@ -120,12 +105,12 @@ public class BuildQueryPojo {
         this.typeid = typeid;
     }
 
-    public String getCharacter() {
-        return character;
+    public String getCharactere() {
+        return charactere;
     }
 
-    public void setCharacter(String character) {
-        this.character = character;
+    public void setCharactere(String charactere) {
+        this.charactere = charactere;
     }
 
     public String getGenre() {

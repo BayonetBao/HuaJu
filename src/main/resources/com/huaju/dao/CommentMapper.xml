@@ -26,11 +26,17 @@
             <if test="buildingid neq null">
                 and comment.buildingid=#{buildingid}
             </if>
+            <if test="commentid neq null">
+                and comment.commentid=#{commentid}
+            </if>
             <if test="idtype neq null">
                 and comment.idtype = #{idtype}
             </if>
             <if test="comtype neq null">
                 and comment.comtype like "%" #{comtype} "%"
+            </if>
+            <if test="userid neq null">
+                and comment.id =#{userid}
             </if>
         </where>
         UNION

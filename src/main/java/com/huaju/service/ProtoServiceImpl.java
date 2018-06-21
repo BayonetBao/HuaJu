@@ -1,11 +1,18 @@
 package com.huaju.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.huaju.dao.ProtoTypeImgMapper;
+import com.huaju.entity.Build;
+import com.huaju.entity.Buildimg;
+import com.huaju.entity.ImgQueryPojo;
 import com.huaju.entity.ProtoTypeImg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProtoServiceImpl implements ProtoService {
@@ -13,7 +20,7 @@ public class ProtoServiceImpl implements ProtoService {
     @Autowired
     private ProtoTypeImgMapper protoTypeImgMapper;
     @Override
-    public List<ProtoTypeImg> AllPrototypeimg(int id) {
+    public ProtoTypeImg AllPrototypeimg(int id) {
         return protoTypeImgMapper.AllPrototypeimg(id);
     }
 
@@ -23,7 +30,23 @@ public class ProtoServiceImpl implements ProtoService {
     }
 
     @Override
-    public void delectPrototypeimg(int id) {
-        protoTypeImgMapper.delectPrototypeimg(id);
+    public boolean delectPrototypeimg(int id) {
+        return protoTypeImgMapper.delectPrototypeimg(id);
+    }
+
+    @Override
+    public PageInfo<ProtoTypeImg> selectprototypeimgByBuild(Map<String, Object> map) {
+        ImgQueryPojo imgQueryPojo = (ImgQueryPojo) map.get("imgQueryPojo");
+        int curPage=(int)map.get("curPage");
+        int pageSize=(int) map.get("pageSize");
+        Page page= PageHelper.startPage(curPage,pageSize);
+        List<ProtoTypeImg> protoTypeImgs=protoTypeImgMapper.SelectAllPrototypeimg(imgQueryPojo);
+        PageInfo<ProtoTypeImg> pageInfo = new PageInfo<>(protoTypeImgs);
+        return pageInfo;
+    }
+
+    @Override
+    public List<Build> selectBuildInProtoTypeImg(Integer comid) {
+        return protoTypeImgMapper.selectBuildInProtoimg(comid);
     }
 }

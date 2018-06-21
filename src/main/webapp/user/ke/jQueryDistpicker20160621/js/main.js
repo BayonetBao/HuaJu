@@ -37,7 +37,7 @@ $(function () {
   });
 
   $('#distpicker4').distpicker({
-    placeholder: false
+    placeholder: true
   });
 
   $('#distpicker5').distpicker({

@@ -43,6 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- pop-up -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/swipebox.css">
     <script src="${pageContext.request.contextPath}/user/ke/js/jquery.swipebox.min.js"></script>
+
     <script type="text/javascript">
         jQuery(function($) {
             $(".swipebox").swipebox();
@@ -219,8 +220,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         $("#hiddenForm").submit();
 
                                     }
+
+
                                     function deleteComment(commentid) {
-                                        if(confirm("此操作会删除所有回复，确定要删除么？")){
+                                       if(confirm("此操作会删除所有回复，确定要删除么？")){
                                             $.ajax({
                                                 type:"post",
                                                 data:"commentid="+commentid,
@@ -409,7 +412,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
-</div>
+
 
 </body>
 </html>
