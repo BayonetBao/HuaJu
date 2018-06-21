@@ -25,35 +25,7 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private CtaMapper ctaMapper;
 
-    @Override
-    public List<Activity> ActivityList() {
-        return activityMapper.ActivityList();
-    }
 
-    @Override
-    public void AddActivity(Activity activity) {
-        activityMapper.AddActivity(activity);
-    }
-
-    @Override
-    public List<Activity> selectActivityByBuild(int id) {
-        return activityMapper.selectActivityByBuild(id);
-    }
-
-    @Override
-    public List<Activity> selectActivityByCta(int id) {
-        return activityMapper.selectActivityByCta(id);
-    }
-
-    @Override
-    public List<Activity> selectActivityByTime(Date Actime) {
-        return activityMapper.selectActivityByTime(Actime);
-    }
-
-    @Override
-    public Activity selecttotal(int id) {
-        return activityMapper.selecttotal(id);
-    }
 
 //咨询师列表
     @Override

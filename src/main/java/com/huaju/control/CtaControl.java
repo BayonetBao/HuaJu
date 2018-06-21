@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -46,5 +48,28 @@ public class CtaControl {
         PageInfo<Cta> pageInfo=ctaService.AllCta(cmap);
         request.setAttribute("pageInfo",pageInfo);
         request.getRequestDispatcher("/user/ZYJ/ctalist.jsp").forward(request,response);
+    }
+    //添加咨询师(张宝)
+    @RequestMapping(value = "/addCta.action", method = RequestMethod.POST)
+    public void addCta(Cta cta, MultipartFile img, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String imagesTotalPath="developer/images/ctaimg";
+        String imageFile=request.getServletContext().getRealPath(imagesTotalPath);
+        String imageName=System.currentTimeMillis()+img.getOriginalFilename();
+        String filename=imageFile+"/"+imageName;
+        String image=imagesTotalPath+"/"+imageName;
+        File file=new File(filename);
+        if(!file.exists()){
+            file.mkdirs();
+        }else {
+            file.delete();
+            file.mkdirs();
+        }
+        img.transferTo(file );
+        //build.setBpicture(imagesTotalPath+"/"+image);
+
+        cta.setCtaimg(image);
+        if(ctaService.addCta(cta)) {
+            response.sendRedirect(request.getContextPath()+"/user/bao/addCta.jsp");
+        }
     }
 }

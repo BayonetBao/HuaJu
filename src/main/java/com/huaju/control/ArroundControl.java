@@ -93,7 +93,7 @@ public class ArroundControl {
         if(files!=null && files.length>0){
             for (int i = 0; i < files.length; i++) {
                 MultipartFile file = files[i];
-                // �����ļ�
+
                 saveFile(request, file);
             }
         }

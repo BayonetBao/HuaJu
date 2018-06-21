@@ -15,4 +15,14 @@
     <select id="selectCtaByName" parameterType="String" resultType="Cta">
         SELECT * from cta where ctaname=#{_parmeter}
     </select>
+    <!--//添加咨询师(张宝)-->
+    <!--public boolean addCta(Cta cta);-->
+    <insert id="addCta" parameterType="Cta">
+        INSERT into cta (ctaname,ctaimg,ctaphone,ctatime,education,intro,ctarelname,ctapassword) VALUES (#{ctaname},#{ctaimg},#{ctaphone},#{ctatime},#{education},#{intro},#{ctarelname},#{ctapassword})
+    </insert>
+    <!--//按楼盘id查询咨询师(张宝)-->
+    <!--public Cta seletCtaByBuildingid(int buildingid);-->
+    <select id="seletCtaByBuildingid" parameterType="int" resultType="Cta">
+        SELECT * from cta WHERE ctaid = (SELECT ctaid from build WHERE buildingid=#{_parameter})
+    </select>
 </mapper>

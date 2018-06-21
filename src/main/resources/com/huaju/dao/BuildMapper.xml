@@ -44,7 +44,7 @@
         <result property="maxacreage" column="maxacreage"/>
         <result property="bsalestatus" column="bsalestatus"/>
         <association property="cta" javaType="Cta">
-            <result property="ctaname" column="ctaname"/>
+            <result property="ctarelname" column="ctarelname"/>
             <result property="ctaimg" column="ctaimg"/>
         </association>
         <collection property="buildType"  ofType="com.huaju.entity.BuildType" column="buildingid"
@@ -56,7 +56,7 @@
     </resultMap>
     <!--public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);珂-->
    <select id="selectBuildQueryPojo" parameterType="BuildQueryPojo" resultMap="BuildMap">
-       select build.* ,cta.ctaname,cta.ctaimg from
+       select build.* ,cta.ctarelname,cta.ctaimg from
        build
        left join cta on (build.ctaid=cta.ctaid)
        <where>

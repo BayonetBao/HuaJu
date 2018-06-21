@@ -12,4 +12,8 @@ public interface CtaMapper {
     public Cta CtaByActivity(int ctaid);
     //按用户名查询咨询师(张宝)
     public Cta selectCtaByName(String ctaname);
+    //添加咨询师(张宝)
+    public boolean addCta(Cta cta);
+    //按楼盘id查询咨询师(张宝)
+    public Cta seletCtaByBuildingid(int buildingid);
 }

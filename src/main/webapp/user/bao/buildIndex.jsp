@@ -9,22 +9,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+    String imgPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/upImage" + "/";
+%>
 <html>
 <head>
     <style>
-        .zixunshi{
-            width:110px;
-            margin-left:600px;
+        .zixunshi {
+            width: 110px;
+            margin-left: 600px;
 
         }
-        .name{
-            width:100px;
-            margin-left:600px;
+
+        .name {
+            width: 100px;
+            margin-left: 600px;
         }
-        .success{
+
+        .success {
             color: #40ff1f;
         }
-        .error{
+
+        .error {
             color: #ff0d20;
         }
     </style>
@@ -32,69 +38,95 @@
     <!---css--->
     <script src="${pageContext.request.contextPath}/user/bao/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/user/bao/js/bootstrap.js"></script>
-    <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css'/>
     <!---css--->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
     <!---js--->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=NHeOezVjNdxk5C1Q4i14l4SkfTeMdpLp"></script>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=NHeOezVjNdxk5C1Q4i14l4SkfTeMdpLp"></script>
     <script src="${pageContext.request.contextPath}/user/bao/js/unslider.min.js"></script>
     <!---js--->
     <!---fonts-->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet'
+          type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <!---fonts-->
     <script src="${pageContext.request.contextPath}/user/bao/js/responsiveslides.min.js"></script>
     <script>
         $(function () {
             $("#slider").responsiveSlides({
-                auto:true,
+                auto: true,
                 nav: false,
                 speed: 500,
                 namespace: "callbacks",
-                pager:true,
+                pager: true,
             });
         });
     </script>
     <link href="${pageContext.request.contextPath}/user/bao/css/owl.carousel.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/user/bao/js/owl.carousel.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#owl-demo").owlCarousel({
-                items : 1,
-                lazyLoad : true,
-                autoPlay : true,
-                navigation : false,
-                navigationText :  false,
-                pagination : true,
+                items: 1,
+                lazyLoad: true,
+                autoPlay: true,
+                navigation: false,
+                navigationText: false,
+                pagination: true,
             });
         });
     </script>
     <style>
 
-        html, body { font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;}
+        html, body {
+            font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+        }
 
-        ul, ol { padding: 0;}
+        ul, ol {
+            padding: 0;
+        }
 
+        .banner {
+            position: relative;
+            overflow: auto;
+            margin: 10px auto;
+            text-align: center;
+        }
 
+        .banner li {
+            list-style: none;
+        }
 
-        .banner { position: relative; overflow: auto; margin:10px auto; text-align: center;}
+        .banner ul li {
+            float: left;
+        }
 
-        .banner li { list-style: none; }
+        #b04 {
+            width: 520px;
+        }
 
-        .banner ul li { float: left; }
+        #b04 .dots {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 10px;
+        }
 
-
-        #b04 { width: 520px;}
-        #b04 .dots { position: absolute; left: 0; right: 0; bottom: 10px;}
-
-        #b04 .dots li
-        {
+        #b04 .dots li {
             display: inline-block;
 
             width: 10px;
@@ -121,9 +153,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         }
 
-        #b04 .dots li.active
-
-        {
+        #b04 .dots li.active {
 
             background: #fff;
 
@@ -131,25 +161,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         }
 
+        #b04 .arrow {
+            position: absolute;
+            top: 200px;
+        }
 
-        #b04 .arrow { position: absolute; top: 200px;}
+        #b04 #al {
+            left: 15px;
+        }
 
-        #b04 #al { left: 15px;}
+        #b04 #ar {
+            right: 15px;
+        }
 
-        #b04 #ar { right: 15px;}
-        li{
+        li {
             list-style: none;
         }
-        li:hover{
-            background-color:#FAA43D;
-        }
-        a:visited{
-            color: black;
-        }
-        .bgcolor{
-            background-color:#FAA43D;
+
+        .map li:hover {
+            background-color: #FAA43D;
         }
 
+        a:visited {
+            color: black;
+        }
+
+        .bgcolor {
+            background-color: #FAA43D;
+        }
 
     </style>
 </head>
@@ -167,22 +206,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="email">
                 <ul>
-                    <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>咨询热线：400-606-2695 </li>
+                    <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>咨询热线：400-606-2695</li>
                     <c:if test="${not empty sessionScope.user}">
                         <c:if test="${sessionScope.userType==1}">
-                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action" ><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a
+                                    style="color: #28ffef" href="">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                    href="${pageContext.request.contextPath}/exit.action"><i title="退出"
+                                                                                             class="glyphicon glyphicon-log-out"
+                                                                                             aria-hidden="true"></i></a>
+                            </li>
                         </c:if>
                         <c:if test="${sessionScope.userType==2}">
-                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>开发商用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.comuname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>开发商用户&nbsp;&nbsp;&nbsp;<a
+                                    style="color: #28ffef"
+                                    href="${pageContext.request.contextPath}/developer/index.jsp">${user.comuname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                    href="${pageContext.request.contextPath}/exit.action"><i title="退出"
+                                                                                             class="glyphicon glyphicon-log-out"
+                                                                                             aria-hidden="true"></i></a>
+                            </li>
                         </c:if>
                         <c:if test="${sessionScope.userType==3}">
-                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
+                            <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a
+                                    style="color: #28ffef"
+                                    href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                    href="${pageContext.request.contextPath}/exit.action"><i title="退出"
+                                                                                             class="glyphicon glyphicon-log-out"
+                                                                                             aria-hidden="true"></i></a>
+                            </li>
                         </c:if>
 
                     </c:if>
                     <c:if test="${empty sessionScope.user}">
-                        <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
-                        <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">注册</a></li>
+                        <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal"
+                                                                                            data-target="#myModal">登录</a>
+                        </li>
+                        <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal"
+                                                                                          data-target="#myModal1">注册</a>
+                        </li>
                     </c:if>
                 </ul>
             </div>
@@ -193,7 +253,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1>
+                        <a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a>
+                    </h1>
                 </div>
 
             </div>
@@ -201,7 +263,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span
+                            class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
@@ -245,7 +308,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 
-    <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
+    <ul class="nav navbar-nav" style="float:none; margin:0px auto; width:1120px;">
 
         <li style=" margin-right:50px; margin-left:16px;" class="active"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
         <li style=" margin-right:50px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
@@ -259,7 +322,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </ul>
 
 
-
 </nav>
 <!---header--->
 <!---banner--->
@@ -271,7 +333,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="flexslider">
                         <div class="banner" id="b04" style="border:solid #0F0 1px;">
                             <ul>
-                                <li><img src="${pageContext.request.contextPath}/${build.bpicture}" alt="" width="520" height="350" ></li>
+                                <li><img src="${pageContext.request.contextPath}/${build.bpicture}" alt="" width="520"
+                                         height="350"></li>
 
                                 <li><img src="02.jpg" alt="" width="520" height="350" ></li>
 
@@ -289,7 +352,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         </div>
                         <script>
-                            $(document).ready(function(e) {
+                            $(document).ready(function (e) {
                                 var unslider04 = $('#b04').unslider({
                                         dots: true
                                     }),
@@ -311,12 +374,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             </tr>
                             <tr>
-                                <td style="width:80px; height:40px;"><span style="color: #666;">房屋面积：</span>${build.acreage}—${build.maxacreage}㎡</td>
+                                <td style="width:80px; height:40px;"><span
+                                        style="color: #666;">房屋面积：</span>${build.acreage}—${build.maxacreage}㎡
+                                </td>
 
 
                             </tr>
                             <tr>
-                                <td style="width:80px; height:40px;"><span style="color: #666;">参考总价：</span>${build.btotalprice}—${build.bmaxtotalprice}万元</td>
+                                <td style="width:80px; height:40px;"><span
+                                        style="color: #666;">参考总价：</span>${build.btotalprice}—${build.bmaxtotalprice}万元
+                                </td>
 
 
                             </tr>
@@ -500,23 +567,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </c:if></li>
                         </ul>
                     </div>
-
                     <%--楼盘户型--%>
-                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
-                        <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">户型分析</span>
-                            <span style="float: right;line-height:48px;">一居（2），二居（3），三居（1），四居（2）</span>
+                    <div class="note" style="border: solid cornsilk 1px;width:1040px;padding-bottom: 10px;">
+                        <div style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
+                            <span style="line-height:48px;font-size: 22px;color:black;">户型分析</span>
+                            <span style="float: right;line-height:48px;">
+                                <c:forEach items="${buildTypes}" var="typeCount">
+                                    <c:if test="${typeCount.count==0}">
+                                    </c:if>
+                                    <c:if test="${typeCount.count!=0 }">
+                                        <c:set var="flag" value="false"></c:set>
+                                        <c:if test="${typeCount.typeid==1}">
+                                            一居（${typeCount.count}）
+                                        </c:if>
+
+                                        <c:if test="${typeCount.typeid==2}">
+                                            二居（${typeCount.count}）
+                                        </c:if>
+
+                                        <c:if test="${typeCount.typeid==3}">
+                                            三居（${typeCount.count}）
+                                        </c:if>
+                                        <c:if test="${typeCount.typeid==4}">
+                                            四居（${typeCount.count}）
+                                        </c:if>
+                                    </c:if>
+                                </c:forEach>
+                                <c:if test="${flag}">
+                                    暂无数据
+                                </c:if></span>
                         </div>
                         <br>
-                        <div style="border:solid rgba(116,117,112,0.93) 1px; height: 200px;overflow: auto;">
-                            <div style="height: 140px;width: 135px;float: left; border: solid cyan 1px;margin-top:28px;">
+                        <%--房子信息--%>
+                        <c:forEach items="${houseList}" var="house" varStatus="i">
+                            <c:if test="${i.index<3}">
+                                <div style="border:solid rgba(116,117,112,0.93) 1px; height: 200px;overflow: auto;margin-bottom: 20px;">
+                                        <%--图片信息--%>
+                                    <div style="height: 140px;width: 135px;float: left;margin-top:28px;">
+                                        <img width="135" height="140" src="<%=imgPath%>${house.htypeimg}"/>
+                                    </div>
+                                    <div style="float:left;margin-top:18px; margin-left:80px;height: 160px;width: 575px;">
 
-                            </div>
-                            <div style="float:left;border: solid chartreuse 1px;margin-top:18px;height: 160px;width: 575px;">
-                                <b style="font-size:24px;">一室一厅建面95㎡</b><span style="border: solid rgba(251,97,95,1) 1px;">在售</span>
-                                <br>
-                                <br>
-                                <p>总价32万左右&nbsp;&nbsp;&nbsp;&nbsp; 首付16万左右&nbsp;&nbsp;&nbsp;&nbsp;报价更新是时间2018-06-18</p>
+                                        <b style="font-size:24px;">${house.hname}</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <c:if test="${house.hsalestatus=='售罄'}"><span style="border: solid #c3c3c3 1px; color:#c3c3c3;">${house.hsalestatus}</span></c:if>
+                                        <c:if test="${house.hsalestatus!='售罄'}"><span style="border: solid rgba(251,97,95,1) 1px; color:#ff6d6f;">${house.hsalestatus}</span></c:if>
+
+                                        <br>
+                                        <br>
+                                        <p>总价<span style="color:#ff6d6f;">${house.hmoney}</span>万左右&nbsp;&nbsp;&nbsp;&nbsp;
+                                            首付<span style="color:#ff6d6f;">${house.payment}</span>万左右&nbsp;&nbsp;&nbsp;&nbsp;报价更新时间<span
+                                                    style="color: black;"><fmt:formatDate value="${house.updatename}"
+                                                                                          pattern="yyyy-MM-dd"></fmt:formatDate></span>
+                                        </p>
 
                                 <p>朝向：南&nbsp;&nbsp;&nbsp;&nbsp;类型：商改住</p>
 

@@ -19,6 +19,4 @@ public interface BuildTypeMapper {
     public int sumHouse(int buildingid);
 
 
-    //根据楼盘查询buildtype 珂
-    public List<BuildType> selectByBuildingid(Integer buildingid);
 }
