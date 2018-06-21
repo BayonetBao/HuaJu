@@ -14,7 +14,7 @@
         <collection property="build" javaType="Build">
             <id column="buildingid" property="buildingid"/>
             <result column="building" property="building"/>
-            <result column="comid"property="comid"/>
+            <result column="comid" property="comid"/>
         </collection>
         <collection property="cta" javaType="Cta">
             <id column="ctaid" property="ctaid"/>
