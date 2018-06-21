@@ -18,4 +18,7 @@ public interface ArroundimgService {
     public PageInfo<Arroundimg> selectArroundimgByBuild(Map<String,Object> map);
 
     public List<Build> selectBuildInArroundimg(Integer comid);
+
+    //根据楼盘id查环境图
+    public List<Arroundimg> selectArroundimgByBuildingid(int buildingid);
 }

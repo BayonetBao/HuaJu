@@ -63,8 +63,8 @@
     </div>
     <div>
         <span>活动信息</span>
-        <a href="${pageContext.request.contextPath}/Activity/activityList.action" target="mainFrame" onFocus="this.blur()">活动信息</a>
-        <a href="${pageContext.request.contextPath}/Activity/selectctaandbuild.action" target="mainFrame" onFocus="this.blur()">活动添加</a>
+        <a href="${pageContext.request.contextPath}/Activity/selectAllActivityByQueryPojo.action" target="mainFrame" onFocus="this.blur()">活动信息</a>
+        <a href="${pageContext.request.contextPath}/Activity/insertActivityBefore.action" target="mainFrame" onFocus="this.blur()">活动添加</a>
     </div>
     
 </div>

@@ -66,7 +66,7 @@ public class ActivityControl {
         request.setAttribute("clist",clist);
         request.setAttribute("pageInfo",pageInfo);
         request.setAttribute("activityQueryPojo",activityQueryPojo);
-        request.getRequestDispatcher("/developer/activityList.jsp").forward(request,response);
+        request.getRequestDispatcher("/developer/activitytList.jsp").forward(request,response);
 //        PageInfo<Dynamic> pageInfo = dynamicService.selectDynamicByBuild(cmap);
 //        request.setAttribute("blist",blist);
 //        request.setAttribute("pageInfo", pageInfo);
@@ -83,7 +83,7 @@ public class ActivityControl {
         List<Cta> ctas = activityService.AllCta();
         request.setAttribute("blist",blist);
         request.setAttribute("clist",ctas);
-        request.getRequestDispatcher("/developer/AddActivity.jsp").forward(request,response);
+        request.getRequestDispatcher("/developer/addactivity.jsp").forward(request,response);
     }
     @RequestMapping(value = "insertActivityAfter.action",method = {RequestMethod.POST,RequestMethod.GET})
     public String insertActivityAfter(Activity activity,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, ParseException {
@@ -92,8 +92,10 @@ public class ActivityControl {
         request.setAttribute("activityAddNumber",activityAddNumber);
         if(activityService.AddActivity(activity)){
             result="sucess";
+            System.out.println(1111);
         }else{
             result= "error";
+            System.out.println(2222);
         }
         return  result;
     }

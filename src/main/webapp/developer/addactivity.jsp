@@ -61,7 +61,7 @@
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <select id="buildingid" onblur="check(this.value)" name="buildingid" class="form-control input-sm" style="width:315px;margin-left:20px;margin-top:10px;">
                                 <option value="">请选择</option>
-                                <c:forEach items="${builds}" var="b">
+                                <c:forEach items="${blist}" var="b">
                                     <option value="${b.buildingid}">${b.building}</option>
                                 </c:forEach>
                             </select>
@@ -72,8 +72,8 @@
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
                             <select id="ctaid" onblur="check(this.value)" name="ctaid" class="form-control input-sm" style="width:315px;margin-left:20px;margin-top:10px;">
                                 <option value="">请选择</option>
-                                <c:forEach items="${ctas}" var="ctas">
-                                    <option value="${ctas.ctaid}">${ctas.ctaname}</option>
+                                <c:forEach items="${clist}" var="clist">
+                                    <option value="${clist.ctaid}">${clist.ctarelname}</option>
                                 </c:forEach>
                             </select>
                         </td>
@@ -132,7 +132,7 @@
                         var actcontent=$("#actcontent");
                         var actnote=$("#actnote");
                         $.ajax({
-                            url:"${pageContext.request.contextPath}/Activity/addActivity.action",
+                            url:"${pageContext.request.contextPath}/Activity/insertActivityAfter.action",
                             type:"post",
                             data:"buildingid="+buildingid.val()+"&ctaid="+ctaid.val()+"&totalnum="+totalnum.val()+"&parnum="+parnum.val()+"&actime="+actime.val()+"&actcontent="+actcontent.val()+"&actnote="+actnote.val(),
                             success:function(data){

@@ -16,4 +16,7 @@ public interface EnvironmentImgMapper {
     public List<EnvironmentImg> SelectAllEnvironmentimg(ImgQueryPojo imgQueryPojo);
 
     public List<Build> selectBuildInEnvirimg(Integer comid);
+
+    //根据楼盘id查配置图
+    public List<EnvironmentImg> selectEnvironmentimgByBuildingid(int buildingid);
 }

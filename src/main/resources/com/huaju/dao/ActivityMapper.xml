@@ -19,31 +19,28 @@
         <collection property="cta" javaType="Cta">
             <id column="ctaid" property="ctaid"/>
             <result column="ctaname" property="ctaname"/>
+            <result column="ctarelname" property="ctarelname"/>
             <result column="ctaimg" property="ctaimg"/>
         </collection>
     </resultMap>
     <!--public List<Activity> SelectAllActivity(ActivityQueryPojo activityQueryPojo);-->
 <select id="SelectAllActivity" resultMap="ActivityListMap" parameterType="ActivityQueryPojo">
-    select activity.*,build.building,build.comid,cta.ctaid,cta.ctaname from activity JOIN build
+    select activity.*,build.buildingid,build.building,build.comid,cta.ctaid,cta.ctaname,cta.ctarelname from activity JOIN build
     ON activity.buildingid=build.buildingid
-      <where>
         <if test="buildingid neq null">
-            and acitivity.buildingid=#{buildingid}
+            and activity.buildingid=#{buildingid}
         </if>
         <if test="comid neq null">
             and comid=#{comid}
         </if>
-      </where>
     JOIN cta ON activity.ctaid=cta.ctaid
-      <where>
           <if test="ctaid neq null">
               AND activity.ctaid=#{ctaid}
           </if>
-      </where>
 </select>
     <!--public List<Build> selectBuildInActivity(Integer comid);-->
-    <select id="selectBuildInActivity" resultMap="ActivityListMap" parameterType="int">
-    select DISTINCT build.buildingid,building from build,activity where build.buildingid=activity.buildingid
+    <select id="selectBuildInActivity" resultType="Build" parameterType="int">
+    select DISTINCT build.buildingid,build.building from build,activity where build.buildingid=activity.buildingid
     and comid=#{_parameter}
     </select>
     <!--public void AddActivity(Activity activity);-->
@@ -52,7 +49,7 @@
 </insert>
     <!--public Activity selectActivity(Integer id);-->
 <select id="selectActivity" resultMap="ActivityListMap" parameterType="int">
-    select activity.*,build.buildingid,build.building,build.comid,cta.ctaid,cta.ctaname,cta.ctaimg from activity JOIN build
+    select activity.*,build.buildingid,build.building,build.comid,cta.ctaid,cta.ctaname,cta.ctaimg,,cta.ctarelname from activity JOIN build
      ON activity.buildingid=build.buildingid JOIN cta ON activity.ctaid=cta.ctaid AND actid=#{actid}
 </select>
 

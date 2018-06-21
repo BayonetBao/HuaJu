@@ -17,4 +17,7 @@ public interface BuildimgMapper {
     public List<Buildimg> SelectAllBuildimg(ImgQueryPojo imgQueryPojo);
 
     public List<Build> selectBuildInBuildimg(Integer comid);
+
+    //根据楼盘id查询楼盘实景图
+    public List<Buildimg> selectBuildimgByBuildingid(int buildingid);
 }

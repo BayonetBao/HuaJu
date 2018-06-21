@@ -17,4 +17,7 @@ public interface ArroundimgMapper {
     public List<Arroundimg> SelectAllArrountimg(ImgQueryPojo imgQueryPojo);
 
     public List<Build> selectBuildInArroundimg(Integer comid);
+
+    //根据楼盘id查环境图
+    public List<Arroundimg> selectArroundimgByBuildingid(int buildingid);
 }

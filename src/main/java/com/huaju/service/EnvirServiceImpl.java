@@ -49,4 +49,9 @@ public class EnvirServiceImpl implements EnvirService {
     public List<Build> selectBuildInEnvirimg(Integer comid) {
         return environmentImgMapper.selectBuildInEnvirimg(comid);
     }
+
+    @Override
+    public List<EnvironmentImg> selectEnvironmentimgByBuildingid(int buildingid) {
+        return environmentImgMapper.selectEnvironmentimgByBuildingid(buildingid);
+    }
 }

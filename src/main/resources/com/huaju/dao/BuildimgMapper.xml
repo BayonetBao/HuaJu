@@ -40,4 +40,11 @@
         select DISTINCT build.buildingid,building from build,buildimg where build.buildingid=buildimg.buildingid
         and comid=#{_parameter}
     </select>
+
+
+    <!--//根据楼盘id查询楼盘实景图-->
+    <!--public List<Buildimg> selectBuildimgByBuildingid(int buildingid);-->
+    <select id="selectBuildimgByBuildingid" parameterType="int" resultType="Buildimg">
+        SELECT * from buildimg WHERE buildingid=#{_parameter}
+    </select>
 </mapper>
