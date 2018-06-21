@@ -53,9 +53,9 @@
                         <form id="mainForm" method="post" action="<%=basePath%>Activity/selectAllActivityByQueryPojo.action">
                             <input type="hidden" id="curPage" name="curPage" value="1"/>
                             <div class="form-group">
-                                <span style="font-size:14px;">楼盘：</span>
-                                <select name="buildingid" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
-                                    <option value="">请选择</option>
+                                <span style="font-size:14px;">选项：</span>
+                                <select name="buildingid" class="input-sm" style="width:170px;margin-left:100px;margin-top:5px;color: black">
+                                    <option value="">请选择楼盘</option>
                                     <c:forEach items="${blist}" var="b">
                                         <c:choose>
                                             <c:when test="${b.buildingid == activityQueryPojo.buildingid}">
@@ -67,21 +67,21 @@
                                         </c:choose>
                                     </c:forEach>
                                 </select>
-                                <span style="font-size:14px;">咨询师：</span>
-                                <select name="ctaid" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
-                                    <option value="">请选择</option>
+                                <select name="ctaid" class="input-sm" style="width:170px;margin-left:100px;margin-top:5px;color: black">
+                                    <option value="">请选择咨询师</option>
                                     <c:forEach items="${clist}" var="c">
                                         <c:choose>
-                                            <c:when test="${c.ctaid == imgQueryPojo.ctaid}">
-                                                <option value="${c.ctaid}" selected>${c.ctaname}</option>
+                                            <c:when test="${c.ctaid == activityQueryPojo.ctaid}">
+                                                <option value="${c.ctaid}">${c.ctarelname}</option>
                                             </c:when>
                                             <c:otherwise>
-                                                <option value="${c.ctaid}">${c.ctaname}</option>
+                                                <option value="${c.ctaid}">${c.ctarelname}</option>
                                             </c:otherwise>
                                         </c:choose>
                                     </c:forEach>
                                 </select>
-                                <input name="" type="submit" value="查询" class="form-control input-sm" style="width:70px;margin-left:250px;margin-top:-30px;">
+
+                                <input name="" type="submit" value="查询" class="form-control input-sm" style="width:70px;margin-left:650px;margin-top:-30px;">
                             </div>
                         </form>
                     </td>
@@ -108,7 +108,7 @@
                     <tr id="tr_${activities.actid}"  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td  valign="middle" class="borderright borderbottom">${activities.actid}</td>
                         <td  valign="middle" class="borderright borderbottom">${activities.build.building}</td>
-                        <td  valign="middle" class="borderright borderbottom">${activities.cta.ctaname}</td>
+                        <td  valign="middle" class="borderright borderbottom">${activities.cta.ctarelname}</td>
                         <td  valign="middle" class="borderright borderbottom">${activities.actcontent}</td>
                         <td  valign="middle" class="borderright borderbottom">
                             <fmt:formatDate value="${activities.actime}" pattern="yyyy-MM-dd hh:mm:ss"/>

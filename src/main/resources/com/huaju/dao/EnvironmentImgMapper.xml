@@ -40,4 +40,10 @@
         select DISTINCT build.buildingid,building from build,environmentimg where build.buildingid=environmentimg.buildingid
         and comid=#{_parameter}
     </select>
+
+    <!--//根据楼盘id查配置图-->
+    <!--public List<EnvironmentImg> selectEnvironmentimgByBuildingid(int buildingid);-->
+    <select id="selectEnvironmentimgByBuildingid" parameterType="int" resultType="EnvironmentImg">
+        SELECT * from environmentImg WHERE buildingid=#{_parameter}
+    </select>
 </mapper>
