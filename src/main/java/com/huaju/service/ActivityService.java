@@ -13,9 +13,6 @@ import java.util.Map;
 public interface ActivityService {
 //咨询师列表
     public List<Cta> AllCta();
-
-
     public List<Build> selectBuilding();
-
     public List<Build> selectBuildQueryPojo(BuildQueryPojo buildQueryPojo);
 }

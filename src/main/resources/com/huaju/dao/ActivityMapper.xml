@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.ActivityMapper">
-    <!--public List<Activity> ActivityList();-->
-    <resultMap id="ActivityListMap" type="Activity">
-        <id column="actid" property="actid"/>
-        <result column="actime" property="actime"/>
-        <result column="ctaid" property="ctaid"/>
-        <result column="buildingid" property="buildingid"/>
-        <result column="totalnum" property="totalnum"/>
-        <result column="parnum" property="parnum"/>
-        <result column="actcontent" property="actcontent"/>
-        <result column="actnote" property="actnote"/>
-        <association property="build" javaType="Build">
-            <id column="buildingid" property="buildingid"/>
-            <result column="building" property="building"/>
-        </association>
-    </resultMap>
+
+
 </mapper>

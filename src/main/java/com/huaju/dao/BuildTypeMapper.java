@@ -17,4 +17,5 @@ public interface BuildTypeMapper {
 //    根据楼盘id查询楼盘下所有的房子个数    全部（n）ZYJ
     public int sumHouse(int buildingid);
 
+
 }
