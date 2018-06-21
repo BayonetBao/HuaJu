@@ -38,6 +38,12 @@ public class BuildControl {
     @Autowired
     private ProtoService protoService;
     @Autowired
+    private EnvirService envirService;
+    @Autowired
+    private ArroundimgService arroundimgService;
+    @Autowired
+    private BuildimgService buildimgService;
+    @Autowired
     private CtaService ctaService;
     @RequestMapping(value = "/selectBuildQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -224,6 +230,9 @@ public class BuildControl {
             List<House> houseList=houseService.selectHouseListBybuildingid(bid);
             List<Graph> graphList=graphimgService.selectGraphByBuildingid(bid);
             List<ProtoTypeImg> protoTypeImgList=protoService.selectProtoTypeImgByBuildingid(bid);
+            List<EnvironmentImg> environmentImgList=envirService.selectEnvironmentimgByBuildingid(bid);
+            List<Arroundimg> arroundimgList=arroundimgService.selectArroundimgByBuildingid(bid);
+            List<Buildimg> buildimgList=buildimgService.selectBuildimgByBuildingid(bid);
             Cta cta=ctaService.seletCtaByBuildingid(bid);
             request.setAttribute("buildTypes", buildTypes);
             request.setAttribute("company",company);
@@ -231,6 +240,9 @@ public class BuildControl {
             request.setAttribute("houseList",houseList);
             request.setAttribute("graphList",graphList);
             request.setAttribute("protoTypeImgList",protoTypeImgList);
+            request.setAttribute("environmentImgList",environmentImgList);
+            request.setAttribute("arroundimgList",arroundimgList);
+            request.setAttribute("buildimgList",buildimgList);
             request.setAttribute("cta",cta);
         }
         request.getRequestDispatcher("/user/bao/buildIndex.jsp").forward(request,response);
