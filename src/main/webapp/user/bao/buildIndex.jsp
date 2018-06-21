@@ -1085,6 +1085,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $("#password").next("SPAN").text("");
     });
 </script>
+
 </body>
 </html>
 <script type="text/javascript">
