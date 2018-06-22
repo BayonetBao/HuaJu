@@ -18,4 +18,7 @@ public interface BuildimgService {
     public PageInfo<Buildimg> selectBuildimgByBuild(Map<String,Object> map);
 
     public List<Build> selectBuildInBuildimg(Integer comid);
+
+    //根据楼盘id查询楼盘实景图
+    public List<Buildimg> selectBuildimgByBuildingid(int buildingid);
 }

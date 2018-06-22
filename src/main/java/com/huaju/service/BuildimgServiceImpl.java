@@ -49,4 +49,9 @@ public class BuildimgServiceImpl implements BuildimgService {
     public List<Build> selectBuildInBuildimg(Integer comid) {
         return buildimgMapper.selectBuildInBuildimg(comid);
     }
+
+    @Override
+    public List<Buildimg> selectBuildimgByBuildingid(int buildingid) {
+        return buildimgMapper.selectBuildimgByBuildingid(buildingid);
+    }
 }

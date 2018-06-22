@@ -48,4 +48,9 @@ public class ArroundimgServiceImpl implements ArroundimgService {
     public List<Build> selectBuildInArroundimg(Integer comid) {
         return arroundimgMapper.selectBuildInArroundimg(comid);
     }
+
+    @Override
+    public List<Arroundimg> selectArroundimgByBuildingid(int buildingid) {
+        return arroundimgMapper.selectArroundimgByBuildingid(buildingid);
+    }
 }

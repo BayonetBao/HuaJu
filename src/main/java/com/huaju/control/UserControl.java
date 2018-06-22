@@ -78,6 +78,6 @@ public class UserControl {
     public void init(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
         session.setAttribute("uid",-1);
         session.setAttribute("userType",-1);
-        response.sendRedirect(request.getContextPath()+"/user/bao/index.jsp");
+        response.sendRedirect(request.getContextPath()+"/build/index.action");
     }
 }

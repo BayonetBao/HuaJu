@@ -88,4 +88,16 @@ public class BuildServiceImpl implements BuildService{
         return typeMapper.slectAllType();
     }
 
+    @Override
+    //优惠楼盘搜索（张宝）
+    public List<Build> selectDiscountBuild(){
+      return  buildMapper.selectDiscountBuild();
+    }
+
+    @Override
+    //推荐楼盘搜索（张宝）
+    public List<Build> selectAdviceBuild(){
+        return buildMapper.selectAdviceBuild();
+    }
+
 }

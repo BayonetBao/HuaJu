@@ -341,9 +341,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <ul>
                                 <li><img src="${pageContext.request.contextPath}/${build.bpicture}" alt="" width="520"
                                          height="350"></li>
-
-
-                                    <c:if test="${not empty graphList}">
+                                <c:if test="${not empty graphList}">
 
                                     <c:forEach items="${graphList}" var="graphimg" varStatus="i">
                                     <c:if test="${i.index<2}">
@@ -352,9 +350,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </c:forEach>
 
                                     </c:if>
-
                                 <c:if test="${not empty protoTypeImgList}">
-
                                     <c:forEach items="${protoTypeImgList}" var="protoTypeImg" varStatus="i">
                                         <c:if test="${i.index<2}">
                                             <li><img src="${pageContext.request.contextPath}/${protoTypeImg.prototype}" alt="" width="520" height="350"> </li>
@@ -362,10 +358,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </c:forEach>
 
                                 </c:if>
+                                <c:if test="${not empty environmentImgList}">
+                                    <c:forEach items="${environmentImgList}" var="environmentImg" varStatus="i">
+                                        <c:if test="${i.index<2}">
+                                            <li><img src="${pageContext.request.contextPath}/${environmentImg.envirimg}" alt="" width="520" height="350"> </li>
+                                        </c:if>
+                                    </c:forEach>
 
-                                <li><img src="04.jpg" alt="" width="520" height="350"></li>
+                                </c:if>
+                                <c:if test="${not empty arroundimgList}">
+                                    <c:forEach items="${arroundimgList}" var="arroundimg" varStatus="i">
+                                        <c:if test="${i.index<2}">
+                                            <li><img src="${pageContext.request.contextPath}/${arroundimg.arrimg}" alt="" width="520" height="350"> </li>
+                                        </c:if>
+                                    </c:forEach>
 
-                                <li><img src="6.jpg" alt="" width="520" height="350"></li>
+                                </c:if>
+                                <c:if test="${not empty buildimgList}">
+                                    <c:forEach items="${buildimgList}" var="buildimg" varStatus="i">
+                                        <c:if test="${i.index<2}">
+                                            <li><img src="${pageContext.request.contextPath}/${buildimg.buildimg}" alt="" width="520" height="350"> </li>
+                                        </c:if>
+                                    </c:forEach>
+
+                                </c:if>
 
                             </ul>
 
@@ -468,6 +484,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </tr>
                         </table>
                     </div>
+                    <%--推荐理由--%>
+                    <c:if test="${not empty build.advice}">
+                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
+                        <div style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
+                            <span style="line-height:48px;font-size: 22px;color:black;">推荐理由</span>
+                        </div>
+                        <br>
+                        <div style="margin: auto auto">
+                            <p style="color: black;">${build.advice}</p>
+                        </div>
+                    </div>
+                    </c:if>
                     <%--楼盘详情--%>
                     <div class="additional-details">
                         <br>
