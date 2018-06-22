@@ -1,26 +1,21 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 狂妄小子
-  Date: 2018/6/1
-  Time: 9:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ page import="java.util.*" %>
+<!DOCTYPE HTML>
 <html>
-<head>
-    <style>
-        .zixunshi{
-            width:110px;
-            margin-left:600px;
 
+<head>
+
+    <style>
+        .zixunshi {
+            width: 110px;
+            margin-left: 600px;
         }
-        .name{
-            width:100px;
-            margin-left:600px;
+
+        .name {
+            width: 100px;
+            margin-left: 600px;
         }
         .success{
             color: #40ff1f;
@@ -29,119 +24,54 @@
             color: #ff0d20;
         }
     </style>
-    <title>楼盘动态</title>
+
+    <title>楼盘搜索</title>
     <!---css--->
-    <link href="${pageContext.request.contextPath}/user/bao/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="${pageContext.request.contextPath}/user/bao/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/ke/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/ke/css/style.css" rel='stylesheet' type='text/css' />
     <!---css--->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Real Space Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
     <!---js--->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=NHeOezVjNdxk5C1Q4i14l4SkfTeMdpLp"></script>
-    <script src="${pageContext.request.contextPath}/user/bao/js/jquery-1.11.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/user/bao/js/unslider.min.js"></script>
-    <script src="${pageContext.request.contextPath}/user/bao/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/user/ke/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js"></script>
     <!---js--->
     <!---fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <!---fonts-->
-    <script src="${pageContext.request.contextPath}/user/bao/js/responsiveslides.min.js"></script>
+    <!--三级联动-->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.data.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/js/main.js"></script>
+    <!-- FlexSlider -->
+    <script src="${pageContext.request.contextPath}/user/ke/js/jquery.flexslider.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/flexslider.css" type="text/css" media="screen" />
     <script>
-        $(function () {
-            $("#slider").responsiveSlides({
-                auto:true,
-                nav: false,
-                speed: 500,
-                namespace: "callbacks",
-                pager:true,
+        // Can also be used with $(document).ready()
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
             });
         });
     </script>
-    <link href="${pageContext.request.contextPath}/user/bao/css/owl.carousel.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/user/ke/css/allDynamic.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/user/bao/js/owl.carousel.js"></script>
-    <script src="${pageContext.request.contextPath}/user/ke/js/allDynamic.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#owl-demo").owlCarousel({
-                items : 1,
-                lazyLoad : true,
-                autoPlay : true,
-                navigation : false,
-                navigationText :  false,
-                pagination : true,
-            });
-        });
-    </script>
-    <style>
+    <!-- //FlexSlider-->
 
-        html, body { font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;}
-
-        ul, ol { padding: 0;}
-
-
-
-        .banner { position: relative; overflow: auto; margin:10px auto; text-align: center;}
-
-        .banner li { list-style: none; }
-
-        .banner ul li { float: left; }
-
-
-        #b04 { width: 520px;}
-        #b04 .dots { position: absolute; left: 0; right: 0; bottom: 10px;}
-
-        #b04 .dots li
-        {
-            display: inline-block;
-
-            width: 10px;
-
-            height: 10px;
-
-            margin: 0 4px;
-
-            text-indent: -999em;
-
-            border: 2px solid #fff;
-
-            border-radius: 6px;
-
-            cursor: pointer;
-
-            opacity: .4;
-
-            -webkit-transition: background .5s, opacity .5s;
-
-            -moz-transition: background .5s, opacity .5s;
-
-            transition: background .5s, opacity .5s;
-
-        }
-
-        #b04 .dots li.active
-
-        {
-
-            background: #fff;
-
-            opacity: 1;
-
-        }
-
-
-        #b04 .arrow { position: absolute; top: 200px;}
-
-        #b04 #al { left: 15px;}
-
-        #b04 #ar { right: 15px;}
-    </style>
 </head>
+
 <body>
 <!---header--->
 <div class="header-section">
@@ -182,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1><a href="index.html"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
                 </div>
 
             </div>
@@ -190,10 +120,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
-                    <li class="dropdown">
+                    <li><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li class="active">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
-
                     </li>
 
                     <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
@@ -211,106 +140,215 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
     </div>
 </div>
-<!---banner--->
-
-<div style="margin:10px auto;width:1140px;">
-    位置 ：华居>楼盘详情>${build.building}<p/>
-    <p style="margin-top:20px;">
-        <b style="font-size:30px; color: #222">${build.building}
-        </b>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${build.conditions}</span>
-        <c:if test="${not empty build.charactere}">
-            <c:set var="character" value="${build.charactere}"></c:set>
-            <c:set var="characters" value='${fn:split(character, ",")}'></c:set>
-            <c:forEach items="${characters}" var="characterss">
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${characterss}</span>
-            </c:forEach>
-        </c:if>
-    </p>
-</div>
-<nav class="navbar-default" style="background-color:#f8f8f8;overflow:auto; min-width:1125px;">
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-
-    <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1180px">
-
-        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="#">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"class="active"><a href="#" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;" ><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
-        <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
-    </ul>
-</nav>
 <!---header--->
 <!---banner--->
-<div class="content" style="margin-top:10px;">
-    <div class="properties-section" style="margin-top:0px;padding-top:10px;">
-        <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:100%;">
+<div class="content">
+    <div class="properties-section">
+        <div class="container">
             <div class="properties-grids">
-                <div class="col-md-12">
-                    <div class="clearfix"></div>
-                    <%--楼盘动态--%>
-                    <div class="timeline animated col-md-8 " style="margin-left: 50px;" >
-                    <c:forEach items="${dynamics}" var="d" varStatus="sta">
-                       <c:choose>
-                           <c:when test="${sta.index%2==0}">
-                               <div class="timeline-row">
-                                   <div class="timeline-time"><small style="color: black;"><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd"></fmt:formatDate></small>${fn:substring(d.dytime,11,16)}</div>
-                                   <div class="timeline-icon">
-                                       <div class="bg-primary"><i class="glyphicon glyphicon-chevron-left"></i></div>
-                                   </div>
-                                   <div class="panel timeline-content">
-                                       <div class="panel-body">
-                                           <h2>${d.dytitle}</h2>
-                                           <p>${d.dcontent}</p>
-                                       </div>
-                                   </div>
-                               </div>
-                           </c:when>
-                           <c:otherwise>
-                               <div class="timeline-row">
-                                   <div class="timeline-time"><small style="color: black;"><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd"></fmt:formatDate></small>${fn:substring(d.dytime,11,16)}</div>
-                                   <div class="timeline-icon">
-                                       <div class="bg-warning"><i class="glyphicon glyphicon-chevron-right"></i></div>
-                                   </div>
-                                   <div class="panel timeline-content">
-                                       <div class="panel-body">
-                                           <blockquote>
-                                               <p>${d.dcontent}</p>
-                                               <small>${d.dytitle}</small></blockquote>
-                                       </div>
-                                   </div>
-                               </div>
-                           </c:otherwise>
-                       </c:choose>
+                <div class="col-md-9 forsales-left">
+                    <div class="forsale">
+                        <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 
-                   </c:forEach>
+                                    <c:forEach items="${pageInfo.list}" var="b">
+                                        <div class="forsale-grids" style="background-color:rgba(79,152,34,0.16)">
+                                            <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a>
+                                                <p  style="position: relative; left: 500px;top: -25px;">
+                                                    <c:forEach items="${b.buildType}" var="type">
+                                                        ${type.typename}(${type.count}) &nbsp;
+                                                    </c:forEach>
+                                                </p>
+                                            </h4>
+                                            <div class="forsale1">
+                                                <div class="forsale-left">
+                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" width="240px" height="170px" alt="楼盘"></a>
+                                                </div>
+                                                <div class="forsale-right">
+                                                    <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
+                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
+                                                        参考总价${b.btotalprice}-${b.bmaxtotalprice}万元
+                                                        &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
+                                                        <button style="border:none; background-color: #F60;">${b.conditions}</button>
+                                                    </h5>
+                                                    <p>${b.bdetail}<br/>
+                                                        <a href="#"> 查看地图</a><br/> ${b.starttime}
+                                                        <a href="#">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
+                                                    </p>${b.discounts}
+                                                    <a href="#" class="button4">更多详情</a>
+                                                    <p><span>优惠信息</span> ${b.discounts}</p>
+                                                </div>
+                                                <div class="zixunshi" style="margin-left: 700px;">
+                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
 
-                    </div>
-                    <div class="col-md-3 properties-right">
-                        <div class="feature" style="font-weight: 200;position: relative;top:-40px;">
-                            <h4><p style="font-size: 30px; font-family: 'arial', '微软雅黑'">足·迹</p></h4>
-                            <c:forEach items="${huajuCookie}" var="c" varStatus="status">
-                                <div class="feature-top">
-                                    <img src="${pageContext.request.contextPath}/${c.bpicture}" width="260px" height="170px" alt="/">
-                                    <p style="font-size: 24px;color: #131e26">${c.building}<br/>
-                                    <p>${c.bdetail},… <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${c.buildingid}">更多详情</a></p>
+                                                    <p style="margin-top:-175px;font-size:13px;margin-left:15px">
+
+                                                        <a>${b.cta.ctarelname}|咨询</a>
+                                                    </p>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <ul>
+                                                    <c:choose>
+                                                    <c:when test="${!empty b.charactere && !(b.charactere eq '')}">
+                                                   <c:forEach items="${fn:split(b.charactere,'，')}" var="ch">
+                                                       <li>
+                                                           <a href="#">${ch}</a>
+                                                       </li>
+                                                   </c:forEach>
+                                                    </c:when>
+                                                        <c:otherwise>
+                                                            <li><a href="#">敬请期待</a></li>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                    <li>
+                                                        <a href="楼盘详情页面">向他咨询</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                    <div class="col-md-offset-4">
+                                        <nav>
+                                            <ul class="pagination pagination-lg">
+                                               <li><a href="javascript:getPage(${pageInfo.firstPage})"  >首页</a></li>
+                                                <li><a href="javascript:getPage(${pageInfo.prePage})" >上一页</a></li>
+                                                <li><span><b>${pageInfo.pageNum}</b>/<b>${pageInfo.pages}</b></span></li>
+                                                <c:if test="${!pageInfo.isLastPage}"><li><a href="javascript:void(0)" onclick="getPage(${pageInfo.nextPage})" >下一页</a></li></c:if>
+                                               <li> <a href="javascript:getPage(${pageInfo.lastPage})">末页</a></li>
+                                         
+                                            </ul>
+                                        </nav>
+                                    </div>
                                 </div>
-                                <c:if test="${status.index eq 4}">
-                                    <c:set var="exitId" value="0"/>
-                                </c:if>
-                            </c:forEach>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-3 properties-right" >
+                    <div class="properties-top">
+                        <h4 style="font-family: 'Open Sans', sans-serif">我要找房</h4>
+                        <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                            <input type="hidden" value="1" id="curPage" name="curPage" />
+                            <input type="hidden" value="" id="isonsale" name="isonsale"/>
+                            <div id="distpicker5">
+                                <div class="form-group col-md-12">
+                                    <h5>省份</h5>
+                                    <label class="sr-only" for="province1">Province</label>
+                                    <select class="form-control" name="province" id="province1">
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <h5>城市</h5>
+                                    <label class="sr-only" for="city1">City</label>
+                                    <select class="form-control" name="city" id="city1"></select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <h5>区域</h5>
+                                    <label class="sr-only" for="district1" name="district">District</label>
+                                    <select class="form-control" name="district" id="district1"></select>
+                                </div>
+                            </div>
+                            <div class="yourplace col-md-12">
+                                <h5>户型</h5>
+                            <select class="sel2" name="typeid">
+                                <option value="">不限</option>
+                                <c:forEach items="${types}" var="t">
+                                    <option value="${t.typeid}" <c:if test="${buildQueryPojo.typeid eq t.typeid}">selected</c:if> >${t.typename}</option>
+                                </c:forEach>
+                            </select>
+                            </div>
+                            <div class="yourplace col-md-12">
+                                <h5>开发商</h5>
+                                <select class="sel2" name="comid">
+                                    <option value="">不限</option>
+                                    <c:forEach items="${companies}" var="c">
+                                        <option value="${c.comid}" <c:if test="${buildQueryPojo.comid eq c.comid}">selected</c:if> >${c.comname}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="yourplace col-md-12">
+                                <h5>特色</h5>
+                                <select class="sel3" name="charactere">
+                                    <option value="">不限</option>
+                                    <option value="小户型" <c:if test="${buildQueryPojo.charactere eq '小户型'}">selected</c:if>>小户型</option>
+                                    <option value="临地铁" <c:if test="${buildQueryPojo.charactere eq '临地铁'}">selected</c:if>>临地铁</option>
+                                    <option value="现房" <c:if test="${buildQueryPojo.charactere eq '现房'}">selected</c:if>>现房</option>
+                                    <option value="品牌地产" <c:if test="${buildQueryPojo.charactere eq '品牌地产'}">selected</c:if>>品牌地产</option>
+                                </select>
+                            </div>
+                            <div class="yourplace col-md-6">
+                                <h5>类型</h5>
+                                <select class="sel2" name="genre">
+                                    <option value="">不限</option>
+                                    <option value="住宅" <c:if test="${buildQueryPojo.genre eq '住宅'}">selected</c:if>>住宅</option>
+                                    <option value="别墅" <c:if test="${buildQueryPojo.genre eq '别墅'}">selected</c:if>>别墅</option>
+                                    <option value="商业" <c:if test="${buildQueryPojo.genre eq '商业'}">selected</c:if>>商业</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 yourplace-grid">
+                                <h5>总价</h5>
+                                <select class="sel3" name="bTotalprice">
+                                    <option value="">总价</option>
+                                    <option value="0-100" <c:if test="${buildQueryPojo.bTotalprice eq 0}">selected</c:if>>
+                                        <100万</option>
+                                    <option value="100-200" <c:if test="${buildQueryPojo.bTotalprice eq 100}">selected</c:if>>100-200万</option>
+                                    <option value="200-300" <c:if test="${buildQueryPojo.bTotalprice eq 200}">selected</c:if>>200-300万</option>
+                                    <option value="300-500" <c:if test="${buildQueryPojo.bTotalprice eq 300}">selected</c:if>>300-500万</option>
+                                    <option value="500-10000" <c:if test="${buildQueryPojo.bTotalprice eq 500}">selected</c:if>>>500万</option>
+                                </select>
+                            </div>
+                            <div class="yourplace-grids1">
+                                <div class="col-md-6 yourplace-grid">
+                                    <h5>单价</h5>
+                                    <select class="sel3" name="bPerprice">
+                                        <option value="">单价</option>
+                                        <option value="0-20000" <c:if test="${buildQueryPojo.bPerprice eq 0}">selected</c:if>>
+                                            <2万</option>
+                                        <option value="20000-30000" <c:if test="${buildQueryPojo.bPerprice eq 20000}">selected</c:if>>2-3万</option>
+                                        <option value="30000-40000" <c:if test="${buildQueryPojo.bPerprice eq 30000}">selected</c:if>>3-4万</option>
+                                        <option value="40000-50000" <c:if test="${buildQueryPojo.bPerprice eq 40000}">selected</c:if>>4-5万</option>
+                                        <option value="50000-10000000000" <c:if test="${buildQueryPojo.bPerprice eq 50000}">selected</c:if>>5万及以上</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 yourplace-grid">
+                                    <h5>面积</h5>
+                                    <select class="sel3" name="acreage">
+                                        <option value="">请选择</option>
+                                        <option value="30-50">30-50</option>
+                                        <option value="50-100">50-100</option>
+                                        <option value="100-150">100-150</option>
+                                        <option value="150">150~</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button style="width: 140px;height: 50px;margin-top: 10px; font-size: 20px;" type="submit" class="btn btn-warning">搜索</button>
+                        </form>
+                    </div>
+<script>
+    function onsale() {
+        $("#isonsale").val("abc");
+        $("#mainForm").submit();
+    }
+    function  getPage(curPage) {
+
+        //将我们这个隐藏域的值变成curPage
+        $("#curPage").val(curPage);
+        //触发表单提交事件
+        $("#mainForm").submit();
+
+    }
+    function mainForm() {
+        $("#mainForm").submit();
+    }
+</script>
+
+                </div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!---footer--->
 <div class="footer-section">
@@ -323,23 +361,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-3 footer-grid">
                 <h4>Recent Posts</h4>
                 <ul>
-                    <li><a href="#">Lorem Post With Image Format</a></li>
-                    <li><a href="#">Example Video Blog Post</a></li>
-                    <li><a href="#">Example Post With Gallery Post </a></li>
-                    <li><a href="#">Example Video Blog Post</a></li>
-                    <li><a href="#">Lorem Post With Image Format</a></li>
-                    <li><a href="#">Example Video Blog Post</a></li>
+                    <li>
+                        <a href="#">Lorem Post With Image Format</a>
+                    </li>
+                    <li>
+                        <a href="#">Example Video Blog Post</a>
+                    </li>
+                    <li>
+                        <a href="#">Example Post With Gallery Post </a>
+                    </li>
+                    <li>
+                        <a href="#">Example Video Blog Post</a>
+                    </li>
+                    <li>
+                        <a href="#">Lorem Post With Image Format</a>
+                    </li>
+                    <li>
+                        <a href="#">Example Video Blog Post</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-3 footer-grid">
                 <h4>Useful links</h4>
                 <ul>
-                    <li><a href="terms.html">Terms of Use</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="contact.html">Contact Support </a></li>
-                    <li><a href="agents.html"> All Agents</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="faqs.html">FAQs</a></li>
+                    <li>
+                        <a href="terms.html">Terms of Use</a>
+                    </li>
+                    <li>
+                        <a href="privacy.html">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact Support </a>
+                    </li>
+                    <li>
+                        <a href="agents.html"> All Agents</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="faqs.html">FAQs</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-3 footer-grid">
@@ -349,7 +411,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <p>Freephone : +1 234 567 890</p>
                 <p>Telephone : +1 234 567 890</p>
                 <p>FAX : + 1 234 567 890</p>
-                <p>E-mail : <a href="mailto:example@mail.com"> example@mail.com</a></p>
+                <p>E-mail :
+                    <a href="mailto:example@mail.com"> example@mail.com</a>
+                </p>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -359,7 +423,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--copy-->
 <div class="copy-section">
     <div class="container">
-        <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+        <p>Copyright &copy; 2016.Company name All rights reserved.More Templates
+            <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from
+            <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+        </p>
     </div>
 </div>
 <!--copy-->

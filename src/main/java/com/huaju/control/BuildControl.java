@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -37,6 +38,12 @@ public class BuildControl {
     private GraphimgService graphimgService;
     @Autowired
     private ProtoService protoService;
+    @Autowired
+    private EnvirService envirService;
+    @Autowired
+    private ArroundimgService arroundimgService;
+    @Autowired
+    private BuildimgService buildimgService;
     @Autowired
     private CtaService ctaService;
     @RequestMapping(value = "/selectBuildQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
@@ -218,12 +225,37 @@ public class BuildControl {
     public void buildIndex(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         int bid=Integer.parseInt(buildingid);
         Build build=buildService.selectBuildById(bid);
+        Cookie[] cookies= request.getCookies();
+        Cookie huajuLou=new Cookie("huajuLou","");
+        huajuLou.setMaxAge(60*60*24*30);
+        huajuLou.setPath("/");
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("huajuLou")){
+                huajuLou.setValue(cookie.getValue());
+                break;
+            }
+        }
+        String[] buildingids=huajuLou.getValue().split(",");
+        String ids="";
+        for(String id:buildingids){
+            if(id.equals(buildingid)){
+
+            }else {
+                ids=ids+","+id;
+            }
+        }
+        ids=buildingid+ids;
+        huajuLou.setValue(ids);
+        response.addCookie(huajuLou);
         Company company=buildService.selectCompanyByBuildId(bid);
         if(build!=null) {
             List<BuildType> buildTypes = buildTypeService.selectTypeCount(bid);
             List<House> houseList=houseService.selectHouseListBybuildingid(bid);
             List<Graph> graphList=graphimgService.selectGraphByBuildingid(bid);
             List<ProtoTypeImg> protoTypeImgList=protoService.selectProtoTypeImgByBuildingid(bid);
+            List<EnvironmentImg> environmentImgList=envirService.selectEnvironmentimgByBuildingid(bid);
+            List<Arroundimg> arroundimgList=arroundimgService.selectArroundimgByBuildingid(bid);
+            List<Buildimg> buildimgList=buildimgService.selectBuildimgByBuildingid(bid);
             Cta cta=ctaService.seletCtaByBuildingid(bid);
             request.setAttribute("buildTypes", buildTypes);
             request.setAttribute("company",company);
@@ -231,6 +263,9 @@ public class BuildControl {
             request.setAttribute("houseList",houseList);
             request.setAttribute("graphList",graphList);
             request.setAttribute("protoTypeImgList",protoTypeImgList);
+            request.setAttribute("environmentImgList",environmentImgList);
+            request.setAttribute("arroundimgList",arroundimgList);
+            request.setAttribute("buildimgList",buildimgList);
             request.setAttribute("cta",cta);
         }
         request.getRequestDispatcher("/user/bao/buildIndex.jsp").forward(request,response);
@@ -260,6 +295,15 @@ public class BuildControl {
             request.getRequestDispatcher("/user/bao/buildImages.jsp").forward(request,response);
         }
     }
-
+@RequestMapping(value = "/index.action")
+    public void indexInfo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        List<Cta> ctas=ctaService.selectAllCta();
+        List<Build> discountBuildList = buildService.selectDiscountBuild();
+        List<Build> adviceBuildList=buildService.selectAdviceBuild();
+        request.setAttribute("ctas",ctas);
+        request.setAttribute("discountBuildList",discountBuildList);
+        request.setAttribute("adviceBuildList",adviceBuildList);
+        request.getRequestDispatcher("/user/bao/index.jsp").forward(request,response);
+}
 
 }

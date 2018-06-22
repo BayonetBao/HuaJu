@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -49,7 +50,7 @@ public class CommentControl {
         if (comtype != null && !comtype.trim().equals("")) {
             commentQueryPojo.setComtype(comtype);
         }
-        int pageSize = 5;
+        int pageSize = 8;
         //当前的页面默认是首页
         int curPage = 1;
         if (scurPage != null && !scurPage.trim().equals("")) {
@@ -66,10 +67,12 @@ public class CommentControl {
     }
     //单独查评论详情
     @RequestMapping(value = "selectCommentById",method = {RequestMethod.GET,RequestMethod.POST})
-    public  void selectCommentById(CommentQueryPojo commentQueryPojo,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        Integer recommentid=new Integer(request.getParameter("recommentid"));
-        recommentService.changestate(recommentid);
-        Comment comment=commentService.selectCommentByQueryPojo(commentQueryPojo).get(0);
+    public  void selectCommentById(Integer commentid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+       if(request.getParameter("recommentid")!=null) {
+           Integer recommentid = new Integer(request.getParameter("recommentid"));
+           recommentService.changestate(recommentid);
+       }
+        Comment comment=commentService.selectCommentById(commentid);
         Build build=buildService.selectBuildById(comment.getBuildingid());
         request.setAttribute("comment",comment);
         request.setAttribute("build",build);
@@ -116,8 +119,27 @@ public class CommentControl {
     @RequestMapping(value = "selectAllCommentByQueryPojoFrontSingle.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllCommentByQueryPojoFrontSingle(CommentQueryPojo commentQueryPojo,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, Object> cmap=new HashMap<>();
+        List<Build> huajuCookie=new ArrayList<>();
         String bid=request.getParameter("buildingid");//楼盘id
+        Cookie[] cookies= request.getCookies();
+        Cookie huajuLou=new Cookie("huajuLou","");
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("huajuLou")){
+                huajuLou=cookie;
+                break;
+            }
+        }
+
         Build build=buildService.selectBuildById(new Integer(bid));
+            String[] ids=huajuLou.getValue().split(",");
+            System.out.println();
+            for(String id:ids){
+                if(id!=null&&id!=""){
+                    Integer id1=new Integer(id);
+                    Build b1=buildService.selectBuildById(id1);
+                    huajuCookie.add(b1);
+                }
+            }
         String idtype=request.getParameter("idtype");//评论人员的类型 用户咨询师
         String comtype=request.getParameter("comtype");//评论的类型 好评差评
         String scurPage=request.getParameter("curPage");
@@ -147,10 +169,11 @@ public class CommentControl {
         request.setAttribute("comments",comments);
         request.setAttribute("pageInfo", pageInfo);
         request.setAttribute("build",build);
+        request.setAttribute("huajuCookie",huajuCookie);
         request.setAttribute("commentQueryPojo", commentQueryPojo);
         request.getRequestDispatcher("/user/ke/allComment.jsp").forward(request, response);
     }
-    //通过id查询某个人的评论 珂
+    //通过userid查询某个人的评论 珂
     @RequestMapping(value = "selectCommentByUser.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void selectCommentByUser(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         Integer id= (Integer) session.getAttribute("uid");

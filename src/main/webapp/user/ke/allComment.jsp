@@ -241,10 +241,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
 
         <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:57px;" class="active"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:57px;" class="active"><a href="#" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;" ><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:57px;" ><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
@@ -256,7 +256,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="properties-section" style="margin-top:0px;padding-top:0px;">
         <div class="container" style="margin-top:0px;padding-top:0px;background-color:rgba(98,98,98,0.15);width:1180px;">
             <div class="properties-grids" >
-                <div class="col-md-9 properties-left" >
+                <div class="col-md-9 properties-left" style="position: relative;top:40px;overflow: hidden" >
                     <%--楼盘动态--%>
                     <div class="content">
                         <div class="blog-section"  style="margin-top: 0px;padding-top: 0px;">
@@ -267,7 +267,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="coment-form col-md-12">
                                             <div>
                                                 <div class="grid_3 grid_5 col-md-12"  style="margin-top: 0px;padding-top: 0px;">
-                                                    <p style="font-size:24px;margin-bottom:5px;margin-top: 0px;padding-top: 0px;"><c:choose>
+                                                    <p style="font-size:24px;margin-bottom:5px;margin-top: -40px;padding-top: 0px;height: 40px;"><c:choose>
                                                         <c:when test="${commentQueryPojo.idtype!=null && commentQueryPojo.idtype != '' }">
                                                             <c:choose>
                                                                 <c:when test="${commentQueryPojo.idtype eq 1}">用户</c:when>
@@ -282,11 +282,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         </c:otherwise>
                                                     </c:choose>评论<span class="badge badge-info" style="font-size:12px">${fn:length(comments)}
                                 <c:choose>
-                                    <c:when test="${commentQueryPojo.comtype!=null && commentQueryPojo.idtype != '' }">
-                                        (${commentQueryPojo.comtype})
+                                    <c:when test="${commentQueryPojo.comtype==null || commentQueryPojo.comtype eq ''}">
+
                                     </c:when>
                                     <c:otherwise>
-
+                                        (${commentQueryPojo.comtype})
                                     </c:otherwise></c:choose>
 
                                 </span>
@@ -444,8 +444,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                                         var recomment=recomments[i];
                                                                         var zxdxx=JSON.stringify(recomment);
                                                                         reul.before("<li id='reli_"+recomment.recommentid+ "' style='margin-left: 10px;margin-top: 10px;' class='ul_recomment'>"
-                                                                            +"<a style='color: blue;display: inline;' href='id=recomment'>"+recomment.reusername+"</a>"+"回复 @"
-                                                                            +"<a style='color: blue;display: inline;' href='id=recomments'>"+recomment.reobjectname+"</a>"+":  "
+                                                                            +"<a style='color: blue;display: inline;' href='#'>"+recomment.reusername+"</a>"+"回复 @"
+                                                                            +"<a style='color: blue;display: inline;' href='#'>"+recomment.reobjectname+"</a>"+":  "
                                                                             +recomment.recontent+"      "+s+"      <a style='color:darkslategray;display: inline;' href='javascript:hui1("+zxdxx+")'>"+"回复</a></li>");
                                                                         var type=${sessionScope.userType};
                                                                         var id=${sessionScope.uid};
@@ -607,18 +607,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </div>
                 <div class="col-md-3 properties-right">
-                    <div class="feature">
-                        <h4 style="font-size: 30px;">推荐楼盘</h4>
+                    <div class="feature" style="font-weight: 200">
+                        <h4><p style="font-size: 30px; font-family: 'arial', '微软雅黑'">猜你喜欢</p></h4>
+                        <c:forEach items="${huajuCookie}" var="c" varStatus="status">
                         <div class="feature-top">
-                            <img src="images/s1.jpg" class="img-responsive" alt="/">
-                            <h5>60 Merrick Way, Miami</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
+                            <img src="${pageContext.request.contextPath}/${c.bpicture}" width="260px" height="170px" alt="/">
+                            <p style="font-size: 24px;color: #131e26">${c.building}<br/>
+                            <p>${c.bdetail},… <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${c.buildingid}">更多详情</a></p>
                         </div>
-                        <div class="feature-top top2">
-                            <img src="images/s2.jpg" class="img-responsive" alt="/">
-                            <h5>Villa in Hialeah, Dade</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                        </div>
+                            <c:if test="${status.index eq 4}">
+                                <c:set var="exitId" value="0"/>
+                            </c:if>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="clearfix"></div>

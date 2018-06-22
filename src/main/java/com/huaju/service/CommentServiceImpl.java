@@ -72,4 +72,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Build> selectBuildInComment(Integer comid) {
         return commentMapper.selectBuildInComment(comid);
     }
+
+    @Override
+    public Comment selectCommentById(Integer commentid) {
+        return commentMapper.selectCommentById(commentid);
+    }
 }

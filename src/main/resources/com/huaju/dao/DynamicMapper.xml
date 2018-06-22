@@ -32,7 +32,8 @@
     </resultMap>
    <select id="selectAllDynamicByQueryPojo" parameterType="DynamicQueryPojo" resultMap="DynamicMap">
            select dynamic.*,build.building,build.comid from dynamic ,build
-       <where>  dynamic.buildingid=build.buildingid
+       <where> 
+       dynamic.buildingid=build.buildingid
        <if test="buildingid neq null">
        and dynamic.buildingid=#{buildingid}
        </if>

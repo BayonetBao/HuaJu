@@ -43,43 +43,49 @@
 <!--main_top-->
 <table width="99%" border="0" cellspacing="0" cellpadding="0" id="searchmain">
     <tr>
-        <td width="99%" align="left" valign="top">您的位置：楼盘活动</td>
+        <td width="99%" align="left" valign="top">您的位置：楼盘信息</td>
     </tr>
     <tr>
         <td align="left" valign="top">
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
                 <tr>
                     <td width="40%" align="left" valign="middle">
-                        <form id="mainForm" method="post" action="<%=basePath%>Activity/activityBybuild.action">
+                        <form id="mainForm" method="post" action="<%=basePath%>Activity/selectAllActivityByQueryPojo.action">
                             <input type="hidden" id="curPage" name="curPage" value="1"/>
                             <div class="form-group">
-                                <span style="font-size:14px;">楼盘：</span>
-                                <select name="buildingid" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
-                                    <option value="">请选择</option>
-                                    <c:forEach items="${builds}" var="b">
+                                <span style="font-size:14px;">选项：</span>
+                                <select name="buildingid" class="input-sm" style="width:170px;margin-left:100px;margin-top:5px;color: black">
+                                    <option value="">请选择楼盘</option>
+                                    <c:forEach items="${blist}" var="b">
+                                        <c:choose>
+                                            <c:when test="${b.buildingid == activityQueryPojo.buildingid}">
+                                                <option value="${b.buildingid}" selected>${b.building}</option>
+                                            </c:when>
+                                            <c:otherwise>
                                                 <option value="${b.buildingid}">${b.building}</option>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </c:forEach>
                                 </select>
-                                <input name="" type="submit" value="查询" class="form-control input-sm" style="width:70px;margin-left:250px;margin-top:-30px;">
+                                <select name="ctaid" class="input-sm" style="width:170px;margin-left:100px;margin-top:5px;color: black">
+                                    <option value="">请选择咨询师</option>
+                                    <c:forEach items="${clist}" var="c">
+                                        <c:choose>
+                                            <c:when test="${c.ctaid == activityQueryPojo.ctaid}">
+                                                <option value="${c.ctaid}">${c.ctarelname}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option value="${c.ctaid}">${c.ctarelname}</option>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </select>
+
+                                <input name="" type="submit" value="查询" class="form-control input-sm" style="width:70px;margin-left:650px;margin-top:-30px;">
                             </div>
                         </form>
                     </td>
-                    <td width="40%" align="left" valign="middle">
-                        <form id="mainForm1" method="post" action="<%=basePath%>Acitvity/acitvityBycta.action">
-                            <input type="hidden" id="curPage1" name="curPage" value="1"/>
-                            <div class="form-group">
-                                <span style="font-size:14px;">咨询师：</span>
-                                <select name="ctaid" class="input-sm" style="width:170px;margin-left:20px;margin-top:5px;">
-                                    <option value="">请选择</option>
-                                    <c:forEach items="${ctas}" var="ctas">
-                                                <option value="${ctas.ctaid}">${ctas.ctaname}</option>
-                                    </c:forEach>
-                                </select>
-                                <input name="" type="submit" value="查询" class="form-control input-sm" style="width:70px;margin-left:250px;margin-top:-30px;">
-                            </div>
-                        </form>
-                    </td>
-                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a  href="<%=basePath%>Activity/addActivity.action" target="mainFrame" onFocus="this.blur()" class="add">新增动态</a></td>
+                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a  href="<%=basePath%>Activity/insertActivityBefore.action" target="mainFrame" onFocus="this.blur()" class="add">新增活动</a></td>
                 </tr>
             </table>
         </td>
@@ -98,11 +104,11 @@
                     <th  valign="middle" class="borderright">已报名人数</th>
                     <th  valign="middle" class="borderright">备注</th>
                 </tr>
-                <c:forEach items="${activities}" var="activities">
+                <c:forEach items="${pageInfo.list}" var="activities">
                     <tr id="tr_${activities.actid}"  onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td  valign="middle" class="borderright borderbottom">${activities.actid}</td>
                         <td  valign="middle" class="borderright borderbottom">${activities.build.building}</td>
-                        <td  valign="middle" class="borderright borderbottom">${activities.cta.ctaid}</td>
+                        <td  valign="middle" class="borderright borderbottom">${activities.cta.ctarelname}</td>
                         <td  valign="middle" class="borderright borderbottom">${activities.actcontent}</td>
                         <td  valign="middle" class="borderright borderbottom">
                             <fmt:formatDate value="${activities.actime}" pattern="yyyy-MM-dd hh:mm:ss"/>
@@ -110,9 +116,8 @@
                         <td  valign="middle" class="borderright borderbottom">${activities.totalnum}</td>
                         <td  valign="middle" class="borderright borderbottom">${activities.parnum}</td>
                         <td  valign="middle" class="borderright borderbottom">${activities.actnote}</td>
-                        </tr>
+                    </tr>
                 </c:forEach>
-
             </table></td>
     </tr>
     <tr>
@@ -130,25 +135,6 @@
                 //触发表单提交事件
                 $("#mainForm").submit();
 
-            }
-
-            function delDynamic(id){
-                if(confirm("你确认要删除吗?")){
-                    $.ajax({
-                        url:"${pageContext.request.contextPath}/dynamic/deleteDynamicById.action",
-                        type:"post",
-                        data:"id="+id,
-                        success:function(data){
-                            var tr=$("#tr_"+id);
-                            tr.remove();
-                            alert(data);
-                        },
-                        error:function(XMLHttpRequest, textStatus, errorThrown){
-                            alert("Error")
-                            alert(XMLHttpRequest.readyState);
-                        }
-                    });
-                }
             }
         </script>
     </tr>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,7 +48,7 @@ public class DynamicControl {
             dynamicQueryPojo.setBuildingid(buildid);
         }
        cmap.put("dynamicQueryPojo",dynamicQueryPojo);
-        int pageSize = 5;
+        int pageSize = 8;
         //当前的页面默认是首页
         int curPage = 1;
 
@@ -72,10 +73,29 @@ public class DynamicControl {
     @RequestMapping(value = "selectAllDynamicByBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllDynamicByBuild(DynamicQueryPojo dynamicQueryPojo,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         dynamicQueryPojo.setBuildingid(dynamicQueryPojo.getBuildingid());
+        List<Build> huajuCookie=new ArrayList<>();
+        Cookie[] cookies= request.getCookies();
+        Cookie huajuLou=new Cookie("huajuLou","");
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("huajuLou")){
+                huajuLou=cookie;
+                break;
+            }
+        }
         Build build=buildService.selectBuildById(dynamicQueryPojo.getBuildingid());
+        String[] ids=huajuLou.getValue().split(",");
+        System.out.println();
+        for(String id:ids){
+            if(id!=null&&id!=""){
+                Integer id1=new Integer(id);
+                Build b1=buildService.selectBuildById(id1);
+                huajuCookie.add(b1);
+            }
+        }
         List<Dynamic> dynamics=dynamicMapper.selectAllDynamicByQueryPojo(dynamicQueryPojo);
         request.setAttribute("dynamics",dynamics);
         request.setAttribute("build",build);
+        request.setAttribute("huajuCookie",huajuCookie);
         request.getRequestDispatcher("/user/ke/buildDynamic.jsp").forward(request,response);
     }
       @RequestMapping(value = "insertDynamicBefore.action",method = {RequestMethod.POST,RequestMethod.GET})

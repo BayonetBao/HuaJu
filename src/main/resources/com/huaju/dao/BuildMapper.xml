@@ -98,7 +98,7 @@
            </if>
            <if test="typeid neq null">
                and buildingid in(
-               select buildingid from buildtype where typeid=#{typeid}
+               select buildingid from buildtype where typeid=#{typeid} and count !=0
                )
            </if>
            <if test="comid neq null">
@@ -158,5 +158,15 @@
     <!--public Company selectCompanyByBuildId(int buildingid);-->
     <select id="selectCompanyByBuildId" parameterType="int" resultType="Company">
         SELECT * from company where comid=(SELECT comid from build WHERE buildingid=#{_parameter})
+    </select>
+    <!--//优惠楼盘搜索（张宝）-->
+    <!--public List<Build> selectDiscountBuild();-->
+    <select id="selectDiscountBuild" resultType="Build">
+        SELECT * from build WHERE discounts != "" AND discounts is not null
+    </select>
+    <!--//推荐楼盘搜索（张宝）-->
+    <!--public List<Build> selectAdviceBuild();-->
+    <select id="selectAdviceBuild" resultType="Build">
+        SELECT * from build WHERE advice != "" AND advice is not null
     </select>
 </mapper>

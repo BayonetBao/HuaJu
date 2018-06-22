@@ -71,7 +71,7 @@
                             </div>
                         </form>
                     </td>
-                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a  href="<%=basePath%>Graph/insertGraphBefore.action" target="mainFrame" onFocus="this.blur()" class="add">新增样板间</a></td>
+                    <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a  href="<%=basePath%>ProtoType/insertProtoTypeBefore.action" target="mainFrame" onFocus="this.blur()" class="add">新增样板间</a></td>
                 </tr>
             </table>
         </td>

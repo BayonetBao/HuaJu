@@ -18,4 +18,7 @@ public interface EnvirService {
     public PageInfo<EnvironmentImg> selectEnvirimgByBuild(Map<String,Object> map);
 
     public List<Build> selectBuildInEnvirimg(Integer comid);
+
+    //根据楼盘id查配置图
+    public List<EnvironmentImg> selectEnvironmentimgByBuildingid(int buildingid);
 }

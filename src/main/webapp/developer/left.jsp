@@ -43,13 +43,16 @@
         <a href="${pageContext.request.contextPath}/developer/personalCenter.jsp" target="mainFrame" onFocus="this.blur()">后台首页</a>
         <a href="${pageContext.request.contextPath}/build/showBuildInfo.action" target="mainFrame" onFocus="this.blur()">楼盘信息</a>
         <a href="${pageContext.request.contextPath}/developer/addBuild.jsp" target="mainFrame" onFocus="this.blur()">添加楼盘</a>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">信息完善</a>
     </div>
     <div>
         <span>楼盘动态</span>
         <a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByQueryPojo.action" target="mainFrame" onFocus="this.blur()">楼盘动态</a>
         <a href="${pageContext.request.contextPath}/dynamic/insertDynamicBefore.action" target="mainFrame" onFocus="this.blur()">动态添加</a>
    </div>
+    <div>
+        <span>评论信息</span>
+        <a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojo.action" target="mainFrame" onFocus="this.blur()">所有评论</a>
+    </div>
     <div>
         <span>楼盘图册</span>
         <a href="${pageContext.request.contextPath}/Graph/selectAllGraphByQueryPojo.action" target="mainFrame" onFocus="this.blur()">效果图</a>
@@ -59,13 +62,9 @@
         <a href="${pageContext.request.contextPath}/Environment/selectAllEnvirByQueryPojo.action" target="mainFrame" onFocus="this.blur()">配套实景图</a>
     </div>
     <div>
-        <span>评论信息</span>
-        <a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojo.action" target="mainFrame" onFocus="this.blur()">所有评论</a>
-    </div>
-    <div>
         <span>活动信息</span>
-        <a href="${pageContext.request.contextPath}/Activity/activityList.action" target="mainFrame" onFocus="this.blur()">活动信息</a>
-        <a href="${pageContext.request.contextPath}/Activity/selectctaandbuild.action" target="mainFrame" onFocus="this.blur()">活动添加</a>
+        <a href="${pageContext.request.contextPath}/Activity/selectAllActivityByQueryPojo.action" target="mainFrame" onFocus="this.blur()">活动信息</a>
+        <a href="${pageContext.request.contextPath}/Activity/insertActivityBefore.action" target="mainFrame" onFocus="this.blur()">活动添加</a>
     </div>
     
 </div>

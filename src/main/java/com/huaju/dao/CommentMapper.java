@@ -11,4 +11,5 @@ public interface CommentMapper {
       public boolean insertComment(Comment comment);
       public  boolean deleteComment(Integer id);
       public List<Build> selectBuildInComment(Integer comid);
+      public Comment selectCommentById(Integer commentid);
 }

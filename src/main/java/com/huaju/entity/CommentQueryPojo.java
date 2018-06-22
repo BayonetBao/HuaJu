@@ -7,6 +7,17 @@ public class CommentQueryPojo {
     private String comtype;//评论的类型 好评差评
     private Integer userid;//评论人的id
 
+    @Override
+    public String toString() {
+        return "CommentQueryPojo{" +
+                "commentid=" + commentid +
+                ", buildingid=" + buildingid +
+                ", idtype=" + idtype +
+                ", comtype='" + comtype + '\'' +
+                ", userid=" + userid +
+                '}';
+    }
+
     public CommentQueryPojo() {
         super();
     }

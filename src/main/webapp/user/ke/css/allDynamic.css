@@ -467,7 +467,6 @@ label {
 .timeline .timeline-row .timeline-content .panel-body {
   padding: 15px 15px 2px;
   position: relative;
-  border: dashed gray 1px;
   box-shadow: #00ccff;
   z-index: 10; }
 .timeline .timeline-row .timeline-content h2 {

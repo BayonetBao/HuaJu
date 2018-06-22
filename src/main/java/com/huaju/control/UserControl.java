@@ -29,7 +29,7 @@ public class UserControl {
             user1.setUname(user.getUname());
             user1.setRemark(user.getRemark());
             request.getSession().setAttribute("user",user1);
-            response.sendRedirect(request.getContextPath()+"/user/ke/content.jsp");
+            response.sendRedirect(request.getContextPath()+"/user/ke/success.jsp");
         }else{
             response.sendRedirect(request.getContextPath()+"/user/ke/fail.jsp");
         }
@@ -68,9 +68,9 @@ public class UserControl {
         user.setUpwd(upwd);
         if(userService.updatePassword(user)){
            request.getSession().setAttribute("user",user);
-           response.sendRedirect(request.getContextPath()+"user/ke/success.jsp");
+           response.sendRedirect(request.getContextPath()+"/user/ke/success.jsp");
         }else{
-            response.sendRedirect(request.getContextPath()+"user/ke/error.jsp");
+            response.sendRedirect(request.getContextPath()+"/user/ke/error.jsp");
         }
 
     }
@@ -78,6 +78,6 @@ public class UserControl {
     public void init(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
         session.setAttribute("uid",-1);
         session.setAttribute("userType",-1);
-        response.sendRedirect(request.getContextPath()+"/user/bao/index.jsp");
+        response.sendRedirect(request.getContextPath()+"/build/index.action");
     }
 }
