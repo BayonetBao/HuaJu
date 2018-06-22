@@ -455,4 +455,99 @@ public class Build {
         this.bsalestatus = bsalestatus;
         this.buildType = buildType;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Build build = (Build) o;
+
+        if (Double.compare(build.lng, lng) != 0) return false;
+        if (Double.compare(build.lat, lat) != 0) return false;
+        if (buildingid != null ? !buildingid.equals(build.buildingid) : build.buildingid != null) return false;
+        if (building != null ? !building.equals(build.building) : build.building != null) return false;
+        if (ctaid != null ? !ctaid.equals(build.ctaid) : build.ctaid != null) return false;
+        if (province != null ? !province.equals(build.province) : build.province != null) return false;
+        if (city != null ? !city.equals(build.city) : build.city != null) return false;
+        if (barea != null ? !barea.equals(build.barea) : build.barea != null) return false;
+        if (bdetail != null ? !bdetail.equals(build.bdetail) : build.bdetail != null) return false;
+        if (bpicture != null ? !bpicture.equals(build.bpicture) : build.bpicture != null) return false;
+        if (tenement != null ? !tenement.equals(build.tenement) : build.tenement != null) return false;
+        if (btype != null ? !btype.equals(build.btype) : build.btype != null) return false;
+        if (bline != null ? !bline.equals(build.bline) : build.bline != null) return false;
+        if (comid != null ? !comid.equals(build.comid) : build.comid != null) return false;
+        if (charactere != null ? !charactere.equals(build.charactere) : build.charactere != null) return false;
+        if (bperprice != null ? !bperprice.equals(build.bperprice) : build.bperprice != null) return false;
+        if (btotalprice != null ? !btotalprice.equals(build.btotalprice) : build.btotalprice != null) return false;
+        if (bmaxtotalprice != null ? !bmaxtotalprice.equals(build.bmaxtotalprice) : build.bmaxtotalprice != null)
+            return false;
+        if (acreage != null ? !acreage.equals(build.acreage) : build.acreage != null) return false;
+        if (maxacreage != null ? !maxacreage.equals(build.maxacreage) : build.maxacreage != null) return false;
+        if (conditions != null ? !conditions.equals(build.conditions) : build.conditions != null) return false;
+        if (discounts != null ? !discounts.equals(build.discounts) : build.discounts != null) return false;
+        if (starttime != null ? !starttime.equals(build.starttime) : build.starttime != null) return false;
+        if (endtime != null ? !endtime.equals(build.endtime) : build.endtime != null) return false;
+        if (genre != null ? !genre.equals(build.genre) : build.genre != null) return false;
+        if (agelimit != null ? !agelimit.equals(build.agelimit) : build.agelimit != null) return false;
+        if (landtime != null ? !landtime.equals(build.landtime) : build.landtime != null) return false;
+        if (tencompany != null ? !tencompany.equals(build.tencompany) : build.tencompany != null) return false;
+        if (tencost != null ? !tencost.equals(build.tencost) : build.tencost != null) return false;
+        if (tentype != null ? !tentype.equals(build.tentype) : build.tentype != null) return false;
+        if (greenrate != null ? !greenrate.equals(build.greenrate) : build.greenrate != null) return false;
+        if (carport != null ? !carport.equals(build.carport) : build.carport != null) return false;
+        if (cubage != null ? !cubage.equals(build.cubage) : build.cubage != null) return false;
+        if (advice != null ? !advice.equals(build.advice) : build.advice != null) return false;
+        if (fitment != null ? !fitment.equals(build.fitment) : build.fitment != null) return false;
+        if (cta != null ? !cta.equals(build.cta) : build.cta != null) return false;
+        if (bsalestatus != null ? !bsalestatus.equals(build.bsalestatus) : build.bsalestatus != null) return false;
+        return buildType != null ? buildType.equals(build.buildType) : build.buildType == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = buildingid != null ? buildingid.hashCode() : 0;
+        result = 31 * result + (building != null ? building.hashCode() : 0);
+        result = 31 * result + (ctaid != null ? ctaid.hashCode() : 0);
+        result = 31 * result + (province != null ? province.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (barea != null ? barea.hashCode() : 0);
+        result = 31 * result + (bdetail != null ? bdetail.hashCode() : 0);
+        temp = Double.doubleToLongBits(lng);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(lat);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (bpicture != null ? bpicture.hashCode() : 0);
+        result = 31 * result + (tenement != null ? tenement.hashCode() : 0);
+        result = 31 * result + (btype != null ? btype.hashCode() : 0);
+        result = 31 * result + (bline != null ? bline.hashCode() : 0);
+        result = 31 * result + (comid != null ? comid.hashCode() : 0);
+        result = 31 * result + (charactere != null ? charactere.hashCode() : 0);
+        result = 31 * result + (bperprice != null ? bperprice.hashCode() : 0);
+        result = 31 * result + (btotalprice != null ? btotalprice.hashCode() : 0);
+        result = 31 * result + (bmaxtotalprice != null ? bmaxtotalprice.hashCode() : 0);
+        result = 31 * result + (acreage != null ? acreage.hashCode() : 0);
+        result = 31 * result + (maxacreage != null ? maxacreage.hashCode() : 0);
+        result = 31 * result + (conditions != null ? conditions.hashCode() : 0);
+        result = 31 * result + (discounts != null ? discounts.hashCode() : 0);
+        result = 31 * result + (starttime != null ? starttime.hashCode() : 0);
+        result = 31 * result + (endtime != null ? endtime.hashCode() : 0);
+        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + (agelimit != null ? agelimit.hashCode() : 0);
+        result = 31 * result + (landtime != null ? landtime.hashCode() : 0);
+        result = 31 * result + (tencompany != null ? tencompany.hashCode() : 0);
+        result = 31 * result + (tencost != null ? tencost.hashCode() : 0);
+        result = 31 * result + (tentype != null ? tentype.hashCode() : 0);
+        result = 31 * result + (greenrate != null ? greenrate.hashCode() : 0);
+        result = 31 * result + (carport != null ? carport.hashCode() : 0);
+        result = 31 * result + (cubage != null ? cubage.hashCode() : 0);
+        result = 31 * result + (advice != null ? advice.hashCode() : 0);
+        result = 31 * result + (fitment != null ? fitment.hashCode() : 0);
+        result = 31 * result + (cta != null ? cta.hashCode() : 0);
+        result = 31 * result + (bsalestatus != null ? bsalestatus.hashCode() : 0);
+        result = 31 * result + (buildType != null ? buildType.hashCode() : 0);
+        return result;
+    }
 }

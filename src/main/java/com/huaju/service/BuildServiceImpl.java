@@ -99,5 +99,14 @@ public class BuildServiceImpl implements BuildService{
     public List<Build> selectAdviceBuild(){
         return buildMapper.selectAdviceBuild();
     }
-
+    @Override
+    //附近楼盘城市搜索（张宝）
+    public List<Build> selectNearBuildByCity(String city){
+        return buildMapper.selectNearBuildByCity(city);
+    }
+    @Override
+    //附近楼盘城区搜索（张宝）
+    public List<Build> selectNearBuildByBrea(String brea){
+        return buildMapper.selectNearBuildByBrea(brea);
+    }
 }

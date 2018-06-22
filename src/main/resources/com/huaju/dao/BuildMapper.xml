@@ -169,4 +169,14 @@
     <select id="selectAdviceBuild" resultType="Build">
         SELECT * from build WHERE advice != "" AND advice is not null
     </select>
+    <!--//附近城市楼盘搜索（张宝）-->
+    <!--public List<Build> selectNearBuildByCity(String city);-->
+    <select id="selectNearBuildByCity" resultType="Build" parameterType="String">
+        SELECT * from build WHERE city = #{_parameter}
+    </select>
+    <!--//附近楼盘城区搜索（张宝）-->
+    <!--public List<Build> selectNearBuildByBrea(String brea);-->
+    <select id="selectNearBuildByBrea" resultType="Build" parameterType="String">
+        SELECT * from build WHERE barea = #{_parameter}
+    </select>
 </mapper>

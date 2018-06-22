@@ -317,7 +317,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${disblist.buildingid}">${disblist.building}</a></h4>
                         <div class="offer1">
                             <div class="offer-left">
-                                <a href="#" class="mask"><img width="245" height="170" src="${pageContext.request.contextPath}/${disblist.bpicture}" class="img-responsive zoom-img" alt=""/></a>
+                                <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${disblist.buildingid}" class="mask"><img width="245" height="170" src="${pageContext.request.contextPath}/${disblist.bpicture}" class="img-responsive zoom-img" alt="${disblist.building}"/></a>
                             </div>
                             <div class="offer-right">
                                 <h5>最低<label>￥</label><fmt:formatNumber value=" ${disblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起<span></span></h5>
@@ -345,7 +345,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <c:if test="${i.index<5}">
             <div class="feature-grids">
                 <div class="col-md-3 feature-grid">
-                    <img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive" alt="/">
+                    <img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive zoom-img" alt="${advblist.building}">
                     <h5 style="font-size: 24px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}"></a>${advblist.building}</h5>
 
                     <p><fmt:formatNumber value=" ${advblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>

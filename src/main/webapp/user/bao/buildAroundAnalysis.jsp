@@ -211,22 +211,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="properties-grids">
                 <div class="col-md-9 properties-left">
                     <div class="clearfix"></div>
-                    <%--<div style="width:100%; min-width:1150px; min-height:600px;">--%>
-                        <%--<div style=" margin-right:10px;width:600px;height:600px;border:#ccc solid 1px;float:left;" id="l-map"></div>--%>
-                        <%--<div style=" background-color:cornsilk;float:left;border: solid rgba(255,31,32,0.75) 1px;width:455px; height:35px;">--%>
-                            <%--<ul style="height: 35px;overflow: auto;">--%>
-                                <%--<li class="dianji bgcolor" style="float: left;margin-right: 5px; text-align: center; width:80px;line-height:35px;"><a href="javascript:search('公交站',1000)">公交</a></li>--%>
-                                <%--<li class="dianji" style="float: left; margin-right: 5px;text-align: center; width:80px;line-height:35px;"><a href="javascript:search('地铁站',2000)">地铁</a></li>--%>
-                                <%--<li class="dianji" style="float: left;margin-right: 5px; text-align: center; width:80px;line-height:35px;"><a href="javascript:search('学校',3000)">学校</a></li>--%>
-                                <%--<li class="dianji" style="float: left; margin-right: 5px;text-align: center; width:80px;line-height:35px;"><a href="javascript:search('购物',3000)">购物</a></li>--%>
-                                <%--<li class="dianji" style="float: left;margin-right: 5px; text-align: center; width:80px;line-height:35px;"><a href="javascript:search('医疗',5000)">医疗</a></li>--%>
-                            <%--</ul>--%>
-                        <%--</div>--%>
-
-                        <%--<div style=" background-color:cornsilk;width:455px;height:600px;border:solid crimson 1px;float:left;" id="r-result">--%>
-
-                        <%--</div>--%>
-                    <%--</div>--%>
                     <%--楼盘周边--%>
                     <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;width: 1055px;">
                         <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
@@ -259,52 +243,69 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <br>
                         <%--环境规划图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">环境规划图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty environmentImgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">环境规划图（${fn:length(environmentImgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${environmentImgList}" var="environmentImg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${environmentImg.envirimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
 
+                        </c:if>
                         <br>
-                        <%--配套实景图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">配套实景图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <%--楼盘实景图--%>
+                        <c:if test="${not empty buildimgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">配套实景图（${fn:length(buildimgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${buildimgList}" var="arroundimg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${buildimgList.buildimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
 
+                        </c:if>
+                        <br>
+                    </div>
+
+                    <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;width: 1055px;">
+                        <br>
+                        <%--环境规划图--%>
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">附近楼盘</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${nearBuildList}" var="nearBuild">
+                                    <div class="col-md-3 feature-grid" style="width:247px;border:solid crimson 1px;">
+                                        <img width="245" height="170" src="${pageContext.request.contextPath}/${nearBuild.bpicture}" class="img-responsive zoom-img" alt="${nearBuild.building}">
+                                        <h5><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${nearBuild.buildingid}">${nearBuild.building}</a></h5>
+                                        单价：<p><fmt:formatNumber value="${nearBuild.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>
+                                        总价：<p>${nearBuild.btotalprice}—${nearBuild.bmaxtotalprice}</p>
+                                    </div>
+                                </c:forEach>
+                            </div>
 
 
                     </div>
-                    <div class="similar-grids">
-                        <h4 style="font-size: 30px;">相似楼盘</h4>
-                        <div class="col-md-4 similar-grid">
-                            <img src="images/s1.jpg" class="img-responsive" alt="/">
-                            <h5>60 Merrick Way, Miami</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                        </div>
-                        <div class="col-md-4 similar-grid">
-                            <img src="images/s2.jpg" class="img-responsive" alt="/">
-                            <h5>Villa in Hialeah, Dade</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                        </div>
-                        <div class="col-md-4 similar-grid">
-                            <img src="images/s3.jpg" class="img-responsive" alt="/">
-                            <h5>Villa in Hialeah, Dade</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
+                    <%--<div class="feature-grids">--%>
+                        <%--<h4 style="font-size: 30px;">附近楼盘</h4>--%>
+
+                        <%--<c:forEach items="${nearBuildList}" var="nearBuild">--%>
+                            <%--<div class="col-md-3 feature-grid">--%>
+                                <%--<img width="245" height="170" src="${pageContext.request.contextPath}/${nearBuild.bpicture}" class="img-responsive zoom-img" alt="${nearBuild.building}">--%>
+                                <%--<h5><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${nearBuild.buildingid}">${nearBuild.building}</a></h5>--%>
+                                <%--单价：<p><fmt:formatNumber value="${nearBuild.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>--%>
+                                <%--总价：<p>${nearBuild.btotalprice}—${nearBuild.bmaxtotalprice}</p>--%>
+                            <%--</div>--%>
+                        <%--</c:forEach>--%>
+                        <%--<div class="clearfix"></div>--%>
+                    <%--</div>--%>
                 </div>
                 <div class="clearfix"></div>
             </div>

@@ -320,7 +320,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
         <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}"
                style="color: #0b0b0b;">楼盘周边</a></li>
@@ -609,14 +609,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <c:if test="${not empty build.tencompany}">
                                             ${build.tencompany}
                                         </c:if></li>
-                                    <li><span>物业费用</span> : <c:if test="${empty build.tencost}">
+                                    <li><span>物业费用</span> : <c:if test="${empty build.tencost || build.tencost==''}">
                                         暂无数据
                                     </c:if>
                                         <c:if test="${not empty build.tencost}">
-                                            ${build.tencost}
+                                            ${build.tencost}元/㎡/月
                                         </c:if></li>
                                     <li><span>物业类型</span> : ${build.tenement}</li>
-                                    <li><span>水电燃气</span> : <c:if test="${empty build.tentype}">
+                                    <li><span>水电燃气</span> : <c:if test="${empty build.tentype || build.tentype==''}">
                                         暂无数据
                                     </c:if>
                                         <c:if test="${not empty build.tentype}">
@@ -626,7 +626,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         暂无数据
                                     </c:if>
                                         <c:if test="${not empty build.greenrate}">
-                                            ${build.greenrate}
+                                            ${build.greenrate}%
                                         </c:if></li>
                                     <li><span>车位情况</span> : <c:if test="${empty build.carport}">
                                         暂无数据

@@ -19,10 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RequestMapping(value = "/build")
 @RestController
@@ -221,6 +218,82 @@ public class BuildControl {
         }
     }
     }
+    @RequestMapping(value = "/buildAroundAnalysis.action")
+    public void buildAroundAnalysis(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        int bid = Integer.parseInt(buildingid);
+        Build build=buildService.selectBuildById(bid);
+        String city=build.getCity();
+        String barea=build.getCity();
+        if(build!=null){
+            List<Build> nearBuildList=new ArrayList<>();
+            Set<Build> nearBuildSet=new HashSet<>();
+            List<Build> bareaBuildList = buildService.selectNearBuildByCity(barea);
+            for(Build bareaBuild:bareaBuildList){
+                if(bareaBuild.getBuildingid()!=bid){
+                    nearBuildSet.add(bareaBuild);
+                }
+            }
+            if(nearBuildSet.size()<4){
+                List<Build> cityBuildList=buildService.selectNearBuildByCity(city);
+                for(Build cityBuild1:cityBuildList){
+                    if(cityBuild1.getBuildingid()!=bid){
+                        nearBuildSet.add(cityBuild1);
+                    }
+                }
+            }else {
+                for(Build build1:nearBuildSet){
+                    if(nearBuildList.size()>4){
+                        break;
+                    }
+                    nearBuildList.add(build1);
+                }
+            }
+            List<EnvironmentImg> environmentImgList=envirService.selectEnvironmentimgByBuildingid(bid);
+            List<Buildimg> buildimgList=buildimgService.selectBuildimgByBuildingid(bid);
+            request.setAttribute("nearBuildList",nearBuildList);
+            request.setAttribute("environmentImgList",environmentImgList);
+            request.setAttribute("buildimgList",buildimgList);
+            request.setAttribute("build", build);
+            request.getRequestDispatcher("/user/bao/buildAroundAnalysis.jsp").forward(request,response);
+        }
+    }
+    @RequestMapping(value = "/buildDetailInfo.action")
+    public void buildDetailInfo(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
+        if(build!=null){
+            request.setAttribute("build", build);
+            request.getRequestDispatcher("/user/bao/buildDetailInfo.jsp").forward(request,response);
+        }
+    }
+    @RequestMapping(value = "/buildImages.action")
+    public void buildImages(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        int bid = Integer.parseInt(buildingid);
+        Build build=buildService.selectBuildById(bid);
+        if(build!=null){
+            List<Graph> graphList=graphimgService.selectGraphByBuildingid(bid);
+            List<ProtoTypeImg> protoTypeImgList=protoService.selectProtoTypeImgByBuildingid(bid);
+            List<EnvironmentImg> environmentImgList=envirService.selectEnvironmentimgByBuildingid(bid);
+            List<Arroundimg> arroundimgList=arroundimgService.selectArroundimgByBuildingid(bid);
+            List<Buildimg> buildimgList=buildimgService.selectBuildimgByBuildingid(bid);
+            request.setAttribute("graphList",graphList);
+            request.setAttribute("protoTypeImgList",protoTypeImgList);
+            request.setAttribute("environmentImgList",environmentImgList);
+            request.setAttribute("arroundimgList",arroundimgList);
+            request.setAttribute("buildimgList",buildimgList);
+            request.setAttribute("build", build);
+            request.getRequestDispatcher("/user/bao/buildImags.jsp").forward(request,response);
+        }
+    }
+    @RequestMapping(value = "/index.action")
+    public void indexInfo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        List<Cta> ctas=ctaService.selectAllCta();
+        List<Build> discountBuildList = buildService.selectDiscountBuild();
+        List<Build> adviceBuildList=buildService.selectAdviceBuild();
+        request.setAttribute("ctas",ctas);
+        request.setAttribute("discountBuildList",discountBuildList);
+        request.setAttribute("adviceBuildList",adviceBuildList);
+        request.getRequestDispatcher("/user/bao/index.jsp").forward(request,response);
+}
     @RequestMapping(value = "/buildIndex.action",method ={RequestMethod.GET,RequestMethod.POST} )
     public void buildIndex(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         int bid=Integer.parseInt(buildingid);
@@ -271,39 +344,4 @@ public class BuildControl {
         request.getRequestDispatcher("/user/bao/buildIndex.jsp").forward(request,response);
 
     }
-    @RequestMapping(value = "/buildAroundAnalysis.action")
-    public void buildAroundAnalysis(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
-        if(build!=null){
-            request.setAttribute("build", build);
-            request.getRequestDispatcher("/user/bao/buildAroundAnalysis.jsp").forward(request,response);
-        }
-    }
-    @RequestMapping(value = "/buildDetailInfo.action")
-    public void buildDetailInfo(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
-        if(build!=null){
-            request.setAttribute("build", build);
-            request.getRequestDispatcher("/user/bao/buildDetailInfo.jsp").forward(request,response);
-        }
-    }
-    @RequestMapping(value = "/buildImages.action")
-    public void buildImages(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        Build build=buildService.selectBuildById(Integer.parseInt(buildingid));
-        if(build!=null){
-            request.setAttribute("build", build);
-            request.getRequestDispatcher("/user/bao/buildImages.jsp").forward(request,response);
-        }
-    }
-@RequestMapping(value = "/index.action")
-    public void indexInfo(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        List<Cta> ctas=ctaService.selectAllCta();
-        List<Build> discountBuildList = buildService.selectDiscountBuild();
-        List<Build> adviceBuildList=buildService.selectAdviceBuild();
-        request.setAttribute("ctas",ctas);
-        request.setAttribute("discountBuildList",discountBuildList);
-        request.setAttribute("adviceBuildList",adviceBuildList);
-        request.getRequestDispatcher("/user/bao/index.jsp").forward(request,response);
-}
-
 }

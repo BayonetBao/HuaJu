@@ -75,69 +75,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
-    <style>
-
-        html, body { font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;}
-
-        ul, ol { padding: 0;}
-
-
-
-        .banner { position: relative; overflow: auto; margin:10px auto; text-align: center;}
-
-        .banner li { list-style: none; }
-
-        .banner ul li { float: left; }
-
-
-        #b04 { width: 520px;}
-        #b04 .dots { position: absolute; left: 0; right: 0; bottom: 10px;}
-
-        #b04 .dots li
-        {
-            display: inline-block;
-
-            width: 10px;
-
-            height: 10px;
-
-            margin: 0 4px;
-
-            text-indent: -999em;
-
-            border: 2px solid #fff;
-
-            border-radius: 6px;
-
-            cursor: pointer;
-
-            opacity: .4;
-
-            -webkit-transition: background .5s, opacity .5s;
-
-            -moz-transition: background .5s, opacity .5s;
-
-            transition: background .5s, opacity .5s;
-
-        }
-
-        #b04 .dots li.active
-
-        {
-
-            background: #fff;
-
-            opacity: 1;
-
-        }
-
-
-        #b04 .arrow { position: absolute; top: 200px;}
-
-        #b04 #al { left: 15px;}
-
-        #b04 #ar { right: 15px;}
-    </style>
 </head>
 <body>
 <!---header--->
@@ -257,68 +194,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <br>
                         <%--效果图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">效果图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty graphList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">效果图（${fn:length(graphList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${graphList}" var="graphimg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${graphimg.graphurl}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
 
+                        </c:if>
                         <br>
                         <%--样板间--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">样板间（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty protoTypeImgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">样板间（${fn:length(protoTypeImgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${protoTypeImgList}" var="protoTypeImg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${protoTypeImg.prototype}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
+
+                        </c:if>
                         <br>
                         <%--环境规划图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">环境规划图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty environmentImgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">环境规划图（${fn:length(environmentImgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${environmentImgList}" var="environmentImg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${environmentImg.envirimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
+
+                        </c:if>
+                        <br>
+
+                        <%--配套实景图--%>
+                        <c:if test="${not empty arroundimgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">配套实景图（${fn:length(arroundimgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${arroundimgList}" var="arroundimg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${arroundimg.arrimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
+
+                        </c:if>
                         <br>
                         <%--楼盘实景图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">楼盘实景图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
-                        <br>
-                        <%--配套实景图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">配套实景图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty buildimgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">楼盘实景图（${fn:length(buildimgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${buildimgList}" var="buildimg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${buildimg.buildimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
 
-
-
+                        </c:if>
                     </div>
                 </div>
 
