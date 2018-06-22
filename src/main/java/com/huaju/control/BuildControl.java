@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -224,6 +225,28 @@ public class BuildControl {
     public void buildIndex(String buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         int bid=Integer.parseInt(buildingid);
         Build build=buildService.selectBuildById(bid);
+        Cookie[] cookies= request.getCookies();
+        Cookie huajuLou=new Cookie("huajuLou","");
+        huajuLou.setMaxAge(60*60*24*30);
+        huajuLou.setPath("/");
+        for(Cookie cookie:cookies){
+            if(cookie.getName().equals("huajuLou")){
+                huajuLou.setValue(cookie.getValue());
+                break;
+            }
+        }
+        String[] buildingids=huajuLou.getValue().split(",");
+        String ids="";
+        for(String id:buildingids){
+            if(id.equals(buildingid)){
+
+            }else {
+                ids=ids+","+id;
+            }
+        }
+        ids=buildingid+ids;
+        huajuLou.setValue(ids);
+        response.addCookie(huajuLou);
         Company company=buildService.selectCompanyByBuildId(bid);
         if(build!=null) {
             List<BuildType> buildTypes = buildTypeService.selectTypeCount(bid);

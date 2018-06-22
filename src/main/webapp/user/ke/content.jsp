@@ -43,7 +43,7 @@
                                     <span class="h3 text-black">${sessionScope.user.uname}</span>
                                     <small class="m-l">${sessionScope.user.remark}</small>
                                 </div>
-                                <a href="updatePassword.jsp" class="btn btn-sm btn-success btn-rounded">修改密码</a>
+                                <a href="${pageContext.request.contextPath}/user/ke/updatePassword.jsp" class="btn btn-sm btn-success btn-rounded">修改密码</a>
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -73,15 +73,14 @@
                             <div class="m-b-xs">
                                 <a href class="h4">${sessionScope.user.uname}</a>
                                 <span class="text-muted m-l-sm pull-right">
-                               <fmt:formatDate value="${comment.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
+                                    <fmt:formatDate value="${comment.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
                         </span>
                             </div>
                             <div class="m-b">
                                 <div> ${comment.comcontent} </div>
                                 <div class="m-t-sm">
-                                    <a href class="text-muted m-xs"><i class=""></i></a>
-                                    <a href class="text-muted m-xs"><i class=""></i></a>
                                     <a href class="text-muted m-xs"><i class="glyphicon glyphicon-thumbs-up"></i> ${fn:length(comment.favors)}</a>
+                                    <a class="text-muted m-xs" href="${pageContext.request.contextPath}/comment/selectCommentById.action?commentid=${comment.commentid}">查看详情</a>
                                 </div>
                             </div>
                         </div>

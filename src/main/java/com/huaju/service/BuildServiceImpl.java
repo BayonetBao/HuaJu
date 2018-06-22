@@ -21,7 +21,7 @@ public class BuildServiceImpl implements BuildService{
     public List<Company> selectCompanyInBuild() {
         return buildMapper.selectCompanyInBuild();
     }
-
+   //分页按条件查询楼盘 珂
     @Override
     public PageInfo<Build> selectBuildQueryPojo(Map<String, Object> cmap) {
         BuildQueryPojo buildQueryPojo = (BuildQueryPojo) cmap.get("buildQueryPojo");

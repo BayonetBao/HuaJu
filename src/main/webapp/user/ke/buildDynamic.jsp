@@ -236,9 +236,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1180px">
 
-        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="#">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
         <li style="margin-right:57px;"class="active"><a href="#" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:57px;" ><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
@@ -252,15 +252,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="properties-section" style="margin-top:0px;padding-top:10px;">
         <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:100%;">
             <div class="properties-grids">
-                <div class="col-md-12 properties-left">
+                <div class="col-md-12">
                     <div class="clearfix"></div>
                     <%--楼盘动态--%>
-                    <div class="timeline animated container" style="width: 1180px;">
+                    <div class="timeline animated col-md-8 " style="margin-left: 50px;" >
                     <c:forEach items="${dynamics}" var="d" varStatus="sta">
                        <c:choose>
                            <c:when test="${sta.index%2==0}">
                                <div class="timeline-row">
-                                   <div class="timeline-time"><small><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></small></div>
+                                   <div class="timeline-time"><small style="color: black;"><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd"></fmt:formatDate></small>${fn:substring(d.dytime,11,16)}</div>
                                    <div class="timeline-icon">
                                        <div class="bg-primary"><i class="glyphicon glyphicon-chevron-left"></i></div>
                                    </div>
@@ -274,7 +274,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                            </c:when>
                            <c:otherwise>
                                <div class="timeline-row">
-                                   <div class="timeline-time"><small><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd hh:mm:ss"></fmt:formatDate></small>6:14 PM</div>
+                                   <div class="timeline-time"><small style="color: black;"><fmt:formatDate value="${d.dytime}" pattern="yyyy-MM-dd"></fmt:formatDate></small>${fn:substring(d.dytime,11,16)}</div>
                                    <div class="timeline-icon">
                                        <div class="bg-warning"><i class="glyphicon glyphicon-chevron-right"></i></div>
                                    </div>
@@ -291,6 +291,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                    </c:forEach>
 
+                    </div>
+                    <div class="col-md-3 properties-right">
+                        <div class="feature" style="font-weight: 200;position: relative;top:-40px;">
+                            <h4><p style="font-size: 30px; font-family: 'arial', '微软雅黑'">足·迹</p></h4>
+                            <c:forEach items="${huajuCookie}" var="c" varStatus="status">
+                                <div class="feature-top">
+                                    <img src="${pageContext.request.contextPath}/${c.bpicture}" width="260px" height="170px" alt="/">
+                                    <p style="font-size: 24px;color: #131e26">${c.building}<br/>
+                                    <p>${c.bdetail},… <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${c.buildingid}">更多详情</a></p>
+                                </div>
+                                <c:if test="${status.index eq 4}">
+                                    <c:set var="exitId" value="0"/>
+                                </c:if>
+                            </c:forEach>
+                        </div>
                     </div>
             </div>
         </div>

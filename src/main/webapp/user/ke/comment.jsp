@@ -89,13 +89,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         所有
                                     </c:otherwise>
                                 </c:choose>评论<span class="badge badge-info" style="font-size:12px">${fn:length(comments)}
-                                <c:choose>
-                                    <c:when test="${commentQueryPojo.comtype!=null && commentQueryPojo.idtype != '' }">
-                                        (${commentQueryPojo.comtype})
-                                    </c:when>
-                                    <c:otherwise>
+                                 <c:choose>
+                                     <c:when test="${commentQueryPojo.comtype==null || commentQueryPojo.comtype eq ''}">
 
-                                    </c:otherwise></c:choose>
+                                     </c:when>
+                                     <c:otherwise>
+                                         (${commentQueryPojo.comtype})
+                                     </c:otherwise></c:choose>
 
                                 </span>
                                 </p>
@@ -251,8 +251,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     var recomment=recomments[i];
                                                     var zxdxx=JSON.stringify(recomment);
                                                     reul.before("<li id='reli_"+recomment.recommentid+ "' style='margin-left: 10px;margin-top: 10px;' class='ul_recomment'>"
-                                                        +"<a style='color: blue;display: inline;' href='id=recomment'>"+recomment.reusername+"</a>"+"回复 @"
-                                                        +"<a style='color: blue;display: inline;' href='id=recomments'>"+recomment.reobjectname+"</a>"+":  "
+                                                        +"<a style='color: blue;display: inline;' href='#'>"+recomment.reusername+"</a>"+"回复 @"
+                                                        +"<a style='color: blue;display: inline;' href='#'>"+recomment.reobjectname+"</a>"+":  "
                                                         +recomment.recontent+"      "+s+"      <a style='color:darkslategray;display: inline;' href='javascript:hui1("+zxdxx+")'>"+"回复</a></li>");
                                                     var type=${sessionScope.userType};
                                                     var id=${sessionScope.uid};

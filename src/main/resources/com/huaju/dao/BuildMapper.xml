@@ -98,7 +98,7 @@
            </if>
            <if test="typeid neq null">
                and buildingid in(
-               select buildingid from buildtype where typeid=#{typeid}
+               select buildingid from buildtype where typeid=#{typeid} and count !=0
                )
            </if>
            <if test="comid neq null">

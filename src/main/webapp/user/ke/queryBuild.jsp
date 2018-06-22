@@ -62,17 +62,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--三级联动-->
     <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.data.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/js/main.js"></script>
     <!-- FlexSlider -->
     <script src="${pageContext.request.contextPath}/user/ke/js/jquery.flexslider.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/flexslider.css" type="text/css" media="screen" />
     <script>
         // Can also be used with $(document).ready()
-        $(window).load(function() {
-            $('.flexslider').flexslider({
-                animation: "slide",
-                controlNav: "thumbnails"
+        $(window).load(function () {
+
+            'use strict';
+
+            var $distpicker = $('#distpicker');
+
+            $distpicker.distpicker({
+                province: '福建省',
+                city: '厦门市',
+                district: '思明区'
             });
+
+            $('#reset').click(function () {
+                $distpicker.distpicker('reset');
+            });
+
+            $('#reset-deep').click(function () {
+                $distpicker.distpicker('reset', true);
+            });
+
+            $('#destroy').click(function () {
+                $distpicker.distpicker('destroy');
+            });
+
+            $('#distpicker1').distpicker();
+
+            $('#distpicker2').distpicker({
+                province: '---- 所在省 ----',
+                city: '---- 所在市 ----',
+                district: '---- 所在区 ----'
+            });
+
+            $('#distpicker3').distpicker({
+                autoSelect: false,
+                province: '${buildQueryPojo.province}',
+                city: '${buildQueryPojo.city}',
+                district: '${buildQueryPojo.district}'
+            });
+
+            $('#distpicker4').distpicker({
+                placeholder: true
+            });
+
+            $('#distpicker5').distpicker({
+                autoSelect: false
+            });
+
         });
     </script>
     <!-- //FlexSlider-->
@@ -171,16 +212,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     <c:forEach items="${pageInfo.list}" var="b">
                                         <div class="forsale-grids" style="background-color:rgba(79,152,34,0.16)">
-                                            <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a>
-                                                <p  style="position: relative; left: 500px;top: -25px;">
+                                            <h4 style="padding-top: 15px;padding-bottom: 0px; height:48px;margin-bottom: 0px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a>
+                                                <p  style="position: relative; left: 500px;top: -30px;">
                                                     <c:forEach items="${b.buildType}" var="type">
+                                                        <c:if test="${type.count != 0}">
                                                         ${type.typename}(${type.count}) &nbsp;
+                                                        </c:if>
                                                     </c:forEach>
                                                 </p>
                                             </h4>
                                             <div class="forsale1">
-                                                <div class="forsale-left">
-                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" width="240px" height="170px" alt="楼盘"></a>
+                                                <div class="forsale-left" >
+                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}"  width="240px" height=190px" alt="楼盘"></a>
                                                 </div>
                                                 <div class="forsale-right">
                                                     <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
@@ -189,15 +232,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
                                                         <button style="border:none; background-color: #F60;">${b.conditions}</button>
                                                     </h5>
-                                                    <p>${b.bdetail}<br/>
-                                                        <a href="#"> 查看地图</a><br/> ${b.starttime}
-                                                        <a href="#">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
-                                                    </p>${b.discounts}
-                                                    <a href="#" class="button4">更多详情</a>
-                                                    <p><span>优惠信息</span> ${b.discounts}</p>
+                                                    <p style="padding: 5px;padding-left: 10px;margin: 0px;">${b.province}${b.city}${b.barea}${b.bdetail}<br/>
+                                                        <a href="#" class="glyphicon glyphicon-map-marker">查看地图</a><br/>
+                                                        <a href="#">${b.building}${b.acreage}-${b.maxacreage}平房源<fmt:formatDate value="${b.starttime}" pattern="yyyy-MM-dd"/>${b.conditions}</a><br/>
+                                                        <a href="#">${b.fitment};${b.bsalestatus}</a>
+                                                    </p>
+                                                    <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="position: relative;top:0px;left: 10px;">更多详情</a>
+                                                    <span style="position: relative;top: 25px;left: -50px;"><c:if test="${b.discounts != null}">
+                                                    优惠信息 : ${b.discounts}
+                                                    </c:if>&nbsp;</span>
                                                 </div>
                                                 <div class="zixunshi" style="margin-left: 700px;">
-                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/${b.cta.ctaimg}" href="" />
+                                                    <img style="border-radius:300px; width:90px; height: 90px; margin-top:-130px" src="${pageContext.request.contextPath}/${b.cta.ctaimg}" href="" />
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
 
@@ -205,7 +251,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     </p>
                                                 </div>
                                                 <div class="clearfix"></div>
-                                                <ul>
+                                                <ul style="position: relative;top: -10px;">
                                                     <c:choose>
                                                     <c:when test="${!empty b.charactere && !(b.charactere eq '')}">
                                                    <c:forEach items="${fn:split(b.charactere,'，')}" var="ch">
@@ -248,7 +294,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
                             <input type="hidden" value="1" id="curPage" name="curPage" />
                             <input type="hidden" value="" id="isonsale" name="isonsale"/>
-                            <div id="distpicker5">
+                            <div id="distpicker3">
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
                                     <label class="sr-only" for="province1">Province</label>

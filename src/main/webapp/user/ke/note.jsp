@@ -34,8 +34,8 @@
                 <div class="phPar">
                 ${recomment.recontent}
                     <p><fmt:formatDate value="${recomment.recomtime}" pattern="yyyy-MM-dd hh:mm:ss"/><span style="margin-left: 70%"> <a href="${pageContext.request.contextPath}/comment/selectCommentById.action?commentid=${recomment.commentid}&recommentid=${recomment.recommentid}">[查看详情]</a>
-                        <span class="re-show">[回复]</span>
-                        <span class="re-hide">[收起回复]</span>
+                        <span class="re-show" style="cursor: pointer">[回复]</span>
+                        <span class="re-hide" style="cursor: pointer">[收起回复]</span>
                     </span> </p>
                 </div><!--phPar/-->
                 <div class="reply">
