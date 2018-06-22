@@ -33,7 +33,7 @@
 <body >
 <button style="position: relative;left: 320px;top: 170px" id="replaceImg" class="l-btn">更换图片</button>
 <div style="height: 2px;">
-    <img id="finalImg" style="position: relative;left: 180px;top: 50px" src="${pageContext.request.contextPath}/user/ke/images/userImg/${user.userpic}" width="120px;" height="120px" class="img-circle">
+    <img id="finalImg" style="position: relative;left: 180px;top: 50px" src="${pageContext.request.contextPath}/${user.userpic}" width="120px;" height="120px" class="img-circle">
 </div>
 <!--图片裁剪框 start-->
 <div style="display: none;width:500px;height:360px;" class="tailoring-container" >

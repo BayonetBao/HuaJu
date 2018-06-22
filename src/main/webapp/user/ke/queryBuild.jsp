@@ -247,7 +247,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
 
-                                                        <a>${b.cta.ctarelname}|咨询</a>
+                                                        <a href="#">${b.cta.ctarelname}|咨询</a>
                                                     </p>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -290,8 +290,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-3 properties-right" >
                     <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif">我要找房</h4>
                         <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                            <div class="col-md-12 search" style=" font-size:28px;font-weight:100;font-family: 'Open Sans', sans-serif;cursor: pointer;margin-bottom: 20px;margin-top: -20px;">
+                                <input type="submit" value="我要找房"  style="height: 80px;"/>
+                            </div>
                             <input type="hidden" value="1" id="curPage" name="curPage" />
                             <input type="hidden" value="" id="isonsale" name="isonsale"/>
                             <div id="distpicker3">
@@ -386,8 +388,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </select>
                                 </div>
                             </div>
-                            <button style="width: 140px;height: 50px;margin-top: 10px; font-size: 20px;" type="submit" class="btn btn-warning">搜索</button>
-                        </form>
+                            <div class="col-md-12 search" style="margin-top: 10px;">
+                                <input type="submit" value="搜索"  style="height: 50px;"/>
+                            </div>
+                         </form>
                     </div>
 <script>
     function onsale() {

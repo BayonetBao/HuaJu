@@ -1,5 +1,6 @@
 package com.huaju.control;
 
+import com.huaju.entity.Buildimg;
 import com.huaju.entity.User;
 import com.huaju.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 @RequestMapping(value = "/user")
 @RestController
@@ -35,31 +35,50 @@ public class UserControl {
         }
     }
     @RequestMapping(value = "/uploadImg.action",method = {RequestMethod.GET,RequestMethod.POST})
-    public String uploadImg(@RequestParam("userpic") CommonsMultipartFile imgFileUp, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void uploadImg(@RequestParam("userpic") CommonsMultipartFile imgFileUp, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException {
         String result;
-        User user= (User) session.getAttribute("user");
-        String  filename=imgFileUp.getOriginalFilename();//获得文件名
-        //        以时间毫秒数命名
-        String ms=System.currentTimeMillis()+"";
-        filename=ms + "_"+ filename;//图片的新名字
-        String imgFile="E:\\GaoBo_ShiXun\\eclipseWork\\HuaJu\\src\\main\\webapp\\user\\ke\\images\\userImg";
-        String img =imgFile+"/"+filename;
-        File file=new File(img);
-        if(!file.exists()){
-            file.mkdirs();
-        }else{
-            file.delete();
-            file.mkdirs();
+        InputStream is = null;
+        OutputStream os = null;
+        if(!imgFileUp.isEmpty()) {
+            try {
+                is = imgFileUp.getInputStream();
+
+                String uploadPath = "/user/ke/images/userImg";
+                String realUploadPath = request.getSession().getServletContext().getRealPath(uploadPath);
+
+                User user = (User) session.getAttribute("user");
+                String des = realUploadPath + "/"+user.getUserid()+session.getAttribute("userType")+imgFileUp.getOriginalFilename();
+                user.setUserpic(uploadPath + "/" + user.getUserid()+session.getAttribute("userType")+imgFileUp.getOriginalFilename());
+                userService.updatePic(user);
+                System.out.println(user.getUserid());
+                System.out.println(user.getUserpic());
+                session.setAttribute("user", user);
+                os = new FileOutputStream(des);
+                byte[] buffer = new byte[1024];
+                int len = 0;
+                while ((len = is.read(buffer)) > 0) {
+                    os.write(buffer);
+                }
+            } catch (Exception e) {
+                e.getStackTrace();
+            } finally {
+                if (is != null) {
+                    try {
+                        is.close();
+                    } catch (Exception e2) {
+                        e2.printStackTrace();
+                    } finally {
+                        if (os != null) {
+                            try {
+                                os.close();
+                            } catch (Exception e2) {
+                                e2.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
         }
-        imgFileUp.transferTo(file);
-        user.setUserpic(filename);
-        request.getSession().setAttribute("user",user);
-        if(userService.updatePic(user)) {
-            result = "success";
-        }else{
-            result="fail";
-        }
-        return result;
     }
     @RequestMapping(value = "/updatePassword.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void updatePassword(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -78,6 +97,7 @@ public class UserControl {
     public void init(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
         session.setAttribute("uid",-1);
         session.setAttribute("userType",-1);
+        session.setAttribute("user",null);
         response.sendRedirect(request.getContextPath()+"/build/index.action");
     }
 }

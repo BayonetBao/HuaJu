@@ -129,8 +129,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </c:choose>
                                             style="font-size:14px;width:70%;height:190px;">
                                         <c:set value="${comment.userpic}" var="pic"/>
-                                        <c:if test="${comment.userpic eq null||comment.userpic eq ''}"><c:set value="a2.jpg" var="pic"></c:set></c:if>
-                                        <img src="${pageContext.request.contextPath}/user/ke/images/userImg/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
+                                        <c:if test="${comment.userpic eq null||comment.userpic eq ''}"><c:set value="user/ke/images/a2.jpg" var="pic"></c:set></c:if>
+                                        <c:if test="${comment.idtype eq 1}">
+                                        <img src="${pageContext.request.contextPath}/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
+                                        </c:if>
+                                        <c:if test="${comment.idtype eq 3}">
+                                            <img src="${pageContext.request.contextPath}/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
+                                        </c:if>
                                         <p style="margin-top:10px;margin-left:20px;margin-bottom: 60px;"><span class="glyphicon glyphicon-user">${comment.uname}
                                             <c:choose>
                                                 <c:when test="${comment.idtype eq 3}"><a href=""><img src="${pageContext.request.contextPath}/user/ke/images/zixunshi.png"

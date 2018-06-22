@@ -719,7 +719,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </div>
                     <%--楼盘动态--%>
-                    <div class="container" style="border: solid cornsilk 1px;padding-bottom: 10px;">
+                    <div class="container" style="border: solid cornsilk 1px;padding-bottom: 10px;width:1100px;margin-left: -50px;">
                         <iframe src="${pageContext.request.contextPath}/dynamic/selectDynamicByBuild.action?buildingid=${build.buildingid}"
                                 name="myframe" width='100%' height='78%' frameborder='0' id="myframe">
                         </iframe>

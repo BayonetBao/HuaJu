@@ -63,19 +63,19 @@
                     <div class="categ">
                         <p style="font-size: 24px;font-weight: 300;margin-top:60px;padding: 2px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" target="_blank">&nbsp;</a></p>
                         <ul>
-                            <li><a href="#">位置:<span class="glyphicon glyphicon-map-marker">${build.province}${build.city}${build.barea}${build.bdetail}</span></a></li>
+                            <c:set value="${build.province}${build.city}${build.barea}${build.bdetail}" var="d"/>
+                            <li><a href="#" title="${d}">位置:<span class="glyphicon glyphicon-map-marker">${fn:substring(d,0,10)}...</span></a></li>
+                            <li><a href="#" title="${build.advice}">大致描述:<c:if test="${build.advice != null}">
+                                ${fn:substring(build.advice,0,10)}...</c:if><c:if test="${build.advice == null}">暂无</c:if></a></li>
                             <li><a href="#">单价：均${build.bperprice}/㎡</a></li>
                             <li><a href="#">总价：${build.btotalprice}-${build.bmaxtotalprice}万元</a></li>
                             <li><a href="#">装修情况：${build.fitment}</a></li>
                             <li><a href="#">特点：${build.charactere}</a></li>
                             <li><a href="#">销售情况：${build.bsalestatus}</a></li>
                             <li><a href="#">物业公司：${build.tencompany}</a></li>
+                            <li><a href="#" title="${build.discounts}">优惠信息:<c:if test="${build.discounts != null}">
+                               ${fn:substring(build.discounts,0,10)}...</c:if><c:if test="${build.discounts == null}">暂无</c:if></a></li>
                             <li><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" target="_blank">查看更多</a></li>
-                            <li><a href="#">优惠信息:<c:if test="${build.discounts != null}">
-                                优惠信息 : ${build.discounts}
-                            </c:if><c:if test="${build.discounts == null}">
-                                暂无
-                            </c:if></a></li>
 
                         </ul>
                     </div>
@@ -92,7 +92,7 @@
              style="font-size:14px;width:90%;height:180px;margin-left: 35px;">
     <c:set value="${comment.userpic}" var="pic"/>
     <c:if test="${comment.userpic eq null||comment.userpic eq ''}"><c:set value="a2.jpg" var="pic"></c:set></c:if>
-    <img src="${pageContext.request.contextPath}/user/ke/images/userImg/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
+    <img src="${pageContext.request.contextPath}/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
     <p style="margin-top:10px;margin-left:20px;margin-bottom: 60px;"><span class="glyphicon glyphicon-user">${comment.uname}
                                             <c:choose>
                                                 <c:when test="${comment.idtype eq 3}"><a href=""><img src="${pageContext.request.contextPath}/user/ke/images/zixunshi.png"
