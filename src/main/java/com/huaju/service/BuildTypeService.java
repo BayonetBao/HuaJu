@@ -1,6 +1,7 @@
 package com.huaju.service;
 
 import com.huaju.entity.BuildType;
+import com.huaju.entity.House;
 import com.huaju.entity.Type;
 
 import java.util.List;
@@ -14,5 +15,10 @@ public interface BuildTypeService {
 
     //    根据楼盘id查询楼盘下所有的房子个数    全部（n）ZYJ
     public int sumHouse(int buildingid);
+
+    //    根据居室id列出相应的房子信息  点击二居（3）列出相应的3个房子信息ZYJ
+    public List<House> showhouse2(int typeid , int buildingid);
+    //    根据楼盘id查居室id ZYJ
+    public List<BuildType> listbuildtype(int buildingid);
 
 }

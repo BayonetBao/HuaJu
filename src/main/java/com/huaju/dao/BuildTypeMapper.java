@@ -1,6 +1,7 @@
 package com.huaju.dao;
 
 import com.huaju.entity.BuildType;
+import com.huaju.entity.House;
 import com.huaju.entity.Type;
 
 import java.util.List;
@@ -19,4 +20,12 @@ public interface BuildTypeMapper {
     public int sumHouse(int buildingid);
 
 
+//    根据居室id列出相应的房子信息  点击二居（3）列出相应的3个房子信息ZYJ
+    public List<House> showhouse2(int typeid , int buildingid);
+
+//    根据楼盘id查居室id ZYJ
+    public List<BuildType> listbuildtype(int buildingid);
+
+//    查询居室的种类根据楼盘id
+    public List<BuildType> numJushiType(int buildingid);
 }

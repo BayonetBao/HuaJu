@@ -128,7 +128,6 @@
 
 
 
-
     function remove(id) {
         if (confirm("确定要删除么？")){
             var url="${pageContext.request.contextPath}/houseInfo/remove.action";

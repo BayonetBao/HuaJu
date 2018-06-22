@@ -36,9 +36,41 @@
        SELECT SUM(count) FROM buildtype WHERE buildingid=#{_parameter}
     </select>
 
-    <!--&lt;!&ndash;public List<BuildType> selectByBuildingid(Integer buildingid);&ndash;&gt;-->
-    <!--<select id="selectByBuildingid" resultType="BuildType" parameterType="int">-->
-        <!--SELECT buildtype.*,typename from buildtype,type where type.typeid=buildtype.typeid-->
-        <!--and buildingid=#{_parameter}-->
-<!--</select>-->
+
+    <!--//    根据居室id列出相应的房子信息  点击二居（3）列出相应的3个房子信息ZYJ-->
+
+    <resultMap id="showhouse2Map" type="House">
+        <id column="houseid" property="houseid"/>
+        <result column="hname" property="hname"/>
+        <result column="hmoney" property="hmoney"/>
+        <result column="harea" property="harea"/>
+        <result column="hsalestatus" property="hsalestatus"/>
+        <result column="htypeimg" property="htypeimg"/>
+        <result column="hperprice" property="hperprice"/>
+        <result column="updatename" property="updatename"/>
+        <result column="forward" property="forward"/>
+        <result column="htype" property="htype"/>
+        <result column="payment" property="payment"/>
+        <result column="monthpay" property="monthpay"/>
+        <result column="analysis" property="analysis"/>
+        <association property="buildType" javaType="buildType">
+            <id column="butypeid" property="butypeid" />
+            <result column="typeid" property="typeid"/>
+            <result column="buildingid" property="buildingid"/>
+        </association>
+    </resultMap>
+    <!--public List<House> showhouse2(int typeid ,int buildingid);-->
+    <select id="showhouse2" resultMap="showhouse2Map" parameterType="int">
+         SELECT h.houseid,h.hname,h.hmoney , h.harea , h.hsalestatus,h.htypeimg,h.hperprice,h.updatename,h.forward,h.htype,h.payment,h.monthpay ,h.analysis from house h,buildtype b where h.butypeid=b.butypeid AND b.typeid=#{param1} AND  b.buildingid=#{param2}
+
+    </select>
+
+
+    <!--//    根据楼盘id查居室id ZYJ-->
+    <!--public List<BuildType> listbuildtype(int buildingid);-->
+    <select id="listbuildtype" parameterType="int" resultType="BuildType" >
+        SELECT typeid from buildtype where buildingid=#{_parameter} AND count!=0
+    </select>
+
+
 </mapper>
