@@ -66,7 +66,7 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">楼盘名称：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <select id="buildingid" onblur="check(this.value)" name="buildingid" class="form-control input-sm" style="width:315px;margin-left:20px;margin-top:10px;">
+                            <select id="buildingid"  name="buildingid" class="form-control input-sm" style="width:315px;margin-left:20px;margin-top:10px;">
                                 <option value="">请选择</option>
                                 <c:forEach items="${blist}" var="b">
                                <option value="${b.buildingid}">${b.building}</option>
@@ -77,19 +77,19 @@
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right"  valign="middle" class="borderright borderbottom bggray">动态标题：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input type="text" id="dytitle" name="dytitle" value="" onblur="check(this.value)" class="text-word"  style="width: 330px;">
+                            <input type="text" id="dytitle" name="dytitle" value=""  class="text-word"  style="width: 330px;">
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">动态时间：</td>
                         <td align="left" valign="middle" class="borderright borderbottom main-for">
-                            <input id="dytime" name="dytime" value="" onblur="check(this.value)" class="Wdate"  style="width: 330px;" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-{%d} 00:00:00'})"/>
+                            <input id="dytime" name="dytime" value="" class="Wdate"  style="width: 330px;" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-{%d} 00:00:00'})"/>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
                         <td align="right" valign="middle" class="borderright borderbottom bggray">动态内容：</td>
                         <td align="left"  valign="middle" class="borderright borderbottom main-for">
-                            <textarea id="dcontent" onblur="check(this.value)" name="dcontent" cols="58" rows="4" align="center"></textarea>
+                            <textarea id="dcontent"  name="dcontent" cols="58" rows="4" align="center"></textarea>
                         </td>
                     </tr>
                     <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -101,12 +101,14 @@
                 </table>
             </form>
             <script>
-                function check(zhi) {
-                    if(zhi==""){
-                        alert("不能为空奥~~");
-                    }
-                }
                 function addDynamic(){
+                    var buildingid=$("#buildingid").val();
+                    var dytitle=$("#dytitle").val();
+                    var dytime=$("#dytime").val();
+                    var dcontent=$("#dcontent").val();
+                    if(buildingid==""||dytitle==""||dytime==""||dcontent==""){
+                        alert("不能为空");
+                    }else{
                     if(confirm("你确认要添加吗?")){
                         var buildingid=$("#buildingid");
                         var dytitle=$("#dytitle");
@@ -120,7 +122,11 @@
                                 dytitle.val("");
                                 dytime.val("");
                                 dcontent.val("");
-                                alert(data);
+                                if(confirm("添加成功，是否继续添加呢？")){
+
+                                }else{
+                                    location.replace("${pageContext.request.contextPath}/dynamic/selectAllDynamicByQueryPojo.action");
+                                }
                             },
                             error:function(XMLHttpRequest, textStatus, errorThrown){
                                 alert("Error")
@@ -129,6 +135,7 @@
                         });
                     }
 
+                }
                 }
             </script>
         </td>

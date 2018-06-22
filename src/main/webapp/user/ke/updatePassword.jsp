@@ -38,9 +38,9 @@
     <div class="form-group">
         <label for="newpwd" class="col-sm-2 control-label">新密码</label>
         <div class="col-sm-6">
-            <input type="password" name="newpwd" class="form-control" id="newpwd" placeholder="Password">
+            <input type="password"  onblur="checknewpwd(this)" name="newpwd" class="form-control" id="newpwd" placeholder="Password">
         </div>
-        <span></span>
+        <span id="newupwd2span"></span>
     </div>
     <div class="form-group">
         <label for="newpwd1" class="col-sm-2 control-label">确认密码</label>
@@ -98,6 +98,23 @@
             document.getElementById("newupwd1span").innerHTML="密码不一致";
             span.addClass("s2");
             span.addClass(" glyphicon glyphicon-remove");
+        }
+    }
+    function checknewpwd(obj) {
+        var span=$("#newupwd2span");
+        var newpwd=$("#upwd");
+        if(newpwd.val()==obj.value){
+            span.removeClass("s1");
+            span.removeClass("glyphicon glyphicon-ok");
+            document.getElementById("newupwd2span").innerHTML="不能和原密码一样";
+            span.addClass("s2");
+            span.addClass(" glyphicon glyphicon-remove");
+        }else {
+            span.removeClass("s2");
+            span.removeClass(" glyphicon glyphicon-remove");
+            document.getElementById("newupwd2span").innerHTML="密码格式正确";
+            span.addClass("s1");
+            span.addClass("glyphicon glyphicon-ok");
         }
     }
 </script>

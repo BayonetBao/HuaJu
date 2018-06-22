@@ -23,14 +23,13 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/font-awesome.min.css" type="text/css" />
     <style>
         body{
-            background-color: rgba(255,229,9,0.3);
             overflow: hidden;
         }
     </style>
 </head>
 <body style="height: auto" >
-<div style="border: 1px;height: 30px;"></div>
-<div class="app app-header-fixed container  bg-dark" id="maindiv" >
+<div style="border: 1px;height: 10px;"></div>
+<div class="app app-header-fixed  bg-dark" id="maindiv" >
     <!-- navbar -->
     <div class="app-header navbar" >
         <!-- navbar header -->
@@ -128,7 +127,7 @@
                 <nav ui-nav class="navi">
                     <ul class="nav">
                          <li >
-                             <a href="${pageContext.request.contextPath}/user/ke/content.jsp" target="myframe" class="auto">
+                             <a href="${pageContext.request.contextPath}/comment/selectCommentByUser.action" target="myframe" class="auto">
                              <span class="pull-right text-muted">
                           </span>
                                  <i class="glyphicon glyphicon-hand-right"></i>
@@ -155,7 +154,7 @@
                             <a href="${pageContext.request.contextPath}/recomment/selectRecommentById.action?reobjectid=${sessionScope.uid}&reobjectType=${sessionScope.userType}&restate=0"  target="myframe"  class="auto">
                                 <b class="badge bg-info pull-right">9</b>
                                 <i class="glyphicon glyphicon-envelope icon text-info-lter"></i>
-                                <span >我的消息</span>
+                                <span >我的私信</span>
                             </a>
                         </li>
                         <li>

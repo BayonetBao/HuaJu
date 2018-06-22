@@ -146,7 +146,7 @@
             共<b>${pageInfo.total}</b>条&nbsp;&nbsp;
             <a href="javascript:getPage(${pageInfo.firstPage})"  target="mainFrame">首页</a>
             <a href="javascript:getPage(${pageInfo.prePage})" target="mainFrame">上一页</a>
-            <span>当前第<b>${pageInfo.pageNum}</b>页</span>
+            <span><b>${pageInfo.pageNum}/${pageInfo.pages}</b></span>
             <c:if test="${!pageInfo.isLastPage}"><a href="javascript:getPage(${pageInfo.nextPage})" target="mainFrame">下一页</a></c:if>
             <a href="javascript:getPage(${pageInfo.lastPage})" target="mainFrame">末页</a>
         </td>
