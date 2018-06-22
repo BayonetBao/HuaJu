@@ -2,6 +2,7 @@ package com.huaju.service;
 
 import com.huaju.dao.BuildTypeMapper;
 import com.huaju.entity.BuildType;
+import com.huaju.entity.House;
 import com.huaju.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,15 @@ public class BuildTypeServiceImpl implements BuildTypeService{
         return buildTypeMapper.sumHouse(buildingid);
     }
 
+    //    根据居室id列出相应的房子信息  点击二居（3）列出相应的3个房子信息ZYJ
+    @Override
+    public List<House> showhouse2(int typeid, int buildingid) {
+        return buildTypeMapper.showhouse2(typeid,buildingid);
+    }
+    //    根据楼盘id查居室id ZYJ
+    @Override
+    public List<BuildType> listbuildtype(int buildingid) {
+        return buildTypeMapper.listbuildtype(buildingid);
+    }
 
 }
