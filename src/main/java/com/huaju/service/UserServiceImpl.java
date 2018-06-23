@@ -21,6 +21,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean updatePic(User user) {
-        return userMapper.updateUser(user);
+        return userMapper.updatePic(user);
     }
 }

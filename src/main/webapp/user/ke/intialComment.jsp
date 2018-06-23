@@ -41,38 +41,62 @@
         .error{
             color: #ff0d20;
         }
+        a:hover{
+            background-color:whitesmoke;
+        }
     </style>
 </head>
 <body>
 <div class="content" >
     <div class="blog-section" style="margin: 0px;padding:0px;">
             <div class="blog-grids" >
-                <div class="col-md-6 blog-grid"  style="margin: 0px;padding-left: 12px;">
+                <div class="col-md-8 blog-grid"  style="margin-top: 10px;padding-left: 35px;">
                     <div class="blog">
-                        <p style="font-size: 24px;font-weight: 300;margin:0px;padding: 2px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" target="_blank">${build.building}</a></p>
-                        <p>January 05, 2016 / <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">查看更多</a> </p>
-                        <a href="#"><img src="${pageContext.request.contextPath}/user/bao/images/g4.jpg" class="img-responsive" alt=""/></a>
-                        <p>Tart donut gummi bears unerdwear.com tootsie roll chocolate bar gummi bears bear claw. Apple pie tart chocolate cake jelly beans. Unerdwear.com dragée sweet muffin icing macaroon. Jelly marzipan toffee cotton candy sweet roll. Jelly croissant jujubes carrot cake marshmallow donut biscuit wafer marzipan. Muffin pastry jujubes donut pastry chocolate bar cake candy chocolate. Dessert donut</p>
-                        <a href="#" class="button5 hvr-shutter-out-horizontal">so on</a>
+                        <p style="font-size: 24px;font-weight: 300;margin:0px;padding: 2px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" target="_blank">${build.building}</a>
+                        <div style="height: 2px;width:1050px;background-color:crimson;position: relative;top:10px;"></div>
+                        </p>
+                        <p style="margin-top: 0px;padding-top: 0px;"><fmt:formatDate value="${build.starttime}" pattern="yyyy-MM-dd hh:mm:ss"/> <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">查看更多</a> </p>
+                        <a href="#"><img src="${pageContext.request.contextPath}/${build.bpicture}" width="550px" height="280px" alt=""/></a>
                     </div>
                 </div>
+                <div class="col-md-3 blog-grid1">
+                    <div class="categ">
+                        <p style="font-size: 24px;font-weight: 300;margin-top:60px;padding: 2px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" target="_blank">&nbsp;</a></p>
+                        <ul>
+                            <c:set value="${build.province}${build.city}${build.barea}${build.bdetail}" var="d"/>
+                            <li><a href="#" title="${d}">位置:<span class="glyphicon glyphicon-map-marker">${fn:substring(d,0,10)}...</span></a></li>
+                            <li><a href="#" title="${build.advice}">大致描述:<c:if test="${build.advice != null}">
+                                ${fn:substring(build.advice,0,10)}...</c:if><c:if test="${build.advice == null}">暂无</c:if></a></li>
+                            <li><a href="#">单价：均${build.bperprice}/㎡</a></li>
+                            <li><a href="#">总价：${build.btotalprice}-${build.bmaxtotalprice}万元</a></li>
+                            <li><a href="#">装修情况：${build.fitment}</a></li>
+                            <li><a href="#">特点：${build.charactere}</a></li>
+                            <li><a href="#">销售情况：${build.bsalestatus}</a></li>
+                            <li><a href="#">物业公司：${build.tencompany}</a></li>
+                            <li><a href="#" title="${build.discounts}">优惠信息:<c:if test="${build.discounts != null}">
+                               ${fn:substring(build.discounts,0,10)}...</c:if><c:if test="${build.discounts == null}">暂无</c:if></a></li>
+                            <li><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" target="_blank">查看更多</a></li>
+
+                        </ul>
+                    </div>
         </div>
     </div>
 </div>
+    <div class="clearfix"></div>
 <div id="div_${comment.commentid}"
         <c:choose>
             <c:when test="${fn:contains(comment.comtype,'好评')}"> class="alert alert-success" </c:when>
             <c:when test="${fn:contains(comment.comtype,'中评')}">class="alert alert-info"</c:when>
             <c:otherwise>class="alert alert-warning"</c:otherwise>
         </c:choose>
-             style="font-size:14px;width:100%;height:170px;margin-left: 10px;">
+             style="font-size:14px;width:90%;height:180px;margin-left: 35px;">
     <c:set value="${comment.userpic}" var="pic"/>
     <c:if test="${comment.userpic eq null||comment.userpic eq ''}"><c:set value="a2.jpg" var="pic"></c:set></c:if>
-    <img src="${pageContext.request.contextPath}/user/ke/images/userImg/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
+    <img src="${pageContext.request.contextPath}/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
     <p style="margin-top:10px;margin-left:20px;margin-bottom: 60px;"><span class="glyphicon glyphicon-user">${comment.uname}
                                             <c:choose>
                                                 <c:when test="${comment.idtype eq 3}"><a href=""><img src="${pageContext.request.contextPath}/user/ke/images/zixunshi.png"
-                                                                                                      style="margin-left:-93px;margin-top:-65px;width: 135px;height: 60px;" alt="咨询师" title="向他咨询"></a></c:when><c:when test="${comment.idtype eq 2}"><a href=""><img src="" alt="开发商" title="向他咨询"></a></c:when><c:otherwise><a href=""><img src="" alt="用 户" title="与他讨论"></a></c:otherwise>
+                                                                                                      style="margin-left:-93px;margin-top:-65px;width: 135px;height: 60px;" alt="咨询师" title="向他咨询"></a></c:when><c:when test="${comment.idtype eq 2}"><a href=""><img src="" alt="开发商" title="向他咨询"></a></c:when><c:otherwise><a href=""><img src="" alt=".." title="与他讨论"></a></c:otherwise>
                                             </c:choose>
                                         </span><p>
     <p class="" style="font-size:16px;padding-left:15%;margin-top:-180px;">${comment.comcontent}</p>
@@ -83,7 +107,7 @@
                                                          <c:otherwise>class="glyphicon glyphicon-thumbs-down"</c:otherwise>
     </c:choose>
 
-                                                         style="position: relative;top:29%;left: 17%;">
+                                                         style="position: relative;top:53%;left: 12%;">
         <fmt:formatDate value="${comment.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
         <c:choose>
         <c:when test="${sessionScope.userType eq comment.idtype && sessionScope.uid eq comment.id}">
@@ -97,7 +121,7 @@
                 <c:when test="${fn:contains(comment.comtype,'中评')}"> class="glyphicon glyphicon-hand-right"</c:when>
                 <c:otherwise>class="glyphicon glyphicon-thumbs-down"</c:otherwise>
             </c:choose>
-            style="position: relative;left: 55%;top:35%;">
+            style="position: relative;left: 55%;top:53%;">
         <a href="javascript:void(0)"  onclick="favor(${comment.commentid})">
             <c:set var="flag" value="false"/>
             <c:forEach items="${comment.favors}" var="fa">
@@ -107,10 +131,10 @@
             </c:forEach>
             <c:if test="${flag}"> <span class="red" id="click_favor_${comment.commentid}">取消点赞</span></c:if><c:if test="${!flag}"><span  id="click_favor_${comment.commentid}">点赞</span></c:if>(<span id="count_${comment.commentid}">${fn:length(comment.favors)}</span>)
         </a></p>
-    <div class="dropdown" style="margin-top:3.5%;margin-left:94%;">
+    <div class="dropdown" style="margin-top:6%;margin-left:95%;">
         <a data-toggle="dropdown" href="javascript:void(0)" onmousedown="seeRecomment(${comment.commentid})">回复<span  class="caret"></span></a>
-        <ul data-stopPropagation="true" class="dropdown-menu" style="margin-left: -880px;width: 980px;">
-            <li  id="ul_${comment.commentid}" > <a name="hui"></a><textarea  type="text" id="recontent_${comment.commentid}" data-stopPropagation="true" onfocus="this.value = '';" style="width:95%; margin-left: 15px;"  onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
+        <ul data-stopPropagation="true" class="dropdown-menu" style="margin-left: -967px;width: 1030px;margin-top: 20px;">
+            <li  id="ul_${comment.commentid}" ><textarea  type="text"  cols="40" id="recontent_${comment.commentid}" data-stopPropagation="true" onfocus="this.value = '';" style="width:95%; margin-left: 15px;"  onblur="if (this.value == '') {this.value = 'Your Comment...';}" required="">Your Comment...</textarea>
                 <div class="tags" style="margin-top: 0px;" data-stopPropagation="true">
                     <ul data-stopPropagation="true" style="margin-left: 80%">
                         <input type="hidden" id="reobjectname_${comment.commentid}"+ value="${comment.uname}"/>
@@ -126,16 +150,8 @@
     </div>
 
 </div>
-<div class="col-md-1 blog-grid1">
-    <div class="categ">
-        <ul>
-            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-            <li><a href="#">Duis aute irure dolor in culpa</a></li>
-            <li><a href="#">Sunt in culpa qui illum</a></li>
-            <li><a href="#">vel illum qui dolorem man</a></li>
-        </ul>
-    </div>
-</div>
+    <div class="clearfix" style="height: 150px;"></div>
+
 <script>
     function deleteComment(commentid) {
         if(confirm("此操作会删除所有回复，确定要删除么？")){
@@ -169,8 +185,8 @@
                     var recomment=recomments[i];
                     var zxdxx=JSON.stringify(recomment);
                     reul.before("<li id='reli_"+recomment.recommentid+ "' style='margin-left: 10px;margin-top: 10px;' class='ul_recomment'>"
-                        +"<a style='color: blue;display: inline;' href='id=recomment'>"+recomment.reusername+"</a>"+"回复 @"
-                        +"<a style='color: blue;display: inline;' href='id=recomments'>"+recomment.reobjectname+"</a>"+":  "
+                        +"<a style='color: blue;display: inline;' href='#'>"+recomment.reusername+"</a>"+"回复 @"
+                        +"<a style='color: blue;display: inline;' href='#'>"+recomment.reobjectname+"</a>"+":  "
                         +recomment.recontent+"      "+s+"      <a style='color:darkslategray;display: inline;' href='javascript:hui1("+zxdxx+")'>"+"回复</a></li>");
                     var type=${sessionScope.userType};
                     var id=${sessionScope.uid};

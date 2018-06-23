@@ -18,7 +18,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/js/jquery.min.js"></script>
     <style type="text/css">
         *{margin:0px; padding:0px;}
-        body{background:url("images/bg.jpg");}
+        body{background:url("${pageContext.request.contextPath}/user/ke/images/bg1.jpg")}
         #qq{width:600px;/*宽*/height:170px;/*高*/background:#fff;/*背景颜色*/
             margin:10px auto 30px; border-radius:5px;/*Html5 圆角*/}
         #qq p{font-size:12px; color:#666; font-family:"微软雅黑";
@@ -100,7 +100,7 @@
             $('.message').focus();//自动获取焦点
             return;
         }
-        $(".msgCon").append("<div class='msgBox'><dl><dt><img src='images/tx.jpg' width='50' height='50'/></dt><dd>神马都是浮云</dd></dl><div class='msgTxt'>"+txt+"</div></div>");
+        $(".msgCon").append("<div class='msgBox'><dl><dt><img src='${pageContext.request.contextPath}/${sessionScope.user.userpic}' width='50' height='50'/></dt><dd>${sessionScope.user.uname}</dd></dl><div class='msgTxt'>"+txt+"</div></div>");
         var s=$("#cart").val().split(",");
         if(check(s,txt)){
             $.ajax({

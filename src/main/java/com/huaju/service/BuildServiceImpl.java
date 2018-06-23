@@ -21,7 +21,7 @@ public class BuildServiceImpl implements BuildService{
     public List<Company> selectCompanyInBuild() {
         return buildMapper.selectCompanyInBuild();
     }
-
+   //分页按条件查询楼盘 珂
     @Override
     public PageInfo<Build> selectBuildQueryPojo(Map<String, Object> cmap) {
         BuildQueryPojo buildQueryPojo = (BuildQueryPojo) cmap.get("buildQueryPojo");
@@ -88,4 +88,25 @@ public class BuildServiceImpl implements BuildService{
         return typeMapper.slectAllType();
     }
 
+    @Override
+    //优惠楼盘搜索（张宝）
+    public List<Build> selectDiscountBuild(){
+      return  buildMapper.selectDiscountBuild();
+    }
+
+    @Override
+    //推荐楼盘搜索（张宝）
+    public List<Build> selectAdviceBuild(){
+        return buildMapper.selectAdviceBuild();
+    }
+    @Override
+    //附近楼盘城市搜索（张宝）
+    public List<Build> selectNearBuildByCity(String city){
+        return buildMapper.selectNearBuildByCity(city);
+    }
+    @Override
+    //附近楼盘城区搜索（张宝）
+    public List<Build> selectNearBuildByBrea(String brea){
+        return buildMapper.selectNearBuildByBrea(brea);
+    }
 }

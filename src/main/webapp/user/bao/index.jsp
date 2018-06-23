@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <style>
@@ -47,7 +48,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <!---fonts-->
+    <!---三级联-->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.data.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/js/main.js"></script>
+
     <script src="${pageContext.request.contextPath}/user/bao/js/responsiveslides.min.js"></script>
     <script>
         $(function () {
@@ -74,10 +79,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
-
 </head>
 <body>
-<!---header--->
 <div class="header-section">
     <div class="container">
         <div class="head-top">
@@ -101,7 +104,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <c:if test="${sessionScope.userType==3}">
                             <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
-
                     </c:if>
                     <c:if test="${empty sessionScope.user}">
                     <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
@@ -124,7 +126,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
@@ -174,317 +176,178 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="content">
     <div class="place-section">
         <div class="container">
-            <h2>find your place</h2>
-            <div class="place-grids">
-                <div class="col-md-3 place-grid">
-                    <h5>all location</h5>
-                    <select class="sel">
-                        <option value="">All Locations</option>
-                        <option value="">New Jersey</option>
-                        <option value="">New York</option>
-                        <option value="">Australia</option>
-                        <option value="">Canada</option>
-                        <option value="">India</option>
+            <p style="font-size: 30px;text-align: center;font-weight: 200">我要找房</p>
+            <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                <div class="place-grids">
+                <input type="hidden" value="1" id="curPage" name="curPage" />
+                <input type="hidden" value="" id="isonsale" name="isonsale"/>
+                    <div id="distpicker5">
+                    <div class="yourplace col-md-2" style="width: 250px;">
+                        <h5>省份</h5>
+                        <label class="sr-only" for="province1">Province</label>
+                        <select class="sel3" name="province" id="province1">
+                        </select>
+                    </div>
+                    <div class="yourplace col-md-2" style="width: 250px;">
+                        <h5>城市</h5>
+                        <label class="sr-only" for="city1">City</label>
+                        <select class="sel3" name="city" id="city1"></select>
+                    </div>
+                    <div class="yourplace col-md-2" style="width: 250px;">
+                        <h5>区域</h5>
+                        <label class="sr-only" for="district1" name="district">District</label>
+                        <select class="sel3" name="district" id="district1"></select>
+                    </div>
+                </div>
+                    <div class="yourplace col-md-2">
+                        <h5>特色</h5>
+                        <select class="sel3" name="charactere">
+                            <option value="">不限</option>
+                            <option value="小户型" <c:if test="${buildQueryPojo.charactere eq '小户型'}">selected</c:if>>小户型</option>
+                            <option value="临地铁" <c:if test="${buildQueryPojo.charactere eq '临地铁'}">selected</c:if>>临地铁</option>
+                            <option value="现房" <c:if test="${buildQueryPojo.charactere eq '现房'}">selected</c:if>>现房</option>
+                            <option value="品牌地产" <c:if test="${buildQueryPojo.charactere eq '品牌地产'}">selected</c:if>>品牌地产</option>
+                        </select>
+                    </div>
+                <div class="yourplace col-md-2">
+                    <h5>户型</h5>
+                    <select class="sel2" name="typeid">
+                        <option value="">不限</option>
+                        <option value="1">一居</option>
+                        <option value="2">二居</option>
+                        <option value="3">三居</option>
                     </select>
                 </div>
-                <div class="col-md-3 place-grid">
-                    <h5>all sub location</h5>
-                    <select class="sel">
-                        <option value="">All Locations</option>
-                        <option value="">New Jersey</option>
-                        <option value="">New York</option>
-                        <option value="">Australia</option>
-                        <option value="">Canada</option>
-                        <option value="">India</option>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="place-grids">
+                    <div class="yourplace col-md-2">
+                        <h5>类型</h5>
+                        <select class="sel2" name="genre">
+                            <option value="">不限</option>
+                            <option value="住宅" <c:if test="${buildQueryPojo.genre eq '住宅'}">selected</c:if>>住宅</option>
+                            <option value="别墅" <c:if test="${buildQueryPojo.genre eq '别墅'}">selected</c:if>>别墅</option>
+                            <option value="商业" <c:if test="${buildQueryPojo.genre eq '商业'}">selected</c:if>>商业</option>
+                        </select>
+                    </div>
+                <div class="col-md-2 yourplace-grid">
+                    <h5>总价</h5>
+                    <select class="sel3" name="bTotalprice">
+                        <option value="">总价</option>
+                        <option value="0-100" <c:if test="${buildQueryPojo.bTotalprice eq 0}">selected</c:if>>
+                            <100万</option>
+                        <option value="100-200" <c:if test="${buildQueryPojo.bTotalprice eq 100}">selected</c:if>>100-200万</option>
+                        <option value="200-300" <c:if test="${buildQueryPojo.bTotalprice eq 200}">selected</c:if>>200-300万</option>
+                        <option value="300-500" <c:if test="${buildQueryPojo.bTotalprice eq 300}">selected</c:if>>300-500万</option>
+                        <option value="500-10000" <c:if test="${buildQueryPojo.bTotalprice eq 500}">selected</c:if>>>500万</option>
                     </select>
                 </div>
-                <div class="col-md-3 place-grid">
-                    <h5>Property Status</h5>
-                    <select class="sel">
-                        <option value="">All status</option>
-                        <option value="">none</option>
-                        <option value="">open house</option>
-                        <option value="">rent</option>
-                        <option value="">sale</option>
-                    </select>
+                <div class="yourplace-grids1">
+                    <div class="col-md-2 yourplace-grid">
+                        <h5>单价</h5>
+                        <select class="sel3" name="bPerprice">
+                            <option value="">单价</option>
+                            <option value="0-20000" <c:if test="${buildQueryPojo.bPerprice eq 0}">selected</c:if>>
+                                <2万</option>
+                            <option value="20000-30000" <c:if test="${buildQueryPojo.bPerprice eq 20000}">selected</c:if>>2-3万</option>
+                            <option value="30000-40000" <c:if test="${buildQueryPojo.bPerprice eq 30000}">selected</c:if>>3-4万</option>
+                            <option value="40000-50000" <c:if test="${buildQueryPojo.bPerprice eq 40000}">selected</c:if>>4-5万</option>
+                            <option value="50000-10000000000" <c:if test="${buildQueryPojo.bPerprice eq 50000}">selected</c:if>>5万及以上</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 yourplace-grid">
+                        <h5>面积</h5>
+                        <select class="sel3" name="acreage">
+                            <option value="">请选择</option>
+                            <option value="30-50">30-50</option>
+                            <option value="50-100">50-100</option>
+                            <option value="100-150">100-150</option>
+                            <option value="150">150~</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-3 place-grid">
-                    <h5>Property Type</h5>
-                    <select class="sel">
-                        <option value="">All Type</option>
-                        <option value="">Commercial</option>
-                        <option value="">- Office</option>
-                        <option value="">- Buy</option>
-                        <option value="">Residential</option>
-                        <option value="">-Apartment</option>
-                    </select>
+                    <div class="col-md-4 search">
+                            <input type="submit" value="Search">
+                    </div>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="place-grids">
-                <div class="col-md-2 place-grid1">
-                    <h5>Min Beds</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
-                <div class="col-md-2 place-grid1">
-                    <h5>Min Baths</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
-                <div class="col-md-2 place-grid1">
-                    <h5>Min Price</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">$500</option>
-                        <option value="">$1000</option>
-                        <option value="">$2000</option>
-                        <option value="">$3000</option>
-                        <option value="">$4000</option>
-                        <option value="">$5000</option>
-                        <option value="">$75000</option>
-                        <option value="">$10000</option>
-                    </select>
-                </div>
-                <div class="col-md-2 place-grid1">
-                    <h5>Max Price</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">$1000</option>
-                        <option value="">$2000</option>
-                        <option value="">$3000</option>
-                        <option value="">$4000</option>
-                        <option value="">$5000</option>
-                        <option value="">$75000</option>
-                        <option value="">$10000</option>
-                    </select>
-                </div>
-                <div class="col-md-4 search">
-                    <form action="forrent.html">
-                        <input type="submit" value="Search">
-                    </form>
-                </div>
+            </form>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
+    <c:if test="${not empty ctas}">
     <div class="friend-agent">
-        <div class="container">
+        <div class="container" >
+            <div style="overflow: auto;height: 50px;margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">华居咨询师</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/cta/ctalist.action">更多咨询师</a></span></div>
             <div class="friend-grids">
-                <div class="col-md-4 friend-grid">
-                    <img src="images/p.png">
-                    <h4>Search From Anywhere</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                </div>
-                <div class="col-md-4 friend-grid">
-                    <img src="images/p1.png">
-                    <h4>Friendly Agents</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                </div>
-                <div class="col-md-4 friend-grid">
-                    <img src="images/p2.png">
-                    <h4>Buy or Rent</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus. Donec facilisis fermentum sem, ac viverra ante luctus vel.</p>
-                </div>
+                    <c:forEach items="${ctas}" var="cta" varStatus="i">
+                        <c:if test="${i.index<3}">
+                            <div class="col-md-4 friend-grid" >
+                                <img src="${pageContext.request.contextPath}/${cta.ctaimg}">
+                                <h4>优秀咨询师</h4>${cta.ctarelname}
+                                <p>毕业于${cta.school}</p>
+                                <p>${cta.education}</p>
+                                <p>${cta.intro}</p>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
+    </c:if>
     <div class="offering">
-        <div class="container">
-            <h3>We are Offering the Best Real Estate Deals</h3>
-            <div class="offer-grids">
-                <div class="col-md-6 offer-grid">
+        <div class="container" style="border: solid #c3c3c3 1px;">
+            <div style="overflow: auto;height: 50px; margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">优惠楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多优惠楼盘</a></span></div>
+            <div class="offer-grids" style="margin-top: 15px;">
+                <c:forEach items="${discountBuildList}" var="disblist" varStatus="i">
+                    <c:if test="${i.index<4}">
+                <div class="col-md-6 offer-grid" style="margin-bottom:30px;width: 540px;height: 230px;">
                     <div class="offer-grid1">
-                        <h4><a href="single.html">Villa In Hialeah, Dade County</a></h4>
+                        <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${disblist.buildingid}">${disblist.building}</a></h4>
                         <div class="offer1">
                             <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p3.jpg" class="img-responsive zoom-img" alt=""/></a>
+                                <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${disblist.buildingid}" class="mask"><img width="245" height="170" src="${pageContext.request.contextPath}/${disblist.bpicture}" class="img-responsive zoom-img" alt="${disblist.building}"/></a>
                             </div>
                             <div class="offer-right">
-                                <h5><label>$</label> 7,500 Per Month - <span>Single Family Home</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
+                                <h5>最低<label>￥</label><fmt:formatNumber value=" ${disblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起<span></span></h5>
+                                <p>建面 ${disblist.acreage}—${disblist.maxacreage} ㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${blist.city}</p>
+                                <p>${disblist.discounts}</p>
+                                <p><a style="color: #00ccff" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${disblist.buildingid}">查看详情</a></p>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">401 Biscayne Boulevard, Miami</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p4.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 3,250 Per Month - <span>Condominium</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="offer-grids">
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">3895 NW 107th Ave</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p5.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 5,200 Per Month - <span>Office</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">1400 Anastasia Avenue, Coral</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p6.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 525,000 - <span>Villa</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="offer-grids">
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="#">12 Apartments Of Type A</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p7.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 3,200 Per Month - <span>Apartment</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 offer-grid">
-                    <div class="offer-grid1">
-                        <h4><a href="single.html">20 Apartments Of Type B</a></h4>
-                        <div class="offer1">
-                            <div class="offer-left">
-                                <a href="single.html" class="mask"><img src="images/p8.jpg" class="img-responsive zoom-img" alt=""/></a>
-                            </div>
-                            <div class="offer-right">
-                                <h5><label>$</label> 4,200 Per Month - <span>Apartment</span></h5>
-                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh…</p>
-                                <a href="single.html"class="button1">more details</a>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
+                    </c:if>
+                </c:forEach>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <!---Featured Properties--->
     <div class="feature-section">
-        <div class="container">
-            <h3>Featured Properties</h3>
+        <div class="container" style="border: solid #c3c3c3 1px;">
+            <div style="overflow: auto;height: 50px; margin-top: 15px;">
+                <h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">品质楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多好盘</a></span>
+            </div>
+                <c:forEach items="${adviceBuildList}" var="advblist" varStatus="i">
+                <c:if test="${i.index<5}">
             <div class="feature-grids">
                 <div class="col-md-3 feature-grid">
-                    <img src="images/f1.jpg" class="img-responsive" alt="/">
-                    <h5>Villa in Hialeah, Dade</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$2,500 Per Month</span>
+                    <img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive zoom-img" alt="${advblist.building}">
+                    <h5 style="font-size: 24px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}"></a>${advblist.building}</h5>
+
+                    <p><fmt:formatNumber value=" ${advblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>
+                    <p>建面 ${advblist.acreage}—${advblist.maxacreage} ㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${advblist.city}</p>
+                    推荐理由：<p style="text-indent: 2em;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 4;overflow: hidden;">${advblist.advice}</p>
+                    <p><a style="color: #00ccff" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}">查看详情</a></p>
                 </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="images/f2.jpg" class="img-responsive" alt="/">
-                    <h5>401 Biscayne Boulevard</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$7,500 Per Month</span>
-                </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="images/f3.jpg" class="img-responsive" alt="/">
-                    <h5>154 Southwest  Terra</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$9,500 Per Month</span>
-                </div>
-                <div class="col-md-3 feature-grid">
-                    <img src="images/f4.jpg" class="img-responsive" alt="/">
-                    <h5>Florida 5, Pinecrest, FL</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetuer  elit,… <a href="#">Know More</a></p>
-                    <span>$5,500 Per Month</span>
-                </div>
-                <div class="clearfix"></div>
             </div>
-        </div>
-    </div>
-    <!---Featured Properties--->
-    <div class="membership">
-        <div class="container">
-            <h3>Membership Plans</h3>
-            <div class="membership-grids">
-                <div class="col-md-4 membership-grid">
-                    <h4>Personal</h4>
-                    <div class="membership1">
-                        <h5>9.99 <span>USD</span></h5>
-                        <h6>/ 1 month</h6>
-                        <ul class="member">
-                            <li>10 Listings</li>
-                            <li>2 Featured Listings</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 membership-grid">
-                    <h4>Professional</h4>
-                    <div class="membership1">
-                        <h5>49.99 <span>USD</span></h5>
-                        <h6>/ 6 month</h6>
-                        <ul class="member">
-                            <li>40 Listings</li>
-                            <li>10 Featured Listings</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-4 membership-grid">
-                    <h4>Bussiness</h4>
-                    <div class="membership1">
-                        <h5>99.99 <span>USD</span></h5>
-                        <h6>/ 1 year</h6>
-                        <ul class="member">
-                            <li>Unlimited Listings</li>
-                            <li>20 Featured Listings</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+            </c:if>
+            </c:forEach>
+            <div class="clearfix"></div>
         </div>
     </div>
     <!---testimonials--->

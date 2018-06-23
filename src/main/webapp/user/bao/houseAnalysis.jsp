@@ -162,6 +162,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         #b04 #al { left: 15px;}
 
         #b04 #ar { right: 15px;}
+        /*居室的css*/
+        #oranger {
+            padding:10px 0;
+        }
+        #oranger a {
+            padding:0 10px;
+            height:30px;
+            display:inline-block;
+            line-height:30px;
+            text-decoration: none;
+            color: gray;
+        }
+        #oranger a:active {
+            background:orange;
+            color: white;
+        }
+
+
     </style>
 </head>
 <body>
@@ -204,7 +222,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1><a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
                 </div>
 
             </div>
@@ -212,13 +230,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
-                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="${pageContext.request.contextPath}/cta/ctalist.action">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
@@ -258,23 +276,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <ul class="nav navbar-nav" style="float:none; margin:0px auto; width:1120px;">
 
-        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:57px;" class="active"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
+        <li style="margin-right:50px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}l" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:50px;" class="active"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
     </ul>
 </nav>
-<%--house详情--%>
-<ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a href="#">全部(5)</a></li>
-    <li role="presentation"><a href="#">一居(2)</a></li>
-    <li role="presentation"><a href="#">二居(1)</a></li>
-    <li role="presentation"><a href="#">三居(2)</a></li>
-</ul>
+
+<p id="oranger">
+    <input type="hidden" value="${buildingid}">
+    <a class="hover" href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}" >全部(${sumhouse})</a>
+    <c:set var="flag" value="true"></c:set>
+    <c:forEach items="${buildTypes}" var="buildTypes">
+        <c:if test="${buildTypes.count==0}">
+        </c:if>
+        <c:if test="${buildTypes.count!=0}">
+            <c:set var="flag" value="false"></c:set>
+            <c:if test="${buildTypes.typeid==1}">
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=1"> 一居(${buildTypes.count})</a>
+            </c:if>
+            <c:if test="${buildTypes.typeid==2}">
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=2">二居(${buildTypes.count})</a>
+            </c:if>
+            <c:if test="${buildTypes.typeid==3}">
+                <a  href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=3">三居(${buildTypes.count})</a>
+            </c:if>
+            <c:if test="${buildTypes.typeid==4}">
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=4">四居(${buildTypes.count})</a>
+            </c:if>
+        </c:if>
+    </c:forEach>
+    <c:if test="${flag}">
+        暂无数据
+    </c:if>
+</p>
+
 <div class="content">
 
     <div class="blog-section">
@@ -283,7 +323,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-9 blog-grid">
 
                     <div class="blog">
-                        <h3 style="font-family: '微软雅黑'; color:orange;">${house.hname}-${house.door.doorname}户型</h3>
+                        <h3 style="font-family: '微软雅黑'; color:orange;">${house.hname}</h3>
                         <hr />
 
                         <a href="single.html"><img src="<%=imgPath%>${house.htypeimg}" class="img-responsive" alt=""/></a>
@@ -306,18 +346,76 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         <h3 style="font-family: '微软雅黑';text-align: center;">详情</h3>
                         <ul>
-                            <li style="text-align: center;"><span style="color: gray;" >朝向：</span><span>${house.forward}</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">建面：</span><span>${house.harea}㎡</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">类型：</span><span>${house.htype}</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考总价：</span><span>${house.hmoney}万元左右</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考单价：</span><span>${house.hperprice}元/㎡左右</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考首付：</span><span>${house.payment}万元左右</span></li><hr />
-                            <li style="text-align: center;"><span  style="color: gray;">参考月供：</span><span>${house.monthpay}元左右</span></li>
+                            <li style="text-align: center;"><span style="color: gray;" >朝向:</span>
+                                <span>
+                                <c:if test="${empty house.forward}">
+                                    <td>暂无数据</td>
+                                </c:if>
+                                <c:if test="${not empty house.forward}">
+                                    <td>${house.forward}</td>
+                                </c:if>
+                                </span>
+                            </li><hr />
+                            <li style="text-align: center;"><span  style="color: gray;">建面:</span><span>
+                                <c:if test="${empty house.harea}">
+                                    <td>暂无数据</td>
+                                </c:if>
+                                <c:if test="${not empty house.harea}">
+                                    <td>${house.harea}㎡</td>
+                                </c:if>
+                               </span></li><hr />
+                            <li style="text-align: center;"><span  style="color: gray;">类型：</span><span>
+                                <c:if test="${empty house.htype}">
+                                    <td>暂无数据</td>
+                                </c:if>
+                                <c:if test="${not empty house.htype}">
+                                    <td>${house.htype}</td>
+                                </c:if>
+                                </span></li><hr />
+                            <li style="text-align: center;"><span  style="color: gray;">参考总价：</span><span>
+                                <c:if test="${empty house.hmoney}">
+                                    <td>暂无数据</td>
+                                </c:if>
+                                <c:if test="${not empty house.hmoney}">
+                                    <td>${house.hmoney}万元左右</td>
+                                </c:if>
+                               </span></li><hr />
+                            <li style="text-align: center;"><span  style="color: gray;">参考单价：</span><span>
+                                <c:if test="${empty house.hperprice}">
+                                    <td>暂无数据</td>
+                                </c:if>
+                                <c:if test="${not empty house.hperprice}">
+                                    <td> ${house.hperprice}元/㎡左右 </td>
+                                </c:if>
+                               </span></li><hr />
+                            <li style="text-align: center;"><span  style="color: gray;">参考首付：</span><span>
+                                <c:if test="${empty house.payment}">
+                                    <td>暂无数据</td>
+                                </c:if>
+                                <c:if test="${not empty house.payment}">
+                                    <td>${house.payment}万元左右</td>
+                                </c:if>
+                                </span></li><hr />
+                            <li style="text-align: center;"><span  style="color: gray;">参考月供：</span><span>
+                                <c:if test="${empty house.monthpay}">
+                                    <td>暂无数据</td>
+                                </c:if>
+                                <c:if test="${not empty house.monthpay}">
+                                    <td>${house.monthpay}元左右</td>
+                                </c:if>
+                                </span></li>
 
                         </ul>
                     </div>
                     <div class="col-md-14 blog-grid1" >
-                        <p class="rule-text">户型解析:${house.analysis}</p>
+                        <p class="rule-text">户型解析:
+                            <c:if test="${empty house.analysis}">
+                                <td>暂无数据</td>
+                            </c:if>
+                            <c:if test="${not empty house.analysis}">
+                                <td>${house.analysis}</td>
+                            </c:if>
+                         </p>
 
                     </div>
 

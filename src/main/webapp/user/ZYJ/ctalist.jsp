@@ -116,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="index.html"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1><a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
                 </div>
 
             </div>
@@ -124,14 +124,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
-                    <li><a href="${pageContext.request.contextPath}/user/ZYJ/ctalist.jsp">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-                    <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/user/ZYJ/ctalist.jsp">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
 
@@ -175,7 +175,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <c:forEach items="${pageInfo.list}" var="cta">
                 <div class="col-md-6 agent-grid"  style="margin-bottom: 40px ; border: solid">
                     <div class="agent-left">
-                        <img src="images/a2.jpg" name="ctaimg" class="img-responsive" alt="/">
+                        <img src="${pageContext.request.contextPath}/${cta.ctaimg}" name="ctaimg" class="img-responsive" alt="/">
                     </div>
                     <div class="agent-right">
                         <h4>${cta.ctarelname}</h4>
@@ -183,7 +183,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i> Tel : ${cta.ctaphone}</li>
                             <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i> 学历:${cta.education}</li>
                             <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>咨询次数 :${cta.ctatime}</li>
-                            <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
+                            <li style="width:200px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;"><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
+                            <li style="width:200px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;"
+                            ><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
                         </ul>
                         <a href="johnnguyen.html" class="button3 hvr-shutter-out-horizontal">更多·咨询</a>
                     </div>
@@ -191,18 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </c:forEach>
             </div>
         </div>
-        <%--<div class='page fix'>--%>
-            <%--共 <b>${pageInfo.total}</b> 条--%>
-            <%--<a href="javascript:getPage(${pageInfo.firstPage})" >首页</a>--%>
-            <%--<c:if test="${!pageInfo.isFirstPage}">--%>
-                <%--<a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>--%>
-            <%--</c:if>--%>
-            <%--当前第<span>${pageInfo.pageNum}</span>页--%>
-            <%--<c:if test="${!pageInfo.isLastPage}">--%>
-                <%--<a href="javascript:getPage(${pageInfo.nextPage})" >下一页</a>--%>
-            <%--</c:if>--%>
-            <%--<a href="javascript:getPage(${pageInfo.lastPage})" >末页</a>--%>
-        <%--</div>--%>
+
         <div class="col-md-offset-4">
             <nav>
                 <ul class="pagination pagination-lg">

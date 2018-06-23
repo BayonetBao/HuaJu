@@ -75,69 +75,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
-    <style>
-
-        html, body { font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;}
-
-        ul, ol { padding: 0;}
-
-
-
-        .banner { position: relative; overflow: auto; margin:10px auto; text-align: center;}
-
-        .banner li { list-style: none; }
-
-        .banner ul li { float: left; }
-
-
-        #b04 { width: 520px;}
-        #b04 .dots { position: absolute; left: 0; right: 0; bottom: 10px;}
-
-        #b04 .dots li
-        {
-            display: inline-block;
-
-            width: 10px;
-
-            height: 10px;
-
-            margin: 0 4px;
-
-            text-indent: -999em;
-
-            border: 2px solid #fff;
-
-            border-radius: 6px;
-
-            cursor: pointer;
-
-            opacity: .4;
-
-            -webkit-transition: background .5s, opacity .5s;
-
-            -moz-transition: background .5s, opacity .5s;
-
-            transition: background .5s, opacity .5s;
-
-        }
-
-        #b04 .dots li.active
-
-        {
-
-            background: #fff;
-
-            opacity: 1;
-
-        }
-
-
-        #b04 .arrow { position: absolute; top: 200px;}
-
-        #b04 #al { left: 15px;}
-
-        #b04 #ar { right: 15px;}
-    </style>
 </head>
 <body>
 <!---header--->
@@ -179,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1><a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
                 </div>
 
             </div>
@@ -187,13 +124,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
-                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="${pageContext.request.contextPath}/cta/ctalist.action">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
@@ -205,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="banner-section">
     <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+        <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action"><h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2></a>
     </div>
 </div>
 <!---banner--->
@@ -234,11 +171,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <ul class="nav navbar-nav" style="float:none; margin:0px auto; width:1120px;">
 
         <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;" class="active"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:57px;" class="active"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
     </ul>
@@ -257,68 +194,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <br>
                         <%--效果图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">效果图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty graphList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">效果图（${fn:length(graphList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${graphList}" var="graphimg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${graphimg.graphurl}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
 
+                        </c:if>
                         <br>
                         <%--样板间--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">样板间（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty protoTypeImgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">样板间（${fn:length(protoTypeImgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${protoTypeImgList}" var="protoTypeImg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${protoTypeImg.prototype}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
+
+                        </c:if>
                         <br>
                         <%--环境规划图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">环境规划图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty environmentImgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">环境规划图（${fn:length(environmentImgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${environmentImgList}" var="environmentImg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${environmentImg.envirimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
+
+                        </c:if>
+                        <br>
+
+                        <%--配套实景图--%>
+                        <c:if test="${not empty arroundimgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">配套实景图（${fn:length(arroundimgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${arroundimgList}" var="arroundimg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${arroundimg.arrimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
+
+                        </c:if>
                         <br>
                         <%--楼盘实景图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">楼盘实景图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
-                        <br>
-                        <%--配套实景图--%>
-                        <div  style="height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">配套实景图（1）</span>
-                        </div>
-                        <div style="width: 1055px;overflow: auto;">
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                            <div style="margin-top:10px;margin-right:15px;float:left;height: 160px;width: 230px;border: solid cyan 1px;"></div>
-                        </div>
+                        <c:if test="${not empty buildimgList}">
+                            <div  style="height: 50px;overflow: auto;">
+                                <span style="line-height:48px;font-size: 22px;color:black;">楼盘实景图（${fn:length(buildimgList)}）</span>
+                            </div>
+                            <div style="width: 1055px;overflow: auto;">
+                                <c:forEach items="${buildimgList}" var="buildimg">
+                                    <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
+                                        <img src="${pageContext.request.contextPath}/${buildimg.buildimg}" alt="" width="230" height="160">
+                                    </div>
+                                </c:forEach>
+                            </div>
 
-
-
+                        </c:if>
                     </div>
                 </div>
 

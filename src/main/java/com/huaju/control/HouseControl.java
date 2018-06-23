@@ -151,18 +151,4 @@ public void updateTrue(MultipartFile imgfile ,House house ,HttpServletRequest re
 
    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

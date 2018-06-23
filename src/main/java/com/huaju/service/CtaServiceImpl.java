@@ -48,4 +48,15 @@ public class CtaServiceImpl implements CtaService{
     public Cta seletCtaByBuildingid(int buildingid){
         return ctaMapper.seletCtaByBuildingid(buildingid);
     }
+
+    @Override
+    //查询所有咨询师
+    public List<Cta> selectAllCta(){
+        return ctaMapper.AllCta();
+    }
+
+    @Override
+    public Cta selectCtaById(Integer ctaid) {
+        return ctaMapper.selectCtaById(ctaid);
+    }
 }

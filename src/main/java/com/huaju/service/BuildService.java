@@ -33,4 +33,13 @@ public interface BuildService {
     public Company selectCompanyByBuildId(int buildingid);
     //查询所有的房型
     public List<Type> slectAllType();
+
+    //优惠楼盘搜索（张宝）
+    public List<Build> selectDiscountBuild();
+    //推荐楼盘搜索（张宝）
+    public List<Build> selectAdviceBuild();
+    //附近楼盘搜索（张宝）
+    public List<Build> selectNearBuildByCity(String city);
+    //附近楼盘城区搜索（张宝）
+    public List<Build> selectNearBuildByBrea(String brea);
 }

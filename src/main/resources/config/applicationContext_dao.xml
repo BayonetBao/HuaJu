@@ -30,13 +30,6 @@
            </bean>
             </array>
         </property>
-
-        <!--<plugins>-->
-            <!--&lt;!&ndash;将第三方的分页插件添加&ndash;&gt;-->
-            <!--<plugin interceptor="com.github.pagehelper.PageInterceptor">-->
-                <!--<property name="properties" value="dialect=mysql;reasonable=true"/>-->
-            <!--</plugin>-->
-        <!--</plugins>-->
     </bean>
     <!--持久层实现类的对象实例化      sqlSession    整包      实现类对象的id是mapper接口名：第一个字母小写-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

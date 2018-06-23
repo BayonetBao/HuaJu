@@ -31,12 +31,12 @@
 
 </head>
 <body >
-<button style="position: relative;left: 320px;top: 210px" id="replaceImg" class="l-btn">更换图片</button>
+<button style="position: relative;left: 320px;top: 170px" id="replaceImg" class="l-btn">更换图片</button>
 <div style="height: 2px;">
-    <img id="finalImg" style="position: relative;left: 180px;top: 90px" src="${pageContext.request.contextPath}/user/ke/images/userImg/${user.userpic}" width="120px;" height="120px" class="img-circle">
+    <img id="finalImg" style="position: relative;left: 180px;top: 50px" src="${pageContext.request.contextPath}/${user.userpic}" width="120px;" height="120px" class="img-circle">
 </div>
 <!--图片裁剪框 start-->
-<div style="display: none" class="tailoring-container" style="width:500px;height:360px;">
+<div style="display: none;width:500px;height:360px;" class="tailoring-container" >
     <div class="black-cloth" onClick="closeTailor(this)"></div>
     <div class="tailoring-content">
         <div class="tailoring-content-one">
@@ -173,8 +173,7 @@
     }
 </script>
 <section class="aui-content">
-    <div style="height:20px;"></div>
-    <div class="aui-content-up" style="margin-left: 50px;">
+    <div class="aui-content-up" style="margin-left: 20px;margin-top: -10px;">
         <form action="${pageContext.request.contextPath}/user/updateMessage.action" id="mainform" method="post">
             <input type="hidden" name="userid" value="${sessionScope.user.userid}"/>
             <div class="aui-content-up-form">

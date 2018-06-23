@@ -26,7 +26,7 @@
                     <td align="right" valign="top" id="header-right">
                         <a href="${pageContext.request.contextPath}/exit.action" target="_parent" onFocus="this.blur()" class="admin-out">注销</a>
 
-                        <a href="${pageContext.request.contextPath}/user/bao/index.jsp" target="_parent"  onFocus="this.blur()" class="admin-index">网站首页</a>
+                        <a href="${pageContext.request.contextPath}/build/index.action" target="_parent"  onFocus="this.blur()" class="admin-index">网站首页</a>
                         <span>
 <!-- 日历 -->
 <SCRIPT type=text/javascript src="js/clock.js"></SCRIPT>

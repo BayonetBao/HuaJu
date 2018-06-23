@@ -36,14 +36,14 @@
                     <div class="row m-t">
                         <div class="col-sm-7">
                             <a href class="thumb-lg pull-left m-r">
-                                <img class="img-circle" style="width: 100px;height: 100px" src="${pageContext.request.contextPath}/user/ke/images/userImg/${user.userpic}" >
+                                <img class="img-circle" style="width: 100px;height: 100px" src="${pageContext.request.contextPath}/${user.userpic}" >
                             </a>
                             <div class="clear m-b">
                                 <div class="m-b m-t-sm">
                                     <span class="h3 text-black">${sessionScope.user.uname}</span>
                                     <small class="m-l">${sessionScope.user.remark}</small>
                                 </div>
-                                <a href="updatePassword.jsp" class="btn btn-sm btn-success btn-rounded">修改密码</a>
+                                <a href="${pageContext.request.contextPath}/user/ke/updatePassword.jsp" class="btn btn-sm btn-success btn-rounded">修改密码</a>
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -62,26 +62,46 @@
                 </div>
             </div>
             <!-- .comment-reply -->
+            <c:if test="${empty comments}">
+                <div class="padder">
+                    <div class="streamline b-l b-info m-l-lg m-b padder-v">
+                        <div>
+                            <div class="m-l-lg">
+                                <div class="m-b-xs">
+                                    <a href class="h4">Note</a>
+                                    <span class="text-muted m-l-sm pull-right">
+                                    <fmt:formatDate value="<%=new Date()%>" pattern="yyyy-MM-dd hh:mm:ss"/>
+                        </span>
+                                </div>
+                                <div class="m-b">
+                                    <div>   <a  href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                                        你还没有评论过~点我去搜索楼盘吧~</a></div>
+                                    <img src="${pageContext.request.contextPath}/user/ke/img/c5.jpg" class="b b-a wrapper-xs bg-white img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
             <c:forEach items="${comments}" var="comment">
             <div class="padder">
                 <div class="streamline b-l b-info m-l-lg m-b padder-v">
                     <div>
                         <a class="pull-left thumb-sm avatar m-l-n-md">
-                            <img src="${pageContext.request.contextPath}/user/ke/images/userImg/${user.userpic}" class="img-circle" alt="...">
+                            <img src="${pageContext.request.contextPath}/${user.userpic}" class="img-circle" alt="...">
                         </a>
                         <div class="m-l-lg">
                             <div class="m-b-xs">
                                 <a href class="h4">${sessionScope.user.uname}</a>
                                 <span class="text-muted m-l-sm pull-right">
-                               <fmt:formatDate value="${comment.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
+                                    <fmt:formatDate value="${comment.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
                         </span>
                             </div>
                             <div class="m-b">
                                 <div> ${comment.comcontent} </div>
                                 <div class="m-t-sm">
-                                    <a href class="text-muted m-xs"><i class=""></i></a>
-                                    <a href class="text-muted m-xs"><i class=""></i></a>
                                     <a href class="text-muted m-xs"><i class="glyphicon glyphicon-thumbs-up"></i> ${fn:length(comment.favors)}</a>
+                                    <a class="text-muted m-xs" href="${pageContext.request.contextPath}/comment/selectCommentById.action?commentid=${comment.commentid}">查看详情</a>
                                 </div>
                             </div>
                         </div>
