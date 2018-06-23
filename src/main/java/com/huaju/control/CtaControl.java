@@ -49,6 +49,13 @@ public class CtaControl {
         request.setAttribute("pageInfo",pageInfo);
         request.getRequestDispatcher("/user/ZYJ/ctalist.jsp").forward(request,response);
     }
+    //咨询师详情
+    @RequestMapping(value = "/ctaIndex.action",method = {RequestMethod.GET,RequestMethod.POST})
+    public void ctaIndex(Integer ctaid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Cta cta=ctaService.selectCtaById(ctaid);
+        request.setAttribute("cta",cta);
+        request.getRequestDispatcher("/user/ke/ctaIndex.jsp").forward(request,response);
+    }
     //添加咨询师(张宝)
     @RequestMapping(value = "/addCta.action", method = RequestMethod.POST)
     public void addCta(Cta cta, MultipartFile img, HttpServletRequest request, HttpServletResponse response) throws IOException {

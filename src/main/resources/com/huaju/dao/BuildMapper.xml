@@ -70,7 +70,7 @@
                and barea like "%" #{district} "%"
            </if>
            <if test="charactere neq null">
-               and charactere like "%" #{charactere} "%"
+               and build.charactere like "%" #{charactere} "%"
            </if>
            <if test="genre neq null">
                and genre like "%" #{genre} "%"

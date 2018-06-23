@@ -5,6 +5,15 @@ public class ActivityQueryPojo {
     private Integer comid=null;//开发商id
     private Integer buildingid=null;
     private Integer ctaid=null;
+    private Integer actid=null;
+
+    public Integer getActid() {
+        return actid;
+    }
+
+    public void setActid(Integer actid) {
+        this.actid = actid;
+    }
 
     public Integer getComid() {
         return comid;

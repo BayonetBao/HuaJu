@@ -11,21 +11,33 @@
         <result column="parnum" property="parnum"/>
         <result column="actcontent" property="actcontent"/>
         <result column="actnote" property="actnote"/>
-        <collection property="build" javaType="Build">
+        <association property="build" javaType="Build">
             <id column="buildingid" property="buildingid"/>
             <result column="building" property="building"/>
+            <result column="bpicture" property="bpicture"/>
+            <result column="bperprice" property="bperprice"/>
+            <result column="btotalprice" property="btotalprice"/>
+            <result column="bmaxtotalprice" property="bmaxtotalprice"/>
+            <result column="conditions" property="conditions"/>
+            <result column="bdetail" property="bdetail"/>
+            <result column="starttime" property="starttime"/>
+            <result column="acreage" property="acreage"/>
+            <result column="maxacreage" property="maxacreage"/>
+            <result column="discounts" property="discounts"/>
+            <result column="charactere" property="charactere"/>
             <result column="comid" property="comid"/>
-        </collection>
-        <collection property="cta" javaType="Cta">
+        </association>
+        <collection property="cta" ofType="Cta">
             <id column="ctaid" property="ctaid"/>
             <result column="ctaname" property="ctaname"/>
             <result column="ctarelname" property="ctarelname"/>
             <result column="ctaimg" property="ctaimg"/>
+            <result column="intro" property="intro"/>
         </collection>
     </resultMap>
     <!--public List<Activity> SelectAllActivity(ActivityQueryPojo activityQueryPojo);-->
 <select id="SelectAllActivity" resultMap="ActivityListMap" parameterType="ActivityQueryPojo">
-    select activity.*,build.buildingid,build.building,build.comid,cta.ctaid,cta.ctaname,cta.ctarelname from activity JOIN build
+    select activity.*,build.*,cta.ctaid,cta.ctaname,cta.ctarelname,cta.ctaimg from activity JOIN build
     ON activity.buildingid=build.buildingid
         <if test="buildingid neq null">
             and activity.buildingid=#{buildingid}
@@ -36,6 +48,9 @@
     JOIN cta ON activity.ctaid=cta.ctaid
           <if test="ctaid neq null">
               AND activity.ctaid=#{ctaid}
+          </if>
+          <if test="actid neq null">
+              AND actid=#{actid}
           </if>
 </select>
     <!--public List<Build> selectBuildInActivity(Integer comid);-->
@@ -51,6 +66,17 @@
 <select id="selectActivity" resultMap="ActivityListMap" parameterType="int">
     select activity.*,build.buildingid,build.building,build.comid,cta.ctaid,cta.ctaname,cta.ctaimg,,cta.ctarelname from activity JOIN build
      ON activity.buildingid=build.buildingid JOIN cta ON activity.ctaid=cta.ctaid AND actid=#{actid}
+</select>
+
+    <!--public Activity selectBuildActivity(@Param("buildingid")Integr buildingid);-->
+<select id="selectBuildActivity" resultMap="ActivityListMap" parameterType="int">
+    select activity.*,build.*,cta.* from activity JOIN build
+    ON activity.buildingid=build.buildingid
+    <if test="buildingid neq null">
+        and activity.buildingid=#{buildingid}
+    </if>
+    JOIN cta ON activity.ctaid=cta.ctaid
+
 </select>
 
 </mapper>
