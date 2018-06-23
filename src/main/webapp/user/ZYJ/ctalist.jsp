@@ -183,6 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i> Tel : ${cta.ctaphone}</li>
                             <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i> 学历:${cta.education}</li>
                             <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>咨询次数 :${cta.ctatime}</li>
+                            <li style="width:200px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;"><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
                             <li style="width:200px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;"
                             ><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
                         </ul>
@@ -192,18 +193,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </c:forEach>
             </div>
         </div>
-        <%--<div class='page fix'>--%>
-            <%--共 <b>${pageInfo.total}</b> 条--%>
-            <%--<a href="javascript:getPage(${pageInfo.firstPage})" >首页</a>--%>
-            <%--<c:if test="${!pageInfo.isFirstPage}">--%>
-                <%--<a href="javascript:getPage(${pageInfo.prePage})" >上一页</a>--%>
-            <%--</c:if>--%>
-            <%--当前第<span>${pageInfo.pageNum}</span>页--%>
-            <%--<c:if test="${!pageInfo.isLastPage}">--%>
-                <%--<a href="javascript:getPage(${pageInfo.nextPage})" >下一页</a>--%>
-            <%--</c:if>--%>
-            <%--<a href="javascript:getPage(${pageInfo.lastPage})" >末页</a>--%>
-        <%--</div>--%>
+
         <div class="col-md-offset-4">
             <nav>
                 <ul class="pagination pagination-lg">

@@ -296,13 +296,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="feature" style="font-weight: 200;position: relative;top:-40px;">
                             <h4><p style="font-size: 30px; font-family: 'arial', '微软雅黑'">足·迹</p></h4>
                             <c:forEach items="${huajuCookie}" var="c" varStatus="status">
-                                <div class="feature-top">
-                                    <img src="${pageContext.request.contextPath}/${c.bpicture}" width="260px" height="170px" alt="/">
-                                    <p style="font-size: 24px;color: #131e26">${c.building}<br/>
-                                    <p>${c.bdetail},… <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${c.buildingid}">更多详情</a></p>
-                                </div>
-                                <c:if test="${status.index eq 4}">
-                                    <c:set var="exitId" value="0"/>
+                                <c:if test="${status.index lt 5}">
+                                    <div class="feature-top">
+                                        <img src="${pageContext.request.contextPath}/${c.bpicture}" width="260px" height="170px" alt="/">
+                                        <p style="font-size: 24px;color: #131e26">${c.building}<br/>
+                                        <p>${c.bdetail},… <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${c.buildingid}">更多详情</a></p>
+                                    </div>
+
                                 </c:if>
                             </c:forEach>
                         </div>

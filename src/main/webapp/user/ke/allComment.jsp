@@ -322,8 +322,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                                 </c:choose>
                                                              style="font-size:14px;width:70%;height:190px;">
                                                             <c:set value="${comment.userpic}" var="pic"/>
-                                                            <c:if test="${comment.userpic eq null||comment.userpic eq ''}"><c:set value="a2.jpg" var="pic"></c:set></c:if>
-                                                            <img src="${pageContext.request.contextPath}/user/ke/images/userImg/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
+                                                            <c:if test="${comment.userpic eq null||comment.userpic eq ''}"><c:set value="user/ke/images/a2.jpg" var="pic"></c:set></c:if>
+                                                            <img src="${pageContext.request.contextPath}/${pic}" alt="头像" class="img-circle" width="100px" height="100px"/>
                                                             <p style="margin-top:10px;margin-left:20px;margin-bottom: 60px;"><span class="glyphicon glyphicon-user">${comment.uname}
                                             <c:choose>
                                                 <c:when test="${comment.idtype eq 3}"><a href=""><img src="${pageContext.request.contextPath}/user/ke/images/zixunshi.png"
@@ -610,13 +610,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <div class="feature" style="font-weight: 200">
                         <h4><p style="font-size: 30px; font-family: 'arial', '微软雅黑'">猜你喜欢</p></h4>
                         <c:forEach items="${huajuCookie}" var="c" varStatus="status">
+                            <c:if test="${status.index lt 5}">
                         <div class="feature-top">
                             <img src="${pageContext.request.contextPath}/${c.bpicture}" width="260px" height="170px" alt="/">
                             <p style="font-size: 24px;color: #131e26">${c.building}<br/>
                             <p>${c.bdetail},… <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${c.buildingid}">更多详情</a></p>
                         </div>
-                            <c:if test="${status.index eq 4}">
-                                <c:set var="exitId" value="0"/>
+
                             </c:if>
                         </c:forEach>
                     </div>

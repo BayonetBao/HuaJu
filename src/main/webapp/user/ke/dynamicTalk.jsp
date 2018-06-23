@@ -100,7 +100,7 @@
             $('.message').focus();//自动获取焦点
             return;
         }
-        $(".msgCon").append("<div class='msgBox'><dl><dt><img src='${pageContext.request.contextPath}/user/ke/images/userImg/${sessionScope.user.userpic}' width='50' height='50'/></dt><dd>${sessionScope.user.uname}</dd></dl><div class='msgTxt'>"+txt+"</div></div>");
+        $(".msgCon").append("<div class='msgBox'><dl><dt><img src='${pageContext.request.contextPath}/${sessionScope.user.userpic}' width='50' height='50'/></dt><dd>${sessionScope.user.uname}</dd></dl><div class='msgTxt'>"+txt+"</div></div>");
         var s=$("#cart").val().split(",");
         if(check(s,txt)){
             $.ajax({

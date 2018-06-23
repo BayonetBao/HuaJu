@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="index.html"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1><a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
                 </div>
 
             </div>
@@ -168,12 +168,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="active">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
                     </li>
 
-                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="${pageContext.request.contextPath}/cta/ctalist.action">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
@@ -185,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="banner-section">
     <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+        <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action"><h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2></a>
     </div>
 </div>
 <!---header--->
@@ -247,7 +247,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
 
-                                                        <a>${b.cta.ctarelname}|咨询</a>
+                                                        <a href="#">${b.cta.ctarelname}|咨询</a>
                                                     </p>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -290,8 +290,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-3 properties-right" >
                     <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif">我要找房</h4>
                         <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                            <div class="col-md-12 search" style=" font-size:28px;font-weight:100;font-family: 'Open Sans', sans-serif;cursor: pointer;margin-bottom: 20px;margin-top: -20px;">
+                                <input type="submit" value="我要找房"  style="height: 80px;"/>
+                            </div>
                             <input type="hidden" value="1" id="curPage" name="curPage" />
                             <input type="hidden" value="" id="isonsale" name="isonsale"/>
                             <div id="distpicker3">
@@ -386,8 +388,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </select>
                                 </div>
                             </div>
-                            <button style="width: 140px;height: 50px;margin-top: 10px; font-size: 20px;" type="submit" class="btn btn-warning">搜索</button>
-                        </form>
+                            <div class="col-md-12 search" style="margin-top: 10px;">
+                                <input type="submit" value="搜索"  style="height: 50px;"/>
+                            </div>
+                         </form>
                     </div>
 <script>
     function onsale() {

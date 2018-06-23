@@ -48,7 +48,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <!---fonts-->
+    <!---三级联-->
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.data.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/dist/distpicker.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/user/ke/jQueryDistpicker20160621/js/main.js"></script>
+
     <script src="${pageContext.request.contextPath}/user/bao/js/responsiveslides.min.js"></script>
     <script>
         $(function () {
@@ -75,10 +79,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
-
 </head>
 <body>
-<!---header--->
 <div class="header-section">
     <div class="container">
         <div class="head-top">
@@ -93,9 +95,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <ul>
                     <li><i class="glyphicon glyphicon-phone" aria-hidden="true"></i>咨询热线：400-606-2695 </li>
                     <c:if test="${not empty sessionScope.user}">
-                        <script>
-                            alert(${sessionScope.userType});
-                        </script>
                         <c:if test="${sessionScope.userType==1}">
                             <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>普通用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/user/ke/single.jsp">${user.uname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action" ><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
@@ -106,7 +105,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><i class="glyphicon glyphicon-user" aria-hidden="true"></i>咨询师用户&nbsp;&nbsp;&nbsp;<a style="color: #28ffef" href="${pageContext.request.contextPath}/developer/index.jsp">${user.ctaname}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a  href="${pageContext.request.contextPath}/exit.action"><i title="退出" class="glyphicon glyphicon-log-out" aria-hidden="true"></i></a></li>
                         </c:if>
                     </c:if>
-
                     <c:if test="${empty sessionScope.user}">
                     <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal">登录</a></li>
                     <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" data-toggle="modal" data-target="#myModal1">注册</a></li>
@@ -178,108 +176,101 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="content">
     <div class="place-section">
         <div class="container">
-            <h2>find your place</h2>
-            <div class="place-grids">
-                <div class="col-md-3 place-grid">
-                    <h5>all location</h5>
-                    <select class="sel">
-                        <option value="">All Locations</option>
-                        <option value="">New Jersey</option>
-                        <option value="">New York</option>
-                        <option value="">Australia</option>
-                        <option value="">Canada</option>
-                        <option value="">India</option>
+            <p style="font-size: 30px;text-align: center;font-weight: 200">我要找房</p>
+            <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
+                <div class="place-grids">
+                <input type="hidden" value="1" id="curPage" name="curPage" />
+                <input type="hidden" value="" id="isonsale" name="isonsale"/>
+                    <div id="distpicker5">
+                    <div class="yourplace col-md-2" style="width: 250px;">
+                        <h5>省份</h5>
+                        <label class="sr-only" for="province1">Province</label>
+                        <select class="sel3" name="province" id="province1">
+                        </select>
+                    </div>
+                    <div class="yourplace col-md-2" style="width: 250px;">
+                        <h5>城市</h5>
+                        <label class="sr-only" for="city1">City</label>
+                        <select class="sel3" name="city" id="city1"></select>
+                    </div>
+                    <div class="yourplace col-md-2" style="width: 250px;">
+                        <h5>区域</h5>
+                        <label class="sr-only" for="district1" name="district">District</label>
+                        <select class="sel3" name="district" id="district1"></select>
+                    </div>
+                </div>
+                    <div class="yourplace col-md-2">
+                        <h5>特色</h5>
+                        <select class="sel3" name="charactere">
+                            <option value="">不限</option>
+                            <option value="小户型" <c:if test="${buildQueryPojo.charactere eq '小户型'}">selected</c:if>>小户型</option>
+                            <option value="临地铁" <c:if test="${buildQueryPojo.charactere eq '临地铁'}">selected</c:if>>临地铁</option>
+                            <option value="现房" <c:if test="${buildQueryPojo.charactere eq '现房'}">selected</c:if>>现房</option>
+                            <option value="品牌地产" <c:if test="${buildQueryPojo.charactere eq '品牌地产'}">selected</c:if>>品牌地产</option>
+                        </select>
+                    </div>
+                <div class="yourplace col-md-2">
+                    <h5>户型</h5>
+                    <select class="sel2" name="typeid">
+                        <option value="">不限</option>
+                        <option value="1">一居</option>
+                        <option value="2">二居</option>
+                        <option value="3">三居</option>
                     </select>
                 </div>
-                <div class="col-md-3 place-grid">
-                    <h5>all sub location</h5>
-                    <select class="sel">
-                        <option value="">All Locations</option>
-                        <option value="">New Jersey</option>
-                        <option value="">New York</option>
-                        <option value="">Australia</option>
-                        <option value="">Canada</option>
-                        <option value="">India</option>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="place-grids">
+                    <div class="yourplace col-md-2">
+                        <h5>类型</h5>
+                        <select class="sel2" name="genre">
+                            <option value="">不限</option>
+                            <option value="住宅" <c:if test="${buildQueryPojo.genre eq '住宅'}">selected</c:if>>住宅</option>
+                            <option value="别墅" <c:if test="${buildQueryPojo.genre eq '别墅'}">selected</c:if>>别墅</option>
+                            <option value="商业" <c:if test="${buildQueryPojo.genre eq '商业'}">selected</c:if>>商业</option>
+                        </select>
+                    </div>
+                <div class="col-md-2 yourplace-grid">
+                    <h5>总价</h5>
+                    <select class="sel3" name="bTotalprice">
+                        <option value="">总价</option>
+                        <option value="0-100" <c:if test="${buildQueryPojo.bTotalprice eq 0}">selected</c:if>>
+                            <100万</option>
+                        <option value="100-200" <c:if test="${buildQueryPojo.bTotalprice eq 100}">selected</c:if>>100-200万</option>
+                        <option value="200-300" <c:if test="${buildQueryPojo.bTotalprice eq 200}">selected</c:if>>200-300万</option>
+                        <option value="300-500" <c:if test="${buildQueryPojo.bTotalprice eq 300}">selected</c:if>>300-500万</option>
+                        <option value="500-10000" <c:if test="${buildQueryPojo.bTotalprice eq 500}">selected</c:if>>>500万</option>
                     </select>
                 </div>
-                <div class="col-md-3 place-grid">
-                    <h5>Property Status</h5>
-                    <select class="sel">
-                        <option value="">All status</option>
-                        <option value="">none</option>
-                        <option value="">open house</option>
-                        <option value="">rent</option>
-                        <option value="">sale</option>
-                    </select>
+                <div class="yourplace-grids1">
+                    <div class="col-md-2 yourplace-grid">
+                        <h5>单价</h5>
+                        <select class="sel3" name="bPerprice">
+                            <option value="">单价</option>
+                            <option value="0-20000" <c:if test="${buildQueryPojo.bPerprice eq 0}">selected</c:if>>
+                                <2万</option>
+                            <option value="20000-30000" <c:if test="${buildQueryPojo.bPerprice eq 20000}">selected</c:if>>2-3万</option>
+                            <option value="30000-40000" <c:if test="${buildQueryPojo.bPerprice eq 30000}">selected</c:if>>3-4万</option>
+                            <option value="40000-50000" <c:if test="${buildQueryPojo.bPerprice eq 40000}">selected</c:if>>4-5万</option>
+                            <option value="50000-10000000000" <c:if test="${buildQueryPojo.bPerprice eq 50000}">selected</c:if>>5万及以上</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 yourplace-grid">
+                        <h5>面积</h5>
+                        <select class="sel3" name="acreage">
+                            <option value="">请选择</option>
+                            <option value="30-50">30-50</option>
+                            <option value="50-100">50-100</option>
+                            <option value="100-150">100-150</option>
+                            <option value="150">150~</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-3 place-grid">
-                    <h5>Property Type</h5>
-                    <select class="sel">
-                        <option value="">All Type</option>
-                        <option value="">Commercial</option>
-                        <option value="">- Office</option>
-                        <option value="">- Buy</option>
-                        <option value="">Residential</option>
-                        <option value="">-Apartment</option>
-                    </select>
+                    <div class="col-md-4 search">
+                            <input type="submit" value="Search">
+                    </div>
                 </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="place-grids">
-                <div class="col-md-2 place-grid1">
-                    <h5>Min Beds</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
-                <div class="col-md-2 place-grid1">
-                    <h5>Min Baths</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                    </select>
-                </div>
-                <div class="col-md-2 place-grid1">
-                    <h5>Min Price</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">$500</option>
-                        <option value="">$1000</option>
-                        <option value="">$2000</option>
-                        <option value="">$3000</option>
-                        <option value="">$4000</option>
-                        <option value="">$5000</option>
-                        <option value="">$75000</option>
-                        <option value="">$10000</option>
-                    </select>
-                </div>
-                <div class="col-md-2 place-grid1">
-                    <h5>Max Price</h5>
-                    <select class="sel">
-                        <option value="">any</option>
-                        <option value="">$1000</option>
-                        <option value="">$2000</option>
-                        <option value="">$3000</option>
-                        <option value="">$4000</option>
-                        <option value="">$5000</option>
-                        <option value="">$75000</option>
-                        <option value="">$10000</option>
-                    </select>
-                </div>
-                <div class="col-md-4 search">
-                    <form action="forrent.html">
-                        <input type="submit" value="Search">
-                    </form>
-                </div>
+            </form>
                 <div class="clearfix"></div>
             </div>
         </div>

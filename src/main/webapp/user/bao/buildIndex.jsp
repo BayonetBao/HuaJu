@@ -318,10 +318,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li style="margin-right:57px;"><a
                 href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}"
                 style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
+        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}"
                style="color: #0b0b0b;">楼盘周边</a></li>
 
@@ -719,7 +719,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </div>
                     <%--楼盘动态--%>
-                    <div class="container" style="border: solid cornsilk 1px;padding-bottom: 10px;">
+                    <div class="container" style="border: solid cornsilk 1px;padding-bottom: 10px;width:1100px;margin-left: -50px;">
                         <iframe src="${pageContext.request.contextPath}/dynamic/selectDynamicByBuild.action?buildingid=${build.buildingid}"
                                 name="myframe" width='100%' height='78%' frameborder='0' id="myframe">
                         </iframe>
@@ -818,6 +818,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
+</div>
 <!---footer--->
 <div class="footer-section">
     <div class="container">
@@ -844,7 +845,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="terms.html">Terms of Use</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                     <li><a href="contact.html">Contact Support </a></li>
-                    <li><a href="agents.html"> All Agents</a></li>
+                    <li><a href="../../../../../../../../高博大三实习/项目/agents.html"> All Agents</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="faqs.html">FAQs</a></li>
                 </ul>
