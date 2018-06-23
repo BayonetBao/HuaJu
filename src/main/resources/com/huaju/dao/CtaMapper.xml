@@ -5,6 +5,10 @@
 <select id="AllCta" resultType="Cta">
     SELECT * FROM cta
 </select>
+    <!--public  Cta selectCtaById(Integer ctaid);-->
+<select id="selectCtaById" parameterType="int" resultType="Cta">
+    select * from cta where ctaid=#{_parameter}
+</select>
     <!--public Cta CtaByActivity(int ctaid);-->
 
     <select id="CtaByActivity" resultType="Cta" parameterType="int">

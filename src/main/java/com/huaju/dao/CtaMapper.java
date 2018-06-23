@@ -16,4 +16,6 @@ public interface CtaMapper {
     public boolean addCta(Cta cta);
     //按楼盘id查询咨询师(张宝)
     public Cta seletCtaByBuildingid(int buildingid);
+    //通过咨询师id查找咨询师 (KE)
+    public  Cta selectCtaById(Integer ctaid);
 }
