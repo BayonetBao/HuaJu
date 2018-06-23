@@ -32,6 +32,9 @@ public class ImgControl {
     @Autowired
     private EnvirService envirService;
 
+    @Autowired
+    private BuildService buildService;
+
     @RequestMapping(value = "selectAllImg.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllCommentByQueryPojoFront(int buildingid,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -40,7 +43,8 @@ public class ImgControl {
         List<Buildimg> buildimgs = buildimgService.selectBuildimgByBuildingid(buildingid);
         List<ProtoTypeImg> protoTypeImgs = protoService.selectProtoTypeImgByBuildingid(buildingid);
         List<EnvironmentImg> environmentImgs = envirService.selectEnvironmentimgByBuildingid(buildingid);
-
+        Build build = buildService.selectBuildById(buildingid);
+        request.setAttribute("build",build);
         request.setAttribute("graphs",graphs);
         request.setAttribute("arroundimgs",arroundimgs);
         request.setAttribute("buildimgs", buildimgs);

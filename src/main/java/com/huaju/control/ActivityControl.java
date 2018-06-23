@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.huaju.dao.BuildMapper;
 import com.huaju.entity.*;
 import com.huaju.service.ActivityService;
+import com.huaju.service.BuildService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +27,12 @@ public class ActivityControl {
 
     @Autowired
     private ActivityService activityService;
-
+    @Autowired
+    private BuildService buildService;
 
     @Autowired
     private BuildMapper buildMapper;
+    //后台
     @RequestMapping(value = "/selectAllActivityByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllActivityByQueryPojo(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ActivityQueryPojo activityQueryPojo = new ActivityQueryPojo();
@@ -105,5 +108,41 @@ public class ActivityControl {
         Activity activity=activityService.selectActivity(id);
         request.setAttribute("activity",activity);
         request.getRequestDispatcher("/developer/Activityinfo.jsp").forward(request,response);
+    }
+    //前台查询
+    //查询全部活动
+    @RequestMapping(value = "/selectAllActivityQueryPojo.action",method = {RequestMethod.GET,RequestMethod.POST})
+    public void selectBuildQueryPojo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
+        ActivityQueryPojo activityQueryPojo = new ActivityQueryPojo();
+        Map<String,Object> cmap=new HashMap<>();
+        List<Company> companies=buildService.selectCompanyInBuild();
+
+        cmap.put("activityQueryPojo",activityQueryPojo);
+        int pageSize =3;
+        int curPage = 1;
+        String scurPage = request.getParameter("curPage");
+        if (scurPage != null && !scurPage.trim().equals("")) {
+            curPage = Integer.parseInt(scurPage);
+        }
+        cmap.put("pageSize", pageSize);
+        cmap.put("curPage",curPage);
+        PageInfo<Activity> pageInfo = activityService.selectActivityByBuildAndCta(cmap);
+        request.setAttribute("pageInfo", pageInfo);
+        request.setAttribute("companies",companies);
+        request.setAttribute("activityQueryPojo",activityQueryPojo);
+        request.getRequestDispatcher("/user/fei/buildactivity.jsp").forward(request,response);
+    }
+    //根据楼盘id查询活动
+    @RequestMapping(value = "/selectBuildActivity.action",method = {RequestMethod.GET,RequestMethod.POST})
+    public void selectBuildActivity(int buildingid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        Activity activity = activityService.selectBuildActivity(buildingid);
+        List<Build> builds = activityService.selectBuilding();
+
+        Build build = buildService.selectBuildById(buildingid);
+        request.setAttribute("builds",builds);
+        request.setAttribute("build",build);
+        request.setAttribute("activity",activity);
+        request.getRequestDispatcher("/user/fei/activity.jsp").forward(request,response);
     }
 }

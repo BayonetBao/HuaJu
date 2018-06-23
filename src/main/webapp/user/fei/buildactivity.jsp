@@ -27,8 +27,8 @@
 
     <title>楼盘搜索</title>
     <!---css--->
-    <link href="${pageContext.request.contextPath}/user/ke/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link href="${pageContext.request.contextPath}/user/ke/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/fei/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="${pageContext.request.contextPath}/user/fei/css/style.css" rel='stylesheet' type='text/css' />
     <!---css--->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -44,8 +44,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
     </script>
     <!---js--->
-    <script src="${pageContext.request.contextPath}/user/ke/js/jquery-1.11.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js"></script>
+    <script src="${pageContext.request.contextPath}/user/fei/js/jquery-1.11.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/user/fei/js/bootstrap.js"></script>
     <!---js--->
     <!---fonts-->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -152,53 +152,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 
-                                    <c:forEach items="${pageInfo.list}" var="b">
+                                    <c:forEach items="${pageInfo.list}" var="activity">
                                         <div class="forsale-grids" style="background-color:rgba(79,152,34,0.16)">
-                                            <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}" style="font-family: 'Open Sans', sans-serif" >${b.building}</a>
-                                                <p  style="position: relative; left: 500px;top: -25px;">
-                                                    <c:forEach items="${b.buildType}" var="type">
-                                                        ${type.typename}(${type.count}) &nbsp;
-                                                    </c:forEach>
-                                                </p>
+                                            <h4><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${activity.build.buildingid}" style="font-family: 'Open Sans', sans-serif" >${activity.build.building}</a>
                                             </h4>
                                             <div class="forsale1">
                                                 <div class="forsale-left">
-                                                    <a href="#"><img src="${pageContext.request.contextPath}/${b.bpicture}" class="img-responsive" width="240px" height="170px" alt="楼盘"></a>
+                                                    <a href="#"><img src="${pageContext.request.contextPath}/${activity.build.bpicture}" class="img-responsive" width="240px" height="170px" alt="楼盘"></a>
                                                 </div>
                                                 <div class="forsale-right">
-                                                    <h5 style="font-family: 'Open Sans', sans-serif">最低${b.bperprice}元每平方米起
+                                                    <h5 style="font-family: 'Open Sans', sans-serif">最低${activity.build.bperprice}元每平方米起
                                                         &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                        参考总价${b.btotalprice}-${b.bmaxtotalprice}万元
+                                                        参考总价${activity.build.btotalprice}-${activity.build.bmaxtotalprice}万元
                                                         &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
-                                                        <button style="border:none; background-color: #F60;">${b.conditions}</button>
+                                                        <button style="border:none; background-color: #F60;">${activity.build.conditions}</button>
                                                     </h5>
-                                                    <p>${b.bdetail}<br/>
-                                                        <a href="#"> 查看地图</a><br/> ${b.starttime}
-                                                        <a href="#">${b.building}${b.acreage}-${b.maxacreage}平房源${b.conditions}</a>
-                                                    </p>${b.discounts}
+                                                    <p>${activity.build.bdetail}<br/>
+                                                        <a href="#"> 查看地图</a><br/> ${activity.build.starttime}
+                                                        <a href="#">${activity.build.building}${activity.build.acreage}-${activity.build.maxacreage}平房源${activity.build.conditions}</a>
+                                                    </p>${activity.build.discounts}
                                                     <a href="#" class="button4">更多详情</a>
-                                                    <p><span>优惠信息</span> ${b.discounts}</p>
+                                                    <p><span>活动信息</span></p>
+                                                    <hr/>
+                                                    <p><span>活动时间</span><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd hh:mm:ss"/></p>
+                                                    <hr/>
+                                                    <p> <span>活动总人数</span>${activity.totalnum}<span>已报名人数</span>${activity.parnum}</p>
+                                                    <hr/>
+                                                    <p><span>活动内容</span>${activity.actcontent}</p>
                                                 </div>
                                                 <div class="zixunshi" style="margin-left: 700px;">
-                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${b.cta.ctaimg}" href="" />
+                                                    <img style="border-radius:300px; width:90px; margin-top:-130px" src="${pageContext.request.contextPath}/user/ke/images/${activity.cta.ctaimg}" href="" />
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
 
-                                                        <a>${b.cta.ctarelname}|咨询</a>
+                                                        <a>${activity.cta.ctarelname}|咨询</a>
                                                     </p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <ul>
                                                     <c:choose>
-                                                    <c:when test="${!empty b.charactere && !(b.charactere eq '')}">
-                                                   <c:forEach items="${fn:split(b.charactere,'，')}" var="ch">
+                                                    <c:when test="${!empty activity.build.charactere && !(activity.build.charactere eq '')}">
+                                                   <c:forEach items="${fn:split(activity.build.charactere,'，')}" var="ch">
                                                        <li>
                                                            <a href="#">${ch}</a>
                                                        </li>
                                                    </c:forEach>
                                                     </c:when>
                                                         <c:otherwise>
-                                                            <li><a href="#">敬请期待</a></li>
+                                                            <li><a href="#">报名参加</a></li>
                                                         </c:otherwise>
                                                     </c:choose>
                                                     <li>
@@ -225,107 +226,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 properties-right" >
-                    <div class="properties-top">
-                        <h4 style="font-family: 'Open Sans', sans-serif">我要找房</h4>
-                        <form id="mainForm" action="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">
-                            <input type="hidden" value="1" id="curPage" name="curPage" />
-                            <input type="hidden" value="" id="isonsale" name="isonsale"/>
-                            <div id="distpicker5">
-                                <div class="form-group col-md-12">
-                                    <h5>省份</h5>
-                                    <label class="sr-only" for="province1">Province</label>
-                                    <select class="form-control" name="province" id="province1">
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <h5>城市</h5>
-                                    <label class="sr-only" for="city1">City</label>
-                                    <select class="form-control" name="city" id="city1"></select>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <h5>区域</h5>
-                                    <label class="sr-only" for="district1" name="district">District</label>
-                                    <select class="form-control" name="district" id="district1"></select>
-                                </div>
-                            </div>
-                            <div class="yourplace col-md-12">
-                                <h5>户型</h5>
-                            <select class="sel2" name="typeid">
-                                <option value="">不限</option>
-                                <c:forEach items="${types}" var="t">
-                                    <option value="${t.typeid}" <c:if test="${buildQueryPojo.typeid eq t.typeid}">selected</c:if> >${t.typename}</option>
-                                </c:forEach>
-                            </select>
-                            </div>
-                            <div class="yourplace col-md-12">
-                                <h5>开发商</h5>
-                                <select class="sel2" name="comid">
-                                    <option value="">不限</option>
-                                    <c:forEach items="${companies}" var="c">
-                                        <option value="${c.comid}" <c:if test="${buildQueryPojo.comid eq c.comid}">selected</c:if> >${c.comname}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
 
-                            <div class="yourplace col-md-12">
-                                <h5>特色</h5>
-                                <select class="sel3" name="charactere">
-                                    <option value="">不限</option>
-                                    <option value="小户型" <c:if test="${buildQueryPojo.charactere eq '小户型'}">selected</c:if>>小户型</option>
-                                    <option value="临地铁" <c:if test="${buildQueryPojo.charactere eq '临地铁'}">selected</c:if>>临地铁</option>
-                                    <option value="现房" <c:if test="${buildQueryPojo.charactere eq '现房'}">selected</c:if>>现房</option>
-                                    <option value="品牌地产" <c:if test="${buildQueryPojo.charactere eq '品牌地产'}">selected</c:if>>品牌地产</option>
-                                </select>
-                            </div>
-                            <div class="yourplace col-md-6">
-                                <h5>类型</h5>
-                                <select class="sel2" name="genre">
-                                    <option value="">不限</option>
-                                    <option value="住宅" <c:if test="${buildQueryPojo.genre eq '住宅'}">selected</c:if>>住宅</option>
-                                    <option value="别墅" <c:if test="${buildQueryPojo.genre eq '别墅'}">selected</c:if>>别墅</option>
-                                    <option value="商业" <c:if test="${buildQueryPojo.genre eq '商业'}">selected</c:if>>商业</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 yourplace-grid">
-                                <h5>总价</h5>
-                                <select class="sel3" name="bTotalprice">
-                                    <option value="">总价</option>
-                                    <option value="0-100" <c:if test="${buildQueryPojo.bTotalprice eq 0}">selected</c:if>>
-                                        <100万</option>
-                                    <option value="100-200" <c:if test="${buildQueryPojo.bTotalprice eq 100}">selected</c:if>>100-200万</option>
-                                    <option value="200-300" <c:if test="${buildQueryPojo.bTotalprice eq 200}">selected</c:if>>200-300万</option>
-                                    <option value="300-500" <c:if test="${buildQueryPojo.bTotalprice eq 300}">selected</c:if>>300-500万</option>
-                                    <option value="500-10000" <c:if test="${buildQueryPojo.bTotalprice eq 500}">selected</c:if>>>500万</option>
-                                </select>
-                            </div>
-                            <div class="yourplace-grids1">
-                                <div class="col-md-6 yourplace-grid">
-                                    <h5>单价</h5>
-                                    <select class="sel3" name="bPerprice">
-                                        <option value="">单价</option>
-                                        <option value="0-20000" <c:if test="${buildQueryPojo.bPerprice eq 0}">selected</c:if>>
-                                            <2万</option>
-                                        <option value="20000-30000" <c:if test="${buildQueryPojo.bPerprice eq 20000}">selected</c:if>>2-3万</option>
-                                        <option value="30000-40000" <c:if test="${buildQueryPojo.bPerprice eq 30000}">selected</c:if>>3-4万</option>
-                                        <option value="40000-50000" <c:if test="${buildQueryPojo.bPerprice eq 40000}">selected</c:if>>4-5万</option>
-                                        <option value="50000-10000000000" <c:if test="${buildQueryPojo.bPerprice eq 50000}">selected</c:if>>5万及以上</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6 yourplace-grid">
-                                    <h5>面积</h5>
-                                    <select class="sel3" name="acreage">
-                                        <option value="">请选择</option>
-                                        <option value="30-50">30-50</option>
-                                        <option value="50-100">50-100</option>
-                                        <option value="100-150">100-150</option>
-                                        <option value="150">150~</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button style="width: 140px;height: 50px;margin-top: 10px; font-size: 20px;" type="submit" class="btn btn-warning">搜索</button>
-                        </form>
-                    </div>
 <script>
     function onsale() {
         $("#isonsale").val("abc");
