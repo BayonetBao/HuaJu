@@ -93,7 +93,7 @@ public class UserControl {
         }
 
     }
-    @RequestMapping(value = "init.action")
+    @RequestMapping(value = "/init.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void init(HttpSession session,HttpServletRequest request,HttpServletResponse response) throws IOException {
         session.setAttribute("uid",-1);
         session.setAttribute("userType",-1);

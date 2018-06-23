@@ -199,10 +199,11 @@ public class CommentControl {
 //    前台添加评论
     @RequestMapping(value = "insertComment.action",method = {RequestMethod.POST,RequestMethod.GET})
     public String insertComment(HttpSession session,Comment comment,HttpServletRequest request,HttpServletResponse response){
-        String result="";
+        String result=null;
         Date date=new Date();
         Integer type= new Integer((String) session.getAttribute("userType"));
         Integer id=new Integer((Integer) session.getAttribute("uid"));
+        System.out.println(type+"--"+id);
         comment.setId(id);
         comment.setIdtype(type);
         if(comment.getComtype().equals("")||comment.getComtype()==null){
