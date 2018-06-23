@@ -320,8 +320,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
-        <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/ImgControl/selectAllImg.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/Activity/selectAllActivityQueryPojo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}"
                style="color: #0b0b0b;">楼盘周边</a></li>
 

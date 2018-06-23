@@ -39,6 +39,11 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public Activity selectBuildActivity(Integer buildingid) {
+        return activityMapper.selectBuildActivity(buildingid);
+    }
+
+    @Override
     public List<Build> selectBuildInActivity(Integer comid) {
         return activityMapper.selectBuildInActivity(comid);
     }
