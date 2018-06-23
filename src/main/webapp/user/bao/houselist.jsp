@@ -252,7 +252,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${build.conditions}</span>
         <c:if test="${not empty build.charactere}">
             <c:set var="character" value="${build.charactere}"></c:set>
-            <c:set var="characters" value='${fn:split(character, ",")}'></c:set>
+            <c:set var="characters" value='${fn:split(character, "，")}'></c:set>
             <c:forEach items="${characters}" var="characterss">
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <span style=" color:#0cf;border:solid #0CF 1px;padding:0px 8px; font-size:9px;">${characterss}</span>
@@ -268,9 +268,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <li style="margin-right:50px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
         <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:50px;" class="active"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
-        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
@@ -283,7 +283,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="container">
 
         <p id="oranger">
-            <a class="hover" href="<%=basePath%>buildType/buildType.action?buildingid=26" >全部(${sumhouse})</a>
+            <a class="hover" href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}" >全部(${sumhouse})</a>
             <c:set var="flag" value="true"></c:set>
             <c:forEach items="${buildTypes}" var="buildTypes">
                 <c:if test="${buildTypes.count==0}">

@@ -278,9 +278,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <li style="margin-right:50px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
         <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}l" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:50px;" class="active"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${buildingid}" style="color: #0b0b0b;">户型分析</a></li>
-        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:50px;" class="active"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
@@ -289,7 +289,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <p id="oranger">
     <input type="hidden" value="${buildingid}">
-    <a class="hover" href="<%=basePath%>buildType/buildType.action?buildingid=26" >全部(${sumhouse})</a>
+    <a class="hover" href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}" >全部(${sumhouse})</a>
     <c:set var="flag" value="true"></c:set>
     <c:forEach items="${buildTypes}" var="buildTypes">
         <c:if test="${buildTypes.count==0}">
@@ -297,16 +297,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <c:if test="${buildTypes.count!=0}">
             <c:set var="flag" value="false"></c:set>
             <c:if test="${buildTypes.typeid==1}">
-                <a href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=1"> 一居(${buildTypes.count})</a>
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=1"> 一居(${buildTypes.count})</a>
             </c:if>
             <c:if test="${buildTypes.typeid==2}">
-                <a href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=2">二居(${buildTypes.count})</a>
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=2">二居(${buildTypes.count})</a>
             </c:if>
             <c:if test="${buildTypes.typeid==3}">
-                <a  href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=3">三居(${buildTypes.count})</a>
+                <a  href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=3">三居(${buildTypes.count})</a>
             </c:if>
             <c:if test="${buildTypes.typeid==4}">
-                <a href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=4">四居(${buildTypes.count})</a>
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=4">四居(${buildTypes.count})</a>
             </c:if>
         </c:if>
     </c:forEach>

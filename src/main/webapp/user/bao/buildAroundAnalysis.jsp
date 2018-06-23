@@ -196,9 +196,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         <li style="margin-right:57px; margin-left:16px;" class=""><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
         <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型</a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
         <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li class="active"><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
@@ -239,7 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!--配套图-->
                     <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;width: 1055px;">
                         <div  style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
-                            <span style="border:solid chartreuse 1px;line-height:48px;font-size: 22px;color:black;">配套实景展示</span>
+                            <span style="line-height:48px;font-size: 22px;color:black;">配套实景展示</span>
                         </div>
                         <br>
                         <%--环境规划图--%>
@@ -265,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div style="width: 1055px;overflow: auto;">
                                 <c:forEach items="${buildimgList}" var="arroundimg">
                                     <div style="margin-top:10px;margin-right:15px;float:left;height: 162px;width: 232px;">
-                                        <img src="${pageContext.request.contextPath}/${buildimgList.buildimg}" alt="" width="230" height="160">
+                                        <img width="230" height="160" src="${pageContext.request.contextPath}/${arroundimg.buildimg}" alt="" />
                                     </div>
                                 </c:forEach>
                             </div>
@@ -282,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                             <div style="width: 1055px;overflow: auto;">
                                 <c:forEach items="${nearBuildList}" var="nearBuild">
-                                    <div class="col-md-3 feature-grid" style="width:247px;border:solid crimson 1px;">
+                                    <div class="col-md-3 feature-grid" style="width:247px;">
                                         <img width="245" height="170" src="${pageContext.request.contextPath}/${nearBuild.bpicture}" class="img-responsive zoom-img" alt="${nearBuild.building}">
                                         <h5><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${nearBuild.buildingid}">${nearBuild.building}</a></h5>
                                         单价：<p><fmt:formatNumber value="${nearBuild.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>

@@ -254,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <div class="navbar-brand">
                     <h1>
-                        <a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a>
+                        <a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a>
                     </h1>
                 </div>
 
@@ -263,17 +263,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    <li><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span
                             class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
-                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="${pageContext.request.contextPath}/cta/ctalist.action">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
+
                 <div class="clearfix"></div>
             </div>
         </nav>
@@ -281,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="banner-section">
     <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+        <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action"><h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2></a>
     </div>
 </div>
 <!---banner--->
@@ -323,6 +324,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}"
                style="color: #0b0b0b;">楼盘周边</a></li>
+
     </ul>
 
 
@@ -332,7 +334,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="content" style="margin-top:10px;">
     <div class="properties-section" style="margin-top:0px;padding-top:10px;">
         <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:1100px;">
-            <div class="properties-grids">
+            <div class="properties-grids" >
                 <div class="col-md-9 properties-left">
                     <div class="flexslider">
                         <div class="banner" id="b04" style="border:solid #0F0 1px;">
@@ -482,6 +484,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </tr>
                         </table>
                     </div>
+                    <div class="clearfix"></div>
                     <%--推荐理由--%>
                     <c:if test="${not empty build.advice}">
                     <div class="note" style="border: solid cornsilk 1px;padding-bottom: 10px;">
@@ -494,12 +497,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                     </c:if>
+                    <div class="clearfix"></div>
                     <%--楼盘详情--%>
                     <div class="additional-details">
                         <br>
                         <h3>楼盘详情</h3>
                         <ul>
-
                             <div>
                                 <li><b style="font-size:30px; color:#000;">基本信息</b></li>
                                 <br>
@@ -646,8 +649,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             ${build.fitment}
                                         </c:if></li>
                                 </div>
-                        </ul>
+
                     </div>
+                        </ul>
                     <%--楼盘户型--%>
                     <div class="note" style="border: solid cornsilk 1px;width:1040px;padding-bottom: 10px;">
                         <div style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">
@@ -689,8 +693,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                     <div style="float:left;margin-top:18px; margin-left:80px;height: 160px;width: 575px;">
 
-
-                                        <b style="font-size:24px;"><a href="${pageContext.request.contextPath}/buildType/houselist.action?houseid=${house.houseid}&buildingid=${build.buildingid}" style="font-family: 'Open Sans', sans-serif">${house.hname}</a></b>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <b style="font-size:24px;">${house.hname}</b>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <c:if test="${house.hsalestatus=='售罄'}"><span style="border: solid #c3c3c3 1px; color:#c3c3c3;">${house.hsalestatus}</span></c:if>
                                         <c:if test="${house.hsalestatus!='售罄'}"><span style="border: solid rgba(251,97,95,1) 1px; color:#ff6d6f;">${house.hsalestatus}</span></c:if>
 
@@ -706,20 +709,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 style="color:black;">${house.forward}</span>&nbsp;&nbsp;&nbsp;&nbsp;类型：<span
                                                 style="color:black;">${house.htype}</span></p>
 
-                                        <p style="width:500px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;">户型分析:<span style="color: black;">${house.analysis}</span></p>
-                                        <p><a href="${pageContext.request.contextPath}/buildType/houselist.action?houseid=${house.houseid}&buildingid=${build.buildingid}" style="font-family: 'Open Sans', sans-serif">查看详情</a></p>
+                                        <p>户型分析：是哭的今飞凯达交房的房间打开房间打开飞机快递费...<a>查看全文</a></p>
                                     </div>
 
                                 </div>
                             </c:if>
                         </c:forEach>
                         <div style="padding-bottom:1px;height: 50px;font-size: 24px;text-align: center;">
-                            <b style="font-size:24px;"><a href="${pageContext.request.contextPath}/buildType/houselist.action?houseid=${house.houseid}&buildingid=${build.buildingid}" style="font-family: 'Open Sans', sans-serif">查看全部</a></b>
+                            <span style="display:block;margin-top:7px;"><a href="#">查看全部</a></span>
                         </div>
 
                     </div>
                     <%--楼盘动态--%>
-                    <div class="container" style="border: solid cornsilk 1px;padding-bottom: 10px;width:1100px;margin-left: -50px;">
+                    <div class="container" style="border: solid cornsilk 1px;padding-bottom: 10px;width:800px;margin-left: -50px;">
                         <iframe src="${pageContext.request.contextPath}/dynamic/selectDynamicByBuild.action?buildingid=${build.buildingid}"
                                 name="myframe" width='100%' height='78%' frameborder='0' id="myframe">
                         </iframe>
@@ -770,9 +772,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </iframe>
                     </div>
                     <!--popupbox-->
-
-
                 </div>
+                    <div class="clearfix"></div>
                 <div class="col-md-3 properties-right">
                     <div class="properties-top">
                         <h4>咨询师</h4>
