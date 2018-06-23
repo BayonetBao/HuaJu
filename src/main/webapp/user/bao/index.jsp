@@ -278,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <c:if test="${not empty ctas}">
     <div class="friend-agent">
         <div class="container" >
-            <div style="overflow: auto;height: 50px;margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">华居咨询师</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;">更多咨询师</span></div>
+            <div style="overflow: auto;height: 50px;margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">华居咨询师</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/cta/ctalist.action">更多咨询师</a></span></div>
             <div class="friend-grids">
                     <c:forEach items="${ctas}" var="cta" varStatus="i">
                         <c:if test="${i.index<3}">

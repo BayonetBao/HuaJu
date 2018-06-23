@@ -254,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <div class="navbar-brand">
                     <h1>
-                        <a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a>
+                        <a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a>
                     </h1>
                 </div>
 
@@ -263,14 +263,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    <li><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span
                             class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
-                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="${pageContext.request.contextPath}/cta/ctalist.action">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
@@ -282,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="banner-section">
     <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+        <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action"><h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2></a>
     </div>
 </div>
 <!---banner--->
@@ -319,8 +319,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}"
                 style="color: #0b0b0b;">楼盘评论</a></li>
         <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
-        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}"
                style="color: #0b0b0b;">楼盘周边</a></li>
@@ -334,7 +334,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="content" style="margin-top:10px;">
     <div class="properties-section" style="margin-top:0px;padding-top:10px;">
         <div class="container" style="margin-top:0px;background-color:rgba(98,98,98,0.15);width:1100px;">
-            <div class="properties-grids">
+            <div class="properties-grids" >
                 <div class="col-md-9 properties-left">
                     <div class="flexslider">
                         <div class="banner" id="b04" style="border:solid #0F0 1px;">
@@ -501,7 +501,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <br>
                         <h3>楼盘详情</h3>
                         <ul>
-
                             <div>
                                 <li><b style="font-size:30px; color:#000;">基本信息</b></li>
                                 <br>
@@ -648,8 +647,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             ${build.fitment}
                                         </c:if></li>
                                 </div>
-                        </ul>
+
                     </div>
+                        </ul>
                     <%--楼盘户型--%>
                     <div class="note" style="border: solid cornsilk 1px;width:1040px;padding-bottom: 10px;">
                         <div style="border-bottom: solid rgba(116,117,112,0.93) 1px;height: 50px;overflow: auto;">

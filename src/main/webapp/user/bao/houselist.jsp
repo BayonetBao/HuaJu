@@ -212,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="navbar-header">
 
                 <div class="navbar-brand">
-                    <h1><a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
+                    <h1><a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a></h1>
                 </div>
 
             </div>
@@ -220,13 +220,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}/user/bao/index.jsp">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
+                    <li><a href="${pageContext.request.contextPath}/build/index.action">&nbsp;&nbsp;&nbsp;&nbsp;首&nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
                         <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">&nbsp;&nbsp;&nbsp;&nbsp;楼盘查询&nbsp;&nbsp;&nbsp;&nbsp;</a>
 
                     </li>
 
-                    <li><a href="blog.html">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="${pageContext.request.contextPath}/cta/ctalist.action">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
                 </ul>
@@ -238,7 +238,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="banner-section">
     <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+        <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action"><h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2></a>
     </div>
 </div>
 <!---banner--->
@@ -266,12 +266,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <%--<input hidden="hidden" name="buildingid" value="${buildTypes.buildingid}"/>--%>
     <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
 
-        <li style="margin-right:50px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:50px;"><a href="blog.html" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:50px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
         <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${b.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:50px;" class="active"><a href="#" style="color: #0b0b0b;">户型分析</a></li>
-        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:50px;" class="active"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action" style="color: #0b0b0b;">楼盘动态</a></li>
+        <li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:50px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
 
@@ -291,16 +291,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <c:if test="${buildTypes.count!=0}">
                     <c:set var="flag" value="false"></c:set>
                     <c:if test="${buildTypes.typeid==1}">
-                       <a href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=1"> 一居(${buildTypes.count})</a>
+                       <a href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=1"> 一居(${buildTypes.count})</a>
                     </c:if>
                     <c:if test="${buildTypes.typeid==2}">
-                       <a href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=2">二居(${buildTypes.count})</a>
+                       <a href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=2">二居(${buildTypes.count})</a>
                     </c:if>
                     <c:if test="${buildTypes.typeid==3}">
-                      <a  href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=3">三居(${buildTypes.count})</a>
+                      <a  href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=3">三居(${buildTypes.count})</a>
                     </c:if>
                     <c:if test="${buildTypes.typeid==4}">
-                       <a href="<%=basePath%>buildType/buildType.action?buildingid=26&typeid=4">四居(${buildTypes.count})</a>
+                       <a href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=4">四居(${buildTypes.count})</a>
                     </c:if>
                 </c:if>
             </c:forEach>
