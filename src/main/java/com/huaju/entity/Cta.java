@@ -13,6 +13,15 @@ public class Cta {
     private String remark;
     private  String school;
     private String charactere;
+    private  String qq;
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
 
     @Override
     public String toString() {

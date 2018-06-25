@@ -24,6 +24,7 @@
 	<script src="${pageContext.request.contextPath}/user/ke/js/plugins.min.js"></script>
 	<script src="${pageContext.request.contextPath}/user/ke/js/main.min.js"></script>
 	<script src="${pageContext.request.contextPath}/user/ke/js/bootstrap.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/developer/My97DatePicker/WdatePicker.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/bootstrap.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/normalize.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/user/ke/css/font-awesome.css">
@@ -59,7 +60,7 @@
 			<img src="${pageContext.request.contextPath}/${cta.ctaimg}" alt="/">
 		</div>
 		<h3 class="profile-title">${cta.ctarelname}</h3>
-		<p class="profile-description">${cta.education} ${cta.charactere}</p>
+		<p class="profile-description">${cta.school}${cta.education} <p>${cta.charactere}</p></p>
 	</div> <!-- top-section -->
 	<div class="main-navigation">
 		<ul class="navigation">
@@ -86,92 +87,47 @@
 			<!-- ABOUT -->
 			<div class="page-section" id="about">
 				<div class="row">
+
 					<div class="col-md-12">
-						<h4 class="widget-title">Learn About Me</h4>
-						<div class="about-image">
-							<img src="${pageContext.request.contextPath}/user/ke/img/8.jpg" alt="about me">
+						<h4 class="widget-title">>>主要楼盘</h4>
+						<c:forEach items="${builds}" var="b" varStatus="s">
+						<div>
+							<img src="${pageContext.request.contextPath}/${b.bpicture}" height="250px;" width="100%" alt="/">
 						</div>
-						<p>Volton is free <a rel="nofollow" href="http://www.templatemo.com/page/1">responsive mobile template</a> from <span class="blue">template</span><span class="green">mo</span> website. You can use this template for any purpose. Please tell your friends about it. Thank you. Credit goes to <a rel="nofollow" href="#">Unsplash</a> for images used in this design. You can <strong>change menu icons</strong> by checking <a rel="nofollow" href="#/font-awesome-icon-world-map/">Font Awesome</a> (version 4). Example: <strong>&lt;i class=&quot;fa fa-camera&quot;&gt;&lt;/i&gt;</strong></p>
+						<p> ${s.index+1}.<a rel="nofollow" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}">${b.building}</a> : <span class="blue">${b.province}${b.city}${b.barea}${b.bdetail}.</span><span class="green">单价：均${b.bperprice}/㎡.</span> 总价：${b.btotalprice}-${b.bmaxtotalprice}万元 . ${b.advice}</p>
 						<hr>
+						</c:forEach>
 					</div>
 				</div> <!-- #about -->
 			</div>
 
 			<!-- PROJECTS -->
 			<div class="page-section" id="projects">
+
 				<div class="row">
 					<div class="col-md-12">
-						<h4 class="widget-title">PHOTOS OF WHAT I DO</h4>
-						<p>Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Maecenas et lorem molestie, maximus justo dignissim, cursus nisl. Nullam at ante quis ex pharetra pulvinar quis id dolor. Integer lorem odio, euismod ut sem sit amet, imperdiet condimentum diam.</p>
+						<h4 class="widget-title">最近点评</h4>
 					</div>
 				</div>
-				<div class="row projects-holder">
+
+				<div class="row">
+					<c:forEach items="${comments}" var="c" varStatus="s">
+						<c:if test="${s.index lt 6}">
 					<div class="col-md-4 col-sm-6">
 						<div class="project-item">
-							<img src="img/1.jpg" alt="">
+							<p>${c.building}>>${c.comtype}</p>
+							<img src="${pageContext.request.contextPath}/${c.bpicture}" alt="">
 							<div class="project-hover">
 								<div class="inside">
-									<h5><a href="#">Pellentesque porta ligula</a></h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
-								</div>
+									<h5><a href="#">${c.comtype}</a></h5>
+									<p>${s.index+1}>><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${c.buildingid}">${c.building}>></a>
+										${c.comcontent}<p><fmt:formatDate value="${c.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/> </p>
+									</p></div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4 col-sm-6">
-						<div class="project-item">
-							<img src="img/2.jpg" alt="">
-							<div class="project-hover">
-								<div class="inside">
-									<h5><a href="#">Pellentesque porta ligula</a></h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<div class="project-item">
-							<img src="img/3.jpg" alt="">
-							<div class="project-hover">
-								<div class="inside">
-									<h5><a href="#">Pellentesque porta ligula</a></h5>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam cursus.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<div class="project-item">
-							<img src="img/4.jpg" alt="">
-							<div class="project-hover">
-								<div class="inside">
-									<h5><a href="#">Pellentesque porta ligula</a></h5>
-									<p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<div class="project-item">
-							<img src="img/5.jpg" alt="">
-							<div class="project-hover">
-								<div class="inside">
-									<h5><a href="#">Pellentesque porta ligula</a></h5>
-									<p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6">
-						<div class="project-item">
-							<img src="img/6.jpg" alt="">
-							<div class="project-hover">
-								<div class="inside">
-									<h5><a href="#">Pellentesque porta ligula</a></h5>
-									<p>Quisque mattis sit amet dolor eu scelerisque. Vivamus bibendum massa et nisl tempus commodo.</p>
-								</div>
-							</div>
-						</div>
-					</div>
+						</c:if>
+					</c:forEach>
 				</div> <!-- .projects-holder -->
 			</div>
 			<hr>
@@ -180,35 +136,78 @@
 			<div class="page-section" id="contact">
 				<div class="row">
 					<div class="col-md-12">
-						<h4 class="widget-title">PLACE TO TALK WITH ME</h4>
-						<p>Vestibulum ac iaculis erat, in semper dolor. Maecenas et lorem molestie, maximus justo dignissim, cursus nisl. Nullam at ante quis ex pharetra pulvinar quis id dolor. Integer lorem odio, euismod ut sem sit amet, imperdiet condimentum diam.</p>
+						<h4 class="widget-title">联系我>><a href="http://wpa.qq.com/msgrd?v=3&uin=${cta.qq}&site=qq&menu=yes">在线咨询</a></h4>
+					<hr/>
 					</div>
 				</div>
 				<div class="row">
 					<form action="#" method="post" class="contact-form">
-						<fieldset class="col-md-4 col-sm-6">
-							<input type="text" id="your-name" placeholder="Your Name...">
+						<fieldset class="col-md-2 col-sm-6">
+							<input type="text" id="urealname" placeholder="你的名字.">
 						</fieldset>
-						<fieldset class="col-md-4 col-sm-6">
-							<input type="email" id="email" placeholder="Your Email...">
+						<fieldset class="col-md-2 col-sm-6">
+							<input type="text" id="apphone" placeholder="你的电话">
 						</fieldset>
-						<fieldset class="col-md-4 col-sm-12">
-							<input type="text" id="your-subject" placeholder="Subject...">
+						<fieldset class="col-md-2 col-sm-12">
+							<select id="sex" style="width: 100%;height: 45px;border:lightslategray 1px solid;">
+								<option value="男士">男士</option>
+								<option value="女士">女士</option>
+							</select>
+						</fieldset>
+						<fieldset class="col-md-3 col-sm-6">
+							<input id="apptime" name="apptime" placeholder="预约时间" value="" class="Wdate"  style="width:100%;height: 45px;" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-{%d} 00:00:00'})"/>
+						</fieldset>
+						<fieldset class="col-md-3 col-sm-12">
+							<select id="buildingid" style="width: 100%;height: 45px;border:lightslategray 1px solid;">
+								<option value="">请选择..</option>
+								<c:forEach items="${builds}" var="ctaBuild">
+									<option value="${ctaBuild.buildingid}">${ctaBuild.building}</option>
+								</c:forEach>
+							</select>
 						</fieldset>
 						<fieldset class="col-md-12 col-sm-12">
-							<textarea name="message" id="message" cols="30" rows="6" placeholder="Leave your message..."></textarea>
+							<textarea name="appnote" id="appnote" cols="30" rows="6" placeholder="你的备注（非必填）..."></textarea>
 						</fieldset>
 						<fieldset class="col-md-12 col-sm-12">
-							<input type="submit" class="button big default" value="Send Message">
+							<input type="button" class="button big default" onclick="appointSub()" value="预约咨询">
 						</fieldset>
 					</form>
+					<script>
+						function appointSub() {
+						    if(${!(sessionScope.userType eq 1)}){
+						        alert("只有用户可以预约呦~");
+							}else{
+                            if (confirm("确认预约么")) {
+                            var urealname = $("#urealname");
+                            var apphone = $("#apphone");
+                            var buildingid = $("#buildingid");
+                            var sex = $("#sex");
+                            var appnote = $("#appnote");
+                            var apptime=$("#apptime");
+                            $.ajax({
+								type:"post",
+								url:"${pageContext.request.contextPath}/appointment/insertAppointment.action",
+								data:"urealname="+urealname.val()+"&apphone="+apphone.val()+"&buildingid="+buildingid.val()+"&sex="+sex.val()+"&appnote="+appnote.val()+"&apptime="+apptime.val(),
+								success:function (data) {
+                                    alert("亲爱的"+urealname.val()+",你已经预约咨询师${cta.ctarelname},时间为"+apptime.val());
+                                    urealname.val("");
+                                    apphone.val("");
+                                    appnote.val("");
+                                    buildingid.val("");
+                                    apptime.val("");
+                                }
+							});
+                        }
+							}
+                        }
+					</script>
 				</div> <!-- .contact-form -->
 			</div>
 			<hr>
 
 			<div class="row" id="footer">
 				<div class="col-md-12 text-center">
-					<p class="copyright-text">Copyright &copy; 2084 Company Name | More Templates <a href="http://www.17sucai.com/" target="_blank" title="17素材网">17素材网</a> - Collect from <a href="http://www.17sucai.com/" title="网页模板" target="_blank">网页模板</a></p>
+					<p class="copyright-text">这个不合适？ | 更多>> <a href="" target="_blank" title="全部咨询师">全部咨询师</a>-->前去查看 <a href="" title="all" target="_blank">点我</a></p>
 				</div>
 			</div>
 

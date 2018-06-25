@@ -1,5 +1,7 @@
 package com.huaju.dao;
 
-public interface AppointmentMapper {
+import com.huaju.entity.Appointment;
 
+public interface AppointmentMapper {
+   public boolean insertAppointment(Appointment appointment);//添加预约咨询 珂
 }

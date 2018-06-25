@@ -2,8 +2,11 @@ package com.huaju.control;
 
 import com.github.pagehelper.PageInfo;
 
-import com.huaju.entity.Cta;
+import com.huaju.dao.BuildMapper;
+import com.huaju.dao.CommentMapper;
+import com.huaju.entity.*;
 import com.huaju.service.ActivityService;
+import com.huaju.service.BuildService;
 import com.huaju.service.CtaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +31,10 @@ public class CtaControl {
     private ActivityService activityService;
     @Autowired
     private CtaService ctaService;
+    @Autowired
+    private BuildMapper buildMapper;
+    @Autowired
+    private CommentMapper commentMapper;
 //    咨询师列表页
     @RequestMapping(value = "/ctalist.action", method = RequestMethod.GET)
     public void ctalist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,8 +60,16 @@ public class CtaControl {
     @RequestMapping(value = "/ctaIndex.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void ctaIndex(Integer ctaid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         Cta cta=ctaService.selectCtaById(ctaid);
+        BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
+        buildQueryPojo.setCtaid(ctaid);
+        List<Build> builds=buildMapper.selectBuildQueryPojo(buildQueryPojo);
+        CommentQueryPojo commentQueryPojo=new CommentQueryPojo();
+        commentQueryPojo.setIdtype(3);
+        commentQueryPojo.setUserid(ctaid);
+        List<Comment> comments=commentMapper.selectCommentByQueryPojo(commentQueryPojo);
+        request.setAttribute("comments",comments);
         request.setAttribute("cta",cta);
-        System.out.println(cta.toString());
+        request.setAttribute("builds",builds);
         request.getRequestDispatcher("/user/ke/ctaIndex.jsp").forward(request,response);
     }
     //添加咨询师(张宝)

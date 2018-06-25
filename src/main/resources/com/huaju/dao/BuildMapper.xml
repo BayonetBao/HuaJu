@@ -98,8 +98,8 @@
                select buildingid from buildtype where typeid=#{typeid} and count !=0
                )
            </if>
-           <if test="comid neq null">
-               and comid =#{comid}
+           <if test="ctaid neq null">
+               and build.ctaid =#{ctaid}
            </if>
            <if test="genre neq null">
                and tenement like "%" #{genre} "%"
