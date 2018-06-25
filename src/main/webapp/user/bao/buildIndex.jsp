@@ -254,7 +254,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <div class="navbar-brand">
                     <h1>
-                        <a href="${pageContext.request.contextPath}/user/bao/index.jsp"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a>
+                        <a href="${pageContext.request.contextPath}/build/index.action"><span>华&nbsp;&nbsp;&nbsp;&nbsp;居</span></a>
                     </h1>
                 </div>
 
@@ -281,7 +281,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="banner-section">
     <div class="container">
-        <h2 style="font-family: 'Open Sans', sans-serif">楼&nbsp;盘&nbsp;查&nbsp;询</h2>
+        <h2 style="font-family: 'Open Sans', sans-serif"><a href="${pageContext.request.contextPath}/build/index.action"></a>楼&nbsp;盘&nbsp;查&nbsp;询</h2>
     </div>
 </div>
 <!---banner--->
@@ -778,7 +778,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h4>咨询师</h4>
                         <img src="${pageContext.request.contextPath}/${cta.ctaimg}" class="img-responsive" alt=""/>
                         <ul class="">
-                            <li>姓名:${cta.ctaname}
+                            <li>姓名:${cta.ctarelname}
                             </li>
                             <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> 联系方式:${cta.ctaphone}
                             </li>

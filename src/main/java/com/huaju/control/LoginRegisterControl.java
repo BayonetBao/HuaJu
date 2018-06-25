@@ -214,7 +214,7 @@ public class LoginRegisterControl {
     public void loginSuccess(HttpServletRequest request,HttpServletResponse response) throws IOException {
         response.sendRedirect(request.getContextPath()+"/user/bao/index.jsp");
     }
-    @RequestMapping(value = "exit.action",method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/exit.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void exit(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException {
         session.invalidate();
         response.sendRedirect(request.getContextPath()+"/user/bao/index.jsp");

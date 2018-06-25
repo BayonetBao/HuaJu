@@ -199,11 +199,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
 
                             <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
-                                <li role="presentation" class="active">
-                                    <a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部楼盘
+                                <li role="presentation" <c:if test="${buildQueryPojo.isonsale eq null}"> class="active" </c:if>>
+                                    <a href="javascript:allBuild()" aria-controls="profile">全部楼盘
                                     </a>
                                 </li>
-                                <li role="presentation">
+                                <li role="presentation"  <c:if test="${!(buildQueryPojo.isonsale eq null)}"> class="active" </c:if> >
                                     <a href="javascript:onsale()"   aria-controls="profile">优惠楼盘</a>
                                 </li>
                             </ul>
@@ -295,7 +295,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <input type="submit" value="我要找房"  style="height: 80px;"/>
                             </div>
                             <input type="hidden" value="1" id="curPage" name="curPage" />
-                            <input type="hidden" value="" id="isonsale" name="isonsale"/>
+                            <input type="hidden" value="${buildQueryPojo.isonsale}" id="isonsale" name="isonsale"/>
                             <div id="distpicker3">
                                 <div class="form-group col-md-12">
                                     <h5>省份</h5>
@@ -394,6 +394,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          </form>
                     </div>
 <script>
+    function allBuild() {
+        $("#isonsale").val("");
+        $("#mainForm").submit();
+    }
     function onsale() {
         $("#isonsale").val("abc");
         $("#mainForm").submit();
