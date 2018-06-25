@@ -157,6 +157,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="container">
 					<div class="blog-grids">
 						<div class="col-md-9 blog-grid">
+							<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
+								<li role="presentation" class="active">
+									<a href="${pageContext.request.contextPath}/Activity/selectAllActivityQueryPojo.action" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部活动
+									</a>
+								</li>
+							</ul>
 							<div class="blog">
 								<h3>${activity.build.building}</h3>
 								<p><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd hh:mm:ss"/> / <a href="#">${activity.cta.ctarelname}</a> </p>
@@ -229,18 +235,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     $.ajax({
                         url:"${pageContext.request.contextPath}/ActivityEntry/activityEntry.action",
                         type:"post",
+
                         data:"entnote="+entnote.val()+"&entphone="+entphone.val(),
                         success:function(data){
                             entnote.val("");
                             entphone.val("");
-
+                            showQuery;
                             alert(data);
                         },
                         error:function(XMLHttpRequest, textStatus, errorThrown){
                             alert("Error")
                             alert(XMLHttpRequest.readyState);
-                        }
+                        },
+                        dataType:"json",
                     });
+                }
+                function showQuery(data) {
+					${"#entnote"}.val(data.entnote);
+					${"#entphone"}.val(data.entphone);
+					${"#"}
                 }
 
             }

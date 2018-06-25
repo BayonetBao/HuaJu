@@ -67,11 +67,6 @@ public class GraphControl {
         request.setAttribute("pageInfo",pageInfo);
         request.setAttribute("imgQueryPojo",imgQueryPojo);
         request.getRequestDispatcher("/developer/graphList.jsp").forward(request,response);
-//        PageInfo<Dynamic> pageInfo = dynamicService.selectDynamicByBuild(cmap);
-//        request.setAttribute("blist",blist);
-//        request.setAttribute("pageInfo", pageInfo);
-//        request.setAttribute("dynamicQueryPojo",dynamicQueryPojo);
-//        request.getRequestDispatcher("/developer/dynamicList.jsp").forward(request, response);
     }
     @RequestMapping(value = "/selectGraphByBuild.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectGraphByBuild(ImgQueryPojo imgQueryPojo,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
