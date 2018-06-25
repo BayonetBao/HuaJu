@@ -15,6 +15,15 @@ public class BuildQueryPojo {
     private Double maxAcreage;//最大面积
     private Integer comid;//开发商id
     private String isonsale;//优惠
+    private Integer ctaid;//咨询师id
+
+    public Integer getCtaid() {
+        return ctaid;
+    }
+
+    public void setCtaid(Integer ctaid) {
+        this.ctaid = ctaid;
+    }
 
     public String getIsonsale() {
         return isonsale;

@@ -54,6 +54,7 @@ public class CtaControl {
     public void ctaIndex(Integer ctaid,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         Cta cta=ctaService.selectCtaById(ctaid);
         request.setAttribute("cta",cta);
+        System.out.println(cta.toString());
         request.getRequestDispatcher("/user/ke/ctaIndex.jsp").forward(request,response);
     }
     //添加咨询师(张宝)

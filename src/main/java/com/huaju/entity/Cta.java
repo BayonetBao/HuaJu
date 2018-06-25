@@ -14,6 +14,24 @@ public class Cta {
     private  String school;
     private String charactere;
 
+    @Override
+    public String toString() {
+        return "Cta{" +
+                "ctaid=" + ctaid +
+                ", ctarelname='" + ctarelname + '\'' +
+                ", ctapassword='" + ctapassword + '\'' +
+                ", ctaimg='" + ctaimg + '\'' +
+                ", ctaphone='" + ctaphone + '\'' +
+                ", ctatime=" + ctatime +
+                ", education='" + education + '\'' +
+                ", ctaname='" + ctaname + '\'' +
+                ", intro='" + intro + '\'' +
+                ", remark='" + remark + '\'' +
+                ", school='" + school + '\'' +
+                ", charactere='" + charactere + '\'' +
+                '}';
+    }
+
     public Cta() {
         super();
     }
@@ -113,19 +131,4 @@ public class Cta {
         this.education = education == null ? null : education.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Cta{" +
-                "ctaid=" + ctaid +
-                ", ctarelname='" + ctarelname + '\'' +
-                ", ctapassword='" + ctapassword + '\'' +
-                ", ctaimg='" + ctaimg + '\'' +
-                ", ctaphone='" + ctaphone + '\'' +
-                ", ctatime=" + ctatime +
-                ", education='" + education + '\'' +
-                ", ctaname='" + ctaname + '\'' +
-                ", intro='" + intro + '\'' +
-                ", remark='" + remark + '\'' +
-                '}';
-    }
 }

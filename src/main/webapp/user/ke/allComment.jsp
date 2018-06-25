@@ -309,7 +309,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     <%--查找评论的隐藏表单 通过按钮触发script 更改hidden的input的value submit--%>
                                                     <form id="hiddenForm" action="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action" method="post">
                                                         <input type="hidden" id="curPage" name="curPage" value="1"/>
-                                                        <input type="hidden" id="buildingid" name="buildingid" value="${build.buildingid}"/>
+                                                        <input type="hidden" id="buildingid" name="buildingid" value="${commentQueryPojo.buildingid}"/>
                                                         <input type="hidden" id="comtype" name="comtype" value="${commentQueryPojo.comtype}"/>
                                                         <input type="hidden" id="idtype" name="idtype" value="${commentQueryPojo.idtype}"/>
                                                     </form>
@@ -418,7 +418,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         function deleteComment(commentid) {
                                                             if(confirm("此操作会删除所有回复，确定要删除么？")){
                                                                 $.ajax({
-                                                                    type:"post",
+                                                                    type:"get",
                                                                     data:"commentid="+commentid,
                                                                     url:"${pageContext.request.contextPath}/comment/deleteCommentById.action",
                                                                     success:function (result) {
