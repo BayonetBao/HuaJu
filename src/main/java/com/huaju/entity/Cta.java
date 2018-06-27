@@ -17,9 +17,31 @@ public class Cta {
     private String qq;
 
 
+
+
+
+    @Override
+    public String toString() {
+        return "Cta{" +
+                "ctaid=" + ctaid +
+                ", ctarelname='" + ctarelname + '\'' +
+                ", ctapassword='" + ctapassword + '\'' +
+                ", ctaimg='" + ctaimg + '\'' +
+                ", ctaphone='" + ctaphone + '\'' +
+                ", ctatime=" + ctatime +
+                ", education='" + education + '\'' +
+                ", ctaname='" + ctaname + '\'' +
+                ", intro='" + intro + '\'' +
+                ", remark='" + remark + '\'' +
+                ", school='" + school + '\'' +
+                ", charactere='" + charactere + '\'' +
+                '}';
+    }
+
     public Cta() {
         super();
     }
+
     public String getSchool() {
         return school;
     }
@@ -131,23 +153,5 @@ public class Cta {
         this.qq = qq;
     }
 
-    @Override
-    public String toString() {
-        return "Cta{" +
-                "ctaid=" + ctaid +
-                ", ctarelname='" + ctarelname + '\'' +
-                ", ctapassword='" + ctapassword + '\'' +
-                ", ctaimg='" + ctaimg + '\'' +
-                ", ctaphone='" + ctaphone + '\'' +
-                ", ctatime=" + ctatime +
-                ", education='" + education + '\'' +
-                ", ctaname='" + ctaname + '\'' +
-                ", intro='" + intro + '\'' +
-                ", remark='" + remark + '\'' +
-                ", school='" + school + '\'' +
-                ", charactere='" + charactere + '\'' +
-                ", comid='" + comid + '\'' +
-                ", qq='" + qq + '\'' +
-                '}';
-    }
+
 }

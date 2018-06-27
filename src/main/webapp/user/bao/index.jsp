@@ -278,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <c:if test="${not empty ctas}">
     <div class="friend-agent">
         <div class="container" >
-            <div style="overflow: auto;height: 50px;margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">华居咨询师</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;">更多咨询师</span></div>
+            <div style="overflow: auto;height: 50px;margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">华居咨询师</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/cta/ctalist.action">更多咨询师</a></span></div>
             <div class="friend-grids">
                     <c:forEach items="${ctas}" var="cta" varStatus="i">
                         <c:if test="${i.index<3}">
@@ -288,6 +288,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <p>毕业于${cta.school}</p>
                                 <%--<p>${cta.education}</p>--%>
                                 <p style="width:350px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;">${cta.intro}</p>
+                                <p>${cta.education}</p>
+                                <p style="height: 50px;overflow: hidden;word-wrap: break-word;"><span>个人介绍：</span>${cta.intro}</p>
                             </div>
                         </c:if>
                     </c:forEach>
@@ -338,11 +340,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 feature-grid">
                     <img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive zoom-img" alt="${advblist.building}">
                     <h5 style="font-size: 24px;font-family: 'arial', '微软雅黑'"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}"></a>${advblist.building}</h5>
+                    <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}"><img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive zoom-img" alt="${advblist.building}"></a>
+                    <h5 style="font-size: 24px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}">${advblist.building}</a></h5>
 
                     <p><fmt:formatNumber value=" ${advblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>
                     <p>建面 ${advblist.acreage}—${advblist.maxacreage} ㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${advblist.city}</p>
                     推荐理由：<p style=" height: 50px; overflow: hidden; width: 260px; word-wrap: break-word;">${advblist.advice}</p>
                     <p><a style="color: #00ccff" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}">查看详情</a></p>
+                    推荐理由：<p style="text-indent: 2em;height: 100px;text-overflow:ellipsis;overflow: hidden;word-wrap: break-word;">${advblist.advice}</p>
+                    <%--推荐理由：<p style="text-indent: 2em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow: hidden;">${advblist.advice}</p>--%>
+                    <%--style=" height: 50px; overflow: hidden; width: 260px; word-wrap: break-word;"--%>
+
+                    <p>.....&nbsp;&nbsp;&nbsp;&nbsp;<a style="color: #00ccff" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}">查看详情</a></p>
                 </div>
             </div>
             </c:if>
@@ -481,7 +490,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <p/>
                                 <div class="single-bottom">
                                     <label class="checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox2" value="option2">记住密码
+                                        <%--<input type="checkbox" id="inlineCheckbox2" value="option2">记住密码--%>
                                     </label>
                                 </div>
                                 <input type="submit" value="登录" >

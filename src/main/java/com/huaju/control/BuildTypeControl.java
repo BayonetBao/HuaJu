@@ -1,7 +1,9 @@
 package com.huaju.control;
 
+import com.huaju.entity.Build;
 import com.huaju.entity.BuildType;
 import com.huaju.entity.House;
+import com.huaju.service.BuildService;
 import com.huaju.service.BuildTypeService;
 import com.huaju.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,8 @@ public class BuildTypeControl {
     @Autowired
     private HouseService houseService;
 
-
+    @Autowired
+    private BuildService buildService;
 //    获得house的总数  全部（n）
 @RequestMapping(value = "/buildType.action",method = {RequestMethod.GET,RequestMethod.POST})
     public void sumHouse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,6 +40,7 @@ public class BuildTypeControl {
 
 //    System.out.println("buildingid" + buildingid);
     Integer id1 = new Integer(buildingid);
+    Build build=buildService.selectBuildById(id1);
     String typeid = request.getParameter("typeid");
     //       得到house的总数  全部（n）
     int sumhouse = buildTypeService.sumHouse(id1);
@@ -53,6 +57,7 @@ public class BuildTypeControl {
     }
     request.setAttribute("buildingid",buildingid);
     request.setAttribute("houses", houses);
+    request.setAttribute("build", build);
 
 //    System.out.println(buildingid+"222222");
 
@@ -66,6 +71,7 @@ public class BuildTypeControl {
 //        System.out.println(buildingid1+"_________IJOJn");
         //       得到house的总数  全部（n）
         int di1=Integer.parseInt(buildingid1);
+        Build build=buildService.selectBuildById(di1);
         int sumhouse = buildTypeService.sumHouse(di1);
         request.setAttribute("sumhouse", sumhouse);
 //   查询house的各个居室的总数 1居（n） 2居（m）
@@ -73,6 +79,7 @@ public class BuildTypeControl {
         request.setAttribute("buildTypes", buildTypes);
 //        house详情页
         House house=houseService.showHouseDoorAllInfo(Integer.parseInt(houseid));
+        request.setAttribute("build", build);
         request.setAttribute("house",house);
 //        拿到楼盘id
         request.setAttribute("buildingid",buildingid);

@@ -50,7 +50,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
                 <tr>
                     <td width="90%" align="left" valign="middle">
-                        <form id="mainForm" method="post" action="<%=basePath%>Graph/selectAllGraphByQueryPojo.action">
+                        <form id="mainForm" method="post" action="<%=basePath%>ProtoType/selectAllProtoTypeByQueryPojo.action">
                             <input type="hidden" id="curPage" name="curPage" value="1"/>
                             <div class="form-group" style="margin-top: -10px;">
                                 <span style="font-size:14px;">楼盘：</span>

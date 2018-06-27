@@ -25,4 +25,6 @@ public interface CtaService {
     public boolean deleteCta(int ctaid);
     //    修改咨询师信息ZYJ
     public void updateCtaInfo(Cta cta);
+    //ke 通过咨询师id查询咨询师
+    public  Cta selectCtaById(Integer ctaid);
 }

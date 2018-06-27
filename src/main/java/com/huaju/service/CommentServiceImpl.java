@@ -59,12 +59,15 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public boolean deleteComment(Integer id) {
         boolean flag=true;
-        if(recommentMapper.deleteRecomentByCommentid(id)){
-            favorMapper.deleteFavorByUseridAndCommentid(new Favor(id,null,null));
-            commentMapper.deleteComment(id);
+        if(commentMapper.deleteComment(id)){
+            Favor favor=new Favor();
+            favor.setCommentid(id);
+            favorMapper.deleteFavorByUseridAndCommentid(favor);
+            recommentMapper.deleteRecomentByCommentid(id);
         }else {
             flag=false;
         }
+        System.out.println(flag);
         return flag;
     }
 

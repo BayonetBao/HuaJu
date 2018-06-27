@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,8 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <title>Gallery</title>
 <!---css--->
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>user/fei/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>user/fei/css/style.css" rel='stylesheet' type='text/css' />
 <!---css--->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,8 +20,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!---js--->
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.js"></script>
+<script src="<%=basePath%>user/fei/js/jquery-1.11.1.min.js"></script>
+<script src="<%=basePath%>user/fei/js/bootstrap.js"></script>
 <!---js--->
 <!---fonts-->
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -164,8 +165,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<hr />
 						<c:forEach items="${graphs}" var="graphs">
 						<div class="col-md-3 gallery-grid" id="divs">
-						<a href="<%=basePath%>${graphs.graphuil}" class="swipebox"><span class="rollover1"> </span></a>
-						<img src="<%=basePath%>${graphs.graphuil}" class="img-responsive" alt="/">
+						<a href="<%=basePath%>${graphs.graphurl}" class="swipebox"><span class="rollover1"> </span></a>
+						<img src="<%=basePath%>${graphs.graphurl}" class="img-responsive" alt="/">
 						</div>
 						</c:forEach>
 						

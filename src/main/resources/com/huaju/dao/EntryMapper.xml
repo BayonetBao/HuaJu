@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.EntryMapper">
+    <resultMap id="EntryInfoMap" type="Entry">
+        <id column="entid" property="entid"/>
+        <result column="actid" property="actid"/>
+        <result column="userid" property="userid"/>
+        <result column="entphone" property="entphone"/>
+        <result column="entnote" property="entnote"/>
+        <collection property="activity" ofType="Activity">
+            <id column="actid" property="actid"/>
+            <result column="actime" property="actime"/>
+            <result column="ctaid" property="ctaid"/>
+            <result column="buildingid" property="buildingid"/>
+            <result column="totalnum" property="totalnum"/>
+            <result column="parnum" property="parnum"/>
+            <result column="actcontent" property="actcontent"/>
+            <result column="actnote" property="actnote"/>
+            <association property="build" javaType="Build">
+                <id column="buildingid" property="buildingid"/>
+                <result column="building" property="building"/>
+                <result column="bpicture" property="bpicture"/>
+                <result column="bperprice" property="bperprice"/>
+                <result column="btotalprice" property="btotalprice"/>
+                <result column="bmaxtotalprice" property="bmaxtotalprice"/>
+                <result column="conditions" property="conditions"/>
+                <result column="bdetail" property="bdetail"/>
+                <result column="starttime" property="starttime"/>
+                <result column="acreage" property="acreage"/>
+                <result column="maxacreage" property="maxacreage"/>
+                <result column="discounts" property="discounts"/>
+                <result column="charactere" property="charactere"/>
+                <result column="comid" property="comid"/>
+            </association>
+            <collection property="cta" ofType="Cta">
+                <id column="ctaid" property="ctaid"/>
+                <result column="ctaname" property="ctaname"/>
+                <result column="ctarelname" property="ctarelname"/>
+                <result column="ctaimg" property="ctaimg"/>
+                <result column="intro" property="intro"/>
+            </collection>
+        </collection>
 
+    </resultMap>
+    <!--public boolean ActivityEntry(Entry entry);-->
+    <insert id="ActivityEntry" parameterType="Entry">
+        INSERT INTO entry VALUE (null,#{actid},#{userid},#{entphone},#{entnote})
+    </insert>
+    <!--public Entry selectEntryInfo(Integer entid);-->
+    <select id="selectEntryInfo" resultType="Entry" parameterType="int">
+        SELECT e.*,a.*,b.*,c.* FROM entry e JOIN activity a ON e.actid=a.actid
+        <if test="entid neq null">
+            AND entid=#{entid}
+        </if>
+        JOIN build b ON a.buildingid=b.buildingid
+        JOIN cta c ON a.ctaid=c.ctaid
+    </select>
 </mapper>

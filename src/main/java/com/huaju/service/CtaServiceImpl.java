@@ -79,4 +79,9 @@ public class CtaServiceImpl implements CtaService{
         ctaMapper.updateCtaInfo(cta);
     }
 
+
+    @Override
+    public Cta selectCtaById(Integer ctaid) {
+        return ctaMapper.selectCtaById(ctaid);
+    }
 }

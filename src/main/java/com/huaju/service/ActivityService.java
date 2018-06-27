@@ -10,6 +10,8 @@ import java.util.Map;
 public interface ActivityService {
     public PageInfo<Activity> selectActivityByBuildAndCta(Map<String,Object> map);
 
+    public Activity selectBuildActivity(Integer buildingid);
+
     public List<Build> selectBuildInActivity(Integer comid);
 
     public boolean AddActivity(Activity activity);

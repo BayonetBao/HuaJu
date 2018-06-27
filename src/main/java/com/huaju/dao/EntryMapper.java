@@ -1,5 +1,9 @@
 package com.huaju.dao;
 
-public interface EntryMapper {
+import com.huaju.entity.Entry;
 
+public interface EntryMapper {
+    public boolean ActivityEntry(Entry entry);
+
+    public Entry selectEntryInfo(Integer entid);
 }

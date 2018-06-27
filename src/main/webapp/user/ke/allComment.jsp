@@ -238,14 +238,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 
-    <ul class="nav navbar-nav" style="float:none; margin:10px auto; width:1120px;">
+    <ul class="nav navbar-nav" style="float:none; margin:0px auto; width:1120px;">
 
-        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="index.html">楼盘主页<span class="sr-only">(current)</span></a></li>
-        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
-        <li style="margin-right:57px;" class="active"><a href="#" style="color: #0b0b0b;">楼盘评论</a></li>
-        <li style="margin-right:57px;" ><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
+        <li style="margin-right:57px; margin-left:16px;"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span class="sr-only">(current)</span></a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘详情</a></li>
+        <li style="margin-right:57px;"class="active"><a href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘评论</a></li>
+        <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型</a></li>
         <li style="margin-right:57px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
-        <li style="margin-right:57px;" ><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
+        <li style="margin-right:57px;" ><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
         <li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘活动</a></li>
         <li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘周边</a></li>
     </ul>
@@ -309,7 +309,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                     <%--查找评论的隐藏表单 通过按钮触发script 更改hidden的input的value submit--%>
                                                     <form id="hiddenForm" action="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action" method="post">
                                                         <input type="hidden" id="curPage" name="curPage" value="1"/>
-                                                        <input type="hidden" id="buildingid" name="buildingid" value="${build.buildingid}"/>
+                                                        <input type="hidden" id="buildingid" name="buildingid" value="${commentQueryPojo.buildingid}"/>
                                                         <input type="hidden" id="comtype" name="comtype" value="${commentQueryPojo.comtype}"/>
                                                         <input type="hidden" id="idtype" name="idtype" value="${commentQueryPojo.idtype}"/>
                                                     </form>
@@ -418,7 +418,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                         function deleteComment(commentid) {
                                                             if(confirm("此操作会删除所有回复，确定要删除么？")){
                                                                 $.ajax({
-                                                                    type:"post",
+                                                                    type:"get",
                                                                     data:"commentid="+commentid,
                                                                     url:"${pageContext.request.contextPath}/comment/deleteCommentById.action",
                                                                     success:function (result) {

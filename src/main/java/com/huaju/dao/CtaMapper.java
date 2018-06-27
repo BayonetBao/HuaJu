@@ -30,4 +30,6 @@ public interface CtaMapper {
 
 //    修改咨询师信息ZYJ
     public void updateCtaInfo(Cta cta);
+    //通过咨询师id查找咨询师 (KE)
+    public  Cta selectCtaById(Integer ctaid);
 }
