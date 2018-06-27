@@ -136,17 +136,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<ul class="nav navbar-nav" style="float:none; margin:0px auto; width:1120px;">
 
-				<li style="margin-right:57px; margin-left:16px;" ><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页</a></li>
+				<li style="margin-right:57px; margin-left:16px;" class="active"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页<span
+						class="sr-only">(current)</span></a></li>
 				<li style="margin-right:57px;"><a
 						href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}"
 						style="color: #0b0b0b;">楼盘详情</a></li>
 				<li style="margin-right:57px;"><a
 						href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}"
 						style="color: #0b0b0b;">楼盘评论</a></li>
-				<li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-				<li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-				<li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
-				<li style="margin-right:57px;" class="active"><a href="${pageContext.request.contextPath}/Activity/selectAllActivityQueryPojo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘活动</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/Activity/selectBuildActivity.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘活动</a></li>
 				<li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}"
 					   style="color: #0b0b0b;">楼盘周边</a></li>
 			</ul>
@@ -182,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="rules">
 								<h3 >活动信息</h3>
 								<p>
-									<h4>活动时间：</h4><span><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd hh:mm:ss"/></span><br>
+									<h4>活动时间：</h4><span><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd-hh:mm:ss"/></span><br>
 									<h4>活动总人数：</h4><span>${activity.totalnum}</span><br>
 									<h4>已报名人数：</h4><span>${activity.parnum}</span>
 								</p>
