@@ -192,14 +192,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="coment-form">
 								<div class="container">
 									<form>
-										<input type="submit" data-target="#myModal" value="立刻报名" >
+										<input type="button" data-toggle="modal" data-target="#myModal2" value="立刻报名" >
 									</form>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-3 blog-grid1">
 							<div class="tags">
-								<form id="mainFrom" action="#" method="post">
+								<form id="mainFrom" action="${pageContext.request.contextPath}/ActivityEntry/activityEntry.action" method="post">
 								<div class="form-group col-md-12">
 									<h5>您的姓名</h5>
 									<input type="text" value="" name="entnote">
@@ -208,8 +208,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<h5>您的手机号</h5>
 										<input type="text" value="" name="entphone">
 									</div>
-									<input type="button" data-target="#myModal" value="报名" onclick="entry()">
+									<input type="submit" value="报名">
 								</form>
+								<script>
+                                    function addEntry(){
+                                        alert("111111111111")
+                                        if(confirm("你确认要添加吗?")){
+                                            var entnote=${"entnote"};
+                                            var entphone=${"entphone"};
+                                            $.ajax({
+                                                url:"${pageContext.request.contextPath}/ActivityEntry/activityEntry.action",
+                                                type:"post",
+
+                                                data:"entnote="+entnote.val()+"&entphone="+entphone.val(),
+                                                success:function(data){
+                                                    entnote.val("");
+                                                    entphone.val("");
+                                                    showQuery;
+                                                    alert(data);
+                                                },
+                                                error:function(XMLHttpRequest, textStatus, errorThrown){
+                                                    alert("Error")
+                                                    alert(XMLHttpRequest.readyState);
+                                                },
+                                                dataType:"json",
+                                            });
+                                        }
+                                        function showQuery(data) {
+                                            ${"#entnote"}.val(data.entnote);
+                                            ${"#entphone"}.val(data.entphone);
+                                            ${"#"}
+                                        }
+
+                                    }
+								</script>
 							</div>
 							<div class="feature">
 								<h4>推荐楼盘</h4>
@@ -227,37 +259,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
-		<script>
-            function entry(){
-                if(confirm("你确认要添加吗?")){
-					var entnote=${"entnote"};
-					var entphone=${"entphone"};
-                    $.ajax({
-                        url:"${pageContext.request.contextPath}/ActivityEntry/activityEntry.action",
-                        type:"post",
 
-                        data:"entnote="+entnote.val()+"&entphone="+entphone.val(),
-                        success:function(data){
-                            entnote.val("");
-                            entphone.val("");
-                            showQuery;
-                            alert(data);
-                        },
-                        error:function(XMLHttpRequest, textStatus, errorThrown){
-                            alert("Error")
-                            alert(XMLHttpRequest.readyState);
-                        },
-                        dataType:"json",
-                    });
-                }
-                function showQuery(data) {
-					${"#entnote"}.val(data.entnote);
-					${"#entphone"}.val(data.entphone);
-					${"#"}
-                }
-
-            }
-		</script>
 		<!---footer--->
 		<div class="footer-section">
 			<div class="container">
@@ -429,7 +431,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<%--entry--%>
-		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content modal-info" style="min-width: 550px;">
 					<div class="modal-header">
@@ -448,7 +450,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<br>
 										<span></span>
 
-										<input type="submit" onclick="entry()" value="报名" >
+										<input type="submit" value="报名" >
 									</form>
 								</div>
 							</div>
@@ -458,7 +460,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<%--entrysuccess--%>
-		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -470,7 +472,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</h4>
 					</div>
 					<div class="modal-body">
-						按下 ESC 按钮退出。
+						<table>
+							<tr>
+								<td></td>
+								<td>${entry.entnote}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.entphone}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.build.building}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.build.cta.ctarelname}</td>
+								<td>${entry.build.cta.ctaphone}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.build.cta.intro                                                                                                                                                                        }</td>
+							</tr>
+						</table>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default"
