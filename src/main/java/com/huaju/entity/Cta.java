@@ -2,22 +2,24 @@ package com.huaju.entity;
 
 public class Cta {
     private Integer ctaid;
-    private String ctarelname;
+    private String ctarelname;//真实姓名
     private String ctapassword;
     private String ctaimg;
     private String ctaphone;
     private Integer ctatime;
     private String education;
-    private String ctaname;
+    private String ctaname;//员工号
     private String intro;
-    private String remark;
+    private String remark;//备用
     private  String school;
     private String charactere;
+    private Integer comid;//开发商id
+    private String qq;
+
 
     public Cta() {
         super();
     }
-
     public String getSchool() {
         return school;
     }
@@ -113,6 +115,22 @@ public class Cta {
         this.education = education == null ? null : education.trim();
     }
 
+    public Integer getComid() {
+        return comid;
+    }
+
+    public void setComid(Integer comid) {
+        this.comid = comid;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
     @Override
     public String toString() {
         return "Cta{" +
@@ -126,6 +144,10 @@ public class Cta {
                 ", ctaname='" + ctaname + '\'' +
                 ", intro='" + intro + '\'' +
                 ", remark='" + remark + '\'' +
+                ", school='" + school + '\'' +
+                ", charactere='" + charactere + '\'' +
+                ", comid='" + comid + '\'' +
+                ", qq='" + qq + '\'' +
                 '}';
     }
 }
