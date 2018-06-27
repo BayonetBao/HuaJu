@@ -14,7 +14,16 @@ public class Comment {
     private String uname;//用户名字
     private String userpic;
     private String building;//楼按名字
+    private String bpicture;
     private List<Favor> favors;
+
+    public String getBpicture() {
+        return bpicture;
+    }
+
+    public void setBpicture(String bpicture) {
+        this.bpicture = bpicture;
+    }
 
     public String getUname() {
         return uname;

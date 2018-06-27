@@ -10,6 +10,7 @@
         <result property="comtype" column="comtype"/>
         <result property="comcontent" column="comcontent"/>
         <result property="uname" column="uname"/>
+        <result property="bpicture" column="bpicture"/>
         <result property="building" column="building"/>
         <result property="userpic" column="userpic"/>
         <collection property="favors" ofType="Favor">
@@ -19,13 +20,13 @@
     </resultMap>
     <!--public Comment selectCommentById(Integer commentid);-->
 <select id="selectCommentById" parameterType="int" resultMap="CommentMap">
-     select comment.* ,build.building , user.userpic as userpic,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
+     select comment.* ,build.building ,build.bpicture, user.userpic as userpic,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
       build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
       where comment.commentid=#{_parameter} and idtype=1
 </select>
     <!--public List<Comment>  selectCommentByQueryPojo(CommentQueryPojo commentQueryPojo);-->
     <select id="selectCommentByQueryPojo" parameterType="CommentQueryPojo" resultMap="CommentMap">
-        select comment.* ,build.building , user.userpic as userpic,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
+        select comment.* ,build.building ,build.bpicture, user.userpic as userpic,favor.userid as fuserid,favor.favortype,user.uname as uname from  comment left  join user on(comment.id=user.userid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
               idtype=1
@@ -46,7 +47,7 @@
             </if>
         </where>
         UNION
-        select comment.* ,build.building,cta.ctaimg as userpic ,favor.userid as fuserid,favor.favortype,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
+        select comment.* ,build.building,build.bpicture,cta.ctaimg as userpic ,favor.userid as fuserid,favor.favortype,cta.ctaname as uname from  comment left  join cta on(comment.id=cta.ctaid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
             idtype =3
@@ -59,9 +60,12 @@
             <if test="comtype neq null">
                 and comment.comtype like "%" #{comtype} "%"
             </if>
+            <if test="userid neq null">
+                and comment.id =#{userid}
+            </if>
         </where>
         UNION
-        select comment.* ,build.building ,company.compic as userpic,favor.userid as fuserid,favor.favortype,company.comuname as uname from  comment left  join company on(comment.id=company.comid) left  join
+        select comment.* ,build.building ,build.bpicture,company.compic as userpic,favor.userid as fuserid,favor.favortype,company.comuname as uname from  comment left  join company on(comment.id=company.comid) left  join
         build on( build.buildingid=comment.buildingid) left join favor on(comment.commentid=favor.commentid)
         <where>
             idtype =2
@@ -73,6 +77,9 @@
             </if>
             <if test="comtype neq null">
                 and comment.comtype like "%" #{comtype} "%"
+            </if>
+            <if test="userid neq null">
+                and comment.id =#{userid}
             </if>
         </where>
         ORDER BY comtime DESC

@@ -14,6 +14,38 @@ public class Appointment {
     private String apphone;
 
     private String appnote;
+    private String sex;
+    private String urealname;
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appid=" + appid +
+                ", buildingid=" + buildingid +
+                ", userid=" + userid +
+                ", apptime=" + apptime +
+                ", apphone='" + apphone + '\'' +
+                ", appnote='" + appnote + '\'' +
+                ", sex='" + sex + '\'' +
+                ", urealname='" + urealname + '\'' +
+                '}';
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getUrealname() {
+        return urealname;
+    }
+
+    public void setUrealname(String urealname) {
+        this.urealname = urealname;
+    }
 
     public Integer getAppid() {
         return appid;

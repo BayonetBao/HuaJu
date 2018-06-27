@@ -34,9 +34,7 @@ public class CtaServiceImpl implements CtaService{
         PageInfo<Cta> pageInfo=new PageInfo<Cta>(list);
 
         return pageInfo;
-
     }
-
     @Override
     //添加咨询师(张宝)
     public boolean addCta(Cta cta){
@@ -54,6 +52,33 @@ public class CtaServiceImpl implements CtaService{
     public List<Cta> selectAllCta(){
         return ctaMapper.AllCta();
     }
+
+//添加咨询师ZYJ
+    @Override
+    public boolean addAllCta(Cta cta) {
+        return ctaMapper.addAllCta(cta);
+    }
+
+    @Override
+    public List<Cta> showAllInfoCta(int comid) {
+        return ctaMapper.showAllInfoCta(comid);
+    }
+    //    根据咨询师id查出咨询师详情页ZYJ
+    @Override
+    public Cta showDetialCta(int ctaid) {
+        return ctaMapper.showDetialCta(ctaid);
+    }
+    //    删除咨询师信息ZYJ
+    @Override
+    public boolean deleteCta(int ctaid) {
+        return ctaMapper.deleteCta(ctaid);
+    }
+    //    修改咨询师信息ZYJ
+    @Override
+    public void updateCtaInfo(Cta cta) {
+        ctaMapper.updateCtaInfo(cta);
+    }
+
 
     @Override
     public Cta selectCtaById(Integer ctaid) {

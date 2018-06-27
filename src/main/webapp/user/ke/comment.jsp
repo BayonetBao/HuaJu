@@ -117,6 +117,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <%--查找评论的隐藏表单 通过按钮触发script 更改hidden的input的value submit--%>
                                 <form id="hiddenForm" action="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action" method="post">
                                     <input type="hidden" id="curPage" name="curPage" value="1"/>
+                                    <input type="hidden" id="buildingid" name="buildingid" value="${commentQueryPojo.buildingid}"/>
                                     <input type="hidden" id="comtype" name="comtype" value="${commentQueryPojo.comtype}"/>
                                     <input type="hidden" id="idtype" name="idtype" value="${commentQueryPojo.idtype}"/>
                                 </form>

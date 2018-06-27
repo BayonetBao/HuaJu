@@ -284,8 +284,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <c:if test="${i.index<3}">
                             <div class="col-md-4 friend-grid" >
                                 <img src="${pageContext.request.contextPath}/${cta.ctaimg}">
-                                <h4>优秀咨询师</h4>${cta.ctarelname}
+                                <h4 style="font-family: 微软雅黑">优秀咨询师</h4>${cta.ctarelname}&nbsp;&nbsp;&nbsp;<span>${cta.education}</span>
                                 <p>毕业于${cta.school}</p>
+                                <%--<p>${cta.education}</p>--%>
+                                <p style="width:350px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;">${cta.intro}</p>
                                 <p>${cta.education}</p>
                                 <p style="height: 50px;overflow: hidden;word-wrap: break-word;"><span>个人介绍：</span>${cta.intro}</p>
                             </div>
@@ -299,7 +301,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </c:if>
     <div class="offering">
         <div class="container" style="border: solid #c3c3c3 1px;">
-            <div style="overflow: auto;height: 50px; margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">优惠楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多优惠楼盘</a></span></div>
+            <div style="overflow: auto;height: 50px; margin-top: 15px;"><h3 style="float: left;margin-left: 30px;text-align: left; width:160px; font-family:微软雅黑">优惠楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多优惠楼盘</a></span></div>
             <div class="offer-grids" style="margin-top: 15px;">
                 <c:forEach items="${discountBuildList}" var="disblist" varStatus="i">
                     <c:if test="${i.index<4}">
@@ -330,17 +332,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="feature-section">
         <div class="container" style="border: solid #c3c3c3 1px;">
             <div style="overflow: auto;height: 50px; margin-top: 15px;">
-                <h3 style="float: left;margin-left: 30px;text-align: left; width:160px;">品质楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多好盘</a></span>
+                <h3 style="float: left;margin-left: 30px;text-align: left; width:160px; font-family:微软雅黑 ">品质楼盘</h3><span style="margin-left: 800px;font-size: 16px;line-height: 48px;"><a href="${pageContext.request.contextPath}/build/selectBuildQueryPojo.action">更多好盘</a></span>
             </div>
                 <c:forEach items="${adviceBuildList}" var="advblist" varStatus="i">
                 <c:if test="${i.index<5}">
             <div class="feature-grids">
                 <div class="col-md-3 feature-grid">
+                    <img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive zoom-img" alt="${advblist.building}">
+                    <h5 style="font-size: 24px;font-family: 'arial', '微软雅黑'"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}"></a>${advblist.building}</h5>
                     <a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}"><img width="255" height="175" src="${pageContext.request.contextPath}/${advblist.bpicture}" class="img-responsive zoom-img" alt="${advblist.building}"></a>
                     <h5 style="font-size: 24px;"><a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}">${advblist.building}</a></h5>
 
                     <p><fmt:formatNumber value=" ${advblist.bperprice}" type="number" maxFractionDigits="3"/>元/㎡起</p>
                     <p>建面 ${advblist.acreage}—${advblist.maxacreage} ㎡&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${advblist.city}</p>
+                    推荐理由：<p style=" height: 50px; overflow: hidden; width: 260px; word-wrap: break-word;">${advblist.advice}</p>
+                    <p><a style="color: #00ccff" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${advblist.buildingid}">查看详情</a></p>
                     推荐理由：<p style="text-indent: 2em;height: 100px;text-overflow:ellipsis;overflow: hidden;word-wrap: break-word;">${advblist.advice}</p>
                     <%--推荐理由：<p style="text-indent: 2em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow: hidden;">${advblist.advice}</p>--%>
                     <%--style=" height: 50px; overflow: hidden; width: 260px; word-wrap: break-word;"--%>

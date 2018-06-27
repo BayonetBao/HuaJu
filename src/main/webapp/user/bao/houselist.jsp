@@ -390,19 +390,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </c:forEach>
 
 
-            <%--<div class="box">1111</div>--%>
-            <%--<div class="box">2222</div>--%>
-            <%--<div class="box">3333</div>--%>
         </div>
 
 
     </div>
 </div>
-
-
-
-
-
 
 
 <!---footer--->

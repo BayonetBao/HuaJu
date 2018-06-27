@@ -130,6 +130,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                     </li>
 
+                    <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                    <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li class="active"><a href="${pageContext.request.contextPath}/user/ZYJ/ctalist.jsp">&nbsp;&nbsp;&nbsp;&nbsp;咨询师&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;联系我们&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
                     <!--  <li><a href="contact.html">&nbsp;&nbsp;&nbsp;&nbsp;团队介绍&nbsp;&nbsp;&nbsp;&nbsp;</a></li>-->
@@ -173,9 +175,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             <div class="agent-grids">
                 <c:forEach items="${pageInfo.list}" var="cta">
-                <div class="col-md-6 agent-grid"  style="margin-bottom: 40px ; border: solid">
-                    <div class="agent-left">
-                        <img src="${pageContext.request.contextPath}/${cta.ctaimg}" name="ctaimg" class="img-responsive" alt="/">
+                <div class="col-md-6 agent-grid"  style="margin-bottom: 40px ;">
+                    <div class="agent-left" style="background-color:#333d47;vertical-align: middle;text-align: center; " >
+                        <img style="border-radius: 60%;margin: 0 auto;" src="${pageContext.request.contextPath}/${cta.ctaimg}" name="ctaimg" class="img-responsive"  alt="/">
                     </div>
                     <div class="agent-right">
                         <h4>${cta.ctarelname}</h4>
@@ -184,8 +186,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i> 学历:${cta.education}</li>
                             <li><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>咨询次数 :${cta.ctatime}</li>
                             <li style="width:200px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;"><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
-                            <li style="width:200px; text-overflow:ellipsis;  white-space:nowrap;overflow:hidden;"
-                            ><i class="glyphicon glyphicon-hand-right" aria-hidden="true"></i>简介 : ${cta.intro}</li>
+
                         </ul>
                         <a href="johnnguyen.html" class="button3 hvr-shutter-out-horizontal">更多·咨询</a>
                     </div>

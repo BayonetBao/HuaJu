@@ -27,7 +27,8 @@
         <result property="btotalprice" column="btotalprice"/>
         <result property="acreage" column="acreage"/>
         <result property="conditions" column="conditions"/>
-        <result property="starttime" column="starttime"/><result property="endtime" column="endtime"/>
+        <result property="starttime" column="starttime"/>
+        <result property="endtime" column="endtime"/>
         <result property="genre" column="genre"/>
         <result property="agelimit" column="agelimit"/>
         <result property="landtime" column="landtime"/>
@@ -78,20 +79,16 @@
            <if test="bTotalprice neq null">
                and bTotalprice &gt; #{bTotalprice}
            </if>
-           <if test="bMaxTotalprice neq null">
-               and bTotalprice &lt; #{bTotalprice}
-           </if>
+
            <if test="bPerprice neq null">
                and bPerprice &gt; #{bPerprice}
            </if>
-           <if test="bMaxprice neq null">
-               and bPerprice &lt; #{bMaxprice}
-           </if>
+
            <if test="acreage neq null">
                and acreage &gt; #{acreage}
            </if>
            <if test="maxAcreage neq null">
-               and acreage &lt; #{maxAcreage}
+               or maxacreage &lt; #{maxAcreage}
            </if>
            <if test="comid neq null">
                and comid =#{comid}
@@ -101,8 +98,11 @@
                select buildingid from buildtype where typeid=#{typeid} and count !=0
                )
            </if>
-           <if test="comid neq null">
-               and comid =#{comid}
+           <if test="ctaid neq null">
+               and build.ctaid =#{ctaid}
+           </if>
+           <if test="genre neq null">
+               and tenement like "%" #{genre} "%"
            </if>
            <if test="isonsale neq null">
                and discounts is not null and discounts != ''

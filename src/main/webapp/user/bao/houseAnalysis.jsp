@@ -298,14 +298,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <c:set var="flag" value="false"></c:set>
             <c:if test="${buildTypes.typeid==1}">
                 <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=1"> 一居(${buildTypes.count})</a>
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=1"> 一居(${buildTypes.count})</a>
             </c:if>
             <c:if test="${buildTypes.typeid==2}">
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=2">二居(${buildTypes.count})</a>
                 <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=2">二居(${buildTypes.count})</a>
             </c:if>
             <c:if test="${buildTypes.typeid==3}">
+                <a  href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=3">三居(${buildTypes.count})</a>
                 <a  href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=3">三居(${buildTypes.count})</a>
             </c:if>
             <c:if test="${buildTypes.typeid==4}">
+                <a href="<%=basePath%>buildType/buildType.action?buildingid=${buildingid}&typeid=4">四居(${buildTypes.count})</a>
                 <a href="<%=basePath%>buildType/buildType.action?buildingid=${build.buildingid}&typeid=4">四居(${buildTypes.count})</a>
             </c:if>
         </c:if>
@@ -408,7 +412,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </ul>
                     </div>
                     <div class="col-md-14 blog-grid1" >
-                        <p class="rule-text">户型解析:
+                        <p class="rule-text" style="height: 40px; overflow: hidden; word-wrap: break-word;">户型解析:
                             <c:if test="${empty house.analysis}">
                                 <td>暂无数据</td>
                             </c:if>
@@ -416,10 +420,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <td>${house.analysis}</td>
                             </c:if>
                          </p>
-
                     </div>
-
-
                 </div>
                 <div class="clearfix"></div>
             </div>

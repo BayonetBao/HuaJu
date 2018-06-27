@@ -200,7 +200,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             <ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
                                 <li role="presentation" <c:if test="${buildQueryPojo.isonsale eq null}"> class="active" </c:if>>
-                                    <a href="javascript:allBuild()" aria-controls="profile">全部楼盘
+                                    <a href="javascript:allBuild()"  aria-controls="profile">全部楼盘
                                     </a>
                                 </li>
                                 <li role="presentation"  <c:if test="${!(buildQueryPojo.isonsale eq null)}"> class="active" </c:if> >
@@ -247,7 +247,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                                     <p style="margin-top:-175px;font-size:13px;margin-left:15px">
 
-                                                        <a href="#">${b.cta.ctarelname}|咨询</a>
+                                                        <a href="${pageContext.request.contextPath}/cta/ctaIndex.action?ctaid=${b.ctaid}">${b.cta.ctarelname}|咨询</a>
                                                     </p>
                                                 </div>
                                                 <div class="clearfix"></div>
