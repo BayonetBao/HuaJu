@@ -128,7 +128,9 @@ public class ActivityControl {
         cmap.put("pageSize", pageSize);
         cmap.put("curPage",curPage);
         PageInfo<Activity> pageInfo = activityService.selectActivityByBuildAndCta(cmap);
+        List<Build> builds = activityService.selectBuilding();
         request.setAttribute("pageInfo", pageInfo);
+        request.setAttribute("builds",builds);
         request.setAttribute("companies",companies);
         request.setAttribute("activityQueryPojo",activityQueryPojo);
         request.getRequestDispatcher("/user/fei/buildactivity.jsp").forward(request,response);
