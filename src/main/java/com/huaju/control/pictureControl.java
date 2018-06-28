@@ -96,7 +96,7 @@ public class pictureControl {
                 String time=request.getParameter("updatename");
 
 
-//                 house.setUpdatename(time1);
+
         System.out.println("time1"+time);
                 System.out.println(time);
 

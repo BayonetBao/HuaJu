@@ -19,7 +19,7 @@
     <select id="selectCtaByName" parameterType="String" resultType="Cta">
         SELECT * from cta where ctaname=#{_parmeter}
     </select>
-    <!--//添加咨询师(张宝)-->
+    <!--//添加咨询师-->
     <!--public boolean addCta(Cta cta);-->
     <insert id="addCta" parameterType="Cta">
         INSERT into cta (ctaname,ctaimg,ctaphone,ctatime,education,intro,ctarelname,ctapassword) VALUES (#{ctaname},#{ctaimg},#{ctaphone},#{ctatime},#{education},#{intro},#{ctarelname},#{ctapassword})
@@ -29,4 +29,35 @@
     <select id="seletCtaByBuildingid" parameterType="int" resultType="Cta">
         SELECT * from cta WHERE ctaid = (SELECT ctaid from build WHERE buildingid=#{_parameter})
     </select>
+
+    <!--//    添加咨询师ZYJ-->
+    <!--public boolean addAllCta(Cta cta); 主键自增-->
+    <insert id="addAllCta" parameterType="Cta" useGeneratedKeys="true" keyProperty="ctaid">
+        INSERT INTO cta(ctaimg,ctaname,ctarelname,ctapassword,ctaphone,qq,school,education,charactere,intro,comid)
+        VALUES (#{ctaimg},#{ctaname},#{ctarelname},#{ctapassword},#{ctaphone},#{qq},#{school},#{education},#{charactere},#{intro},#{comid})
+    </insert>
+
+    <!--//    根据开发商id列出所有咨询师信息ZYJ-->
+    <!--public List<Cta> showAllInfoCta(int comid);-->
+    <select id="showAllInfoCta" parameterType="int" resultType="Cta">
+        SELECT * FROM cta WHERE comid=#{_parameter}
+    </select>
+    <!--//    根据咨询师id查出咨询师详情页ZYJ-->
+    <!--public Cta showDetialCta(int ctaid);-->
+    <select id="showDetialCta" resultType="Cta" parameterType="int">
+        SELECT * FROM cta WHERE ctaid=#{_parameter}
+    </select>
+
+    <!--//    删除咨询师信息ZYJ-->
+    <!--public boolean deleteCta(int ctaid);-->
+    <delete id="deleteCta" parameterType="int" >
+        DELETE FROM cta WHERE ctaid=#{_parameter}
+    </delete>
+
+    <!--//    修改咨询师信息ZYJ-->
+    <!--public void updateCtaInfo(Cta cta);-->
+    <update id="updateCtaInfo" parameterType="Cta"  >
+        UPDATE cta SET ctaimg=#{ctaimg},ctarelname=#{ctarelname},ctaphone=#{ctaphone},qq=#{qq},school=#{school},education=#{education},charactere=#{charactere},intro=#{intro} WHERE ctaid=#{ctaid}
+</update>
+
 </mapper>

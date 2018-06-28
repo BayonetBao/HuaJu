@@ -136,17 +136,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<ul class="nav navbar-nav" style="float:none; margin:0px auto; width:1120px;">
 
-				<li style="margin-right:57px; margin-left:16px;" ><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页</a></li>
+				<li style="margin-right:57px; margin-left:16px;" class="active"><a style="color: #0b0b0b;" href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}">楼盘主页</a></li>
 				<li style="margin-right:57px;"><a
 						href="${pageContext.request.contextPath}/build/buildDetailInfo.action?buildingid=${build.buildingid}"
 						style="color: #0b0b0b;">楼盘详情</a></li>
 				<li style="margin-right:57px;"><a
 						href="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFrontSingle.action?buildingid=${build.buildingid}"
 						style="color: #0b0b0b;">楼盘评论</a></li>
-				<li style="margin-right:57px;"><a href="codes.html" style="color: #0b0b0b;">户型</a></li>
-				<li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘动态</a></li>
-				<li style="margin-right:57px;"><a href="contact.html" style="color: #0b0b0b;">楼盘图册</a></li>
-				<li style="margin-right:57px;" class="active"><a href="${pageContext.request.contextPath}/Activity/selectAllActivityQueryPojo.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘活动</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/buildType/buildType.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">户型分析</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/dynamic/selectAllDynamicByBuild.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘动态</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/build/buildImages.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘图册</a></li>
+				<li style="margin-right:50px;"><a href="${pageContext.request.contextPath}/Activity/selectBuildActivity.action?buildingid=${build.buildingid}" style="color: #0b0b0b;">楼盘活动<span
+						class="sr-only">(current)</span></a></li>
 				<li><a href="${pageContext.request.contextPath}/build/buildAroundAnalysis.action?buildingid=${build.buildingid}"
 					   style="color: #0b0b0b;">楼盘周边</a></li>
 			</ul>
@@ -159,47 +160,54 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-9 blog-grid">
 							<ul id="myTab" class="nav nav-tabs left-tab" role="tablist">
 								<li role="presentation" class="active">
-									<a href="${pageContext.request.contextPath}/Activity/selectAllActivityQueryPojo.action" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">全部活动
+									<a href="${pageContext.request.contextPath}/Activity/selectAllActivityQueryPojo.action" >全部活动
 									</a>
 								</li>
 							</ul>
-							<div class="blog">
-								<h3>${activity.build.building}</h3>
-								<p><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd hh:mm:ss"/> / <a href="#">${activity.cta.ctarelname}</a> </p>
-								<a href="#"><img src="${pageContext.request.contextPath}/user/ke/images/${activity.build.bpicture}" class="img-responsive" alt=""/></a>
+							<div class="blog" style="background-color: #F4F4F4">
+								<<a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}"><h3>${activity.build.building}</h3></a>
+								<p><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd hh:mm:ss"/> / <a href="${pageContext.request.contextPath}/cta/ctaIndex.action?ctaid=${activity.cta.ctaid}">${activity.cta.ctarelname}</a> </p>
+								<a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${build.buildingid}"><img src="${pageContext.request.contextPath}/user/ke/images/${activity.build.bpicture}" class="img-responsive" alt=""/></a>
 								<p><h5 style="font-family: 'Open Sans', sans-serif">最低${activity.build.bperprice}元每平方米起
 										&nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp;  &nbsp;&nbsp;
 										参考总价${activity.build.btotalprice}-${activity.build.bmaxtotalprice}万元
 									</h5>
 								</p>
 							</div>
-							<div class="history">
-								<h4>咨询师</h4>
-								<img style="border-radius:300px; width:90px;" src="${pageContext.request.contextPath}/user/ke/images/${activity.cta.ctaimg}">
-								<p style="font-size:13px;"><a>${activity.cta.ctarelname}</a><button style="border:none; background-color: #F60;">咨询</button></p>
-								<p>${activity.cta.intro}</p>
+							<<div class="history"style="background-color: #F4F4F4">
+								<a href="${pageContext.request.contextPath}/cta/ctaIndex.action?ctaid=${activity.cta.ctaid}"><h4>咨询师</h4></a>
+								<div style="margin-left: 100px">
+									<img style="border-radius:300px; width:90px;" src="${pageContext.request.contextPath}/user/ke/images/${activity.cta.ctaimg}">
+									<p style="font-size:13px;"><a>${activity.cta.ctarelname}</a><button style="border:none; background-color: #F60;">咨询</button></p>
+									<p>${activity.cta.intro}</p>
+								</div>
 							</div>
-							<div class="rules">
+							<<div class="rules" style="background-color: #F4F4F4">
 								<h3 >活动信息</h3>
+							<div style="margin-left: 100px">
 								<p>
-									<h4>活动时间：</h4><span><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd hh:mm:ss"/></span><br>
-									<h4>活动总人数：</h4><span>${activity.totalnum}</span><br>
-									<h4>已报名人数：</h4><span>${activity.parnum}</span>
+									<h4>活动时间：</h4>
+								&nbsp;&nbsp;&nbsp;&nbsp;<span><fmt:formatDate value="${activity.actime}" pattern="yyyy-MM-dd-hh:mm:ss"/></span><br>
+									<h4>活动总人数：</h4>
+								&nbsp;&nbsp;&nbsp;&nbsp;<span>${activity.totalnum}</span><br>
+									<h4>已报名人数：</h4>
+								&nbsp;&nbsp;&nbsp;&nbsp;<span>${activity.parnum}</span>
 								</p>
 								<p class="rules-text"><h4>活动内容：</h4><hr><span>${activity.actcontent}</span></p>
+							</div>
 								</div>
 							<!---RESPONSES--->
 							<div class="coment-form">
 								<div class="container">
 									<form>
-										<input type="submit" data-target="#myModal" value="立刻报名" >
+										<input type="button" data-toggle="modal" data-target="#myModal2" value="立刻报名" >
 									</form>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-3 blog-grid1">
 							<div class="tags">
-								<form id="mainFrom" action="#" method="post">
+								<form id="mainFrom" action="${pageContext.request.contextPath}/ActivityEntry/activityEntry.action" method="post">
 								<div class="form-group col-md-12">
 									<h5>您的姓名</h5>
 									<input type="text" value="" name="entnote">
@@ -208,8 +216,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<h5>您的手机号</h5>
 										<input type="text" value="" name="entphone">
 									</div>
-									<input type="button" data-target="#myModal" value="报名" onclick="entry()">
+									<input type="submit" value="报名">
 								</form>
+								<script>
+                                    function addEntry(){
+                                        alert("111111111111")
+                                        if(confirm("你确认要添加吗?")){
+                                            var entnote=${"entnote"};
+                                            var entphone=${"entphone"};
+                                            $.ajax({
+                                                url:"${pageContext.request.contextPath}/ActivityEntry/activityEntry.action",
+                                                type:"post",
+
+                                                data:"entnote="+entnote.val()+"&entphone="+entphone.val(),
+                                                success:function(data){
+                                                    entnote.val("");
+                                                    entphone.val("");
+                                                    showQuery;
+                                                    alert(data);
+                                                },
+                                                error:function(XMLHttpRequest, textStatus, errorThrown){
+                                                    alert("Error")
+                                                    alert(XMLHttpRequest.readyState);
+                                                },
+                                                dataType:"json",
+                                            });
+                                        }
+                                        function showQuery(data) {
+                                            ${"#entnote"}.val(data.entnote);
+                                            ${"#entphone"}.val(data.entphone);
+                                            ${"#"}
+                                        }
+
+                                    }
+								</script>
 							</div>
 							<div class="feature">
 								<h4>推荐楼盘</h4>
@@ -217,7 +257,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="feature-top">
 								<img src="<%=basePath%>${b.bpicture}" class="img-responsive" alt="/">
 										<h5>${b.building}</h5>
-										<p>${b.discounts}<a href="#">Know More</a></p>
+										<p>${b.discounts}<a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}">Know More</a></p>
 								</div>
 								</c:forEach>
 							</div>
@@ -227,37 +267,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 		</div>
-		<script>
-            function entry(){
-                if(confirm("你确认要添加吗?")){
-					var entnote=${"entnote"};
-					var entphone=${"entphone"};
-                    $.ajax({
-                        url:"${pageContext.request.contextPath}/ActivityEntry/activityEntry.action",
-                        type:"post",
 
-                        data:"entnote="+entnote.val()+"&entphone="+entphone.val(),
-                        success:function(data){
-                            entnote.val("");
-                            entphone.val("");
-                            showQuery;
-                            alert(data);
-                        },
-                        error:function(XMLHttpRequest, textStatus, errorThrown){
-                            alert("Error")
-                            alert(XMLHttpRequest.readyState);
-                        },
-                        dataType:"json",
-                    });
-                }
-                function showQuery(data) {
-					${"#entnote"}.val(data.entnote);
-					${"#entphone"}.val(data.entphone);
-					${"#"}
-                }
-
-            }
-		</script>
 		<!---footer--->
 		<div class="footer-section">
 			<div class="container">
@@ -429,7 +439,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<%--entry--%>
-		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content modal-info" style="min-width: 550px;">
 					<div class="modal-header">
@@ -448,7 +458,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<br>
 										<span></span>
 
-										<input type="submit" onclick="entry()" value="报名" >
+										<input type="submit" value="报名" >
 									</form>
 								</div>
 							</div>
@@ -458,7 +468,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 		<%--entrysuccess--%>
-		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -470,7 +480,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</h4>
 					</div>
 					<div class="modal-body">
-						按下 ESC 按钮退出。
+						<table>
+							<tr>
+								<td></td>
+								<td>${entry.entnote}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.entphone}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.build.building}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.build.cta.ctarelname}</td>
+								<td>${entry.build.cta.ctaphone}</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>${entry.build.cta.intro                                                                                                                                                                        }</td>
+							</tr>
+						</table>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default"

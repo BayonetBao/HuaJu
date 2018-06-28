@@ -35,9 +35,15 @@
 <div id="left-top">
     <div><img src="images/main/member.gif" width="44" height="44" /></div>
     <span>用户：${user.comuname}<br>角色：开发商</span>
+
 </div>
 <div style="float: left" id="my_menu" class="sdmenu">
     <div class="collapsed">
+        <span>销售团队</span>
+        <a href="${pageContext.request.contextPath}/cta/showallinfocta.action?comid=${user.comid}" target="mainFrame" onFocus="this.blur()">咨询师信息</a>
+        <a href="${pageContext.request.contextPath}/developer/AddCta.jsp" target="mainFrame" onFocus="this.blur()">添加咨询师</a>
+    </div>
+    <div>
         <span>楼盘信息</span>
         <%--developer/personalCenter.jsp--%>
         <a href="${pageContext.request.contextPath}/developer/personalCenter.jsp" target="mainFrame" onFocus="this.blur()">后台首页</a>

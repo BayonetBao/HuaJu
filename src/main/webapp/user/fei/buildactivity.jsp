@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML>
 <html>
 
@@ -246,6 +250,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
                 </div>
+            <div class="feature">
+                <h4>推荐楼盘</h4>
+                <c:forEach items="${builds}" var="b" end="4">
+                    <div class="feature-top">
+                        <img src="<%=basePath%>${b.bpicture}" class="img-responsive" alt="/">
+                        <h5>${b.building}</h5>
+                        <p>${b.discounts}<a href="${pageContext.request.contextPath}/build/buildIndex.action?buildingid=${b.buildingid}">Know More</a></p>
+                    </div>
+                </c:forEach>
+            </div>
                 <div class="clearfix"></div>
             </div>
         </div>

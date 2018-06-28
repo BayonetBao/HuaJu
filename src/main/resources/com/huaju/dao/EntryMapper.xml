@@ -38,6 +38,7 @@
                 <result column="ctarelname" property="ctarelname"/>
                 <result column="ctaimg" property="ctaimg"/>
                 <result column="intro" property="intro"/>
+                <result column="ctaphone" property="ctaphone"/>
             </collection>
         </collection>
 
@@ -52,7 +53,7 @@
         <if test="entid neq null">
             AND entid=#{entid}
         </if>
-        JOIN build b ON a.buildingid=b.buildingid
-        JOIN cta c ON a.ctaid=c.ctaid
+--         JOIN build b ON a.buildingid=b.buildingid
+--         JOIN cta c ON a.ctaid=c.ctaid
     </select>
 </mapper>
