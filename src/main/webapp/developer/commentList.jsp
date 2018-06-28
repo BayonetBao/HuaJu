@@ -115,7 +115,6 @@
                     <th align="left"  valign="middle" class="borderright">楼盘名称</th>
                     <th align="left"  valign="middle" class="borderright">评论内容</th>
                     <th align="left"  valign="middle" class="borderright">评论时间</th>
-                    <th align="left"  valign="middle">操作</th>
                 </tr>
                 <c:forEach items="${pageInfo.list}" var="c">
                 <tr   id="tr_${c.commentid}" onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -136,7 +135,6 @@
                     <td align="left" valign="middle" class="borderright borderbottom">
                         <fmt:formatDate value="${c.comtime}" pattern="yyyy-MM-dd hh:mm:ss"/>
                     </td>
-                    <td valign="middle" class="borderbottom"><a href="#" target="mainFrame" onFocus="this.blur()" class="add">回复</a><span class="gray">&nbsp;|&nbsp;</span><span class="gray">&nbsp;|&nbsp;</span><a href="javascript:void(0)" onclick="removeComment(${c.commentid})"  onFocus="this.blur()" >删除</a><span class="gray">&nbsp;|&nbsp;</span><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">查看</a></td>
                 </tr>
                 </c:forEach>
             </table></td>

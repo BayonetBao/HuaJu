@@ -1,6 +1,7 @@
 package com.huaju.control;
 
 import com.github.pagehelper.PageInfo;
+import com.huaju.dao.BuildMapper;
 import com.huaju.entity.*;
 import com.huaju.service.BuildService;
 import com.huaju.service.CommentService;
@@ -27,12 +28,16 @@ public class CommentControl {
     private BuildService buildService;
     @Autowired
     private RecommentService recommentService;
+    @Autowired
+    private BuildMapper buildMapper;
 
 //    后台查询
     @RequestMapping(value = "selectAllCommentByQueryPojo.action",method = {RequestMethod.POST,RequestMethod.GET})
     public void selectAllCommentByQueryPojo(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Company com= (Company) session.getAttribute("user");
-        List<Build> blist=commentService.selectBuildInComment(com.getComid());
+        BuildQueryPojo buildQueryPojo=new BuildQueryPojo();
+        buildQueryPojo.setComid(com.getComid());
+        List<Build> blist=buildMapper.selectBuildQueryPojo(buildQueryPojo);
         Map<String, Object> cmap=new HashMap<>();
         CommentQueryPojo commentQueryPojo=new CommentQueryPojo();
         String bid=request.getParameter("buildingid");//楼盘id
