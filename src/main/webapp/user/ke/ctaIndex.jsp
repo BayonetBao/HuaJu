@@ -146,7 +146,7 @@
 							<input type="text" id="urealname" placeholder="你的名字.">
 						</fieldset>
 						<fieldset class="col-md-2 col-sm-6">
-							<input type="text" id="apphone" placeholder="你的电话">
+							<input type="text" id="apphone"  onblur="checkPhone()" placeholder="你的电话">
 						</fieldset>
 						<fieldset class="col-md-2 col-sm-12">
 							<select id="sex" style="width: 100%;height: 45px;border:lightslategray 1px solid;">
@@ -155,7 +155,7 @@
 							</select>
 						</fieldset>
 						<fieldset class="col-md-3 col-sm-6">
-							<input id="apptime" name="apptime" placeholder="预约时间" value="" class="Wdate"  style="width:100%;height: 45px;" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-{%d} 00:00:00'})"/>
+							<input id="apptime" name="apptime" placeholder="预约时间" value="" class="Wdate"  onblur="checkTime()" style="width:100%;height: 45px;" type="text" onclick="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',minDate:'%y-%M-{%d} 00:00:00'})"/>
 						</fieldset>
 						<fieldset class="col-md-3 col-sm-12">
 							<select id="buildingid" style="width: 100%;height: 45px;border:lightslategray 1px solid;">
@@ -173,6 +173,50 @@
 						</fieldset>
 					</form>
 					<script>
+						function checkTime() {
+							var apptime=$("#apptime");
+							var as=apptime.val().split(" ");
+							var as2=as[1].split(":");
+							var s=Number(as2[0]);
+							var s1=as[0]+" "+(s+1)+":"+as2[1]+":"+as2[2];
+							var s2=as[0]+" "+(s-1)+":"+as2[1]+":"+as2[2];
+							$.ajax({
+								type:"post",
+								data:"s1="+s1+"&s2="+s2,
+								url:"${pageContext.request.contextPath}/appointment/checkAppointment.action",
+								success:function (appointments) {
+								    if(appointments.length>0) {
+                                        var appoint = "您已经在";
+                                        for (var i = 0; i < appointments.length; i++) {
+                                            appoint = appoint + getMyDate(appointments[i].apptime) + ","
+                                        }
+                                        appoint = appoint + "预约了咨询师，一个小时内不允许预约多个，请重新安排预约时间。"
+                                        apptime.val("");
+                                        alert(appoint);
+                                    }
+                                }
+							});
+                        }
+						function checkPhone() {
+                            var reg = /^1[34578][0-9]{9}$/; //验证规则，
+							var apphone=$("#apphone");
+                            var flag = reg.test(apphone.val());
+                            if(!flag){
+                                apphone.val("");
+                                alert("请输入正确的手机号");
+							}
+                        }
+                        function getMyDate(str){
+                            var oDate = new Date(str);
+                            var  oYear = oDate.getFullYear();
+                            var   oMonth = oDate.getMonth()+1;
+                            var  oDay = oDate.getDate();
+                            var  oHour = oDate.getHours();
+                            var  oMin = oDate.getMinutes();
+                            var  oSen = oDate.getSeconds();
+                            var oTime = oYear +'-'+oMonth+'-'+oDay+' '+ oHour+':'+ oMin+':'+oSen;//最后拼接时间
+                            return oTime;
+                        }
 						function appointSub() {
 						    if(${!(sessionScope.userType eq 1)}){
 						        alert("只有用户可以预约呦~");

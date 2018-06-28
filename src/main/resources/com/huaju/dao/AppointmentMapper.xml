@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huaju.dao.AppointmentMapper">
+    <resultMap id="AppointmentMap" type="Appointment">
+        <id column="appid" property="appid"/>
+        <result column="buildingid" property="buildingid"/>
+        <result column="userid" property="userid"/>
+        <result column="apptime" property="apptime"/>
+        <result column="apphone" property="apphone"/>
+        <result column="appnote" property="appnote"/>
+        <result column="sex" property="sex"/>
+        <result column="urealname" property="urealname"/>
+        <association property="cta" javaType="Cta">
+            <id column="ctaid" property="ctaid"/>
+            <result column="ctarelname" property="ctarelname"/>
+            <result column="ctaimg" property="ctaimg"/>
+            <result column="qq" property="qq"/>
+            <result column="ctaphone" property="ctaphone"/>
+        </association>
+        <association property="build" javaType="Build">
+            <result property="building" column="building"/>
+            <result property="province" column="province"/>
+            <result property="city" column="city"/>
+            <result property="barea" column="barea"/>
+            <result property="bdetail" column="bdetail"/>
+            <result property="bpicture" column="bpicture"/>
+        </association>
+    </resultMap>
     <!--public boolean insertAppointment(Appointment appointment);-->
     <insert id="insertAppointment" parameterType="Appointment">
         insert into appointment(buildingid,userid,apptime,apphone,appnote,sex,urealname) VALUES (#{buildingid},#{userid},#{apptime},#{apphone},#{appnote},#{sex},#{urealname})
     </insert>
+    <!--public List<Appointment> selectAppointment(Integer userid);-->
+    <select id="selectAppointment" resultMap="AppointmentMap" parameterType="int">
+        select appointment.*,build.building,build.province,build.city,build.barea,build.bdetail,build.bpicture,cta.* from appointment,build,cta
+       where   appointment.buildingid=build.buildingid and build.ctaid=cta.ctaid and userid=#{userid}
+    </select>
+    <!--public List<Appointment> checkAppointment(String s1,String s2);-->
+   <select id="checkAppointment" parameterType="String" resultType="Appointment">
+      select * from appointment where apptime &lt; #{param1} and apptime &gt; #{param2}
+   </select>
 </mapper>

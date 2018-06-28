@@ -145,7 +145,7 @@
 
                         </li>
                         <li>
-                            <a href="javascript:clickdiv(single.jsp)" class="auto">
+                            <a  href="${pageContext.request.contextPath}/appointment/selectAppointment.action" target="myframe">
                                 <i class="glyphicon glyphicon-stats icon text-primary-dker"></i>
                                 <span >我的预约</span>
                             </a>

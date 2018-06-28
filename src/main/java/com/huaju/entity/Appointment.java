@@ -16,6 +16,8 @@ public class Appointment {
     private String appnote;
     private String sex;
     private String urealname;
+    private Cta cta;
+    private Build build;
 
     @Override
     public String toString() {
@@ -28,23 +30,12 @@ public class Appointment {
                 ", appnote='" + appnote + '\'' +
                 ", sex='" + sex + '\'' +
                 ", urealname='" + urealname + '\'' +
+                ", cta=" + cta +
+                ", build=" + build +
                 '}';
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getUrealname() {
-        return urealname;
-    }
-
-    public void setUrealname(String urealname) {
-        this.urealname = urealname;
+    public Appointment() {
     }
 
     public Integer getAppid() {
@@ -84,7 +75,7 @@ public class Appointment {
     }
 
     public void setApphone(String apphone) {
-        this.apphone = apphone == null ? null : apphone.trim();
+        this.apphone = apphone;
     }
 
     public String getAppnote() {
@@ -92,6 +83,38 @@ public class Appointment {
     }
 
     public void setAppnote(String appnote) {
-        this.appnote = appnote == null ? null : appnote.trim();
+        this.appnote = appnote;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getUrealname() {
+        return urealname;
+    }
+
+    public void setUrealname(String urealname) {
+        this.urealname = urealname;
+    }
+
+    public Cta getCta() {
+        return cta;
+    }
+
+    public void setCta(Cta cta) {
+        this.cta = cta;
+    }
+
+    public Build getBuild() {
+        return build;
+    }
+
+    public void setBuild(Build build) {
+        this.build = build;
     }
 }
