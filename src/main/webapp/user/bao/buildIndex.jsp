@@ -760,18 +760,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                             </div>
                         </div>
-
-
                     </div>
-                    <%--//评论--%>
-                    <div style="width: 1000px;margin-left: 0px;padding: 0px;height:2000px;">
-                        <iframe src="${pageContext.request.contextPath}/comment/selectAllCommentByQueryPojoFront.action?buildingid=${build.buildingid}"
-                                name="myframe1" width='100%' height='100%' frameborder='0' id="myframe1">
-                        </iframe>
-                    </div>
-                    <!--popupbox-->
-
-
                 </div>
                 <div class="col-md-3 properties-right">
                     <div class="properties-top">
